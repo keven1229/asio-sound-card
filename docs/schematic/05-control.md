@@ -50,10 +50,11 @@ flowchart TD
 
 | CMD | 方向 | 名称 | PAYLOAD |
 |---|---|---|---|
-| 0x01 | ESP→XU | 设置混音 | mic→monitor(1B)、mic→loopback(1B)、usb→monitor(1B)、usb→loopback(1B)、限幅阈值(1B,-dB)、限幅使能(1B) |
+| 0x01 | ESP→XU | 设置混音矩阵 | 10 个电平(1B, 0~255)：源序 `Mic/Line/Main/Backing/Game`，先"→监听"5 字节再"→直播混音"5 字节；限幅阈值(1B,-dB)、限幅使能(1B) |
 | 0x02 | ESP→XU | 查询状态 | 空 |
 | 0x03 | ESP→XU | 恢复出厂混音 | 空 |
-| 0x11 | XU→ESP | VU 电平（30~50Hz） | mic(2B dBFS×100)、line(2B)、mixL(2B)、mixR(2B)、clip标志(1B) |
+| 0x04 | ESP→XU | 混音预设切换 | 预设编号(1B)：0=直通 1=直播标准 2=纯监听 |
+| 0x11 | XU→ESP | VU 电平（30~50Hz） | mic(2B dBFS×100)、line(2B)、streamMixL(2B)、streamMixR(2B)、monitorL(2B)、monitorR(2B)、clip标志(1B) |
 | 0x12 | XU→ESP | 状态回包 | usb连接(1B)、采样率(1B: 0=44.1k族 1=48k族)、当前速率(2B, Hz)、固件版本(2B) |
 | 0x13 | XU→ESP | 事件 | 0x01=USB断连 0x02=USB恢复 0x03=ASIO流启动 0x04=ASIO流停止 |
 
@@ -71,6 +72,7 @@ flowchart TD
 ```
 
 - 编码器1（单击选通道/长按菜单）；编码器2（调当前值）；
+- **混音矩阵页**：菜单进入后可逐项调 5 源×2 目的地（Mic/Line/Main/Backing/Game → 监听/直播混音）共 10 个电平 + 限幅开关；支持 0x04 预设一键切换（直通/直播标准/纯监听）；
 - 过载（clip）时屏幕红闪 + 红色 LED（直播防爆的视觉锚点）。
 
 ## 5.6 布局红线

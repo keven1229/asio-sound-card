@@ -59,11 +59,13 @@
 
 | 固件模块 | 内容 |
 |---|---|
-| 描述符 | 4 路输入 / 2 路输出，192kHz/32bit，异步模式（反馈端点） |
-| Mixer | 在默认 mixer 应用基础上改：`话筒+备用+USB播放 → 监听`；`USB播放回灌 → 捕获ch3/4（loopback）` |
+| 描述符 | **6 路输入 / 6 路输出**，192kHz/32bit，异步模式（反馈端点）；每对立体声被 Thesycon 驱动拆分为独立播放/录音设备（见 README 4.1 通道规划） |
+| 通道命名 | 描述符通道名定制：`Main Monitor/Backing/Game Voice`（播放）、`Mic/Line/Stream Mix/Host Loopback`（捕获）——OBS/DAW 里直接看到语义化名字 |
+| Mixer | 在默认 mixer 应用基础上改：① 5 源（Mic/Line/Main/Backing/Game）→ 监听输出；② 同 5 源 → 直播混音；③ **直播混音回灌捕获 ch3/4、PC 播放干声回灌 ch5/6（loopback，样本拷贝级路由）** |
 | DSP | lib_dsp：Mix 总线限幅器（阈值 -3dBFS、软拐点），话筒通道可选 EQ/压缩 |
-| 控制通道 | UART 任务接收 `CTRL_RX` 协议（见 05-control），上报 VU 电平 30~50Hz |
+| 控制通道 | UART 任务接收 `CTRL_RX` 协议（见 05-control，混音矩阵 10 电平 + 限幅），上报 VU 电平 30~50Hz |
 | MCLK | 内部 PLL 输出到 `ADC_MCLK`，随采样率族自动 24.576/22.5792MHz |
+| 带宽 | 12ch × 192kHz × 32bit ≈ 74Mbps（占 USB2.0 HS ~15%），无压力 |
 
 **端口映射**：I2S/UART 具体用哪些 xCORE port（`X0Dxx`）在 `sw_usb_audio` 的端口定义文件中配置，与本文 2.2 表一一对应即可；画图时把最终映射表回填到原理图注释里，方便日后维护。
 
