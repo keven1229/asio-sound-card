@@ -1,0 +1,2388 @@
+{
+  "date": "2026-09-16",
+  "scope": "Single USB-C 5 V electrical design; no procurement prices, no EDA mutations.",
+  "status": "Schematic prototype baseline; listed validation items remain open.",
+  "existing_net_names": [
+    "VBUS_RAW",
+    "V5_SYS",
+    "V3V3_AON",
+    "V3V3_D",
+    "V3V3_HUB",
+    "V0V9",
+    "V1V8",
+    "V0V9_PLL",
+    "V1V8_USB",
+    "V3V3_USB"
+  ],
+  "compatibility_limit": "Default: AON only, no audio/Hub enumeration. Rp1.5A: digital enumeration/control/USB loopback, analog off by default. Rp3A: full-feature target subject to measured budget and voltage. Not every USB-C host supports this.",
+  "sources": {
+    "cc": {
+      "url": "https://www.ti.com/lit/ds/symlink/tusb320lai.pdf",
+      "version": "SLLSEQ8D",
+      "pages": [
+        3,
+        6,
+        12,
+        28
+      ],
+      "local_pdf": "docs/datasheets/power-reva/tusb320lai.pdf"
+    },
+    "logic": {
+      "url": "https://www.ti.com/lit/ds/symlink/sn74lvc2g04.pdf",
+      "version": "SCES195N",
+      "pages": [
+        3,
+        4,
+        5
+      ],
+      "local_pdf": "docs/datasheets/power-reva/sn74lvc2g04.pdf"
+    },
+    "supervisor": {
+      "url": "https://www.ti.com/lit/ds/symlink/tps3808.pdf",
+      "version": "SBVS050N",
+      "pages": [
+        3,
+        4,
+        6,
+        7,
+        11
+      ],
+      "local_pdf": "docs/datasheets/power-reva/tps3808.pdf"
+    },
+    "efuse": {
+      "url": "https://www.ti.com/lit/ds/symlink/tps25947.pdf",
+      "version": "SLVSFC9C",
+      "pages": [
+        4,
+        5,
+        6,
+        9,
+        10,
+        44,
+        45
+      ],
+      "local_pdf": "docs/datasheets/power-reva/tps25947.pdf"
+    },
+    "bipolar": {
+      "url": "https://www.ti.com/lit/ds/symlink/tps65131.pdf",
+      "version": "SLVS493E",
+      "pages": [
+        3,
+        5,
+        6,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "local_pdf": "docs/datasheets/power-reva/tps65131.pdf"
+    },
+    "afe_ldo": {
+      "url": "https://www.ti.com/lit/ds/symlink/tps7a39.pdf",
+      "version": "SBVS263B",
+      "pages": [
+        4,
+        7,
+        8,
+        34,
+        37
+      ],
+      "local_pdf": "docs/datasheets/power-reva/tps7a39.pdf"
+    },
+    "phantom": {
+      "url": "https://www.ti.com/lit/ds/symlink/tps61170.pdf",
+      "version": "SLVS789D",
+      "pages": [
+        3,
+        5,
+        22
+      ],
+      "local_pdf": "docs/datasheets/power-reva/tps61170.pdf"
+    },
+    "existing": {
+      "file": "docs/datasheet-audit/power.md",
+      "note": "Existing SY8089AAAC, TPS7A20 and GM1205 pin/parameter audit; not generic similar-number devices."
+    }
+  },
+  "blocks": [
+    {
+      "id": "CC",
+      "technical_part": "TUSB320LAIRWBR",
+      "package": "X2QFN-12 1.6x1.6mm",
+      "source": "cc",
+      "status": "draw_ready_prototype",
+      "note": "PORT low=UFP; ADDR floating=GPIO. Internal Rd, do not parallel external 5.1k Rd. OUT1/2 open drain.",
+      "library_uuid": null,
+      "pins": [
+        {
+          "number": "1",
+          "name": "CC1",
+          "net": "USB_CC1"
+        },
+        {
+          "number": "2",
+          "name": "CC2",
+          "net": "USB_CC2"
+        },
+        {
+          "number": "3",
+          "name": "PORT",
+          "net": "GND"
+        },
+        {
+          "number": "4",
+          "name": "VBUS_DET",
+          "net": "CC_VBUS_DET"
+        },
+        {
+          "number": "5",
+          "name": "ADDR",
+          "net": null
+        },
+        {
+          "number": "6",
+          "name": "OUT3",
+          "net": null
+        },
+        {
+          "number": "7",
+          "name": "OUT1",
+          "net": "CC_OUT1"
+        },
+        {
+          "number": "8",
+          "name": "OUT2",
+          "net": "CC_OUT2"
+        },
+        {
+          "number": "9",
+          "name": "ID",
+          "net": null
+        },
+        {
+          "number": "10",
+          "name": "GND",
+          "net": "GND"
+        },
+        {
+          "number": "11",
+          "name": "EN_N",
+          "net": "GND"
+        },
+        {
+          "number": "12",
+          "name": "VDD",
+          "net": "V3V3_AON"
+        }
+      ]
+    },
+    {
+      "id": "CC_LOGIC",
+      "technical_part": "SN74LVC2G04DBVR",
+      "package": "SOT-23-6",
+      "source": "logic",
+      "status": "draw_ready_prototype",
+      "note": "",
+      "library_uuid": null,
+      "pins": [
+        {
+          "number": "1",
+          "name": "1A",
+          "net": "CC_OUT1"
+        },
+        {
+          "number": "2",
+          "name": "GND",
+          "net": "GND"
+        },
+        {
+          "number": "3",
+          "name": "2A",
+          "net": "CC_OUT2"
+        },
+        {
+          "number": "4",
+          "name": "2Y",
+          "net": "MODE_HIGH"
+        },
+        {
+          "number": "5",
+          "name": "VCC",
+          "net": "V3V3_AON"
+        },
+        {
+          "number": "6",
+          "name": "1Y",
+          "net": "ALLOW_MAIN"
+        }
+      ]
+    },
+    {
+      "id": "UV_POR",
+      "technical_part": "TPS3808G01DBVR",
+      "package": "SOT-23-6",
+      "source": "supervisor",
+      "status": "draw_ready_prototype",
+      "note": "Open-drain RESET clamps EFUSE_EN; G01 adjustable threshold has ±2% accuracy, not fixed-rail ±0.5%.",
+      "library_uuid": null,
+      "pins": [
+        {
+          "number": "1",
+          "name": "RESET",
+          "net": "EFUSE_EN"
+        },
+        {
+          "number": "2",
+          "name": "GND",
+          "net": "GND"
+        },
+        {
+          "number": "3",
+          "name": "MR",
+          "net": "SYS_KILL_N"
+        },
+        {
+          "number": "4",
+          "name": "CT",
+          "net": "UV_DELAY_CT"
+        },
+        {
+          "number": "5",
+          "name": "SENSE",
+          "net": "VBUS_UV_SENSE"
+        },
+        {
+          "number": "6",
+          "name": "VDD",
+          "net": "V3V3_AON"
+        }
+      ]
+    },
+    {
+      "id": "MAIN_EFUSE",
+      "technical_part": "TPS259470ARPWR",
+      "package": "RPW QFN-10",
+      "source": "efuse",
+      "status": "draw_ready_prototype",
+      "note": "470A active current limit + adjustable OVLO + AUXOFF/FLT. 474 is circuit breaker. ITIMER open=fastest response; do not add blanking capacitor.",
+      "library_uuid": null,
+      "pins": [
+        {
+          "number": "1",
+          "name": "EN/UVLO",
+          "net": "EFUSE_EN"
+        },
+        {
+          "number": "2",
+          "name": "OVLO",
+          "net": "VBUS_OV_SENSE"
+        },
+        {
+          "number": "3",
+          "name": "AUXOFF",
+          "net": "MAIN_PATH_ON"
+        },
+        {
+          "number": "4",
+          "name": "FLT",
+          "net": "MAIN_FAULT_N"
+        },
+        {
+          "number": "5",
+          "name": "IN",
+          "net": "VBUS_RAW"
+        },
+        {
+          "number": "6",
+          "name": "OUT",
+          "net": "V5_SYS"
+        },
+        {
+          "number": "7",
+          "name": "DVDT",
+          "net": "MAIN_DVDT"
+        },
+        {
+          "number": "8",
+          "name": "GND",
+          "net": "GND"
+        },
+        {
+          "number": "9",
+          "name": "ILM",
+          "net": "MAIN_ILM"
+        },
+        {
+          "number": "10",
+          "name": "ITIMER",
+          "net": null
+        }
+      ]
+    },
+    {
+      "id": "AON_LDO",
+      "technical_part": "TPS7A2033PDBVR",
+      "package": "DBV SOT-23-5",
+      "source": "existing",
+      "status": "draw_ready_prototype",
+      "note": "P version active discharge. COUT effective 0.47–200uF, ESR<=100mOhm. No NR/SS or PG.",
+      "library_uuid": null,
+      "pins": [
+        {
+          "number": "1",
+          "name": "IN",
+          "net": "V5_AON_IN"
+        },
+        {
+          "number": "2",
+          "name": "GND",
+          "net": "GND"
+        },
+        {
+          "number": "3",
+          "name": "EN",
+          "net": "V5_AON_IN"
+        },
+        {
+          "number": "4",
+          "name": "NC",
+          "net": null
+        },
+        {
+          "number": "5",
+          "name": "OUT",
+          "net": "V3V3_AON"
+        }
+      ]
+    },
+    {
+      "id": "IO_LDO",
+      "technical_part": "TPS7A2018PDBVR",
+      "package": "DBV SOT-23-5",
+      "source": "existing",
+      "status": "draw_ready_prototype",
+      "note": "P version active discharge. COUT effective 0.47–200uF, ESR<=100mOhm. No NR/SS or PG.",
+      "library_uuid": null,
+      "pins": [
+        {
+          "number": "1",
+          "name": "IN",
+          "net": "V3V3_D"
+        },
+        {
+          "number": "2",
+          "name": "GND",
+          "net": "GND"
+        },
+        {
+          "number": "3",
+          "name": "EN",
+          "net": "IO_ENABLE"
+        },
+        {
+          "number": "4",
+          "name": "NC",
+          "net": null
+        },
+        {
+          "number": "5",
+          "name": "OUT",
+          "net": "V1V8"
+        }
+      ]
+    },
+    {
+      "id": "USB_LDO",
+      "technical_part": "TPS7A2033PDBVR",
+      "package": "DBV SOT-23-5",
+      "source": "existing",
+      "status": "draw_ready_prototype",
+      "note": "P version active discharge. COUT effective 0.47–200uF, ESR<=100mOhm. No NR/SS or PG.",
+      "library_uuid": null,
+      "pins": [
+        {
+          "number": "1",
+          "name": "IN",
+          "net": "V5_SYS"
+        },
+        {
+          "number": "2",
+          "name": "GND",
+          "net": "GND"
+        },
+        {
+          "number": "3",
+          "name": "EN",
+          "net": "IO_ENABLE"
+        },
+        {
+          "number": "4",
+          "name": "NC",
+          "net": null
+        },
+        {
+          "number": "5",
+          "name": "OUT",
+          "net": "V3V3_USB"
+        }
+      ]
+    },
+    {
+      "id": "HUB_LDO",
+      "technical_part": "TPS7A2033PDBVR",
+      "package": "DBV SOT-23-5",
+      "source": "existing",
+      "status": "draw_ready_prototype",
+      "note": "P version active discharge. COUT effective 0.47–200uF, ESR<=100mOhm. No NR/SS or PG.",
+      "library_uuid": null,
+      "pins": [
+        {
+          "number": "1",
+          "name": "IN",
+          "net": "V5_SYS"
+        },
+        {
+          "number": "2",
+          "name": "GND",
+          "net": "GND"
+        },
+        {
+          "number": "3",
+          "name": "EN",
+          "net": "MAIN_PATH_ON"
+        },
+        {
+          "number": "4",
+          "name": "NC",
+          "net": null
+        },
+        {
+          "number": "5",
+          "name": "OUT",
+          "net": "V3V3_HUB"
+        }
+      ]
+    },
+    {
+      "id": "DIGITAL_BUCK",
+      "technical_part": "SY8089AAAC",
+      "package": "SOT-23-5",
+      "source": "existing",
+      "status": "draw_ready_prototype",
+      "note": "Exact AAAC: VIN2.7–5.5V/1MHz typ, not A1AAC. NRND lifecycle remains known; technical prototype carry-over, not procurement approval.",
+      "library_uuid": null,
+      "pins": [
+        {
+          "number": "1",
+          "name": "EN",
+          "net": "MAIN_PATH_ON"
+        },
+        {
+          "number": "2",
+          "name": "GND",
+          "net": "GND"
+        },
+        {
+          "number": "3",
+          "name": "LX",
+          "net": "SW_3V3"
+        },
+        {
+          "number": "4",
+          "name": "IN",
+          "net": "V5_SYS"
+        },
+        {
+          "number": "5",
+          "name": "FB",
+          "net": "FB_3V3"
+        }
+      ]
+    },
+    {
+      "id": "CORE_BUCK",
+      "technical_part": "SY8089AAAC",
+      "package": "SOT-23-5",
+      "source": "existing",
+      "status": "draw_ready_prototype",
+      "note": "Exact AAAC: VIN2.7–5.5V/1MHz typ, not A1AAC. NRND lifecycle remains known; technical prototype carry-over, not procurement approval.",
+      "library_uuid": null,
+      "pins": [
+        {
+          "number": "1",
+          "name": "EN",
+          "net": "CORE_ENABLE"
+        },
+        {
+          "number": "2",
+          "name": "GND",
+          "net": "GND"
+        },
+        {
+          "number": "3",
+          "name": "LX",
+          "net": "SW_0V9"
+        },
+        {
+          "number": "4",
+          "name": "IN",
+          "net": "V5_SYS"
+        },
+        {
+          "number": "5",
+          "name": "FB",
+          "net": "FB_0V9"
+        }
+      ]
+    },
+    {
+      "id": "BIPOLAR_DCDC",
+      "technical_part": "TPS65131RGER",
+      "package": "RGE VQFN-24",
+      "source": "bipolar",
+      "status": "draw_ready_prototype",
+      "note": "Approx +6.45/-6.50V. 4.7uH and compensation per TI Fig8-1. Confirm generated library EP numbering against package drawing.",
+      "library_uuid": null,
+      "pins": [
+        {
+          "number": "1",
+          "name": "INP",
+          "net": "SW_BIP_POS"
+        },
+        {
+          "number": "2",
+          "name": "PGND",
+          "net": "GND"
+        },
+        {
+          "number": "3",
+          "name": "PGND",
+          "net": "GND"
+        },
+        {
+          "number": "4",
+          "name": "VIN",
+          "net": "BIP_CONTROL_VIN"
+        },
+        {
+          "number": "5",
+          "name": "INN",
+          "net": "V5_SYS"
+        },
+        {
+          "number": "6",
+          "name": "INN",
+          "net": "V5_SYS"
+        },
+        {
+          "number": "7",
+          "name": "BSW",
+          "net": "BIP_PMOS_GATE"
+        },
+        {
+          "number": "8",
+          "name": "ENP",
+          "net": "ANALOG_RAW_EN"
+        },
+        {
+          "number": "9",
+          "name": "PSP",
+          "net": "GND"
+        },
+        {
+          "number": "10",
+          "name": "ENN",
+          "net": "ANALOG_RAW_EN"
+        },
+        {
+          "number": "11",
+          "name": "PSN",
+          "net": "GND"
+        },
+        {
+          "number": "12",
+          "name": "NC",
+          "net": null
+        },
+        {
+          "number": "13",
+          "name": "OUTN",
+          "net": "SW_BIP_NEG"
+        },
+        {
+          "number": "14",
+          "name": "OUTN",
+          "net": "SW_BIP_NEG"
+        },
+        {
+          "number": "15",
+          "name": "VNEG",
+          "net": "V6N_RAW"
+        },
+        {
+          "number": "16",
+          "name": "FBN",
+          "net": "FB_BIP_NEG"
+        },
+        {
+          "number": "17",
+          "name": "VREF",
+          "net": "BIP_VREF"
+        },
+        {
+          "number": "18",
+          "name": "CN",
+          "net": "BIP_CN"
+        },
+        {
+          "number": "19",
+          "name": "AGND",
+          "net": "GND"
+        },
+        {
+          "number": "20",
+          "name": "NC",
+          "net": null
+        },
+        {
+          "number": "21",
+          "name": "CP",
+          "net": "BIP_CP"
+        },
+        {
+          "number": "22",
+          "name": "FBP",
+          "net": "FB_BIP_POS"
+        },
+        {
+          "number": "23",
+          "name": "VPOS",
+          "net": "V6P_RAW"
+        },
+        {
+          "number": "24",
+          "name": "INP",
+          "net": "SW_BIP_POS"
+        },
+        {
+          "number": "EP",
+          "name": "ThermalPad",
+          "net": "GND"
+        }
+      ]
+    },
+    {
+      "id": "AFE_DUAL_LDO",
+      "technical_part": "TPS7A3901DSCR",
+      "package": "DSC WSON-10",
+      "source": "afe_ldo",
+      "status": "draw_ready_prototype",
+      "note": "AFE budget120mA/rail vs150mA capability. Negative divider returns to BUF, not GND. TPA uses RAW rails instead.",
+      "library_uuid": null,
+      "pins": [
+        {
+          "number": "1",
+          "name": "INP",
+          "net": "V6P_RAW"
+        },
+        {
+          "number": "2",
+          "name": "EN",
+          "net": "AFE_ENABLE"
+        },
+        {
+          "number": "3",
+          "name": "NR/SS",
+          "net": "AFE_NR"
+        },
+        {
+          "number": "4",
+          "name": "GND",
+          "net": "GND"
+        },
+        {
+          "number": "5",
+          "name": "INN",
+          "net": "V6N_RAW"
+        },
+        {
+          "number": "6",
+          "name": "OUTN",
+          "net": "V5N_AFE"
+        },
+        {
+          "number": "7",
+          "name": "FBN",
+          "net": "AFE_FBN"
+        },
+        {
+          "number": "8",
+          "name": "BUF",
+          "net": "AFE_BUF"
+        },
+        {
+          "number": "9",
+          "name": "FBP",
+          "net": "AFE_FBP"
+        },
+        {
+          "number": "10",
+          "name": "OUTP",
+          "net": "V5P_AFE"
+        },
+        {
+          "number": "EP",
+          "name": "ThermalPad",
+          "net": "GND"
+        }
+      ]
+    },
+    {
+      "id": "ADC_REFERENCE_LDO",
+      "technical_part": "GM1205ACPZ-R7",
+      "package": "DFN-10 3x3mm",
+      "source": "existing",
+      "status": "draw_ready_prototype",
+      "note": "45.0k SET gives4.5V typ; PGFB=IN disables fast startup/PG. Allow >=1s settling before ADC CHIP_EN; actual voltage/timing must be measured. ESS does not provide full recommended tolerance for this rail.",
+      "library_uuid": null,
+      "pins": [
+        {
+          "number": "1",
+          "name": "IN",
+          "net": "V6P_RAW"
+        },
+        {
+          "number": "2",
+          "name": "IN",
+          "net": "V6P_RAW"
+        },
+        {
+          "number": "3",
+          "name": "EN/UV",
+          "net": "ADC_4V5_ENABLE"
+        },
+        {
+          "number": "4",
+          "name": "PG",
+          "net": null
+        },
+        {
+          "number": "5",
+          "name": "ILIM",
+          "net": "GND"
+        },
+        {
+          "number": "6",
+          "name": "PGFB",
+          "net": "V6P_RAW"
+        },
+        {
+          "number": "7",
+          "name": "SET",
+          "net": "ADC_4V5_SET"
+        },
+        {
+          "number": "8",
+          "name": "GND",
+          "net": "GND"
+        },
+        {
+          "number": "9",
+          "name": "OUTS",
+          "net": "V4V5_ADC"
+        },
+        {
+          "number": "10",
+          "name": "OUT",
+          "net": "V4V5_ADC"
+        },
+        {
+          "number": "11",
+          "name": "EP",
+          "net": "GND"
+        }
+      ]
+    },
+    {
+      "id": "PHANTOM",
+      "technical_part": "TPS61170DRVR",
+      "package": "DRV WSON-6",
+      "source": "phantom",
+      "status": "draw_ready_prototype",
+      "note": "TI Figure20 p22 voltage doubler, VIN>=4.5V reference. Supply from +6.45V RAW rather than undervoltage USB. Copy C4 placement across V48_RAW and PH_VMID.",
+      "library_uuid": null,
+      "pins": [
+        {
+          "number": "1",
+          "name": "FB",
+          "net": "PH_FB"
+        },
+        {
+          "number": "2",
+          "name": "COMP",
+          "net": "PH_COMP"
+        },
+        {
+          "number": "3",
+          "name": "GND",
+          "net": "GND"
+        },
+        {
+          "number": "4",
+          "name": "SW",
+          "net": "PH_SW"
+        },
+        {
+          "number": "5",
+          "name": "CTRL",
+          "net": "PHANTOM_EN"
+        },
+        {
+          "number": "6",
+          "name": "VIN",
+          "net": "V6P_RAW"
+        },
+        {
+          "number": "EP",
+          "name": "ThermalPad",
+          "net": "GND"
+        }
+      ]
+    }
+  ],
+  "passives": [
+    {
+      "id": "R_AON",
+      "value": "100ohm",
+      "nets": [
+        "VBUS_RAW",
+        "V5_AON_IN"
+      ],
+      "rating": "1%,1W,2512",
+      "source": "engineering current bound",
+      "status": "candidate_value",
+      "note": "5.5V short<=55mA; P<=0.303W; AON only, never full system.",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "C_CC_LOCAL",
+      "value": "100nF",
+      "nets": [
+        "V3V3_AON",
+        "GND"
+      ],
+      "rating": "10%,10V,X7R,0603",
+      "source": "cc p28",
+      "status": "candidate_value",
+      "note": "Local bypass at IC; direct USB-side capacitance included in total inrush review.",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "C_LOGIC_LOCAL",
+      "value": "100nF",
+      "nets": [
+        "V3V3_AON",
+        "GND"
+      ],
+      "rating": "10%,10V,X7R,0603",
+      "source": "logic power-supply recommendation",
+      "status": "candidate_value",
+      "note": "Local bypass at IC; direct USB-side capacitance included in total inrush review.",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "C_UV_LOCAL",
+      "value": "100nF",
+      "nets": [
+        "V3V3_AON",
+        "GND"
+      ],
+      "rating": "10%,10V,X7R,0603",
+      "source": "supervisor p4",
+      "status": "candidate_value",
+      "note": "Local bypass at IC; direct USB-side capacitance included in total inrush review.",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "C_EFUSE_LOCAL",
+      "value": "100nF",
+      "nets": [
+        "VBUS_RAW",
+        "GND"
+      ],
+      "rating": "10%,10V,X7R,0603",
+      "source": "efuse input bypass",
+      "status": "candidate_value",
+      "note": "Local bypass at IC; direct USB-side capacitance included in total inrush review.",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "R_CC_DET",
+      "value": "887kohm",
+      "nets": [
+        "VBUS_RAW",
+        "CC_VBUS_DET"
+      ],
+      "rating": "1%,0603",
+      "source": "cc p6",
+      "status": "candidate_value",
+      "note": "855–920kohm required",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "R_PU_CC_OUT1",
+      "value": "10kohm",
+      "nets": [
+        "V3V3_AON",
+        "CC_OUT1"
+      ],
+      "rating": "1%,0603",
+      "source": "cc p12",
+      "status": "candidate_value",
+      "note": "",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "R_PU_CC_OUT2",
+      "value": "10kohm",
+      "nets": [
+        "V3V3_AON",
+        "CC_OUT2"
+      ],
+      "rating": "1%,0603",
+      "source": "cc p12",
+      "status": "candidate_value",
+      "note": "",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "R_EN_SER",
+      "value": "47kohm",
+      "nets": [
+        "ALLOW_MAIN",
+        "EFUSE_EN"
+      ],
+      "rating": "1%,0603",
+      "source": "engineering POR+gate logic",
+      "status": "candidate_value",
+      "note": "",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "R_EN_PD",
+      "value": "100kohm",
+      "nets": [
+        "EFUSE_EN",
+        "GND"
+      ],
+      "rating": "1%,0603",
+      "source": "engineering POR+gate logic",
+      "status": "candidate_value",
+      "note": "",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "R_MR_PU",
+      "value": "10kohm",
+      "nets": [
+        "V3V3_AON",
+        "SYS_KILL_N"
+      ],
+      "rating": "1%,0603",
+      "source": "supervisor",
+      "status": "candidate_value",
+      "note": "",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "R_UV_TOP",
+      "value": "90.9kohm",
+      "nets": [
+        "VBUS_RAW",
+        "VBUS_UV_SENSE"
+      ],
+      "rating": "0.1%,0603",
+      "source": "supervisor threshold formula",
+      "status": "candidate_value",
+      "note": "",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "R_UV_BOT",
+      "value": "10kohm",
+      "nets": [
+        "VBUS_UV_SENSE",
+        "GND"
+      ],
+      "rating": "0.1%,0603",
+      "source": "supervisor threshold formula",
+      "status": "candidate_value",
+      "note": "",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "C_UV_DELAY",
+      "value": "22nF",
+      "nets": [
+        "UV_DELAY_CT",
+        "GND"
+      ],
+      "rating": "5%,10V,C0G/X7R,0603",
+      "source": "supervisor eq1",
+      "status": "candidate_value",
+      "note": "126ms typ; timing min/max and cap tolerance remain to verify.",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "R_OV_TOP",
+      "value": "34.5kohm",
+      "nets": [
+        "VBUS_RAW",
+        "VBUS_OV_SENSE"
+      ],
+      "rating": "0.1%,0603",
+      "source": "efuse OVLO 1.183/1.20/1.223V",
+      "status": "candidate_value",
+      "note": "",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "R_OV_BOT",
+      "value": "10kohm",
+      "nets": [
+        "VBUS_OV_SENSE",
+        "GND"
+      ],
+      "rating": "0.1%,0603",
+      "source": "efuse OVLO formula",
+      "status": "candidate_value",
+      "note": "",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "R_ILM_LOW",
+      "value": "2.74kohm",
+      "nets": [
+        "MAIN_ILM",
+        "GND"
+      ],
+      "rating": "0.1%,0603",
+      "source": "efuse 3334/R formula",
+      "status": "candidate_value",
+      "note": "1.217A typ; never claim exact1.5A limit",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "R_ILM_HIGH",
+      "value": "2.49kohm",
+      "nets": [
+        "MAIN_ILM",
+        "ILM_HIGH_FET_D"
+      ],
+      "rating": "0.1%,0603",
+      "source": "efuse 3334/R formula",
+      "status": "candidate_value",
+      "note": "N-MOS drain at other end, source GND, gate MODE_HIGH; Rds only reduces high-mode limit.",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "R_HIGH_GATE_PD",
+      "value": "100kohm",
+      "nets": [
+        "MODE_HIGH",
+        "GND"
+      ],
+      "rating": "1%,0603",
+      "source": "engineering default-off",
+      "status": "candidate_value",
+      "note": "",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "C_MAIN_DVDT",
+      "value": "10nF",
+      "nets": [
+        "MAIN_DVDT",
+        "GND"
+      ],
+      "rating": "10%,16V,X7R,0603",
+      "source": "efuse dVdt formula",
+      "status": "candidate_value",
+      "note": "2000/CpF V/ms typ; actual system CLOAD/SOA validation pending.",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "C_MAIN_OUT",
+      "value": "47uF",
+      "nets": [
+        "V5_SYS",
+        "GND"
+      ],
+      "rating": "10%,10V,X7R,1206 or larger",
+      "source": "engineering startup reservoir",
+      "status": "candidate_value",
+      "note": "Only candidate; map real capacitance/DC bias; bulk is downstream of eFuse.",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "R_MAIN_ON_PU",
+      "value": "10kohm",
+      "nets": [
+        "V3V3_AON",
+        "MAIN_PATH_ON"
+      ],
+      "rating": "1%,0603",
+      "source": "efuse AUXOFF open-drain",
+      "status": "candidate_value",
+      "note": "",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "R_FAULT_PU",
+      "value": "10kohm",
+      "nets": [
+        "V3V3_D",
+        "MAIN_FAULT_N"
+      ],
+      "rating": "1%,0603",
+      "source": "efuse FLT open-drain",
+      "status": "candidate_value",
+      "note": "Pull to main3.3 avoids backpowering powered-off MCU.",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "R_CORE_TOP",
+      "value": "100000ohm",
+      "nets": [
+        "V0V9",
+        "FB_0V9"
+      ],
+      "rating": "0.1%,<=25ppm/C,0603",
+      "source": "SY8089 Vout=0.6*(1+Rtop/Rbot)",
+      "status": "candidate_value",
+      "note": "",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "R_CORE_BOT",
+      "value": "200000ohm",
+      "nets": [
+        "FB_0V9",
+        "GND"
+      ],
+      "rating": "0.1%,<=25ppm/C,0603",
+      "source": "SY8089 Vout=0.6*(1+Rtop/Rbot)",
+      "status": "candidate_value",
+      "note": "",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "L_CORE",
+      "value": "2.2uH",
+      "nets": [
+        "SW_0V9",
+        "V0V9"
+      ],
+      "rating": "+/-20%,DCR<50mOhm,Isat/Irms per final load",
+      "source": "existing",
+      "status": "candidate_value",
+      "note": "Candidate only; derive peak from Lmin/Fmin, startup/fault. AAAC 1MHz is typ only.",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "C_CORE_IN",
+      "value": "22uF",
+      "nets": [
+        "V5_SYS",
+        "GND"
+      ],
+      "rating": "10V,X7R,0805/1206",
+      "source": "SY8089 p2/p7",
+      "status": "candidate_value",
+      "note": "Effective>=10uF input; 22uF-class recommended at heavy load.",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "C_CORE_OUT",
+      "value": "47uF",
+      "nets": [
+        "V0V9",
+        "GND"
+      ],
+      "rating": "10V,X7R,1206 or larger",
+      "source": "SY8089 p7",
+      "status": "candidate_value",
+      "note": "Candidate nominal; verify effective>22uF and transient stability.",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "R_DIG_TOP",
+      "value": "270000ohm",
+      "nets": [
+        "V3V3_D",
+        "FB_3V3"
+      ],
+      "rating": "0.1%,<=25ppm/C,0603",
+      "source": "SY8089 Vout=0.6*(1+Rtop/Rbot)",
+      "status": "candidate_value",
+      "note": "",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "R_DIG_BOT",
+      "value": "60000ohm",
+      "nets": [
+        "FB_3V3",
+        "GND"
+      ],
+      "rating": "0.1%,<=25ppm/C,0603",
+      "source": "SY8089 Vout=0.6*(1+Rtop/Rbot)",
+      "status": "candidate_value",
+      "note": "",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "L_DIG",
+      "value": "2.2uH",
+      "nets": [
+        "SW_3V3",
+        "V3V3_D"
+      ],
+      "rating": "+/-20%,DCR<50mOhm,Isat/Irms per final load",
+      "source": "existing",
+      "status": "candidate_value",
+      "note": "Candidate only; derive peak from Lmin/Fmin, startup/fault. AAAC 1MHz is typ only.",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "C_DIG_IN",
+      "value": "22uF",
+      "nets": [
+        "V5_SYS",
+        "GND"
+      ],
+      "rating": "10V,X7R,0805/1206",
+      "source": "SY8089 p2/p7",
+      "status": "candidate_value",
+      "note": "Effective>=10uF input; 22uF-class recommended at heavy load.",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "C_DIG_OUT",
+      "value": "47uF",
+      "nets": [
+        "V3V3_D",
+        "GND"
+      ],
+      "rating": "10V,X7R,1206 or larger",
+      "source": "SY8089 p7",
+      "status": "candidate_value",
+      "note": "Candidate nominal; verify effective>22uF and transient stability.",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "R_PD_CORE_ENABLE",
+      "value": "100kohm",
+      "nets": [
+        "CORE_ENABLE",
+        "GND"
+      ],
+      "rating": "1%,0603",
+      "source": "engineering safe default",
+      "status": "candidate_value",
+      "note": "Existing 100k pulldown retained. CORE_ENABLE comes from the open-drain IO/USB supervisors in xmos-boot-plan.json; not MCU sequencing. Validate dynamic rail windows before sign-off.",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "R_PD_IO_ENABLE",
+      "value": "100kohm",
+      "nets": [
+        "IO_ENABLE",
+        "GND"
+      ],
+      "rating": "1%,0603",
+      "source": "engineering safe default",
+      "status": "candidate_value",
+      "note": "Gate controls require MCU sequencing; electrical pin thresholds must be met.",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "R_PD_ANALOG_RAW_EN",
+      "value": "100kohm",
+      "nets": [
+        "ANALOG_RAW_EN",
+        "GND"
+      ],
+      "rating": "1%,0603",
+      "source": "engineering safe default",
+      "status": "candidate_value",
+      "note": "Gate controls require MCU sequencing; electrical pin thresholds must be met.",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "R_PD_AFE_ENABLE",
+      "value": "100kohm",
+      "nets": [
+        "AFE_ENABLE",
+        "GND"
+      ],
+      "rating": "1%,0603",
+      "source": "engineering safe default",
+      "status": "candidate_value",
+      "note": "Gate controls require MCU sequencing; electrical pin thresholds must be met.",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "R_PD_ADC_4V5_ENABLE",
+      "value": "100kohm",
+      "nets": [
+        "ADC_4V5_ENABLE",
+        "GND"
+      ],
+      "rating": "1%,0603",
+      "source": "engineering safe default",
+      "status": "candidate_value",
+      "note": "Gate controls require MCU sequencing; electrical pin thresholds must be met.",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "R_PD_PHANTOM_EN",
+      "value": "100kohm",
+      "nets": [
+        "PHANTOM_EN",
+        "GND"
+      ],
+      "rating": "1%,0603",
+      "source": "engineering safe default",
+      "status": "candidate_value",
+      "note": "Gate controls require MCU sequencing; electrical pin thresholds must be met.",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "C_AON_LDO_IN",
+      "value": "1uF",
+      "nets": [
+        "V5_AON_IN",
+        "GND"
+      ],
+      "rating": "10V,X7R,0805",
+      "source": "TPS7A20 p5",
+      "status": "candidate_value",
+      "note": "Input effective>=0.47uF recommended.",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "C_AON_LDO_OUT",
+      "value": "2.2uF",
+      "nets": [
+        "V3V3_AON",
+        "GND"
+      ],
+      "rating": "10V,X7R,0805",
+      "source": "TPS7A20 p5",
+      "status": "candidate_value",
+      "note": "Total effective0.47–200uF, ESR<=100mOhm including distributed load decoupling.",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "C_IO_LDO_IN",
+      "value": "2.2uF",
+      "nets": [
+        "V3V3_D",
+        "GND"
+      ],
+      "rating": "10V,X7R,0805",
+      "source": "TPS7A20 p5",
+      "status": "candidate_value",
+      "note": "Input effective>=0.47uF recommended.",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "C_IO_LDO_OUT",
+      "value": "4.7uF",
+      "nets": [
+        "V1V8",
+        "GND"
+      ],
+      "rating": "10V,X7R,0805",
+      "source": "TPS7A20 p5",
+      "status": "candidate_value",
+      "note": "Total effective0.47–200uF, ESR<=100mOhm including distributed load decoupling.",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "C_USB_LDO_IN",
+      "value": "2.2uF",
+      "nets": [
+        "V5_SYS",
+        "GND"
+      ],
+      "rating": "10V,X7R,0805",
+      "source": "TPS7A20 p5",
+      "status": "candidate_value",
+      "note": "Input effective>=0.47uF recommended.",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "C_USB_LDO_OUT",
+      "value": "4.7uF",
+      "nets": [
+        "V3V3_USB",
+        "GND"
+      ],
+      "rating": "10V,X7R,0805",
+      "source": "TPS7A20 p5",
+      "status": "candidate_value",
+      "note": "Total effective0.47–200uF, ESR<=100mOhm including distributed load decoupling.",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "C_HUB_LDO_IN",
+      "value": "2.2uF",
+      "nets": [
+        "V5_SYS",
+        "GND"
+      ],
+      "rating": "10V,X7R,0805",
+      "source": "TPS7A20 p5",
+      "status": "candidate_value",
+      "note": "Input effective>=0.47uF recommended.",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "C_HUB_LDO_OUT",
+      "value": "4.7uF",
+      "nets": [
+        "V3V3_HUB",
+        "GND"
+      ],
+      "rating": "10V,X7R,0805",
+      "source": "TPS7A20 p5",
+      "status": "candidate_value",
+      "note": "Total effective0.47–200uF, ESR<=100mOhm including distributed load decoupling.",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "BIP_FB_P_TOP",
+      "value": "432kohm",
+      "nets": [
+        "V6P_RAW",
+        "FB_BIP_POS"
+      ],
+      "rating": "0.1%,0603",
+      "source": "bipolar eq1/2",
+      "status": "candidate_value",
+      "note": "Negative divider return is VREF.",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "BIP_FB_P_BOT",
+      "value": "100kohm",
+      "nets": [
+        "FB_BIP_POS",
+        "GND"
+      ],
+      "rating": "0.1%,0603",
+      "source": "bipolar eq1/2",
+      "status": "candidate_value",
+      "note": "Negative divider return is VREF.",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "BIP_FB_N_R3",
+      "value": "536kohm",
+      "nets": [
+        "V6N_RAW",
+        "FB_BIP_NEG"
+      ],
+      "rating": "0.1%,0603",
+      "source": "bipolar eq1/2",
+      "status": "candidate_value",
+      "note": "Negative divider return is VREF.",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "BIP_FB_N_R4",
+      "value": "100kohm",
+      "nets": [
+        "FB_BIP_NEG",
+        "BIP_VREF"
+      ],
+      "rating": "0.1%,0603",
+      "source": "bipolar eq1/2",
+      "status": "candidate_value",
+      "note": "Negative divider return is VREF.",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "BIP_FFP",
+      "value": "16pF",
+      "nets": [
+        "V6P_RAW",
+        "FB_BIP_POS"
+      ],
+      "rating": "5%,50V,C0G,0603",
+      "source": "bipolar eq11:6.8us/Rtop",
+      "status": "candidate_value",
+      "note": "15.74pF calculated; verify loop/stability.",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "BIP_FFN",
+      "value": "15pF",
+      "nets": [
+        "V6N_RAW",
+        "FB_BIP_NEG"
+      ],
+      "rating": "5%,50V,C0G,0603",
+      "source": "bipolar eq12:7.5us/R3",
+      "status": "candidate_value",
+      "note": "13.99pF calculated; verify loop/stability.",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "BIP_CP",
+      "value": "10nF",
+      "nets": [
+        "BIP_CP",
+        "GND"
+      ],
+      "rating": "10%,16V,X7R/C0G",
+      "source": "bipolar Fig8-1",
+      "status": "candidate_value",
+      "note": "",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "BIP_CN",
+      "value": "4.7nF",
+      "nets": [
+        "BIP_CN",
+        "GND"
+      ],
+      "rating": "10%,16V,X7R/C0G",
+      "source": "bipolar Fig8-1",
+      "status": "candidate_value",
+      "note": "",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "BIP_VREF_CAP",
+      "value": "220nF",
+      "nets": [
+        "BIP_VREF",
+        "GND"
+      ],
+      "rating": "10%,16V,X7R/C0G",
+      "source": "bipolar Fig8-1",
+      "status": "candidate_value",
+      "note": "",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "BIP_RVIN",
+      "value": "100ohm",
+      "nets": [
+        "V5_SYS",
+        "BIP_CONTROL_VIN"
+      ],
+      "rating": "1%,0603",
+      "source": "bipolar Fig8-1 VIN filter",
+      "status": "candidate_value",
+      "note": "",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "BIP_CVIN",
+      "value": "100nF",
+      "nets": [
+        "BIP_CONTROL_VIN",
+        "GND"
+      ],
+      "rating": "10%,10V,X7R,0603",
+      "source": "bipolar Fig8-1",
+      "status": "candidate_value",
+      "note": "",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "BIP_LP",
+      "value": "4.7uH",
+      "nets": [
+        "BIP_PMOS_D",
+        "SW_BIP_POS"
+      ],
+      "rating": "20%,Isat>=3A,Irms>=2A,low DCR; verify",
+      "source": "bipolar Fig8-1/p13-14",
+      "status": "candidate_value",
+      "note": "",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "BIP_LN",
+      "value": "4.7uH",
+      "nets": [
+        "SW_BIP_NEG",
+        "GND"
+      ],
+      "rating": "20%,Isat>=3A,Irms>=2A,low DCR; verify",
+      "source": "bipolar Fig8-1/p13-14",
+      "status": "candidate_value",
+      "note": "",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "BIP_PMOS",
+      "value": "P-channel MOSFET",
+      "nets": [
+        "S=V5_SYS",
+        "D=BIP_PMOS_D",
+        "G=BIP_PMOS_GATE"
+      ],
+      "rating": "VDS>=20V,VGS>=12V,Id>=3A,Rds specified at -4.5V",
+      "source": "bipolar Fig8-1/p15",
+      "status": "candidate_value",
+      "note": "TI reference Si2323DS; generic drawing permitted, physical pin order follows selected model.",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "BIP_DPOS",
+      "value": "Schottky",
+      "nets": [
+        "A=SW_BIP_POS",
+        "K=V6P_RAW"
+      ],
+      "rating": "40V,2A,low VF; exact package TBD",
+      "source": "bipolar Fig8-1",
+      "status": "candidate_value",
+      "note": "Check peak and thermal; not a purchased MPN.",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "BIP_DNEG",
+      "value": "Schottky",
+      "nets": [
+        "A=V6N_RAW",
+        "K=SW_BIP_NEG"
+      ],
+      "rating": "40V,2A,low VF; exact package TBD",
+      "source": "bipolar Fig8-1",
+      "status": "candidate_value",
+      "note": "Check peak and thermal; not a purchased MPN.",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "C_OUT_V6P_RAW",
+      "value": "47uF",
+      "nets": [
+        "V6P_RAW",
+        "GND"
+      ],
+      "rating": "16V,X7R; effective>=22uF,low ESR",
+      "source": "bipolar Fig8-1/p14",
+      "status": "candidate_value",
+      "note": "Negative rail ceramic nonpolar; final parts may need parallel capacitors.",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "C_OUT_V6N_RAW",
+      "value": "47uF",
+      "nets": [
+        "V6N_RAW",
+        "GND"
+      ],
+      "rating": "16V,X7R; effective>=22uF,low ESR",
+      "source": "bipolar Fig8-1/p14",
+      "status": "candidate_value",
+      "note": "Negative rail ceramic nonpolar; final parts may need parallel capacitors.",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "C_BIP_IN_V5_SYS",
+      "value": "10uF",
+      "nets": [
+        "V5_SYS",
+        "GND"
+      ],
+      "rating": "10V,X7R; effective>=4.7uF",
+      "source": "bipolar Fig8-1/p14",
+      "status": "candidate_value",
+      "note": "",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "C_BIP_IN_BIP_PMOS_D",
+      "value": "10uF",
+      "nets": [
+        "BIP_PMOS_D",
+        "GND"
+      ],
+      "rating": "10V,X7R; effective>=4.7uF",
+      "source": "bipolar Fig8-1/p14",
+      "status": "candidate_value",
+      "note": "",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "AFE_RP_TOP",
+      "value": "32.4kohm",
+      "nets": [
+        "V5P_AFE",
+        "AFE_FBP"
+      ],
+      "rating": "0.1%,0603",
+      "source": "afe_ldo p37 eq13-16",
+      "status": "candidate_value",
+      "note": "TI reference ratios; external resistor tolerance added to IC output accuracy.",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "AFE_RP_BOT",
+      "value": "10kohm",
+      "nets": [
+        "AFE_FBP",
+        "GND"
+      ],
+      "rating": "0.1%,0603",
+      "source": "afe_ldo p37 eq13-16",
+      "status": "candidate_value",
+      "note": "TI reference ratios; external resistor tolerance added to IC output accuracy.",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "AFE_RN_OUT",
+      "value": "42.2kohm",
+      "nets": [
+        "V5N_AFE",
+        "AFE_FBN"
+      ],
+      "rating": "0.1%,0603",
+      "source": "afe_ldo p37 eq13-16",
+      "status": "candidate_value",
+      "note": "TI reference ratios; external resistor tolerance added to IC output accuracy.",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "AFE_RN_REF",
+      "value": "10kohm",
+      "nets": [
+        "AFE_FBN",
+        "AFE_BUF"
+      ],
+      "rating": "0.1%,0603",
+      "source": "afe_ldo p37 eq13-16",
+      "status": "candidate_value",
+      "note": "TI reference ratios; external resistor tolerance added to IC output accuracy.",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "AFE_FFP",
+      "value": "10nF",
+      "nets": [
+        "V5P_AFE",
+        "AFE_FBP"
+      ],
+      "rating": "10%,16V,X7R/C0G",
+      "source": "afe_ldo p4/p37",
+      "status": "candidate_value",
+      "note": "",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "AFE_FFN",
+      "value": "10nF",
+      "nets": [
+        "V5N_AFE",
+        "AFE_FBN"
+      ],
+      "rating": "10%,16V,X7R/C0G",
+      "source": "afe_ldo p4/p37",
+      "status": "candidate_value",
+      "note": "",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "AFE_NR",
+      "value": "10nF",
+      "nets": [
+        "AFE_NR",
+        "GND"
+      ],
+      "rating": "10%,16V,X7R/C0G",
+      "source": "afe_ldo p4/p37",
+      "status": "candidate_value",
+      "note": "",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "C_AFE_V6P_RAW",
+      "value": "22uF",
+      "nets": [
+        "V6P_RAW",
+        "GND"
+      ],
+      "rating": "16V,X7R; effective>=10uF",
+      "source": "afe_ldo p4",
+      "status": "candidate_value",
+      "note": "Include local input/output at IC, not just distant bulk.",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "C_AFE_V6N_RAW",
+      "value": "22uF",
+      "nets": [
+        "V6N_RAW",
+        "GND"
+      ],
+      "rating": "16V,X7R; effective>=10uF",
+      "source": "afe_ldo p4",
+      "status": "candidate_value",
+      "note": "Include local input/output at IC, not just distant bulk.",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "C_AFE_V5P_AFE",
+      "value": "22uF",
+      "nets": [
+        "V5P_AFE",
+        "GND"
+      ],
+      "rating": "16V,X7R; effective>=10uF",
+      "source": "afe_ldo p4",
+      "status": "candidate_value",
+      "note": "Include local input/output at IC, not just distant bulk.",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "C_AFE_V5N_AFE",
+      "value": "22uF",
+      "nets": [
+        "V5N_AFE",
+        "GND"
+      ],
+      "rating": "16V,X7R; effective>=10uF",
+      "source": "afe_ldo p4",
+      "status": "candidate_value",
+      "note": "Include local input/output at IC, not just distant bulk.",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "ADC_REF_RSET",
+      "value": "45.0kohm",
+      "nets": [
+        "ADC_4V5_SET",
+        "GND"
+      ],
+      "rating": "0.1%,<=25ppm/C,0603",
+      "source": "GM1205 Iset100uA",
+      "status": "candidate_value",
+      "note": "4.5V typ. Full voltage tolerance follows GM Iset+offset; ESS recommended4.5V tolerance not stated.",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "ADC_REF_CSET",
+      "value": "4.7uF",
+      "nets": [
+        "ADC_4V5_SET",
+        "GND"
+      ],
+      "rating": "10V,low leakage,X7R",
+      "source": "existing",
+      "status": "candidate_value",
+      "note": "No fast start in chosen pin map; allow settling and verify on scope.",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "ADC_REF_CIN",
+      "value": "10uF",
+      "nets": [
+        "V6P_RAW",
+        "GND"
+      ],
+      "rating": "16V,X7R; effective>=4.7uF",
+      "source": "existing",
+      "status": "candidate_value",
+      "note": "",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "ADC_REF_COUT",
+      "value": "22uF",
+      "nets": [
+        "V4V5_ADC",
+        "GND"
+      ],
+      "rating": "10V,X7R; effective>=10uF,ESR<50mOhm,ESL<2nH",
+      "source": "existing",
+      "status": "candidate_value",
+      "note": "OUTS Kelvin at this capacitor.",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "PH_L",
+      "value": "22uH",
+      "nets": [
+        "V6P_RAW",
+        "PH_SW"
+      ],
+      "rating": "20%,Isat>=1.8A,Irms>=0.5A,low DCR",
+      "source": "phantom Fig20",
+      "status": "candidate_value",
+      "note": "Conservative prototype rating; verify switch-current limit at actual duty cycle.",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "PH_CIN",
+      "value": "4.7uF",
+      "nets": [
+        "V6P_RAW",
+        "GND"
+      ],
+      "rating": "16V,X7R; verify effective value",
+      "source": "phantom Fig20",
+      "status": "candidate_value",
+      "note": "",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "PH_C2",
+      "value": "1uF",
+      "nets": [
+        "PH_SW",
+        "PH_PUMP"
+      ],
+      "rating": "50V,X7R,nonpolar",
+      "source": "phantom Fig20",
+      "status": "candidate_value",
+      "note": "",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "PH_C3",
+      "value": "4.7uF",
+      "nets": [
+        "PH_VMID",
+        "GND"
+      ],
+      "rating": "50V,X7R,nonpolar",
+      "source": "phantom Fig20",
+      "status": "candidate_value",
+      "note": "",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "PH_C4",
+      "value": "4.7uF",
+      "nets": [
+        "V48_RAW",
+        "PH_VMID"
+      ],
+      "rating": "50V,X7R,nonpolar",
+      "source": "phantom Fig20",
+      "status": "candidate_value",
+      "note": "Not to GND. Absolute V48 is48V but capacitor sees roughly half voltage.",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "PH_D1",
+      "value": "Schottky",
+      "nets": [
+        "A=PH_PUMP",
+        "K=V48_RAW"
+      ],
+      "rating": ">=60V,>=1A,low leakage; package TBD",
+      "source": "phantom Fig20 B140 reference",
+      "status": "candidate_value",
+      "note": "Up-rated voltage generic candidate; verify capacitance/leakage/transient and loop.",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "PH_D2",
+      "value": "Schottky",
+      "nets": [
+        "A=PH_VMID",
+        "K=PH_PUMP"
+      ],
+      "rating": ">=60V,>=1A,low leakage; package TBD",
+      "source": "phantom Fig20 B140 reference",
+      "status": "candidate_value",
+      "note": "Up-rated voltage generic candidate; verify capacitance/leakage/transient and loop.",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "PH_D3",
+      "value": "Schottky",
+      "nets": [
+        "A=PH_SW",
+        "K=PH_VMID"
+      ],
+      "rating": ">=60V,>=1A,low leakage; package TBD",
+      "source": "phantom Fig20 B140 reference",
+      "status": "candidate_value",
+      "note": "Up-rated voltage generic candidate; verify capacitance/leakage/transient and loop.",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "PH_RTOP",
+      "value": "380kohm",
+      "nets": [
+        "V48_RAW",
+        "PH_FB"
+      ],
+      "rating": "0.1%,rated working voltage>=100V,0805",
+      "source": "phantom Fig20/1.229V electrical reference",
+      "status": "candidate_value",
+      "note": "",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "PH_RBOT",
+      "value": "10kohm",
+      "nets": [
+        "PH_FB",
+        "GND"
+      ],
+      "rating": "0.1%,0603",
+      "source": "phantom Fig20",
+      "status": "candidate_value",
+      "note": "",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "PH_RCOMP",
+      "value": "10kohm",
+      "nets": [
+        "PH_COMP",
+        "PH_COMP_RC"
+      ],
+      "rating": "1%,0603",
+      "source": "phantom Fig20",
+      "status": "candidate_value",
+      "note": "",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "PH_CCOMP",
+      "value": "10nF",
+      "nets": [
+        "PH_COMP_RC",
+        "GND"
+      ],
+      "rating": "10%,16V,X7R",
+      "source": "phantom Fig20",
+      "status": "candidate_value",
+      "note": "",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "PH_FILTER_R",
+      "value": "47ohm",
+      "nets": [
+        "V48_RAW",
+        "PH48"
+      ],
+      "rating": "1%,0.25W,0805",
+      "source": "engineering filter starting point",
+      "status": "candidate_value",
+      "note": "0.66V drop@14mA; filter and target microphone voltage require validation.",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "PH_FILTER_C",
+      "value": "10uF",
+      "nets": [
+        "PH48",
+        "GND"
+      ],
+      "rating": ">=63V,electrolytic; ripple/leakage/size verified later",
+      "source": "engineering filter starting point",
+      "status": "candidate_value",
+      "note": "",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    },
+    {
+      "id": "PH_BLEED",
+      "value": "100kohm",
+      "nets": [
+        "V48_RAW",
+        "GND"
+      ],
+      "rating": "1%,>=0.125W,rated working voltage>=100V",
+      "source": "engineering discharge",
+      "status": "candidate_value",
+      "note": "Stored-energy discharge time measured; relay must isolate microphone before shutdown.",
+      "procurement_mpn": null,
+      "lcsc_code": null,
+      "spec_id_status": "Map to existing Spec_ID or add a proposed design-specific Spec_ID before BOM merge."
+    }
+  ],
+  "calculations": {
+    "cc_truth_table": {
+      "HH": "unattached/default",
+      "HL": "attached default",
+      "LH": "attached1.5A",
+      "LL": "attached3A"
+    },
+    "ilim_low_typ_A": 1.2167883211678832,
+    "ilim_high_R_ohm": 1304.5124282982792,
+    "ilim_high_typ_A": 2.555744144461056,
+    "ilim_low_upper_plus_100mA_AON_A": 1.4398069602449164,
+    "ilim_high_upper_plus_100mA_AON_A": 2.9141326915987604,
+    "uv_falling_nom_V": 4.08645,
+    "uv_threshold_ic_accuracy": "+/-2% for G01, not fixed-part 0.5%",
+    "por_delay_typ_s": 0.12621428571428572,
+    "ov_trip_nom_V": 5.34,
+    "V6P_RAW_nom_V": 6.4531600000000005,
+    "V6N_RAW_nom_V": -6.501680000000001,
+    "V5P_AFE_nom_V": 5.03712,
+    "V5N_AFE_nom_V": -5.021800000000001,
+    "V48_RAW_nom_V": 47.931000000000004,
+    "phantom_budget_output_W": 0.96,
+    "phantom_budget_input_posrail_A": 0.19835243508606634,
+    "software_input_budget_A": {
+      "rp1.5": 1.0,
+      "rp3": 2.2
+    },
+    "minimum_V5_SYS_for_budget_V": 3.8,
+    "power_budget_note": "3.8W/8.36W envelopes at3.8V are upper allocation limits including IMON/ADC error, not uncorrected ADC thresholds. Rp1.5 analog off. Full budget~8.6W at4.25V under stated efficiency assumptions; low voltage requires shedding phantom/loads.",
+    "parallel_load_budget": {
+      "AFE_A_per_rail": 0.12,
+      "ADC4V5_normal_budget_A": 0.06,
+      "ADC4V5_branch_capacity_A": 0.15,
+      "TPA_average_budget_A_per_rail": 0.07,
+      "phantom_output_A": 0.02,
+      "V6P_RAW_steady_budget_A": 0.44835243508606637,
+      "V6N_RAW_steady_budget_A": 0.19,
+      "raw_converter_design_capacity_target_A": {
+        "positive": 0.6,
+        "negative": 0.25
+      },
+      "bipolar_input_power_W_at_assumed_75pct_efficiency": 5.504812266666668,
+      "non_bipolar_allocations_W": {
+        "core_0V9_0p8A_at_85pct": 0.8470588235294119,
+        "3V3D_0p3A_including_IO_LDO_at_85pct": 1.164705882352941,
+        "ESS3V3_LDO_0p12A_at_V5_4p25V": 0.51,
+        "hub_LDO_0p06A": 0.255,
+        "usbphy_LDO_0p03A": 0.1275,
+        "AON": 0.025,
+        "misc_margin": 0.2
+      },
+      "caveat": "Allocation targets, not guaranteed load maxima. Efficiencies are explicit engineering assumptions pending measurement.",
+      "total_input_power_W_at_4p25V": 8.634076972549021,
+      "relay_coils": {
+        "status": "TBD exact coil model, rated current, pickup voltage/temperature and supply path",
+        "excluded_from_above_total": true,
+        "illustrative_only": "If 3–4 coils each consume5V*30mA, add0.45–0.60W plus driver/conversion losses; not an approved relay specification.",
+        "constraint": "Never add relay coil load to V5P_AFE/V5N_AFE. Dedicated switched coil supply must be specified and budgeted."
+      }
+    }
+  },
+  "open_items": [
+    "Hardware test: startup EN glitches, CC orientation/downgrade, effective input capacitance and USB inrush.",
+    "Do not wire AON push-pull signals into unpowered ESP GPIO. FLT pull-up is on V3V3_D; expose MODE_HIGH using a gate-isolated MOS open-drain mirror or Ioff buffer.",
+    "XU power sequence topology is proposed in xmos-boot-plan.json (three TPS3897A monitors). CORE_ENABLE uses the existing 100k pulldown once. Physical implementation, dynamic rail windows and measured reset/clock timing remain blocking before hardware sign-off.",
+    "Final 3.3V ADC/DAC local switch part/pins and independent DIG/CLK/L/R sequencing not yet frozen.",
+    "GM4.5 rail has no precise ESS recommended tolerance; full voltage/noise/transient acceptance remains physical validation.",
+    "AFE120mA, ADC4.5 steady60mA and RAW capacity target+600/-250mA require load/thermal/loop validation.150mA ADC capacity is not simultaneous load allocation.",
+    "BLOCKING before phantom enable: injected phantom surge enters AFE protection diodes; TPS7A39 cannot absorb arbitrary energy. Rail absorption/clamping design remains mandatory.",
+    "BLOCKING before headphone power cycling: TPA input must remain below600mV during power-off. Output relay alone is insufficient; hardware input mute/isolation remains required.",
+    "Relay coils are not covered by the8.634W subtotal; exact coil/supply budget remains open and may reduce permitted simultaneous features.",
+    "All generic MOSFET/diode body/footprint mappings need exact selected library device inspection; no UUIDs invented.",
+    "Prototype default-current ports do not start audio. Supporting legacy configured500mA requires another low-power USB bootstrap design.",
+    "USB Hub power descriptors/nonremovable ports and Type-C high-current consumption semantics require explicit USB review; never falsely claim self-powered.",
+    "USB suspend must retain a real wake path; do not power off the entire Hub and claim resume works."
+  ]
+}

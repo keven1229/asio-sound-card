@@ -1,0 +1,6 @@
+{
+  "JTAG_TDI_1V8": "JTDI18",
+  "JTAG_TDO_1V8": "JTDO18",
+  "JTAG_TMS_1V8": "JTMS18",
+  "JTAG_TCK_1V8": "JTCK18"
+}

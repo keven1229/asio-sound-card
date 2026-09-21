@@ -1,0 +1,77 @@
+{
+  "sheet": {
+    "minX": 0,
+    "minY": 0,
+    "maxX": 1170,
+    "maxY": 825
+  },
+  "keepout": {
+    "minX": 468,
+    "minY": 0,
+    "maxX": 1170,
+    "maxY": 198
+  },
+  "partitions": [
+    {
+      "modules": [
+        "DIVIDER"
+      ],
+      "bbox": {
+        "minX": 465.5,
+        "minY": 228,
+        "maxX": 696.5,
+        "maxY": 684
+      },
+      "titleBBox": {
+        "minX": 465.5,
+        "minY": 654,
+        "maxX": 696.5,
+        "maxY": 684
+      },
+      "noteBBox": {
+        "minX": 465.5,
+        "minY": 228,
+        "maxX": 696.5,
+        "maxY": 228
+      },
+      "notePins": {
+        "bottom": 228
+      },
+      "noteAnchor": [
+        0,
+        0
+      ],
+      "baseBBox": {
+        "minX": 465.5,
+        "minY": 228,
+        "maxX": 696.5,
+        "maxY": 684
+      },
+      "contentBBox": {
+        "minX": 489.5,
+        "minY": 238.5,
+        "maxX": 672.5,
+        "maxY": 630
+      }
+    }
+  ],
+  "validation": {
+    "sheetOverflow": 0,
+    "partitionOverlap": 0,
+    "titleBlockHits": 0,
+    "moduleOutsideZone": 0,
+    "labelCollisions": 0,
+    "sheetMarginHits": 0
+  },
+  "capacity": {
+    "fits": true,
+    "needW": 231,
+    "needH": 511.5,
+    "haveW": 1114,
+    "haveH": 769
+  },
+  "labelScopeDegraded": false,
+  "labelScope": {
+    "degraded": false
+  }
+}

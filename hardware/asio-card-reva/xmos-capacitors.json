@@ -1,0 +1,182 @@
+[
+  {
+    "ref": "C101",
+    "x": 100,
+    "y": 665,
+    "net": "V0V9",
+    "role": "XU VDD pin4",
+    "value": "100nF",
+    "spec": "C01",
+    "uuid": "96b39256cc3f4d80bd3b503deb4f3328"
+  },
+  {
+    "ref": "C102",
+    "x": 180,
+    "y": 665,
+    "net": "V0V9",
+    "role": "XU VDD pin12",
+    "value": "100nF",
+    "spec": "C01",
+    "uuid": "96b39256cc3f4d80bd3b503deb4f3328"
+  },
+  {
+    "ref": "C103",
+    "x": 260,
+    "y": 665,
+    "net": "V0V9",
+    "role": "XU VDD pin19",
+    "value": "100nF",
+    "spec": "C01",
+    "uuid": "96b39256cc3f4d80bd3b503deb4f3328"
+  },
+  {
+    "ref": "C104",
+    "x": 340,
+    "y": 665,
+    "net": "V0V9",
+    "role": "XU VDD pin27",
+    "value": "100nF",
+    "spec": "C01",
+    "uuid": "96b39256cc3f4d80bd3b503deb4f3328"
+  },
+  {
+    "ref": "C105",
+    "x": 100,
+    "y": 565,
+    "net": "V0V9",
+    "role": "XU VDD pin34",
+    "value": "100nF",
+    "spec": "C01",
+    "uuid": "96b39256cc3f4d80bd3b503deb4f3328"
+  },
+  {
+    "ref": "C106",
+    "x": 180,
+    "y": 565,
+    "net": "V0V9",
+    "role": "XU VDD pin42",
+    "value": "100nF",
+    "spec": "C01",
+    "uuid": "96b39256cc3f4d80bd3b503deb4f3328"
+  },
+  {
+    "ref": "C107",
+    "x": 260,
+    "y": 565,
+    "net": "V0V9",
+    "role": "XU VDD pin49",
+    "value": "100nF",
+    "spec": "C01",
+    "uuid": "96b39256cc3f4d80bd3b503deb4f3328"
+  },
+  {
+    "ref": "C108",
+    "x": 340,
+    "y": 565,
+    "net": "V0V9",
+    "role": "XU VDD pin57",
+    "value": "100nF",
+    "spec": "C01",
+    "uuid": "96b39256cc3f4d80bd3b503deb4f3328"
+  },
+  {
+    "ref": "C109",
+    "x": 100,
+    "y": 460,
+    "net": "V1V8",
+    "role": "XU IO pin8",
+    "value": "100nF",
+    "spec": "C01",
+    "uuid": "96b39256cc3f4d80bd3b503deb4f3328"
+  },
+  {
+    "ref": "C110",
+    "x": 180,
+    "y": 460,
+    "net": "V1V8",
+    "role": "XU IO pin17",
+    "value": "100nF",
+    "spec": "C01",
+    "uuid": "96b39256cc3f4d80bd3b503deb4f3328"
+  },
+  {
+    "ref": "C111",
+    "x": 260,
+    "y": 460,
+    "net": "V1V8",
+    "role": "XU IO pin26",
+    "value": "100nF",
+    "spec": "C01",
+    "uuid": "96b39256cc3f4d80bd3b503deb4f3328"
+  },
+  {
+    "ref": "C112",
+    "x": 340,
+    "y": 460,
+    "net": "V1V8",
+    "role": "XU IO pin38",
+    "value": "100nF",
+    "spec": "C01",
+    "uuid": "96b39256cc3f4d80bd3b503deb4f3328"
+  },
+  {
+    "ref": "C113",
+    "x": 100,
+    "y": 355,
+    "net": "V1V8",
+    "role": "XU IO pin52",
+    "value": "100nF",
+    "spec": "C01",
+    "uuid": "96b39256cc3f4d80bd3b503deb4f3328"
+  },
+  {
+    "ref": "C114",
+    "x": 180,
+    "y": 355,
+    "net": "V1V8_USB",
+    "role": "XU USB PHY pin31",
+    "value": "100nF",
+    "spec": "C01",
+    "uuid": "96b39256cc3f4d80bd3b503deb4f3328"
+  },
+  {
+    "ref": "C115",
+    "x": 270,
+    "y": 355,
+    "net": "V3V3_USB",
+    "role": "XU USB PHY pin30",
+    "value": "100nF",
+    "spec": "C01",
+    "uuid": "96b39256cc3f4d80bd3b503deb4f3328"
+  },
+  {
+    "ref": "C116",
+    "x": 370,
+    "y": 355,
+    "net": "V0V9_PLL",
+    "role": "XU PLL pin22",
+    "value": "1uF",
+    "spec": "C02",
+    "uuid": "8c1f4a9e9d204b148b36ce719c891bd1"
+  },
+  {
+    "ref": "C117",
+    "x": 110,
+    "y": 245,
+    "net": "V0V9",
+    "role": "XU core bulk; effective >=10uF",
+    "value": "10uF",
+    "spec": "C05",
+    "uuid": "7e420c672c864e52b016f9ca4bfdb5ec"
+  },
+  {
+    "ref": "C118",
+    "x": 250,
+    "y": 245,
+    "net": "V1V8",
+    "role": "XU IO bulk; effective >=10uF",
+    "value": "10uF",
+    "spec": "C05",
+    "uuid": "7e420c672c864e52b016f9ca4bfdb5ec"
+  }
+]

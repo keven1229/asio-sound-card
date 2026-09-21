@@ -1,0 +1,186 @@
+{
+  "purpose": "Library identities for schematic drawing only; no stock, price, purchase approval or pin-map signoff.",
+  "date": "2026-09-16",
+  "lookups": [
+    {
+      "query": "TUSB320LAIRWBR",
+      "status": "fulfilled",
+      "data": {
+        "id": "req_2390",
+        "type": "response",
+        "version": "v1",
+        "createdAt": "2026-09-16T11:22:44.2290191Z",
+        "ok": true,
+        "result": {
+          "components": [
+            {
+              "description": "工作电压:2.7V~5V;最大充电电流:3A;电池类型:-;电池节数:-;",
+              "footprintName": "X2QFN-12_L1.6-W1.6-P0.40-TL",
+              "lcsc": "C132554",
+              "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+              "manufacturer": "TI(德州仪器)",
+              "manufacturerId": "TUSB320LAIRWBR",
+              "name": "TUSB320LAIRWBR",
+              "score": 3,
+              "symbolName": "TUSB320LAIRWBR",
+              "uuid": "1ef93dabbfaf469492147fb3c81cabbc"
+            }
+          ],
+          "count": 1,
+          "query": "TUSB320LAIRWBR"
+        },
+        "context": {
+          "projectUuid": "0c3471781e9003521d5aa6173afcf139be2fe332607e660fb4a68d6eaafe26ab",
+          "projectName": "ASIO_CARD_USB5V_REV_A",
+          "documentUuid": "25705a7645bdb6d1",
+          "documentType": "schematic",
+          "tabId": "25705a7645bdb6d1@0c3471781e9003521d5aa6173afcf139be2fe332607e660fb4a68d6eaafe26ab"
+        },
+        "seq": 1828,
+        "seqAbandoned": 2,
+        "abandonedIds": [
+          "req_2384",
+          "req_2389"
+        ]
+      }
+    },
+    {
+      "query": "TPS259470ARPWR",
+      "status": "fulfilled",
+      "data": {
+        "id": "req_2391",
+        "type": "response",
+        "version": "v1",
+        "createdAt": "2026-09-16T11:22:44.5840943Z",
+        "ok": true,
+        "result": {
+          "components": [
+            {
+              "description": "通道数:1;工作电压:2.7V~23V;安装方式:表面安装;",
+              "footprintName": "VQFN-10_L2.0-W2.0-P0.45-TL",
+              "lcsc": "C3662799",
+              "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+              "manufacturer": "TI(德州仪器)",
+              "manufacturerId": "TPS259470ARPWR",
+              "name": "TPS259470ARPWR",
+              "score": 3,
+              "symbolName": "TPS259470ARPWR",
+              "uuid": "676a12fadece41eb8224bb38360970ca"
+            }
+          ],
+          "count": 1,
+          "query": "TPS259470ARPWR"
+        },
+        "context": {
+          "projectUuid": "0c3471781e9003521d5aa6173afcf139be2fe332607e660fb4a68d6eaafe26ab",
+          "projectName": "ASIO_CARD_USB5V_REV_A",
+          "documentUuid": "25705a7645bdb6d1",
+          "documentType": "schematic",
+          "tabId": "25705a7645bdb6d1@0c3471781e9003521d5aa6173afcf139be2fe332607e660fb4a68d6eaafe26ab"
+        },
+        "seq": 1829,
+        "seqAbandoned": 2,
+        "abandonedIds": [
+          "req_2384",
+          "req_2389"
+        ]
+      }
+    },
+    {
+      "query": "TPS3897ADRYR",
+      "status": "fulfilled",
+      "data": {
+        "id": "req_2392",
+        "type": "response",
+        "version": "v1",
+        "createdAt": "2026-09-16T11:22:44.9368492Z",
+        "ok": true,
+        "result": {
+          "components": [
+            {
+              "description": "工作电压:1.7V~6.5V;复位有效电平:高电平有效;受监控电压数:1;复位超时:40us;",
+              "footprintName": "SON-6_L1.5-W1.0-P0.50-BL",
+              "lcsc": "C112437",
+              "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+              "manufacturer": "TI(德州仪器)",
+              "manufacturerId": "TPS3897ADRYR",
+              "name": "TPS3897ADRYR",
+              "score": 3,
+              "symbolName": "TPS3897ADRYR",
+              "uuid": "0c0cee392208422eb5812a2d3a08cc9a"
+            }
+          ],
+          "count": 1,
+          "query": "TPS3897ADRYR"
+        },
+        "context": {
+          "projectUuid": "0c3471781e9003521d5aa6173afcf139be2fe332607e660fb4a68d6eaafe26ab",
+          "projectName": "ASIO_CARD_USB5V_REV_A",
+          "documentUuid": "25705a7645bdb6d1",
+          "documentType": "schematic",
+          "tabId": "25705a7645bdb6d1@0c3471781e9003521d5aa6173afcf139be2fe332607e660fb4a68d6eaafe26ab"
+        },
+        "seq": 1830,
+        "seqAbandoned": 2,
+        "abandonedIds": [
+          "req_2384",
+          "req_2389"
+        ]
+      }
+    },
+    {
+      "query": "W25Q16JWSNIQ",
+      "status": "fulfilled",
+      "data": {
+        "id": "req_2393",
+        "type": "response",
+        "version": "v1",
+        "createdAt": "2026-09-16T11:22:45.3153957Z",
+        "ok": true,
+        "result": {
+          "components": [
+            {
+              "description": "接口类型:SPI;存储容量:16Mbit;时钟频率(fc):133MHz;",
+              "footprintName": "SOP-8_L4.9-W3.9-P1.27-LS6.0-BL",
+              "lcsc": "C7117004",
+              "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+              "manufacturer": "Winbond(华邦)",
+              "manufacturerId": "W25Q16JWSNIQ",
+              "name": "W25Q16JWSNIQ",
+              "score": 3,
+              "symbolName": "W25Q16JWSNIQ",
+              "uuid": "0842a1bd3e4f4843abd8856297137b22"
+            },
+            {
+              "description": "接口类型:SPI;存储容量:16Mbit;时钟频率(fc):133MHz;",
+              "footprintName": "SOIC-8_L5.0-W4.0-P1.27-LS6.1-BL",
+              "lcsc": "C2595079",
+              "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+              "manufacturer": "Winbond(华邦)",
+              "manufacturerId": "W25Q16JWSNIQ TR",
+              "name": "W25Q16JWSNIQ TR",
+              "score": 3,
+              "symbolName": "W25Q16JWSNIQ TR",
+              "uuid": "0d43b2efe30a45088e944f13f03bed96"
+            }
+          ],
+          "count": 2,
+          "query": "W25Q16JWSNIQ"
+        },
+        "context": {
+          "projectUuid": "0c3471781e9003521d5aa6173afcf139be2fe332607e660fb4a68d6eaafe26ab",
+          "projectName": "ASIO_CARD_USB5V_REV_A",
+          "documentUuid": "25705a7645bdb6d1",
+          "documentType": "schematic",
+          "tabId": "25705a7645bdb6d1@0c3471781e9003521d5aa6173afcf139be2fe332607e660fb4a68d6eaafe26ab"
+        },
+        "seq": 1831,
+        "seqAbandoned": 2,
+        "abandonedIds": [
+          "req_2384",
+          "req_2389"
+        ]
+      }
+    }
+  ]
+}

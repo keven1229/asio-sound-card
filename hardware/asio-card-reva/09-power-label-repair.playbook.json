@@ -1,0 +1,312 @@
+{
+  "version": 1,
+  "meta": {
+    "name": "xmos-readable-power-buses",
+    "project": "ASIO_CARD_USB5V_REV_A",
+    "doc": "XMOS_CORE"
+  },
+  "defaults": {
+    "timeoutSec": 60,
+    "retry": 0
+  },
+  "steps": [
+    {
+      "id": "remove-generated-duplicates",
+      "action": "schematic.primitives.delete",
+      "payload": {
+        "primitiveIds": [
+          "2b3e9157a9e913e6",
+          "487df6e134117ab5",
+          "5765d5f92aac65f0",
+          "6c7fe21533bc1f19",
+          "748401917380dacd",
+          "78a1a4f20f18abc4",
+          "7c8e1a70c672bf2d",
+          "9648f9a2b4c3a3c1",
+          "a82ba4ca5aa0645d",
+          "b30520a256483b3e",
+          "bd57a84a8a21ada4"
+        ]
+      },
+      "confirm": true
+    },
+    {
+      "id": "detach-power-8",
+      "action": "schematic.pin.disconnect",
+      "payload": {
+        "designator": "U10",
+        "pin": "8"
+      }
+    },
+    {
+      "id": "detach-power-17",
+      "action": "schematic.pin.disconnect",
+      "payload": {
+        "designator": "U10",
+        "pin": "17"
+      }
+    },
+    {
+      "id": "detach-power-26",
+      "action": "schematic.pin.disconnect",
+      "payload": {
+        "designator": "U10",
+        "pin": "26"
+      }
+    },
+    {
+      "id": "detach-power-38",
+      "action": "schematic.pin.disconnect",
+      "payload": {
+        "designator": "U10",
+        "pin": "38"
+      }
+    },
+    {
+      "id": "detach-power-52",
+      "action": "schematic.pin.disconnect",
+      "payload": {
+        "designator": "U10",
+        "pin": "52"
+      }
+    },
+    {
+      "id": "detach-power-30",
+      "action": "schematic.pin.disconnect",
+      "payload": {
+        "designator": "U10",
+        "pin": "30"
+      }
+    },
+    {
+      "id": "detach-power-31",
+      "action": "schematic.pin.disconnect",
+      "payload": {
+        "designator": "U10",
+        "pin": "31"
+      }
+    },
+    {
+      "id": "detach-power-22",
+      "action": "schematic.pin.disconnect",
+      "payload": {
+        "designator": "U10",
+        "pin": "22"
+      }
+    },
+    {
+      "id": "io-bus",
+      "action": "schematic.wire.create",
+      "payload": {
+        "points": [
+          [
+            570,
+            520
+          ],
+          [
+            570,
+            605
+          ]
+        ],
+        "net": "V1V8"
+      }
+    },
+    {
+      "id": "io-tap-8",
+      "action": "schematic.wire.create",
+      "payload": {
+        "points": [
+          [
+            595,
+            540
+          ],
+          [
+            570,
+            540
+          ]
+        ],
+        "net": "V1V8"
+      }
+    },
+    {
+      "id": "io-tap-17",
+      "action": "schematic.wire.create",
+      "payload": {
+        "points": [
+          [
+            595,
+            560
+          ],
+          [
+            570,
+            560
+          ]
+        ],
+        "net": "V1V8"
+      }
+    },
+    {
+      "id": "io-tap-26",
+      "action": "schematic.wire.create",
+      "payload": {
+        "points": [
+          [
+            595,
+            550
+          ],
+          [
+            570,
+            550
+          ]
+        ],
+        "net": "V1V8"
+      }
+    },
+    {
+      "id": "io-tap-38",
+      "action": "schematic.wire.create",
+      "payload": {
+        "points": [
+          [
+            595,
+            530
+          ],
+          [
+            570,
+            530
+          ]
+        ],
+        "net": "V1V8"
+      }
+    },
+    {
+      "id": "io-tap-52",
+      "action": "schematic.wire.create",
+      "payload": {
+        "points": [
+          [
+            595,
+            520
+          ],
+          [
+            570,
+            520
+          ]
+        ],
+        "net": "V1V8"
+      }
+    },
+    {
+      "id": "io-flag",
+      "action": "schematic.netflag.create",
+      "payload": {
+        "kind": "power",
+        "net": "V1V8",
+        "x": 570,
+        "y": 605,
+        "rotation": 0
+      }
+    },
+    {
+      "id": "local-power-30",
+      "action": "schematic.wire.create",
+      "payload": {
+        "points": [
+          [
+            595,
+            510
+          ],
+          [
+            540,
+            510
+          ],
+          [
+            540,
+            530
+          ]
+        ],
+        "net": "V3V3_USB"
+      }
+    },
+    {
+      "id": "local-flag-30",
+      "action": "schematic.netflag.create",
+      "payload": {
+        "kind": "power",
+        "net": "V3V3_USB",
+        "x": 540,
+        "y": 530,
+        "rotation": 0
+      }
+    },
+    {
+      "id": "local-power-31",
+      "action": "schematic.wire.create",
+      "payload": {
+        "points": [
+          [
+            595,
+            500
+          ],
+          [
+            460,
+            500
+          ],
+          [
+            460,
+            520
+          ]
+        ],
+        "net": "V1V8_USB"
+      }
+    },
+    {
+      "id": "local-flag-31",
+      "action": "schematic.netflag.create",
+      "payload": {
+        "kind": "power",
+        "net": "V1V8_USB",
+        "x": 460,
+        "y": 520,
+        "rotation": 0
+      }
+    },
+    {
+      "id": "local-power-22",
+      "action": "schematic.wire.create",
+      "payload": {
+        "points": [
+          [
+            595,
+            490
+          ],
+          [
+            380,
+            490
+          ],
+          [
+            380,
+            510
+          ]
+        ],
+        "net": "V0V9_PLL"
+      }
+    },
+    {
+      "id": "local-flag-22",
+      "action": "schematic.netflag.create",
+      "payload": {
+        "kind": "power",
+        "net": "V0V9_PLL",
+        "x": 380,
+        "y": 510,
+        "rotation": 0
+      }
+    },
+    {
+      "id": "save-readable-supplies",
+      "action": "schematic.save",
+      "checkpoint": true
+    }
+  ]
+}

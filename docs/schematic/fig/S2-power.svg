@@ -1,0 +1,215 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 980" font-family="Arial, sans-serif">
+  <style>
+    .w{stroke:#333;stroke-width:1.3;fill:none}
+    .pw{stroke:#c00;stroke-width:2;fill:none}
+    .t{font-size:10px;fill:#222}
+    .tl{font-size:9px;fill:#555}
+    .pn{font-size:9px;fill:#111;font-weight:bold}
+    .ic{fill:#f6f8fa;stroke:#222;stroke-width:1.2}
+    .nb{font-size:10px;fill:#c00;font-weight:bold}
+    .tt{font-size:15px;fill:#111;font-weight:bold}
+  </style>
+
+  <text class="tt" x="40" y="30">S2 电源树（取值见 01-power.md；IC 引脚名以 datasheet 为准）</text>
+
+  <!-- ================= 输入：J1 USB-C / JDC 备份 / OR-ing ================= -->
+  <rect class="ic" x="60" y="70" width="110" height="150"/>
+  <text class="pn" x="75" y="92">J1 USB-C</text>
+  <text class="tl" x="75" y="106">(数据脚见 S3)</text>
+  <line class="w" x1="170" y1="88" x2="210" y2="88"/><text class="t" x="176" y="83">VBUS</text>
+  <line class="w" x1="170" y1="118" x2="200" y2="118"/><text class="tl" x="176" y="113">D± →S3</text>
+  <line class="w" x1="170" y1="138" x2="200" y2="138"/><text class="tl" x="176" y="133">CC1/2 →S3</text>
+  <line class="w" x1="170" y1="158" x2="200" y2="158"/><text class="tl" x="176" y="153">SH →S3(0Ω)</text>
+  <line class="w" x1="115" y1="220" x2="115" y2="245"/>
+  <path class="w" d="M100 245 h30 M106 252 h18 M109 259 h12"/><text class="t" x="120" y="268">GND</text>
+
+  <rect class="ic" x="60" y="330" width="90" height="70"/>
+  <text class="pn" x="70" y="352">JDC DC-005</text>
+  <text class="tl" x="70" y="366">(可选贴装)</text>
+  <line class="w" x1="150" y1="355" x2="240" y2="355"/><text class="t" x="156" y="350">+5V 备份</text>
+
+  <line class="w" x1="210" y1="88" x2="240" y2="88"/>
+  <path class="w" d="M240 80 v16 M232 88 l16 0 M248 80 l-16 16 16 0 z"/>
+  <text class="tl" x="220" y="110">D1B SS34</text>
+  <line class="w" x1="264" y1="88" x2="290" y2="88"/>
+  <line class="w" x1="240" y1="355" x2="252" y2="355"/>
+  <path class="w" d="M252 347 v16 M244 355 l16 0 M260 347 l-16 16 16 0 z"/>
+  <text class="tl" x="215" y="330">D1 SS34</text>
+  <line class="w" x1="268" y1="355" x2="268" y2="88"/>
+
+  <rect class="ic" x="290" y="76" width="60" height="24"/>
+  <text class="t" x="300" y="92">F1 1A</text>
+  <line class="w" x1="350" y1="88" x2="380" y2="88"/>
+  <line class="w" x1="380" y1="88" x2="380" y2="130"/>
+  <path class="w" d="M372 130 h16 M366 138 l12 0 M378 130 l-12 16 12 0 z"/>
+  <line class="w" x1="380" y1="146" x2="380" y2="158"/>
+  <path class="w" d="M365 158 h30 M371 165 h18 M374 172 h12"/>
+  <text class="tl" x="390" y="130">TVS1 SMBJ5.0A</text>
+  <line class="w" x1="380" y1="88" x2="430" y2="88"/>
+  <line class="w" x1="430" y1="88" x2="430" y2="158"/>
+  <line class="w" x1="442" y1="158" x2="458" y2="158"/><line class="w" x1="450" y1="150" x2="450" y2="166"/>
+  <line class="w" x1="466" y1="158" x2="482" y2="158"/><line class="w" x1="474" y1="150" x2="474" y2="166"/>
+  <text class="tl" x="432" y="178">1µF+0.1µF(入口≤4.7µF)</text>
+
+  <rect class="ic" x="500" y="64" width="130" height="62"/>
+  <text class="pn" x="515" y="86">U1 SY6280AAC</text>
+  <text class="tl" x="515" y="100">限流开关 1A</text>
+  <line class="w" x1="482" y1="88" x2="500" y2="88"/><text class="t" x="484" y="80">IN</text>
+  <line class="w" x1="565" y1="60" x2="565" y2="64"/><text class="t" x="570" y="56">EN←VBUS(100k)</text>
+  <line class="w" x1="565" y1="126" x2="565" y2="150"/><text class="t" x="570" y="144">GND</text>
+  <line class="w" x1="630" y1="88" x2="660" y2="88"/><text class="t" x="636" y="80">OUT</text>
+
+  <!-- ================= V5D 母线 ================= -->
+  <line class="pw" x1="660" y1="88" x2="660" y2="200"/>
+  <line class="pw" x1="120" y1="200" x2="1400" y2="200"/>
+  <text class="nb" x="110" y="195">V5D</text>
+  <line class="w" x1="120" y1="200" x2="120" y2="245"/>
+  <path class="w" d="M105 245 h30 M111 252 h18 M114 259 h12"/><text class="t" x="55" y="268">22µF+0.1µF×N(汇流去耦)</text>
+
+  <!-- ================= 行1：五路电源 ================= -->
+  <!-- U2 SY8089 → V0V9 -->
+  <rect class="ic" x="330" y="230" width="120" height="84"/>
+  <text class="pn" x="342" y="252">U2 SY8089AAAC</text>
+  <text class="tl" x="342" y="266">Buck 2A → 0.9V</text>
+  <line class="w" x1="390" y1="200" x2="390" y2="230"/><text class="t" x="395" y="222">VIN←V5D</text>
+  <line class="w" x1="450" y1="252" x2="450" y2="276"/>
+  <rect class="ic" x="440" y="276" width="36" height="12"/><text class="t" x="446" y="286">L2</text>
+  <line class="w" x1="476" y1="282" x2="476" y2="312"/><text class="nb" x="482" y="308">V0V9</text>
+  <line class="w" x1="476" y1="312" x2="476" y2="330"/>
+  <line class="w" x1="464" y1="330" x2="488" y2="330"/><line class="w" x1="476" y1="320" x2="476" y2="340"/>
+  <text class="tl" x="482" y="352">22µF+0.1µF</text>
+  <line class="w" x1="395" y1="314" x2="395" y2="332"/>
+  <path class="w" d="M380 332 h30 M386 339 h18 M389 346 h12"/><text class="t" x="406" y="358">GND</text>
+  <line class="w" x1="420" y1="314" x2="420" y2="330"/><text class="t" x="425" y="326">FB</text>
+  <rect class="ic" x="410" y="330" width="28" height="8"/><text class="tl" x="412" y="337">100k</text>
+  <line class="w" x1="438" y1="334" x2="476" y2="334"/><line class="w" x1="476" y1="334" x2="476" y2="330"/>
+  <line class="w" x1="420" y1="342" x2="420" y2="356"/>
+  <rect class="ic" x="410" y="356" width="28" height="8"/><text class="tl" x="412" y="363">200k</text>
+  <line class="w" x1="438" y1="360" x2="458" y2="360"/>
+  <path class="w" d="M443 360 h30 M449 367 h18 M452 374 h12"/><text class="tl" x="462" y="382">0.6×(1+100k/200k)=0.9V</text>
+  <line class="w" x1="455" y1="220" x2="455" y2="205"/><text class="tl" x="460" y="210">EN→VIN</text>
+
+  <!-- U2B SY8089 → V3V6 -->
+  <rect class="ic" x="490" y="230" width="120" height="84"/>
+  <text class="pn" x="502" y="252">U2B SY8089AAAC</text>
+  <text class="tl" x="502" y="266">Buck 2A → 3.6V</text>
+  <line class="w" x1="550" y1="200" x2="550" y2="230"/><text class="t" x="555" y="222">VIN←V5D</text>
+  <line class="w" x1="610" y1="252" x2="628" y2="252"/>
+  <rect class="ic" x="628" y="246" width="36" height="12"/><text class="t" x="632" y="256">L2B</text>
+  <line class="w" x1="664" y1="252" x2="680" y2="252"/><text class="nb" x="668" y="244">V3V6</text>
+  <line class="w" x1="664" y1="252" x2="664" y2="292"/>
+  <line class="w" x1="652" y1="292" x2="676" y2="292"/><line class="w" x1="664" y1="282" x2="664" y2="302"/>
+  <text class="tl" x="654" y="316">22µF+0.1µF</text>
+  <line class="w" x1="550" y1="314" x2="550" y2="332"/>
+  <path class="w" d="M535 332 h30 M541 339 h18 M544 346 h12"/><text class="t" x="556" y="358">GND</text>
+  <line class="w" x1="610" y1="314" x2="610" y2="330"/><text class="t" x="615" y="326">FB</text>
+  <rect class="ic" x="600" y="330" width="28" height="8"/><text class="tl" x="602" y="337">150k</text>
+  <line class="w" x1="628" y1="334" x2="664" y2="334"/><line class="w" x1="664" y1="334" x2="664" y2="292"/>
+  <line class="w" x1="610" y1="342" x2="610" y2="356"/>
+  <rect class="ic" x="600" y="356" width="28" height="8"/><text class="tl" x="602" y="363">30k</text>
+  <line class="w" x1="628" y1="360" x2="648" y2="360"/>
+  <path class="w" d="M633 360 h30 M639 367 h18 M642 374 h12"/><text class="tl" x="652" y="382">0.6×(1+150k/30k)=3.6V</text>
+  <line class="w" x1="605" y1="220" x2="605" y2="205"/><text class="tl" x="610" y="210">EN→VIN</text>
+
+  <!-- U3 AP7361C → V3V3D -->
+  <rect class="ic" x="680" y="230" width="110" height="70"/>
+  <text class="pn" x="692" y="252">U3 AP7361C-3.3</text>
+  <text class="tl" x="692" y="266">LDO 1A SOT-223</text>
+  <line class="w" x1="790" y1="250" x2="820" y2="250"/><text class="nb" x="822" y="254">V3V3D</text>
+  <line class="w" x1="820" y1="250" x2="820" y2="290"/>
+  <line class="w" x1="808" y1="290" x2="832" y2="290"/><line class="w" x1="820" y1="280" x2="820" y2="300"/>
+  <text class="tl" x="826" y="310">2.2µF+0.1µF</text>
+  <line class="w" x1="735" y1="300" x2="735" y2="318"/>
+  <path class="w" d="M720 318 h30 M726 325 h18 M729 332 h12"/><text class="t" x="742" y="344">GND</text>
+  <text class="tl" x="700" y="338">无EN 上电即开</text>
+
+  <!-- U4 TPS7A20 → V1V8 -->
+  <rect class="ic" x="850" y="230" width="110" height="70"/>
+  <text class="pn" x="862" y="252">U4 TPS7A2018</text>
+  <text class="tl" x="862" y="266">LDO 1.8V XU316 IO/USB</text>
+  <line class="w" x1="900" y1="200" x2="900" y2="230"/><text class="t" x="905" y="222">VIN←V5D</text>
+  <line class="w" x1="960" y1="250" x2="990" y2="250"/><text class="nb" x="992" y="254">V1V8</text>
+  <line class="w" x1="990" y1="250" x2="990" y2="290"/>
+  <line class="w" x1="978" y1="290" x2="1002" y2="290"/><line class="w" x1="990" y1="280" x2="990" y2="300"/>
+  <text class="tl" x="996" y="310">1µF</text>
+  <line class="w" x1="910" y1="300" x2="910" y2="318"/>
+  <path class="w" d="M895 318 h30 M901 325 h18 M904 332 h12"/><text class="t" x="917" y="344">GND</text>
+
+  <!-- U5 LM27762 → ±5VA -->
+  <rect class="ic" x="1020" y="230" width="140" height="90"/>
+  <text class="pn" x="1032" y="252">U5 LM27762DSSR</text>
+  <text class="tl" x="1032" y="266">电荷泵±LDO</text>
+  <line class="w" x1="1090" y1="200" x2="1090" y2="230"/><text class="t" x="1095" y="222">VIN←V5D</text>
+  <line class="w" x1="1160" y1="250" x2="1210" y2="250"/><text class="nb" x="1212" y="254">+5VA</text>
+  <line class="w" x1="1160" y1="270" x2="1210" y2="270"/><text class="nb" x="1212" y="274">-5VA</text>
+  <line class="w" x1="1210" y1="250" x2="1210" y2="296"/><line class="w" x1="1210" y1="270" x2="1210" y2="296"/>
+  <line class="w" x1="1198" y1="296" x2="1222" y2="296"/><line class="w" x1="1210" y1="286" x2="1210" y2="306"/>
+  <text class="tl" x="1216" y="316">2.2µF×2</text>
+  <line class="w" x1="1100" y1="320" x2="1100" y2="338"/>
+  <path class="w" d="M1085 338 h30 M1091 345 h18 M1094 352 h12"/><text class="t" x="1110" y="362">GND</text>
+  <text class="tl" x="1032" y="336">C1/C2 1µF×2 CIN 10µF</text>
+
+  <!-- ================= 行2：GM1205 / XL6019 ================= -->
+  <!-- U6 GM1205 -->
+  <rect class="ic" x="330" y="440" width="150" height="96"/>
+  <text class="pn" x="345" y="462">U6 GM1205ACPZ-R7(共模)</text>
+  <text class="tl" x="345" y="476">超低噪 LDO 1.8µV/500mA</text>
+  <line class="w" x1="300" y1="200" x2="300" y2="424"/>
+  <line class="w" x1="300" y1="424" x2="405" y2="424"/><line class="w" x1="405" y1="424" x2="405" y2="440"/><text class="t" x="410" y="430">IN←V5D</text>
+  <line class="w" x1="480" y1="462" x2="540" y2="462"/><text class="nb" x="542" y="466">V3V3A</text>
+  <line class="w" x1="540" y1="462" x2="540" y2="520"/>
+  <line class="w" x1="528" y1="520" x2="552" y2="520"/><line class="w" x1="540" y1="510" x2="540" y2="530"/>
+  <text class="tl" x="546" y="540">10µF+1µF</text>
+  <line class="w" x1="480" y1="486" x2="520" y2="486"/>
+  <line class="w" x1="520" y1="486" x2="520" y2="560"/>
+  <rect class="ic" x="510" y="560" width="32" height="8"/><text class="tl" x="514" y="567">RSET 33k</text>
+  <line class="w" x1="542" y1="564" x2="560" y2="564"/>
+  <line class="w" x1="560" y1="564" x2="560" y2="486"/><text class="tl" x="548" y="480">SET</text>
+  <line class="w" x1="560" y1="486" x2="580" y2="486"/><text class="tl" x="582" y="478">CSET 4.7µF</text>
+  <line class="w" x1="580" y1="486" x2="580" y2="470"/><line class="w" x1="568" y1="470" x2="592" y2="470"/><line class="w" x1="580" y1="460" x2="580" y2="480"/>
+  <line class="w" x1="480" y1="512" x2="500" y2="512"/><text class="t" x="505" y="516">PG→S5</text>
+  <line class="w" x1="480" y1="512" x2="478" y2="512"/><line class="w" x1="478" y1="512" x2="478" y2="536"/><text class="tl" x="448" y="548">ILIM 电阻按GM1205手册</text>
+  <line class="w" x1="405" y1="536" x2="405" y2="552"/>
+  <path class="w" d="M390 552 h30 M396 559 h18 M399 566 h12"/><text class="t" x="415" y="576">GND</text>
+  <text class="tl" x="330" y="420">Vout=100µA×33k=3.30V</text>
+
+  <!-- U7 XL6019 -->
+  <rect class="ic" x="700" y="440" width="150" height="96"/>
+  <text class="pn" x="712" y="462">U7 XL6019E1(芯龙)</text>
+  <text class="tl" x="712" y="476">Boost → 48V</text>
+  <line class="w" x1="830" y1="200" x2="830" y2="424"/>
+  <line class="w" x1="830" y1="424" x2="775" y2="424"/><line class="w" x1="775" y1="424" x2="775" y2="440"/><text class="t" x="780" y="430">VIN←V5D</text>
+  <line class="w" x1="850" y1="462" x2="930" y2="462"/>
+  <rect class="ic" x="895" y="456" width="40" height="12"/><text class="t" x="902" y="466">L7 47µH</text>
+  <line class="w" x1="935" y1="462" x2="1000" y2="462"/><text class="nb" x="1002" y="466">V48</text>
+  <text class="tl" x="1002" y="478">→磁珠+10µF/63V→PH48(去S4)</text>
+  <path class="w" d="M960 462 l0 -20 M946 442 l14 0 M960 442 l-14 20 14 0 z"/>
+  <text class="tl" x="968" y="444">D7 SS110</text>
+  <line class="w" x1="960" y1="442" x2="960" y2="420"/><line class="w" x1="935" y1="420" x2="985" y2="420"/><line class="w" x1="960" y1="420" x2="960" y2="462"/>
+  <text class="tl" x="990" y="424">47µF/63V(固态更佳)+10µF</text>
+  <line class="w" x1="850" y1="488" x2="890" y2="488"/>
+  <line class="w" x1="890" y1="488" x2="890" y2="565"/>
+  <rect class="ic" x="880" y="565" width="32" height="8"/><text class="tl" x="884" y="572">R 124k</text>
+  <line class="w" x1="912" y1="569" x2="930" y2="569"/>
+  <line class="w" x1="930" y1="569" x2="930" y2="488"/>
+  <line class="w" x1="930" y1="488" x2="970" y2="488"/>
+  <rect class="ic" x="964" y="484" width="28" height="8"/><text class="tl" x="968" y="491">R 3.3k</text>
+  <line class="w" x1="992" y1="488" x2="1010" y2="488"/>
+  <path class="w" d="M995 488 h30 M1001 495 h18 M1004 502 h12"/><text class="tl" x="1008" y="520">1.25×(1+124k/3.3k)=48.2V</text>
+  <line class="w" x1="820" y1="536" x2="820" y2="552"/>
+  <line class="w" x1="795" y1="552" x2="845" y2="552"/><text class="tl" x="800" y="546">EN</text>
+  <line class="w" x1="820" y1="552" x2="820" y2="576"/>
+  <path class="w" d="M805 576 h30 M811 583 h18 M814 590 h12"/><text class="tl" x="838" y="580">RC缓启:100k+10µF</text>
+  <text class="tl" x="838" y="594">(ESP32 GPIO 可拉低)</text>
+
+  <!-- 标题块 -->
+  <rect class="w" x="40" y="640" width="1360" height="300"/>
+  <text class="tt" x="60" y="665">上电顺序 / 检查点</text>
+  <text class="t" x="60" y="690">上电：V5D → (V3V3D / V1V8 最早组) → (V0V9 / V3V6→V3V3D / ±5VA / V3V3A) → ESP32 读 PG → 使能 XL6019(缓启) → 100ms → 闭 K1(幻象)</text>
+  <text class="t" x="60" y="712">断电：开 K3(静音) → 音量 ramp -60dB → 开 K1 → 关 XL6019；常开继电器天然断开兜底</text>
+  <text class="t" x="60" y="734">⚠ 红线：XL6019/SY8089×2 的 SW 环路最小、远离 PGA2500 与 ES9822；V3V3A 走线不穿越开关电源区</text>
+  <text class="t" x="60" y="756">⚠ GM1205 与 LT3045 pin-to-pin 兼容（SET=100µA），ILIM 电阻按 GM1205 手册；LDO 输出按 datasheet 用 MLCC（现代 LDO 陶瓷稳定，固态无收益不必要）</text>
+  <text class="t" x="60" y="778">⚠ V3V3D 两级降压：U2B(3.6V)→U3(3.3V)，LDO 功耗 0.18W 无散热焦虑；1.2MHz 纹波被 LDO PSRR 压制</text>
+  <text class="t" x="60" y="800">功率预算：典型 0.91A / 峰值 1.56A @5V；USB 描述符 500mA，实际依赖 PC 口过流能力，JDC 备份可选</text>
+  <text class="tt" x="60" y="830">S2 电源树 — ASIO-CARD v1 | 引脚号核对以 datasheet 为准</text>
+</svg>

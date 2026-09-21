@@ -1,0 +1,979 @@
+{
+  "schema_version": 1,
+  "date": "2026-09-16",
+  "scope": "XU316 boot Flash,24MHz crystal and reset/core-enable only",
+  "formal_document": "docs/schematic/reva-xmos-boot.md",
+  "root_owns_eda": true,
+  "status": "S0 draw-ready clock/reset proposal; Flash is conditional schematic candidate; no hardware sign-off",
+  "sources": [
+    {
+      "id": "XU",
+      "local_evidence": "docs/datasheets/XU316-1024-QF60A.pdf",
+      "url": null,
+      "physical_pdf_pages": [
+        16,
+        17,
+        18,
+        19,
+        27,
+        33
+      ],
+      "sha256": "b36c0a754bc8d9d203037241367f36772d441f6f44208c4ab6222705ba1f966b",
+      "note": "XM014034B; physical pages, not printed page numbers"
+    },
+    {
+      "id": "FW",
+      "local_evidence": "docs/datasheets/xmos-boot-reva/W25Q16FW_RevJ.pdf",
+      "url": "https://www.winbond.com/resource-files/w25q16fw%20revj%2005182017%20sfdp.pdf",
+      "physical_pdf_pages": [
+        6,
+        7,
+        16,
+        17,
+        22,
+        24,
+        39,
+        40,
+        60,
+        74,
+        75,
+        76,
+        81,
+        88,
+        89
+      ],
+      "sha256": "7779326fbe4de06f6524288729324a709d804d23c51f02407eea0e79cb26063d",
+      "note": "RevJ2017-05-18"
+    },
+    {
+      "id": "JW",
+      "local_evidence": "docs/datasheets/xmos-boot-reva/W25Q16JW_RevG.pdf",
+      "url": "https://www.winbond.com/resource-files/W25Q16JW%20RevG%2006302021%20Plus.pdf",
+      "physical_pdf_pages": [
+        6,
+        15,
+        22,
+        32,
+        58,
+        71,
+        72
+      ],
+      "sha256": "e951473340a8c8f6b7487e25a42bb9cfa578fd2b4bed80033993f687e2e2fe73",
+      "note": "RevG2021-06-30; not approved as unconditional replacement"
+    },
+    {
+      "id": "XTAL",
+      "local_evidence": "docs/datasheets/xmos-boot-reva/FA-238_Q22FA23800065_en.pdf",
+      "url": "https://download.epsondevice.com/td/pdf/td_xtal_mhz/FA-238_Q22FA23800065_en.pdf",
+      "physical_pdf_pages": [
+        1
+      ],
+      "sha256": "c65edd541830714d00b1a3ef5ef5e1736f4a0470ce3b8d543ec2069c00721578",
+      "note": "Exact manufacturer specification"
+    },
+    {
+      "id": "MON",
+      "local_evidence": "docs/datasheets/xmos-boot-reva/tps3897.pdf",
+      "url": "https://www.ti.com/lit/ds/symlink/tps3897.pdf",
+      "physical_pdf_pages": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        14,
+        15,
+        26
+      ],
+      "sha256": "118511170b1f0b8ee337396ea73dc85b5632aa11a2df4c4731742d50bd914bb2",
+      "note": "SBVS172B; A version and 3897 polarity are intentional"
+    }
+  ],
+  "flash": {
+    "technical_part": "W25Q16FWSNIQ",
+    "status": "conditional_schematic_candidate_not_verified_boot",
+    "package": "SOIC8_150mil_SN_no_exposed_pad",
+    "supply": "V1V8",
+    "operating_voltage_V": [
+      1.65,
+      1.95
+    ],
+    "geometry": {
+      "bytes": 2097152,
+      "page_bytes": 256,
+      "pages": 8192,
+      "erase_sector_bytes": 4096,
+      "address_bytes": 3
+    },
+    "JEDEC_ID_9F_hex": "EF6015",
+    "QE": {
+      "register": "SR2",
+      "bit": 1,
+      "factory_value": 1,
+      "fixed": false,
+      "warning": "IQ only; do not substitute IG/IE or clear nonvolatile QE."
+    },
+    "pins": [
+      {
+        "pin": 1,
+        "name": "CS#",
+        "net": "QSPI_CS_N_1V8",
+        "direction": "input",
+        "power_domain": "V1V8",
+        "notes": "",
+        "XU_pin": 3
+      },
+      {
+        "pin": 2,
+        "name": "IO1",
+        "net": "QSPI_IO1_1V8",
+        "direction": "bidirectional",
+        "power_domain": "V1V8",
+        "notes": "",
+        "XU_pin": 1
+      },
+      {
+        "pin": 3,
+        "name": "IO2/WP#",
+        "net": "QSPI_IO2_1V8",
+        "direction": "bidirectional",
+        "power_domain": "V1V8",
+        "notes": "",
+        "XU_pin": 60
+      },
+      {
+        "pin": 4,
+        "name": "GND",
+        "net": "GND",
+        "direction": "ground",
+        "power_domain": "GND",
+        "notes": "",
+        "XU_pin": null
+      },
+      {
+        "pin": 5,
+        "name": "IO0",
+        "net": "QSPI_IO0_1V8",
+        "direction": "bidirectional",
+        "power_domain": "V1V8",
+        "notes": "",
+        "XU_pin": 59
+      },
+      {
+        "pin": 6,
+        "name": "CLK",
+        "net": "QSPI_SCLK_FLASH18",
+        "direction": "input",
+        "power_domain": "V1V8",
+        "notes": "",
+        "XU_pin": 5,
+        "via": "R_FLASH_SCLK_0R toQSPI_SCLK_1V8"
+      },
+      {
+        "pin": 7,
+        "name": "IO3/HOLD#/RESET#",
+        "net": "QSPI_IO3_1V8",
+        "direction": "bidirectional",
+        "power_domain": "V1V8",
+        "notes": "Quad IO3 when QE1; never wire to XU reset.",
+        "XU_pin": 2
+      },
+      {
+        "pin": 8,
+        "name": "VCC",
+        "net": "V1V8",
+        "direction": "power_input",
+        "power_domain": "V1V8",
+        "notes": "",
+        "XU_pin": null
+      }
+    ],
+    "protocol": {
+      "flash_confirmed": {
+        "opcode_hex": "EB",
+        "instruction_lanes": 1,
+        "instruction_clocks": 8,
+        "address_lanes": 4,
+        "address_clocks": 6,
+        "mode_lanes": 4,
+        "mode_clocks": 2,
+        "dummy_clocks_after_mode": 4,
+        "mode_00": "Allowed by FW: M5:M4 !=10 disables continuous read",
+        "clock_mode": "0/0 supported",
+        "quad_byte_nibble_order": "Flash emits high nibble first; XMOS image formatting must account for ROM expected low nibble first"
+      },
+      "ROM_confirmed": "XU p19 documents EB,three zero address bytes,one dummy byte and mode0/0; exact edge waveform not established in this task.",
+      "complete_protocol_verification": false,
+      "read_ready_wait_us_min": 10,
+      "write_ready_wait_ms_min": 5,
+      "timing_characterized_only": true,
+      "prohibited_unrestored_states": [
+        "QPI",
+        "continuous read",
+        "wrap mode",
+        "deep power-down",
+        "busy erase/program during reset"
+      ]
+    },
+    "tool_support": {
+      "XTC_version": "15.3.1",
+      "native_FW_JW_enum_found": false,
+      "SFDP_or_custom_spec_supported_by_api": true,
+      "actual_read_program_verify_tested": false,
+      "firmware_XN_geometry_matches": true,
+      "firmware_XN_old_JV_comment_changed": false
+    },
+    "JW_alternative": {
+      "technical_part": "W25Q16JWSNIQ",
+      "status": "not_approved_drop_in",
+      "reason": "JW RevG requires Fx mode byte; FW accepts00. Fixed QE1 and backward-compatibility wording alone do not close ROM compatibility."
+    },
+    "IO_margin_note": "FW VIH>=0.7VCC, XU guaranteed VOH1.35V at stated2mA condition: check actual V1V8 maximum, not merely1.95V flash maximum (1.95*0.7=1.365V). Planned1.8V LDO accuracy must close this together with transient bounds."
+  },
+  "clock": {
+    "technical_part": "Q22FA2380006517",
+    "manufacturer": "Epson",
+    "family": "FA-238",
+    "status": "selected_technical_crystal_for_schematic",
+    "frequency_Hz": 24000000,
+    "fundamental": true,
+    "CL_pF": 12,
+    "ESR_ohm_max": 60,
+    "drive_uW": [
+      10,
+      100,
+      200
+    ],
+    "initial_tolerance_ppm": 50,
+    "temperature_stability_ppm": 30,
+    "specified_operating_C": [
+      -20,
+      70
+    ],
+    "first_year_aging_ppm": 5,
+    "package": "3225_4pad_height0.7mm_max",
+    "pins": [
+      {
+        "pin": 1,
+        "name": "XTAL",
+        "net": "XU_XIN",
+        "direction": "passive",
+        "power_domain": "oscillator",
+        "notes": ""
+      },
+      {
+        "pin": 2,
+        "name": "LID",
+        "net": "GND",
+        "direction": "ground",
+        "power_domain": "GND",
+        "notes": ""
+      },
+      {
+        "pin": 3,
+        "name": "XTAL",
+        "net": "XU_XTAL_OUT",
+        "direction": "passive",
+        "power_domain": "oscillator",
+        "notes": ""
+      },
+      {
+        "pin": 4,
+        "name": "LID",
+        "net": "GND",
+        "direction": "ground",
+        "power_domain": "GND",
+        "notes": ""
+      }
+    ],
+    "XU_connections": [
+      {
+        "pin": 15,
+        "net": "XU_XOUT"
+      },
+      {
+        "pin": 16,
+        "net": "XU_XIN"
+      }
+    ],
+    "notes": [
+      "1M feedback is directly XOUT to XIN, before680ohm damping.",
+      "22pF each is the XMOS example starting point for12pF load, not measured exact CL.",
+      "Verify startup, negative resistance, drive power and frequency with PCB parasitics."
+    ]
+  },
+  "reset": {
+    "status": "draw_ready_power_sequence_proposal_not_dynamic_window_validation",
+    "model": "TPS3897ADRYR",
+    "package": "USON6_DRY_1.45x1.00mm",
+    "common_supply": "V3V3_AON",
+    "AON_current_uA_max_additional": 36,
+    "supply_prerequisite": "Existing input design establishes AON before V5_SYS/V3V3_D. Do not bypass that sequence.",
+    "monitors": [
+      {
+        "id": "U_XU_IO_MON",
+        "model": "TPS3897ADRYR",
+        "monitored_rail": "V1V8",
+        "pins": [
+          {
+            "pin": 1,
+            "name": "ENABLE",
+            "net": "V3V3_AON",
+            "direction": "input_active_high",
+            "power_domain": "V3V3_AON",
+            "notes": ""
+          },
+          {
+            "pin": 2,
+            "name": "GND",
+            "net": "GND",
+            "direction": "ground",
+            "power_domain": "GND",
+            "notes": ""
+          },
+          {
+            "pin": 3,
+            "name": "SENSE",
+            "net": "XU_SENSE_IO",
+            "direction": "analog_input",
+            "power_domain": "monitored_rail",
+            "notes": ""
+          },
+          {
+            "pin": 4,
+            "name": "SENSE_OUT",
+            "net": "CORE_ENABLE",
+            "direction": "open_drain_good_high",
+            "power_domain": "external_pullup",
+            "notes": ""
+          },
+          {
+            "pin": 5,
+            "name": "CT",
+            "net": "XU_CT_IO",
+            "direction": "timing_capacitor",
+            "power_domain": "V3V3_AON",
+            "notes": ""
+          },
+          {
+            "pin": 6,
+            "name": "VCC",
+            "net": "V3V3_AON",
+            "direction": "power_input",
+            "power_domain": "V3V3_AON",
+            "notes": ""
+          }
+        ],
+        "r_top_ohm": 24000,
+        "r_bottom_ohm": 10000,
+        "r_tolerance": 0.001,
+        "r_TCR_ppm_C_max": 25,
+        "release_V_nominal": 1.7,
+        "release_V_static_range": [
+          1.680267,
+          1.719787
+        ],
+        "calculation_excludes": [
+          "temperature mismatch of external resistors",
+          "PCB noise/ground error",
+          "dynamic propagation"
+        ],
+        "CT_F": 1e-09,
+        "nominal_delay_ms": 4.04,
+        "CT_charge_only_ms_range": [
+          3.114,
+          5.246
+        ]
+      },
+      {
+        "id": "U_XU_USB_MON",
+        "model": "TPS3897ADRYR",
+        "monitored_rail": "V3V3_USB",
+        "pins": [
+          {
+            "pin": 1,
+            "name": "ENABLE",
+            "net": "V3V3_AON",
+            "direction": "input_active_high",
+            "power_domain": "V3V3_AON",
+            "notes": ""
+          },
+          {
+            "pin": 2,
+            "name": "GND",
+            "net": "GND",
+            "direction": "ground",
+            "power_domain": "GND",
+            "notes": ""
+          },
+          {
+            "pin": 3,
+            "name": "SENSE",
+            "net": "XU_SENSE_USB",
+            "direction": "analog_input",
+            "power_domain": "monitored_rail",
+            "notes": ""
+          },
+          {
+            "pin": 4,
+            "name": "SENSE_OUT",
+            "net": "CORE_ENABLE",
+            "direction": "open_drain_good_high",
+            "power_domain": "external_pullup",
+            "notes": ""
+          },
+          {
+            "pin": 5,
+            "name": "CT",
+            "net": "XU_CT_USB",
+            "direction": "timing_capacitor",
+            "power_domain": "V3V3_AON",
+            "notes": ""
+          },
+          {
+            "pin": 6,
+            "name": "VCC",
+            "net": "V3V3_AON",
+            "direction": "power_input",
+            "power_domain": "V3V3_AON",
+            "notes": ""
+          }
+        ],
+        "r_top_ohm": 52300,
+        "r_bottom_ohm": 10000,
+        "r_tolerance": 0.001,
+        "r_TCR_ppm_C_max": 25,
+        "release_V_nominal": 3.115,
+        "release_V_static_range": [
+          3.077894,
+          3.152223
+        ],
+        "calculation_excludes": [
+          "temperature mismatch of external resistors",
+          "PCB noise/ground error",
+          "dynamic propagation"
+        ],
+        "CT_F": 1e-09,
+        "nominal_delay_ms": 4.04,
+        "CT_charge_only_ms_range": [
+          3.114,
+          5.246
+        ]
+      },
+      {
+        "id": "U_XU_CORE_MON",
+        "model": "TPS3897ADRYR",
+        "monitored_rail": "V0V9",
+        "pins": [
+          {
+            "pin": 1,
+            "name": "ENABLE",
+            "net": "XU_RESET_ENABLE",
+            "direction": "input_active_high",
+            "power_domain": "V3V3_AON",
+            "notes": ""
+          },
+          {
+            "pin": 2,
+            "name": "GND",
+            "net": "GND",
+            "direction": "ground",
+            "power_domain": "GND",
+            "notes": ""
+          },
+          {
+            "pin": 3,
+            "name": "SENSE",
+            "net": "XU_SENSE_CORE",
+            "direction": "analog_input",
+            "power_domain": "monitored_rail",
+            "notes": ""
+          },
+          {
+            "pin": 4,
+            "name": "SENSE_OUT",
+            "net": "XU_RST_N_1V8",
+            "direction": "open_drain_good_high",
+            "power_domain": "external_pullup",
+            "notes": ""
+          },
+          {
+            "pin": 5,
+            "name": "CT",
+            "net": "XU_CT_CORE",
+            "direction": "timing_capacitor",
+            "power_domain": "V3V3_AON",
+            "notes": ""
+          },
+          {
+            "pin": 6,
+            "name": "VCC",
+            "net": "V3V3_AON",
+            "direction": "power_input",
+            "power_domain": "V3V3_AON",
+            "notes": ""
+          }
+        ],
+        "r_top_ohm": 7370,
+        "r_bottom_ohm": 10000,
+        "r_tolerance": 0.001,
+        "r_TCR_ppm_C_max": 25,
+        "release_V_nominal": 0.8685,
+        "release_V_static_range": [
+          0.858976,
+          0.878041
+        ],
+        "calculation_excludes": [
+          "temperature mismatch of external resistors",
+          "PCB noise/ground error",
+          "dynamic propagation"
+        ],
+        "CT_F": 4.7e-09,
+        "nominal_delay_ms": 18.84,
+        "CT_charge_only_ms_range": [
+          14.635,
+          24.656
+        ]
+      }
+    ],
+    "CORE_ENABLE_policy": "Two open-drain monitor outputs wired together,10k pull-up toV3V3_D and the existing100k power-page pull-down. Only IO and USB valid permits core buck enable; no ESP firmware is required.",
+    "reset_net": "XU_RST_N_1V8",
+    "XU_reset_pin": 21,
+    "reset_pullup_rail": "V1V8",
+    "reset_pullup_ohm": 47000,
+    "manual_reset": "Optional NO button pulls XU_RESET_ENABLE to GND;10k series from CORE_ENABLE limits current and preserves core power.",
+    "XTAG": "XTAG4 xSYS2 pin10 open-drain reset joins XU_RST_N_1V8; no3.3V push-pull driver.",
+    "external_reset_pulse_us_min": 5,
+    "CT_delay_formula": "tpd(s)=4*C_CT(uF)+40us (nominal); capacitor charge limits do not replace missing intrinsic timing bounds.",
+    "core_IO_ramp_relation": "XMOS allows independent monotonic ramps and recommends no more than50ms separation; this design intentionally establishes IO/USB before enabling core.",
+    "runtime_brownout_closed": false,
+    "brownout_note": "TPS3897 5mV hysteresis and16us falling delay are typical-only; this circuit does not prove reset always asserts before XU VDD falls below0.855V, nor provide overvoltage protection."
+  },
+  "passives": [
+    {
+      "id": "R_FLASH_CS",
+      "value": "4.7k,1%,0603,>=0.1W",
+      "nets": [
+        "QSPI_CS_N_1V8",
+        "V1V8"
+      ],
+      "spec_id": "BOOT_R_CS_4K7",
+      "spec_id_state": "proposed_design_specific_not_added_to_CSV",
+      "status": "draw_ready",
+      "notes": "",
+      "procurement_mpn": null,
+      "lcsc_code": null
+    },
+    {
+      "id": "R_FLASH_IO0_STRAP",
+      "value": "100k,1%,0603",
+      "nets": [
+        "QSPI_IO0_1V8",
+        "GND"
+      ],
+      "spec_id": "R12",
+      "spec_id_state": "existing",
+      "status": "draw_ready",
+      "notes": "Boot000; no corresponding IO2/WP pull-up.",
+      "procurement_mpn": null,
+      "lcsc_code": null
+    },
+    {
+      "id": "R_FLASH_IO1_STRAP",
+      "value": "100k,1%,0603",
+      "nets": [
+        "QSPI_IO1_1V8",
+        "GND"
+      ],
+      "spec_id": "R12",
+      "spec_id_state": "existing",
+      "status": "draw_ready",
+      "notes": "Boot000; no corresponding IO2/WP pull-up.",
+      "procurement_mpn": null,
+      "lcsc_code": null
+    },
+    {
+      "id": "R_FLASH_IO2_STRAP",
+      "value": "100k,1%,0603",
+      "nets": [
+        "QSPI_IO2_1V8",
+        "GND"
+      ],
+      "spec_id": "R12",
+      "spec_id_state": "existing",
+      "status": "draw_ready",
+      "notes": "Boot000; no corresponding IO2/WP pull-up.",
+      "procurement_mpn": null,
+      "lcsc_code": null
+    },
+    {
+      "id": "R_FLASH_SCLK_0R",
+      "value": "0ohm,0603",
+      "nets": [
+        "QSPI_SCLK_1V8",
+        "QSPI_SCLK_FLASH18"
+      ],
+      "spec_id": "BOOT_R_CLK_LINK",
+      "spec_id_state": "proposed_design_specific_not_added_to_CSV",
+      "status": "draw_ready",
+      "notes": "Adjustment footprint; default0R, no arbitrary extra damping before SI check.",
+      "procurement_mpn": null,
+      "lcsc_code": null
+    },
+    {
+      "id": "C_FLASH_HF",
+      "value": "100nF,X7R,25V,0603",
+      "nets": [
+        "V1V8",
+        "GND"
+      ],
+      "spec_id": "C01",
+      "spec_id_state": "existing",
+      "status": "draw_ready",
+      "notes": "",
+      "procurement_mpn": null,
+      "lcsc_code": null
+    },
+    {
+      "id": "C_FLASH_BULK",
+      "value": "1uF,X7R,16V,0805",
+      "nets": [
+        "V1V8",
+        "GND"
+      ],
+      "spec_id": "C02",
+      "spec_id_state": "existing",
+      "status": "draw_ready",
+      "notes": "",
+      "procurement_mpn": null,
+      "lcsc_code": null
+    },
+    {
+      "id": "R_XTAL_FB",
+      "value": "1M,1%,0603",
+      "nets": [
+        "XU_XOUT",
+        "XU_XIN"
+      ],
+      "spec_id": "BOOT_R_XTAL_FB",
+      "spec_id_state": "proposed_design_specific_not_added_to_CSV",
+      "status": "draw_ready",
+      "notes": "",
+      "procurement_mpn": null,
+      "lcsc_code": null
+    },
+    {
+      "id": "R_XTAL_DAMP",
+      "value": "680ohm,1%,0603",
+      "nets": [
+        "XU_XOUT",
+        "XU_XTAL_OUT"
+      ],
+      "spec_id": "BOOT_R_XTAL_DAMP",
+      "spec_id_state": "proposed_design_specific_not_added_to_CSV",
+      "status": "draw_ready",
+      "notes": "",
+      "procurement_mpn": null,
+      "lcsc_code": null
+    },
+    {
+      "id": "C_XTAL_OUT",
+      "value": "22pF,C0G,5%,50V,0603",
+      "nets": [
+        "XU_XTAL_OUT",
+        "GND"
+      ],
+      "spec_id": "BOOT_C_XTAL_LOAD",
+      "spec_id_state": "proposed_design_specific_not_added_to_CSV",
+      "status": "draw_ready",
+      "notes": "XMOS example starting point; tune by measured parasitics/drive.",
+      "procurement_mpn": null,
+      "lcsc_code": null
+    },
+    {
+      "id": "C_XTAL_IN",
+      "value": "22pF,C0G,5%,50V,0603",
+      "nets": [
+        "XU_XIN",
+        "GND"
+      ],
+      "spec_id": "BOOT_C_XTAL_LOAD",
+      "spec_id_state": "proposed_design_specific_not_added_to_CSV",
+      "status": "draw_ready",
+      "notes": "XMOS example starting point; tune by measured parasitics/drive.",
+      "procurement_mpn": null,
+      "lcsc_code": null
+    },
+    {
+      "id": "R_XU_IO_TOP",
+      "value": "24000ohm,0.1%,<=25ppm/C,0603",
+      "nets": [
+        "V1V8",
+        "XU_SENSE_IO"
+      ],
+      "spec_id": "R31",
+      "spec_id_state": "existing",
+      "status": "draw_ready",
+      "notes": "",
+      "procurement_mpn": null,
+      "lcsc_code": null
+    },
+    {
+      "id": "R_XU_IO_BOT",
+      "value": "10000ohm,0.1%,<=25ppm/C,0603",
+      "nets": [
+        "XU_SENSE_IO",
+        "GND"
+      ],
+      "spec_id": "R31",
+      "spec_id_state": "existing",
+      "status": "draw_ready",
+      "notes": "",
+      "procurement_mpn": null,
+      "lcsc_code": null
+    },
+    {
+      "id": "C_XU_IO_CT",
+      "value": "1.0nF,C0G,5%,>=16V",
+      "nets": [
+        "XU_CT_IO",
+        "GND"
+      ],
+      "spec_id": "BOOT_C_MON_CT",
+      "spec_id_state": "proposed_design_specific_not_added_to_CSV",
+      "status": "draw_ready",
+      "notes": "",
+      "procurement_mpn": null,
+      "lcsc_code": null
+    },
+    {
+      "id": "C_XU_IO_MON",
+      "value": "100nF,X7R,25V,0603",
+      "nets": [
+        "V3V3_AON",
+        "GND"
+      ],
+      "spec_id": "C01",
+      "spec_id_state": "existing",
+      "status": "draw_ready",
+      "notes": "",
+      "procurement_mpn": null,
+      "lcsc_code": null
+    },
+    {
+      "id": "R_XU_USB_TOP",
+      "value": "52300ohm,0.1%,<=25ppm/C,0603",
+      "nets": [
+        "V3V3_USB",
+        "XU_SENSE_USB"
+      ],
+      "spec_id": "R31",
+      "spec_id_state": "existing",
+      "status": "draw_ready",
+      "notes": "",
+      "procurement_mpn": null,
+      "lcsc_code": null
+    },
+    {
+      "id": "R_XU_USB_BOT",
+      "value": "10000ohm,0.1%,<=25ppm/C,0603",
+      "nets": [
+        "XU_SENSE_USB",
+        "GND"
+      ],
+      "spec_id": "R31",
+      "spec_id_state": "existing",
+      "status": "draw_ready",
+      "notes": "",
+      "procurement_mpn": null,
+      "lcsc_code": null
+    },
+    {
+      "id": "C_XU_USB_CT",
+      "value": "1.0nF,C0G,5%,>=16V",
+      "nets": [
+        "XU_CT_USB",
+        "GND"
+      ],
+      "spec_id": "BOOT_C_MON_CT",
+      "spec_id_state": "proposed_design_specific_not_added_to_CSV",
+      "status": "draw_ready",
+      "notes": "",
+      "procurement_mpn": null,
+      "lcsc_code": null
+    },
+    {
+      "id": "C_XU_USB_MON",
+      "value": "100nF,X7R,25V,0603",
+      "nets": [
+        "V3V3_AON",
+        "GND"
+      ],
+      "spec_id": "C01",
+      "spec_id_state": "existing",
+      "status": "draw_ready",
+      "notes": "",
+      "procurement_mpn": null,
+      "lcsc_code": null
+    },
+    {
+      "id": "R_XU_CORE_TOP",
+      "value": "7370ohm,0.1%,<=25ppm/C,0603",
+      "nets": [
+        "V0V9",
+        "XU_SENSE_CORE"
+      ],
+      "spec_id": "R31",
+      "spec_id_state": "existing",
+      "status": "draw_ready",
+      "notes": "",
+      "procurement_mpn": null,
+      "lcsc_code": null
+    },
+    {
+      "id": "R_XU_CORE_BOT",
+      "value": "10000ohm,0.1%,<=25ppm/C,0603",
+      "nets": [
+        "XU_SENSE_CORE",
+        "GND"
+      ],
+      "spec_id": "R31",
+      "spec_id_state": "existing",
+      "status": "draw_ready",
+      "notes": "",
+      "procurement_mpn": null,
+      "lcsc_code": null
+    },
+    {
+      "id": "C_XU_CORE_CT",
+      "value": "4.7nF,C0G,5%,>=16V",
+      "nets": [
+        "XU_CT_CORE",
+        "GND"
+      ],
+      "spec_id": "BOOT_C_MON_CT",
+      "spec_id_state": "proposed_design_specific_not_added_to_CSV",
+      "status": "draw_ready",
+      "notes": "",
+      "procurement_mpn": null,
+      "lcsc_code": null
+    },
+    {
+      "id": "C_XU_CORE_MON",
+      "value": "100nF,X7R,25V,0603",
+      "nets": [
+        "V3V3_AON",
+        "GND"
+      ],
+      "spec_id": "C01",
+      "spec_id_state": "existing",
+      "status": "draw_ready",
+      "notes": "",
+      "procurement_mpn": null,
+      "lcsc_code": null
+    },
+    {
+      "id": "R_CORE_ENABLE_UP",
+      "value": "10k,1%,0603",
+      "nets": [
+        "V3V3_D",
+        "CORE_ENABLE"
+      ],
+      "spec_id": "R10",
+      "spec_id_state": "existing",
+      "status": "draw_ready",
+      "notes": "",
+      "procurement_mpn": null,
+      "lcsc_code": null
+    },
+    {
+      "id": "R_XU_RESET_ENABLE",
+      "value": "10k,1%,0603",
+      "nets": [
+        "CORE_ENABLE",
+        "XU_RESET_ENABLE"
+      ],
+      "spec_id": "R10",
+      "spec_id_state": "existing",
+      "status": "draw_ready",
+      "notes": "Limits manual button current; not a voltage divider.",
+      "procurement_mpn": null,
+      "lcsc_code": null
+    },
+    {
+      "id": "R_XU_RESET_UP",
+      "value": "47k,1%,0603",
+      "nets": [
+        "V1V8",
+        "XU_RST_N_1V8"
+      ],
+      "spec_id": "BOOT_R_RST_47K",
+      "spec_id_state": "proposed_design_specific_not_added_to_CSV",
+      "status": "draw_ready",
+      "notes": "",
+      "procurement_mpn": null,
+      "lcsc_code": null
+    }
+  ],
+  "connections_owned_elsewhere": [
+    {
+      "id": "R_PD_CORE_ENABLE",
+      "owner": "hardware/asio-card-reva/power-pin-candidatevalues.json",
+      "value_ohm": 100000,
+      "nets": [
+        "CORE_ENABLE",
+        "GND"
+      ],
+      "instruction": "Retain existing part; do not duplicate."
+    },
+    {
+      "id": "CORE_BUCK.pin1",
+      "net": "CORE_ENABLE",
+      "owner": "power page",
+      "instruction": "This boot plan provides hardware enable; remove obsolete MCU-only assumption when root merges docs."
+    }
+  ],
+  "validation": {
+    "firmware_modified": false,
+    "BOM_modified": false,
+    "EDA_modified": false,
+    "procurement_or_price_queries": false,
+    "complete_boot_simulation_passed": false,
+    "real_hardware_tested": false,
+    "ERC_DRC_run": false,
+    "structural_pin_and_passive_id_checks": "passed:8Flash+4crystal+3x6monitor pins; unique logical passive IDs"
+  },
+  "investigation_boundary": {
+    "ROM_disassembly": "Local official XTC15.3.1 simulator ROM read; QSPI helper0xfff0091e, constant0x01101011 observed.",
+    "evidence_files": [
+      ".jspace/board-design-20260916/boot-evidence/rom-disassembly.txt",
+      ".jspace/board-design-20260916/boot-evidence/rom-remote-log.txt"
+    ],
+    "simulation_attempt": "Bounded helper run stalled waiting; VCD is incomplete and is not a successful Flash simulation.",
+    "service_note": "xgdb simulator backend started xgdbserver and triggered a Windows firewall prompt. No firewall rule or UI approval was changed. Final read-only process check found no xgdb/xgdbserver process. Further debug-server starts are prohibited in this investigation."
+  },
+  "remaining_acceptance": [
+    "Real ROM EB mode/dummy waveform vs FW Fig24a and XTC SFDP/program/verify/cold/warm boot",
+    "Native library pin and package verification",
+    "Crystal startup/drive/CL validation",
+    "AON-before-main order and<=50ms IO/core ramp interval",
+    "All supply static/dynamic/thermal min-max windows and fault behavior",
+    "Firmware must preserve Flash QE/SPI/no-wrap state and not reset during write/erase"
+  ],
+  "optional_manual_reset": {
+    "id": "SW_XU_RESET",
+    "type": "normally_open_momentary",
+    "pins": [
+      {
+        "pin": 1,
+        "net": "XU_RESET_ENABLE"
+      },
+      {
+        "pin": 2,
+        "net": "GND"
+      }
+    ],
+    "status": "optional_draw_ready_generic_button",
+    "note": "Actual footprint/pin duplication follows selected switch; do not invent4pin mapping."
+  }
+}

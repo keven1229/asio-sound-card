@@ -1,0 +1,379 @@
+{
+  "version": 1,
+  "meta": {
+    "name": "xmos-cap-ground-spacing",
+    "project": "ASIO_CARD_USB5V_REV_A",
+    "doc": "XMOS_CORE"
+  },
+  "defaults": {
+    "timeoutSec": 60,
+    "retry": 0
+  },
+  "steps": [
+    {
+      "id": "disconnect-C101",
+      "action": "schematic.pin.disconnect",
+      "payload": {
+        "designator": "C101",
+        "pin": "1"
+      }
+    },
+    {
+      "id": "short-ground-C101",
+      "action": "schematic.power.connect_pin",
+      "payload": {
+        "pinX": 65,
+        "pinY": 665,
+        "kind": "ground",
+        "net": "GND",
+        "direction": "down",
+        "offset": 5
+      }
+    },
+    {
+      "id": "disconnect-C102",
+      "action": "schematic.pin.disconnect",
+      "payload": {
+        "designator": "C102",
+        "pin": "1"
+      }
+    },
+    {
+      "id": "short-ground-C102",
+      "action": "schematic.power.connect_pin",
+      "payload": {
+        "pinX": 125,
+        "pinY": 665,
+        "kind": "ground",
+        "net": "GND",
+        "direction": "down",
+        "offset": 5
+      }
+    },
+    {
+      "id": "disconnect-C103",
+      "action": "schematic.pin.disconnect",
+      "payload": {
+        "designator": "C103",
+        "pin": "1"
+      }
+    },
+    {
+      "id": "short-ground-C103",
+      "action": "schematic.power.connect_pin",
+      "payload": {
+        "pinX": 185,
+        "pinY": 665,
+        "kind": "ground",
+        "net": "GND",
+        "direction": "down",
+        "offset": 5
+      }
+    },
+    {
+      "id": "disconnect-C104",
+      "action": "schematic.pin.disconnect",
+      "payload": {
+        "designator": "C104",
+        "pin": "1"
+      }
+    },
+    {
+      "id": "short-ground-C104",
+      "action": "schematic.power.connect_pin",
+      "payload": {
+        "pinX": 245,
+        "pinY": 665,
+        "kind": "ground",
+        "net": "GND",
+        "direction": "down",
+        "offset": 5
+      }
+    },
+    {
+      "id": "disconnect-C105",
+      "action": "schematic.pin.disconnect",
+      "payload": {
+        "designator": "C105",
+        "pin": "1"
+      }
+    },
+    {
+      "id": "short-ground-C105",
+      "action": "schematic.power.connect_pin",
+      "payload": {
+        "pinX": 65,
+        "pinY": 545,
+        "kind": "ground",
+        "net": "GND",
+        "direction": "down",
+        "offset": 5
+      }
+    },
+    {
+      "id": "disconnect-C106",
+      "action": "schematic.pin.disconnect",
+      "payload": {
+        "designator": "C106",
+        "pin": "1"
+      }
+    },
+    {
+      "id": "short-ground-C106",
+      "action": "schematic.power.connect_pin",
+      "payload": {
+        "pinX": 125,
+        "pinY": 545,
+        "kind": "ground",
+        "net": "GND",
+        "direction": "down",
+        "offset": 5
+      }
+    },
+    {
+      "id": "disconnect-C107",
+      "action": "schematic.pin.disconnect",
+      "payload": {
+        "designator": "C107",
+        "pin": "1"
+      }
+    },
+    {
+      "id": "short-ground-C107",
+      "action": "schematic.power.connect_pin",
+      "payload": {
+        "pinX": 185,
+        "pinY": 545,
+        "kind": "ground",
+        "net": "GND",
+        "direction": "down",
+        "offset": 5
+      }
+    },
+    {
+      "id": "disconnect-C108",
+      "action": "schematic.pin.disconnect",
+      "payload": {
+        "designator": "C108",
+        "pin": "1"
+      }
+    },
+    {
+      "id": "short-ground-C108",
+      "action": "schematic.power.connect_pin",
+      "payload": {
+        "pinX": 245,
+        "pinY": 545,
+        "kind": "ground",
+        "net": "GND",
+        "direction": "down",
+        "offset": 5
+      }
+    },
+    {
+      "id": "disconnect-C109",
+      "action": "schematic.pin.disconnect",
+      "payload": {
+        "designator": "C109",
+        "pin": "1"
+      }
+    },
+    {
+      "id": "short-ground-C109",
+      "action": "schematic.power.connect_pin",
+      "payload": {
+        "pinX": 65,
+        "pinY": 425,
+        "kind": "ground",
+        "net": "GND",
+        "direction": "down",
+        "offset": 5
+      }
+    },
+    {
+      "id": "disconnect-C110",
+      "action": "schematic.pin.disconnect",
+      "payload": {
+        "designator": "C110",
+        "pin": "1"
+      }
+    },
+    {
+      "id": "short-ground-C110",
+      "action": "schematic.power.connect_pin",
+      "payload": {
+        "pinX": 125,
+        "pinY": 425,
+        "kind": "ground",
+        "net": "GND",
+        "direction": "down",
+        "offset": 5
+      }
+    },
+    {
+      "id": "disconnect-C111",
+      "action": "schematic.pin.disconnect",
+      "payload": {
+        "designator": "C111",
+        "pin": "1"
+      }
+    },
+    {
+      "id": "short-ground-C111",
+      "action": "schematic.power.connect_pin",
+      "payload": {
+        "pinX": 185,
+        "pinY": 425,
+        "kind": "ground",
+        "net": "GND",
+        "direction": "down",
+        "offset": 5
+      }
+    },
+    {
+      "id": "disconnect-C112",
+      "action": "schematic.pin.disconnect",
+      "payload": {
+        "designator": "C112",
+        "pin": "1"
+      }
+    },
+    {
+      "id": "short-ground-C112",
+      "action": "schematic.power.connect_pin",
+      "payload": {
+        "pinX": 245,
+        "pinY": 425,
+        "kind": "ground",
+        "net": "GND",
+        "direction": "down",
+        "offset": 5
+      }
+    },
+    {
+      "id": "disconnect-C113",
+      "action": "schematic.pin.disconnect",
+      "payload": {
+        "designator": "C113",
+        "pin": "1"
+      }
+    },
+    {
+      "id": "short-ground-C113",
+      "action": "schematic.power.connect_pin",
+      "payload": {
+        "pinX": 65,
+        "pinY": 305,
+        "kind": "ground",
+        "net": "GND",
+        "direction": "down",
+        "offset": 5
+      }
+    },
+    {
+      "id": "disconnect-C114",
+      "action": "schematic.pin.disconnect",
+      "payload": {
+        "designator": "C114",
+        "pin": "1"
+      }
+    },
+    {
+      "id": "short-ground-C114",
+      "action": "schematic.power.connect_pin",
+      "payload": {
+        "pinX": 125,
+        "pinY": 305,
+        "kind": "ground",
+        "net": "GND",
+        "direction": "down",
+        "offset": 5
+      }
+    },
+    {
+      "id": "disconnect-C115",
+      "action": "schematic.pin.disconnect",
+      "payload": {
+        "designator": "C115",
+        "pin": "1"
+      }
+    },
+    {
+      "id": "short-ground-C115",
+      "action": "schematic.power.connect_pin",
+      "payload": {
+        "pinX": 185,
+        "pinY": 305,
+        "kind": "ground",
+        "net": "GND",
+        "direction": "down",
+        "offset": 5
+      }
+    },
+    {
+      "id": "disconnect-C116",
+      "action": "schematic.pin.disconnect",
+      "payload": {
+        "designator": "C116",
+        "pin": "1"
+      }
+    },
+    {
+      "id": "short-ground-C116",
+      "action": "schematic.power.connect_pin",
+      "payload": {
+        "pinX": 245,
+        "pinY": 305,
+        "kind": "ground",
+        "net": "GND",
+        "direction": "down",
+        "offset": 5
+      }
+    },
+    {
+      "id": "disconnect-C117",
+      "action": "schematic.pin.disconnect",
+      "payload": {
+        "designator": "C117",
+        "pin": "1"
+      }
+    },
+    {
+      "id": "short-ground-C117",
+      "action": "schematic.power.connect_pin",
+      "payload": {
+        "pinX": 65,
+        "pinY": 190,
+        "kind": "ground",
+        "net": "GND",
+        "direction": "down",
+        "offset": 5
+      }
+    },
+    {
+      "id": "disconnect-C118",
+      "action": "schematic.pin.disconnect",
+      "payload": {
+        "designator": "C118",
+        "pin": "1"
+      }
+    },
+    {
+      "id": "short-ground-C118",
+      "action": "schematic.power.connect_pin",
+      "payload": {
+        "pinX": 125,
+        "pinY": 190,
+        "kind": "ground",
+        "net": "GND",
+        "direction": "down",
+        "offset": 5
+      }
+    },
+    {
+      "id": "save-compacted-ground-flags",
+      "action": "schematic.save",
+      "checkpoint": true
+    }
+  ]
+}

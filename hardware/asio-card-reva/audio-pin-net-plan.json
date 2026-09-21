@@ -1,0 +1,3500 @@
+{
+  "schema_version": 1,
+  "date": "2026-09-16",
+  "phase": "audio_signal_draft_complete_pin_tables_and_calculations",
+  "scope": "schematic draft engineering input; no EDA mutations and no procurement",
+  "assumptions": {
+    "physical_adc_channels": 2,
+    "physical_dac_channels": 2,
+    "headphone_budget": {
+      "load_ohm": 32,
+      "rms_voltage_per_channel": 1,
+      "status": "temporary engineering budget, not user-confirmed product requirement"
+    },
+    "microphone_test_point": {
+      "pga_differential_vrms": 3.5,
+      "adc_driver_differential_vrms_before_load": 1.75,
+      "source": "PGA2500.pdf physicalp3 specified0dB/30dB,1kHz,VCOMIN0V test point; not universal maximum"
+    }
+  },
+  "power_contract": "Local net names intentionally separate ADC/DAC reference, digital and clock branches. Power agent must map and sequence them; no local net authorizes an unverified upstream regulator.",
+  "interfaces": {
+    "i2c": "3.3V100kHz initial; separateADC_I2C_SDA/SCL andDAC_I2C_SDA/SCL, local2.2k pulls to respective digital supplies; twoTCA9517A branches on digital page; upstreammasterpulls not duplicated",
+    "adc_clock": "22.5792/24.576 or45.1584/49.152MHz derived synchronously with ADC BCLK/LRCK; exact phase per ADC datasheetp55 mandatory",
+    "dac_clock": "49.152MHz separate3.3V oscillator, asynchronous SRC,192k>=130Fs; do not use24.576MHz for192kASYNC",
+    "level_translation": "All *_3V3 I2S nodes require direction-controlled translation to/from XU3161.8V. Ground is continuous GND."
+  },
+  "ics": [
+    {
+      "reference": "U15",
+      "part": "ES9822QPRO",
+      "package": "QFN40_5x5_P0.4_EP41",
+      "source": {
+        "file": "docs/datasheets/ES9822PRO_ESS.pdf",
+        "version": "0.5.2",
+        "physical_pages": [
+          8,
+          9,
+          10,
+          11,
+          15,
+          19,
+          20,
+          44,
+          52,
+          53,
+          54,
+          55,
+          58,
+          59,
+          61,
+          62,
+          124,
+          125,
+          129,
+          130,
+          133
+        ]
+      },
+      "status": "pin_assignments_frozen_for_schematic_draft",
+      "i2c": {
+        "address_7bit": "0x20",
+        "synchronous_write_address_7bit": "0x24",
+        "address_write_byte": "0x40",
+        "synchronous_write_byte": "0x48"
+      },
+      "pins": [
+        {
+          "physical_pin": 1,
+          "pin_name": "GPIO10",
+          "net": null,
+          "direction": "bidirectional",
+          "disposition": "no_connect",
+          "note": "Unused; leave unconnected and keep analog-shutdown mode"
+        },
+        {
+          "physical_pin": 2,
+          "pin_name": "GPIO11",
+          "net": null,
+          "direction": "bidirectional",
+          "disposition": "no_connect",
+          "note": "Unused; leave unconnected and keep analog-shutdown mode"
+        },
+        {
+          "physical_pin": 3,
+          "pin_name": "MODE",
+          "net": "GND",
+          "direction": "input",
+          "disposition": "connect",
+          "note": "Hard GND selects I2C"
+        },
+        {
+          "physical_pin": 4,
+          "pin_name": "ACLK",
+          "net": null,
+          "direction": "analog_input",
+          "disposition": "no_connect",
+          "note": "No secondary clock; leave NC per single-XIN configuration"
+        },
+        {
+          "physical_pin": 5,
+          "pin_name": "AVCC",
+          "net": "V4V5_ADC_CLK",
+          "direction": "power_input",
+          "disposition": "connect",
+          "note": "4.5V low-noise branch; local 1uF+0.1uF"
+        },
+        {
+          "physical_pin": 6,
+          "pin_name": "AGND",
+          "net": "GND",
+          "direction": "ground",
+          "disposition": "connect",
+          "note": ""
+        },
+        {
+          "physical_pin": 7,
+          "pin_name": "XOUT",
+          "net": null,
+          "direction": "analog_output",
+          "disposition": "no_connect",
+          "note": "External clock drives XIN; no crystal/XOUT load"
+        },
+        {
+          "physical_pin": 8,
+          "pin_name": "XIN",
+          "net": "ADC_MCLK_3V3",
+          "direction": "clock_input",
+          "disposition": "connect",
+          "note": "External MCLK. Reg193 SEL_SYSCLK_IN=MCLK, not XTAL"
+        },
+        {
+          "physical_pin": 9,
+          "pin_name": "VREF_L",
+          "net": "ADC_VREF_L",
+          "direction": "reference_output",
+          "disposition": "connect",
+          "note": "4.7uF to GND; never external power or driver bias source"
+        },
+        {
+          "physical_pin": 10,
+          "pin_name": "AVCC_L",
+          "net": "V4V5_ADC_L",
+          "direction": "power_input",
+          "disposition": "connect",
+          "note": "4.5V low-noise branch; local 1uF+0.1uF"
+        },
+        {
+          "physical_pin": 11,
+          "pin_name": "AGND_L",
+          "net": "GND",
+          "direction": "ground",
+          "disposition": "connect",
+          "note": ""
+        },
+        {
+          "physical_pin": 12,
+          "pin_name": "IN_P1",
+          "net": "ADC_IN1_P",
+          "direction": "analog_input",
+          "disposition": "connect",
+          "note": "Driver centered at V4V5_ADC_L/2"
+        },
+        {
+          "physical_pin": 13,
+          "pin_name": "IN_M1",
+          "net": "ADC_IN1_N",
+          "direction": "analog_input",
+          "disposition": "connect",
+          "note": "Driver centered at V4V5_ADC_L/2"
+        },
+        {
+          "physical_pin": 14,
+          "pin_name": "NC",
+          "net": null,
+          "direction": "NC",
+          "disposition": "no_connect",
+          "note": "True NC; do not ground"
+        },
+        {
+          "physical_pin": 15,
+          "pin_name": "NC",
+          "net": null,
+          "direction": "NC",
+          "disposition": "no_connect",
+          "note": "True NC; do not ground"
+        },
+        {
+          "physical_pin": 16,
+          "pin_name": "NC",
+          "net": null,
+          "direction": "NC",
+          "disposition": "no_connect",
+          "note": "True NC; do not ground"
+        },
+        {
+          "physical_pin": 17,
+          "pin_name": "NC",
+          "net": null,
+          "direction": "NC",
+          "disposition": "no_connect",
+          "note": "True NC; do not ground"
+        },
+        {
+          "physical_pin": 18,
+          "pin_name": "IN_M2",
+          "net": "ADC_IN2_N",
+          "direction": "analog_input",
+          "disposition": "connect",
+          "note": "Driver centered at V4V5_ADC_R/2"
+        },
+        {
+          "physical_pin": 19,
+          "pin_name": "IN_P2",
+          "net": "ADC_IN2_P",
+          "direction": "analog_input",
+          "disposition": "connect",
+          "note": "Driver centered at V4V5_ADC_R/2"
+        },
+        {
+          "physical_pin": 20,
+          "pin_name": "AGND_R",
+          "net": "GND",
+          "direction": "ground",
+          "disposition": "connect",
+          "note": ""
+        },
+        {
+          "physical_pin": 21,
+          "pin_name": "AVCC_R",
+          "net": "V4V5_ADC_R",
+          "direction": "power_input",
+          "disposition": "connect",
+          "note": "4.5V low-noise branch; local 1uF+0.1uF"
+        },
+        {
+          "physical_pin": 22,
+          "pin_name": "VREF_R",
+          "net": "ADC_VREF_R",
+          "direction": "reference_output",
+          "disposition": "connect",
+          "note": "4.7uF to GND; never external power or driver bias source"
+        },
+        {
+          "physical_pin": 23,
+          "pin_name": "CHIP_EN",
+          "net": "ADC_EN",
+          "direction": "input",
+          "disposition": "connect",
+          "note": "10k pulldown; 3.3V MCU asserts only after rails/MCLK stable"
+        },
+        {
+          "physical_pin": 24,
+          "pin_name": "GPIO9",
+          "net": null,
+          "direction": "bidirectional",
+          "disposition": "no_connect",
+          "note": "Interrupt optional; unused high-Z/analog shutdown"
+        },
+        {
+          "physical_pin": 25,
+          "pin_name": "MOSI/SDA",
+          "net": "ADC_I2C_SDA",
+          "direction": "open_drain_bidirectional",
+          "disposition": "connect",
+          "note": "Local2.2k pull-up to its own codec digital rail; TCA9517A branch on digital page"
+        },
+        {
+          "physical_pin": 26,
+          "pin_name": "SCLK/SCL",
+          "net": "ADC_I2C_SCL",
+          "direction": "input",
+          "disposition": "connect",
+          "note": "Local2.2k pull-up to its own codec digital rail; TCA9517A branch on digital page"
+        },
+        {
+          "physical_pin": 27,
+          "pin_name": "SS/ADDR1",
+          "net": "GND",
+          "direction": "input",
+          "disposition": "connect",
+          "note": "Address bit0=0"
+        },
+        {
+          "physical_pin": 28,
+          "pin_name": "MISO/ADDR2",
+          "net": "GND",
+          "direction": "input",
+          "disposition": "connect",
+          "note": "Address bit1=0"
+        },
+        {
+          "physical_pin": 29,
+          "pin_name": "DVDD",
+          "net": "ADC_DVDD_INT",
+          "direction": "internal_regulator_output",
+          "disposition": "connect",
+          "note": "1uF to GND only; internal1.2V, abs1.4V"
+        },
+        {
+          "physical_pin": 30,
+          "pin_name": "AVDD",
+          "net": "V3V3_ADC_DIG",
+          "direction": "power_input",
+          "disposition": "connect",
+          "note": "3.3V IO/digital regulator input; local1uF+0.1uF"
+        },
+        {
+          "physical_pin": 31,
+          "pin_name": "DGND",
+          "net": "GND",
+          "direction": "ground",
+          "disposition": "connect",
+          "note": ""
+        },
+        {
+          "physical_pin": 32,
+          "pin_name": "GPIO8",
+          "net": null,
+          "direction": "bidirectional",
+          "disposition": "no_connect",
+          "note": "Unused; keep analog-shutdown mode"
+        },
+        {
+          "physical_pin": 33,
+          "pin_name": "GPIO7",
+          "net": null,
+          "direction": "bidirectional",
+          "disposition": "no_connect",
+          "note": "Unused; keep analog-shutdown mode"
+        },
+        {
+          "physical_pin": 34,
+          "pin_name": "GPIO6",
+          "net": null,
+          "direction": "bidirectional",
+          "disposition": "no_connect",
+          "note": "Unused; keep analog-shutdown mode"
+        },
+        {
+          "physical_pin": 35,
+          "pin_name": "GPIO5",
+          "net": null,
+          "direction": "bidirectional",
+          "disposition": "no_connect",
+          "note": "Unused; keep analog-shutdown mode"
+        },
+        {
+          "physical_pin": 36,
+          "pin_name": "GPIO4",
+          "net": "ADC_DOUT_3V3",
+          "direction": "digital_output",
+          "disposition": "connect",
+          "note": "Chosen remapped I2S DATA output. Enable Reg11[7] TDM_GPIO456, route both ADC channels to GPIO4, GPIO4 AUX output/OE on/IE off"
+        },
+        {
+          "physical_pin": 37,
+          "pin_name": "GPIO3",
+          "net": null,
+          "direction": "bidirectional",
+          "disposition": "no_connect",
+          "note": "Default DATA output unused because GPIO4 selected; disable its output"
+        },
+        {
+          "physical_pin": 38,
+          "pin_name": "GPIO2",
+          "net": "ADC_LRCK_3V3",
+          "direction": "clock_input",
+          "disposition": "connect",
+          "note": "Slave I2S WS; IE on/OE off"
+        },
+        {
+          "physical_pin": 39,
+          "pin_name": "GPIO1",
+          "net": "ADC_BCLK_3V3",
+          "direction": "clock_input",
+          "disposition": "connect",
+          "note": "Slave I2S BCLK; IE on/OE off"
+        },
+        {
+          "physical_pin": 40,
+          "pin_name": "RT1",
+          "net": "GND",
+          "direction": "input",
+          "disposition": "connect",
+          "note": "Reserved must ground"
+        },
+        {
+          "physical_pin": 41,
+          "pin_name": "EPAD",
+          "net": "GND",
+          "direction": "thermal_pad",
+          "disposition": "connect",
+          "note": "Solder and ground; pad number41"
+        }
+      ]
+    },
+    {
+      "reference": "U20",
+      "part": "ES9039Q2M",
+      "package": "QFN32_5x5_P0.5_EP33",
+      "source": {
+        "file": "docs/datasheets/ES9039Q2M_ESS.pdf",
+        "version": "0.2.3",
+        "physical_pages": [
+          10,
+          11,
+          12,
+          13,
+          17,
+          19,
+          28,
+          48,
+          50,
+          51,
+          54,
+          55,
+          57,
+          70,
+          95,
+          96,
+          97,
+          98,
+          99,
+          104
+        ]
+      },
+      "status": "pin_assignments_frozen_for_schematic_draft",
+      "i2c": {
+        "address_7bit": "0x48",
+        "address_write_byte": "0x90"
+      },
+      "pins": [
+        {
+          "physical_pin": 1,
+          "pin_name": "AVCC_DAC1",
+          "net": "V3V3_DAC_L",
+          "direction": "power_input",
+          "disposition": "connect",
+          "note": "3.3V low-noise; local1uF tantalum per reference schematic +0.1uF"
+        },
+        {
+          "physical_pin": 2,
+          "pin_name": "DAC1B",
+          "net": "DAC_L_N",
+          "direction": "analog_output",
+          "disposition": "connect",
+          "note": "Voltage mode source resistance390ohm typ; unbuffered"
+        },
+        {
+          "physical_pin": 3,
+          "pin_name": "DAC1",
+          "net": "DAC_L_P",
+          "direction": "analog_output",
+          "disposition": "connect",
+          "note": "Voltage mode source resistance390ohm typ; unbuffered"
+        },
+        {
+          "physical_pin": 4,
+          "pin_name": "AGND_DAC1",
+          "net": "GND",
+          "direction": "ground",
+          "disposition": "connect",
+          "note": ""
+        },
+        {
+          "physical_pin": 5,
+          "pin_name": "AGND_DAC2",
+          "net": "GND",
+          "direction": "ground",
+          "disposition": "connect",
+          "note": ""
+        },
+        {
+          "physical_pin": 6,
+          "pin_name": "DAC2B",
+          "net": "DAC_R_N",
+          "direction": "analog_output",
+          "disposition": "connect",
+          "note": ""
+        },
+        {
+          "physical_pin": 7,
+          "pin_name": "DAC2",
+          "net": "DAC_R_P",
+          "direction": "analog_output",
+          "disposition": "connect",
+          "note": ""
+        },
+        {
+          "physical_pin": 8,
+          "pin_name": "AVCC_DAC2",
+          "net": "V3V3_DAC_R",
+          "direction": "power_input",
+          "disposition": "connect",
+          "note": "1uF tantalum to GND explicitly required in pin table; +0.1uF"
+        },
+        {
+          "physical_pin": 9,
+          "pin_name": "DVDD",
+          "net": "DAC_DVDD_INT",
+          "direction": "internal_regulator_output",
+          "disposition": "connect",
+          "note": "1uF tantalum to GND only; internal1.2V, abs1.4V"
+        },
+        {
+          "physical_pin": 10,
+          "pin_name": "AVDD",
+          "net": "V3V3_DAC_DIG",
+          "direction": "power_input",
+          "disposition": "connect",
+          "note": "3.3V; local1uF+0.1uF; rises about200us before VCCA"
+        },
+        {
+          "physical_pin": 11,
+          "pin_name": "GND",
+          "net": "GND",
+          "direction": "ground",
+          "disposition": "connect",
+          "note": ""
+        },
+        {
+          "physical_pin": 12,
+          "pin_name": "DATA_CLK",
+          "net": "DAC_BCLK_3V3",
+          "direction": "clock_input",
+          "disposition": "connect",
+          "note": "I2S slave"
+        },
+        {
+          "physical_pin": 13,
+          "pin_name": "DATA1",
+          "net": "DAC_LRCK_3V3",
+          "direction": "clock_input",
+          "disposition": "connect",
+          "note": "I2S WS, not audio data"
+        },
+        {
+          "physical_pin": 14,
+          "pin_name": "DATA2",
+          "net": "DAC_DIN_3V3",
+          "direction": "digital_input",
+          "disposition": "connect",
+          "note": "I2S stereo data"
+        },
+        {
+          "physical_pin": 15,
+          "pin_name": "SCLK/SCL/HW1",
+          "net": "DAC_I2C_SCL",
+          "direction": "input",
+          "disposition": "connect",
+          "note": "Local2.2k pull-up to its own codec digital rail; TCA9517A branch on digital page"
+        },
+        {
+          "physical_pin": 16,
+          "pin_name": "MOSI/SDA/HW0",
+          "net": "DAC_I2C_SDA",
+          "direction": "open_drain_bidirectional",
+          "disposition": "connect",
+          "note": "Local2.2k pull-up to its own codec digital rail; TCA9517A branch on digital page"
+        },
+        {
+          "physical_pin": 17,
+          "pin_name": "RT1",
+          "net": "GND",
+          "direction": "input",
+          "disposition": "connect",
+          "note": "Reserved must ground"
+        },
+        {
+          "physical_pin": 18,
+          "pin_name": "CHIP_EN",
+          "net": "DAC_EN",
+          "direction": "input",
+          "disposition": "connect",
+          "note": "10k pulldown; assert only after sequenced supplies and MCLK stable"
+        },
+        {
+          "physical_pin": 19,
+          "pin_name": "SS/ADDR1/HW2",
+          "net": "GND",
+          "direction": "input",
+          "disposition": "connect",
+          "note": "ADDR1=0"
+        },
+        {
+          "physical_pin": 20,
+          "pin_name": "MISO/ADDR0/MUTE_CTRL",
+          "net": "GND",
+          "direction": "input",
+          "disposition": "connect",
+          "note": "ADDR0=0 in I2C mode; not hard mute input in this mode"
+        },
+        {
+          "physical_pin": 21,
+          "pin_name": "GPIO1",
+          "net": "DAC_AUTOMUTE",
+          "direction": "digital_output",
+          "disposition": "connect",
+          "note": "Optional MCU input/test point, no external pull-up needed"
+        },
+        {
+          "physical_pin": 22,
+          "pin_name": "GPIO2",
+          "net": "DAC_LOCK",
+          "direction": "digital_output",
+          "disposition": "connect",
+          "note": "SRC lock status; configure/verify function in software"
+        },
+        {
+          "physical_pin": 23,
+          "pin_name": "GPIO3",
+          "net": null,
+          "direction": "bidirectional",
+          "disposition": "no_connect",
+          "note": "Unused software-mode GPIO; leave NC/disabled"
+        },
+        {
+          "physical_pin": 24,
+          "pin_name": "GPIO4",
+          "net": null,
+          "direction": "bidirectional",
+          "disposition": "no_connect",
+          "note": "Unused software-mode GPIO; leave NC/disabled"
+        },
+        {
+          "physical_pin": 25,
+          "pin_name": "GPIO5",
+          "net": null,
+          "direction": "bidirectional",
+          "disposition": "no_connect",
+          "note": "Unused software-mode GPIO; leave NC/disabled"
+        },
+        {
+          "physical_pin": 26,
+          "pin_name": "GPIO6",
+          "net": null,
+          "direction": "bidirectional",
+          "disposition": "no_connect",
+          "note": "Unused software-mode GPIO; leave NC/disabled"
+        },
+        {
+          "physical_pin": 27,
+          "pin_name": "GPIO7",
+          "net": null,
+          "direction": "bidirectional",
+          "disposition": "no_connect",
+          "note": "Unused software-mode GPIO; leave NC/disabled"
+        },
+        {
+          "physical_pin": 28,
+          "pin_name": "GPIO8/CAL_RES",
+          "net": null,
+          "direction": "bidirectional",
+          "disposition": "no_connect",
+          "note": "Calibration unused. Disable calibration function; do not install guessed resistor"
+        },
+        {
+          "physical_pin": 29,
+          "pin_name": "MODE",
+          "net": "GND",
+          "direction": "input",
+          "disposition": "connect",
+          "note": "Hard GND selects I2C; do not use47k HW-mode strap"
+        },
+        {
+          "physical_pin": 30,
+          "pin_name": "GND",
+          "net": "GND",
+          "direction": "ground",
+          "disposition": "connect",
+          "note": ""
+        },
+        {
+          "physical_pin": 31,
+          "pin_name": "VCCA",
+          "net": "V3V3_DAC_CLK",
+          "direction": "power_input",
+          "disposition": "connect",
+          "note": "3.3V clock analog rail, local1uF+0.1uF; sequenced after AVDD"
+        },
+        {
+          "physical_pin": 32,
+          "pin_name": "MCLK",
+          "net": "DAC_MCLK_3V3",
+          "direction": "clock_input",
+          "disposition": "connect",
+          "note": "Independent49.152MHz nominal for ASYNC192k; <=50MHz"
+        },
+        {
+          "physical_pin": 33,
+          "pin_name": "EPAD",
+          "net": "GND",
+          "direction": "thermal_pad",
+          "disposition": "connect",
+          "note": "Must solder and ground"
+        }
+      ]
+    },
+    {
+      "reference": "U13",
+      "part": "PGA2500IDBR",
+      "package": "SSOP28_DB",
+      "source": {
+        "file": "docs/datasheets/PGA2500.pdf",
+        "physical_pages": [
+          3,
+          4,
+          11,
+          12,
+          13
+        ]
+      },
+      "pins": [
+        {
+          "physical_pin": 1,
+          "pin_name": "GPO1",
+          "net": null,
+          "direction": "digital_output",
+          "disposition": "no_connect",
+          "note": "Unused5V-domain output"
+        },
+        {
+          "physical_pin": 2,
+          "pin_name": "GPO2",
+          "net": null,
+          "direction": "digital_output",
+          "disposition": "no_connect",
+          "note": "Unused5V-domain output"
+        },
+        {
+          "physical_pin": 3,
+          "pin_name": "GPO3",
+          "net": null,
+          "direction": "digital_output",
+          "disposition": "no_connect",
+          "note": "Unused5V-domain output"
+        },
+        {
+          "physical_pin": 4,
+          "pin_name": "GPO4",
+          "net": null,
+          "direction": "digital_output",
+          "disposition": "no_connect",
+          "note": "Unused5V-domain output"
+        },
+        {
+          "physical_pin": 5,
+          "pin_name": "OVR",
+          "net": "PGA_OVR_5V_TP",
+          "direction": "digital_output",
+          "disposition": "connect",
+          "note": "Optional test point; do not directly connect3.3V MCU"
+        },
+        {
+          "physical_pin": 6,
+          "pin_name": "DGND",
+          "net": "GND",
+          "direction": "ground",
+          "disposition": "connect",
+          "note": ""
+        },
+        {
+          "physical_pin": 7,
+          "pin_name": "DCEN",
+          "net": "GND",
+          "direction": "input",
+          "disposition": "connect",
+          "note": "Low enables DC servo"
+        },
+        {
+          "physical_pin": 8,
+          "pin_name": "0dB",
+          "net": "GND",
+          "direction": "input",
+          "disposition": "connect",
+          "note": "Low permits serial gain control;0dB is not mute"
+        },
+        {
+          "physical_pin": 9,
+          "pin_name": "ZCEN",
+          "net": "PGA_ZCEN",
+          "direction": "input",
+          "disposition": "connect",
+          "note": "10k to V5P_AFE enables zero-cross gain changes"
+        },
+        {
+          "physical_pin": 10,
+          "pin_name": "SDI",
+          "net": "PGA_SDI_3V3",
+          "direction": "digital_input",
+          "disposition": "connect",
+          "note": "MCU via100ohm; valid3.3V threshold, prevent power-off injection"
+        },
+        {
+          "physical_pin": 11,
+          "pin_name": "CS",
+          "net": "PGA_CS_N_3V3",
+          "direction": "digital_input",
+          "disposition": "connect",
+          "note": "10k to V3V3_D, MCU via100ohm; assert only after preamp supply valid"
+        },
+        {
+          "physical_pin": 12,
+          "pin_name": "SCLK",
+          "net": "PGA_SCLK_3V3",
+          "direction": "clock_input",
+          "disposition": "connect",
+          "note": "MCU via100ohm; <=1MHz initial"
+        },
+        {
+          "physical_pin": 13,
+          "pin_name": "SDO",
+          "net": "PGA_SDO_5V",
+          "direction": "digital_output",
+          "disposition": "connect",
+          "note": "5V-tolerant receiver/level buffer required before MCU, no simple unverified divider"
+        },
+        {
+          "physical_pin": 14,
+          "pin_name": "VD-",
+          "net": "PGA_VD_N",
+          "direction": "power_input",
+          "disposition": "connect",
+          "note": "10ohm from V5N_AFE;100nF to GND"
+        },
+        {
+          "physical_pin": 15,
+          "pin_name": "VA-",
+          "net": "V5N_AFE",
+          "direction": "power_input",
+          "disposition": "connect",
+          "note": ""
+        },
+        {
+          "physical_pin": 16,
+          "pin_name": "VOUT-",
+          "net": "PGA_OUT_N",
+          "direction": "analog_output",
+          "disposition": "connect",
+          "note": ""
+        },
+        {
+          "physical_pin": 17,
+          "pin_name": "VOUT+",
+          "net": "PGA_OUT_P",
+          "direction": "analog_output",
+          "disposition": "connect",
+          "note": ""
+        },
+        {
+          "physical_pin": 18,
+          "pin_name": "VA+",
+          "net": "V5P_AFE",
+          "direction": "power_input",
+          "disposition": "connect",
+          "note": ""
+        },
+        {
+          "physical_pin": 19,
+          "pin_name": "VA+",
+          "net": "V5P_AFE",
+          "direction": "power_input",
+          "disposition": "connect",
+          "note": ""
+        },
+        {
+          "physical_pin": 20,
+          "pin_name": "VA-",
+          "net": "V5N_AFE",
+          "direction": "power_input",
+          "disposition": "connect",
+          "note": ""
+        },
+        {
+          "physical_pin": 21,
+          "pin_name": "CS22",
+          "net": "PGA_CS22",
+          "direction": "analog_servo",
+          "disposition": "connect",
+          "note": ""
+        },
+        {
+          "physical_pin": 22,
+          "pin_name": "CS21",
+          "net": "PGA_CS21",
+          "direction": "analog_servo",
+          "disposition": "connect",
+          "note": ""
+        },
+        {
+          "physical_pin": 23,
+          "pin_name": "CS12",
+          "net": "PGA_CS12",
+          "direction": "analog_servo",
+          "disposition": "connect",
+          "note": ""
+        },
+        {
+          "physical_pin": 24,
+          "pin_name": "CS11",
+          "net": "PGA_CS11",
+          "direction": "analog_servo",
+          "disposition": "connect",
+          "note": ""
+        },
+        {
+          "physical_pin": 25,
+          "pin_name": "VCOMIN",
+          "net": "PGA_VCOM",
+          "direction": "analog_input",
+          "disposition": "connect",
+          "note": "0ohm to GND; do not tie ADC2.25V here"
+        },
+        {
+          "physical_pin": 26,
+          "pin_name": "VIN-",
+          "net": "MIC_PRE_N",
+          "direction": "analog_input",
+          "disposition": "connect",
+          "note": ""
+        },
+        {
+          "physical_pin": 27,
+          "pin_name": "VIN+",
+          "net": "MIC_PRE_P",
+          "direction": "analog_input",
+          "disposition": "connect",
+          "note": ""
+        },
+        {
+          "physical_pin": 28,
+          "pin_name": "AGND",
+          "net": "GND",
+          "direction": "ground",
+          "disposition": "connect",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "reference": "U14",
+      "part": "OPA1656IDR",
+      "package": "SOIC8",
+      "status": "pin_assignments_frozen_for_schematic_draft",
+      "source": {
+        "file": "docs/datasheets/OPA1656.pdf",
+        "physical_pages": [
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      "pins": [
+        {
+          "physical_pin": 1,
+          "pin_name": "OUT A",
+          "net": "AUX_BUF_P",
+          "direction": "analog_output",
+          "disposition": "connect",
+          "note": ""
+        },
+        {
+          "physical_pin": 2,
+          "pin_name": "-IN A",
+          "net": "AUX_BUF_P",
+          "direction": "analog_input",
+          "disposition": "connect",
+          "note": ""
+        },
+        {
+          "physical_pin": 3,
+          "pin_name": "+IN A",
+          "net": "AUX_TIP_IN",
+          "direction": "analog_input",
+          "disposition": "connect",
+          "note": ""
+        },
+        {
+          "physical_pin": 4,
+          "pin_name": "V-",
+          "net": "V5N_AFE",
+          "direction": "power_input",
+          "disposition": "connect",
+          "note": ""
+        },
+        {
+          "physical_pin": 5,
+          "pin_name": "+IN B",
+          "net": "AUX_RING_IN",
+          "direction": "analog_input",
+          "disposition": "connect",
+          "note": ""
+        },
+        {
+          "physical_pin": 6,
+          "pin_name": "-IN B",
+          "net": "AUX_BUF_N",
+          "direction": "analog_input",
+          "disposition": "connect",
+          "note": ""
+        },
+        {
+          "physical_pin": 7,
+          "pin_name": "OUT B",
+          "net": "AUX_BUF_N",
+          "direction": "analog_output",
+          "disposition": "connect",
+          "note": ""
+        },
+        {
+          "physical_pin": 8,
+          "pin_name": "V+",
+          "net": "V5P_AFE",
+          "direction": "power_input",
+          "disposition": "connect",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "reference": "U18",
+      "part": "OPA1656IDR",
+      "package": "SOIC8",
+      "status": "pin_assignments_frozen_for_schematic_draft",
+      "source": {
+        "file": "docs/datasheets/OPA1656.pdf",
+        "physical_pages": [
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      "pins": [
+        {
+          "physical_pin": 1,
+          "pin_name": "OUT A",
+          "net": "AUX_HIZ_INV",
+          "direction": "analog_output",
+          "disposition": "connect",
+          "note": ""
+        },
+        {
+          "physical_pin": 2,
+          "pin_name": "-IN A",
+          "net": "AUX_INV_SUM",
+          "direction": "analog_input",
+          "disposition": "connect",
+          "note": ""
+        },
+        {
+          "physical_pin": 3,
+          "pin_name": "+IN A",
+          "net": "GND",
+          "direction": "analog_input",
+          "disposition": "connect",
+          "note": ""
+        },
+        {
+          "physical_pin": 4,
+          "pin_name": "V-",
+          "net": "V5N_AFE",
+          "direction": "power_input",
+          "disposition": "connect",
+          "note": ""
+        },
+        {
+          "physical_pin": 5,
+          "pin_name": "+IN B",
+          "net": "GND",
+          "direction": "analog_input",
+          "disposition": "connect",
+          "note": ""
+        },
+        {
+          "physical_pin": 6,
+          "pin_name": "-IN B",
+          "net": "AUX_UNUSED_OUT",
+          "direction": "analog_input",
+          "disposition": "connect",
+          "note": ""
+        },
+        {
+          "physical_pin": 7,
+          "pin_name": "OUT B",
+          "net": "AUX_UNUSED_OUT",
+          "direction": "analog_output",
+          "disposition": "connect",
+          "note": ""
+        },
+        {
+          "physical_pin": 8,
+          "pin_name": "V+",
+          "net": "V5P_AFE",
+          "direction": "power_input",
+          "disposition": "connect",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "reference": "U16",
+      "part": "OPA1612AIDR",
+      "package": "SOIC8",
+      "status": "pin_assignments_frozen_for_schematic_draft",
+      "source": {
+        "file": "docs/datasheets/OPA1611_OPA1612.pdf",
+        "physical_pages": [
+          3,
+          4,
+          5
+        ]
+      },
+      "pins": [
+        {
+          "physical_pin": 1,
+          "pin_name": "OUT A",
+          "net": "MIC_DRV_P",
+          "direction": "analog_output",
+          "disposition": "connect",
+          "note": ""
+        },
+        {
+          "physical_pin": 2,
+          "pin_name": "-IN A",
+          "net": "MIC_SUM_P",
+          "direction": "analog_input",
+          "disposition": "connect",
+          "note": ""
+        },
+        {
+          "physical_pin": 3,
+          "pin_name": "+IN A",
+          "net": "ADC_CM_L",
+          "direction": "analog_input",
+          "disposition": "connect",
+          "note": ""
+        },
+        {
+          "physical_pin": 4,
+          "pin_name": "V-",
+          "net": "V5N_AFE",
+          "direction": "power_input",
+          "disposition": "connect",
+          "note": ""
+        },
+        {
+          "physical_pin": 5,
+          "pin_name": "+IN B",
+          "net": "ADC_CM_L",
+          "direction": "analog_input",
+          "disposition": "connect",
+          "note": ""
+        },
+        {
+          "physical_pin": 6,
+          "pin_name": "-IN B",
+          "net": "MIC_SUM_N",
+          "direction": "analog_input",
+          "disposition": "connect",
+          "note": ""
+        },
+        {
+          "physical_pin": 7,
+          "pin_name": "OUT B",
+          "net": "MIC_DRV_N",
+          "direction": "analog_output",
+          "disposition": "connect",
+          "note": ""
+        },
+        {
+          "physical_pin": 8,
+          "pin_name": "V+",
+          "net": "V5P_AFE",
+          "direction": "power_input",
+          "disposition": "connect",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "reference": "U17",
+      "part": "OPA1612AIDR",
+      "package": "SOIC8",
+      "status": "pin_assignments_frozen_for_schematic_draft",
+      "source": {
+        "file": "docs/datasheets/OPA1611_OPA1612.pdf",
+        "physical_pages": [
+          3,
+          4,
+          5
+        ]
+      },
+      "pins": [
+        {
+          "physical_pin": 1,
+          "pin_name": "OUT A",
+          "net": "AUX_DRV_P",
+          "direction": "analog_output",
+          "disposition": "connect",
+          "note": ""
+        },
+        {
+          "physical_pin": 2,
+          "pin_name": "-IN A",
+          "net": "AUX_SUM_P",
+          "direction": "analog_input",
+          "disposition": "connect",
+          "note": ""
+        },
+        {
+          "physical_pin": 3,
+          "pin_name": "+IN A",
+          "net": "ADC_CM_R",
+          "direction": "analog_input",
+          "disposition": "connect",
+          "note": ""
+        },
+        {
+          "physical_pin": 4,
+          "pin_name": "V-",
+          "net": "V5N_AFE",
+          "direction": "power_input",
+          "disposition": "connect",
+          "note": ""
+        },
+        {
+          "physical_pin": 5,
+          "pin_name": "+IN B",
+          "net": "ADC_CM_R",
+          "direction": "analog_input",
+          "disposition": "connect",
+          "note": ""
+        },
+        {
+          "physical_pin": 6,
+          "pin_name": "-IN B",
+          "net": "AUX_SUM_N",
+          "direction": "analog_input",
+          "disposition": "connect",
+          "note": ""
+        },
+        {
+          "physical_pin": 7,
+          "pin_name": "OUT B",
+          "net": "AUX_DRV_N",
+          "direction": "analog_output",
+          "disposition": "connect",
+          "note": ""
+        },
+        {
+          "physical_pin": 8,
+          "pin_name": "V+",
+          "net": "V5P_AFE",
+          "direction": "power_input",
+          "disposition": "connect",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "reference": "U21",
+      "part": "OPA1612AIDR",
+      "package": "SOIC8",
+      "status": "pin_assignments_frozen_for_schematic_draft",
+      "source": {
+        "file": "docs/datasheets/OPA1611_OPA1612.pdf",
+        "physical_pages": [
+          3,
+          4,
+          5
+        ]
+      },
+      "pins": [
+        {
+          "physical_pin": 1,
+          "pin_name": "OUT A",
+          "net": "DAC_SE_L",
+          "direction": "analog_output",
+          "disposition": "connect",
+          "note": ""
+        },
+        {
+          "physical_pin": 2,
+          "pin_name": "-IN A",
+          "net": "DAC_DIFF_L_N",
+          "direction": "analog_input",
+          "disposition": "connect",
+          "note": ""
+        },
+        {
+          "physical_pin": 3,
+          "pin_name": "+IN A",
+          "net": "DAC_DIFF_L_P",
+          "direction": "analog_input",
+          "disposition": "connect",
+          "note": ""
+        },
+        {
+          "physical_pin": 4,
+          "pin_name": "V-",
+          "net": "V5N_AFE",
+          "direction": "power_input",
+          "disposition": "connect",
+          "note": ""
+        },
+        {
+          "physical_pin": 5,
+          "pin_name": "+IN B",
+          "net": "DAC_DIFF_R_P",
+          "direction": "analog_input",
+          "disposition": "connect",
+          "note": ""
+        },
+        {
+          "physical_pin": 6,
+          "pin_name": "-IN B",
+          "net": "DAC_DIFF_R_N",
+          "direction": "analog_input",
+          "disposition": "connect",
+          "note": ""
+        },
+        {
+          "physical_pin": 7,
+          "pin_name": "OUT B",
+          "net": "DAC_SE_R",
+          "direction": "analog_output",
+          "disposition": "connect",
+          "note": ""
+        },
+        {
+          "physical_pin": 8,
+          "pin_name": "V+",
+          "net": "V5P_AFE",
+          "direction": "power_input",
+          "disposition": "connect",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "reference": "U22",
+      "part": "TPA6120A2DWPR",
+      "package": "HSOP20_DWP_PowerPAD",
+      "source": {
+        "file": "docs/datasheets/TPA6120A2.pdf",
+        "physical_pages": [
+          3,
+          4,
+          5,
+          10,
+          11,
+          12,
+          16,
+          17
+        ]
+      },
+      "pins": [
+        {
+          "physical_pin": 1,
+          "pin_name": "LVCC-",
+          "net": "V6N_RAW",
+          "direction": "power_input",
+          "disposition": "connect",
+          "note": ""
+        },
+        {
+          "physical_pin": 2,
+          "pin_name": "LOUT",
+          "net": "HP_AMP_L",
+          "direction": "analog_output",
+          "disposition": "connect",
+          "note": ""
+        },
+        {
+          "physical_pin": 3,
+          "pin_name": "LVCC+",
+          "net": "V6P_RAW",
+          "direction": "power_input",
+          "disposition": "connect",
+          "note": ""
+        },
+        {
+          "physical_pin": 4,
+          "pin_name": "LIN+",
+          "net": "HP_IN_L",
+          "direction": "analog_input",
+          "disposition": "connect",
+          "note": ""
+        },
+        {
+          "physical_pin": 5,
+          "pin_name": "LIN-",
+          "net": "HP_FB_L",
+          "direction": "analog_input",
+          "disposition": "connect",
+          "note": ""
+        },
+        {
+          "physical_pin": 6,
+          "pin_name": "NC",
+          "net": null,
+          "direction": "NC",
+          "disposition": "no_connect",
+          "note": "No internal connection; explicit NC marker"
+        },
+        {
+          "physical_pin": 7,
+          "pin_name": "NC",
+          "net": null,
+          "direction": "NC",
+          "disposition": "no_connect",
+          "note": "No internal connection; explicit NC marker"
+        },
+        {
+          "physical_pin": 8,
+          "pin_name": "NC",
+          "net": null,
+          "direction": "NC",
+          "disposition": "no_connect",
+          "note": "No internal connection; explicit NC marker"
+        },
+        {
+          "physical_pin": 9,
+          "pin_name": "NC",
+          "net": null,
+          "direction": "NC",
+          "disposition": "no_connect",
+          "note": "No internal connection; explicit NC marker"
+        },
+        {
+          "physical_pin": 10,
+          "pin_name": "NC",
+          "net": null,
+          "direction": "NC",
+          "disposition": "no_connect",
+          "note": "No internal connection; explicit NC marker"
+        },
+        {
+          "physical_pin": 11,
+          "pin_name": "NC",
+          "net": null,
+          "direction": "NC",
+          "disposition": "no_connect",
+          "note": "No internal connection; explicit NC marker"
+        },
+        {
+          "physical_pin": 12,
+          "pin_name": "NC",
+          "net": null,
+          "direction": "NC",
+          "disposition": "no_connect",
+          "note": "No internal connection; explicit NC marker"
+        },
+        {
+          "physical_pin": 13,
+          "pin_name": "NC",
+          "net": null,
+          "direction": "NC",
+          "disposition": "no_connect",
+          "note": "No internal connection; explicit NC marker"
+        },
+        {
+          "physical_pin": 14,
+          "pin_name": "NC",
+          "net": null,
+          "direction": "NC",
+          "disposition": "no_connect",
+          "note": "No internal connection; explicit NC marker"
+        },
+        {
+          "physical_pin": 15,
+          "pin_name": "NC",
+          "net": null,
+          "direction": "NC",
+          "disposition": "no_connect",
+          "note": "No internal connection; explicit NC marker"
+        },
+        {
+          "physical_pin": 16,
+          "pin_name": "RIN-",
+          "net": "HP_FB_R",
+          "direction": "analog_input",
+          "disposition": "connect",
+          "note": ""
+        },
+        {
+          "physical_pin": 17,
+          "pin_name": "RIN+",
+          "net": "HP_IN_R",
+          "direction": "analog_input",
+          "disposition": "connect",
+          "note": ""
+        },
+        {
+          "physical_pin": 18,
+          "pin_name": "RVCC+",
+          "net": "V6P_RAW",
+          "direction": "power_input",
+          "disposition": "connect",
+          "note": ""
+        },
+        {
+          "physical_pin": 19,
+          "pin_name": "ROUT",
+          "net": "HP_AMP_R",
+          "direction": "analog_output",
+          "disposition": "connect",
+          "note": ""
+        },
+        {
+          "physical_pin": 20,
+          "pin_name": "RVCC-",
+          "net": "V6N_RAW",
+          "direction": "power_input",
+          "disposition": "connect",
+          "note": ""
+        },
+        {
+          "physical_pin": "EPAD",
+          "pin_name": "Thermal Pad",
+          "net": "GND",
+          "direction": "thermal_pad",
+          "disposition": "connect",
+          "note": "Datasheet does not assign a numeric lead number; solder to GND, do not invent21"
+        }
+      ]
+    }
+  ],
+  "checks": {
+    "all_adc_physical_pins": 41,
+    "all_dac_physical_pins": 33,
+    "manufacturing_release": false,
+    "ic_count": 9,
+    "physical_pin_rows": 163,
+    "generic_support_component_count": 144
+  },
+  "supporting_components": [
+    {
+      "reference": "C_ADC_AVCC_1U",
+      "kind": "capacitor",
+      "value": "1uF X7R16V",
+      "nodes": [
+        "V4V5_ADC_CLK",
+        "GND"
+      ],
+      "note": "Local capacitor at the named power pin",
+      "Spec_ID": "C02",
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "C_ADC_AVCC_100N",
+      "kind": "capacitor",
+      "value": "100nF X7R25V",
+      "nodes": [
+        "V4V5_ADC_CLK",
+        "GND"
+      ],
+      "note": "",
+      "Spec_ID": "C01",
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "C_ADC_AVCCL_1U",
+      "kind": "capacitor",
+      "value": "1uF X7R16V",
+      "nodes": [
+        "V4V5_ADC_L",
+        "GND"
+      ],
+      "note": "Local capacitor at the named power pin",
+      "Spec_ID": "C02",
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "C_ADC_AVCCL_100N",
+      "kind": "capacitor",
+      "value": "100nF X7R25V",
+      "nodes": [
+        "V4V5_ADC_L",
+        "GND"
+      ],
+      "note": "",
+      "Spec_ID": "C01",
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "C_ADC_AVCCR_1U",
+      "kind": "capacitor",
+      "value": "1uF X7R16V",
+      "nodes": [
+        "V4V5_ADC_R",
+        "GND"
+      ],
+      "note": "Local capacitor at the named power pin",
+      "Spec_ID": "C02",
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "C_ADC_AVCCR_100N",
+      "kind": "capacitor",
+      "value": "100nF X7R25V",
+      "nodes": [
+        "V4V5_ADC_R",
+        "GND"
+      ],
+      "note": "",
+      "Spec_ID": "C01",
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "C_ADC_AVDD_1U",
+      "kind": "capacitor",
+      "value": "1uF X7R16V",
+      "nodes": [
+        "V3V3_ADC_DIG",
+        "GND"
+      ],
+      "note": "Local capacitor at the named power pin",
+      "Spec_ID": "C02",
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "C_ADC_AVDD_100N",
+      "kind": "capacitor",
+      "value": "100nF X7R25V",
+      "nodes": [
+        "V3V3_ADC_DIG",
+        "GND"
+      ],
+      "note": "",
+      "Spec_ID": "C01",
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "C_ADC_DVDD",
+      "kind": "capacitor",
+      "value": "1uF X7R16V",
+      "nodes": [
+        "ADC_DVDD_INT",
+        "GND"
+      ],
+      "note": "Internal regulator output, no external supply",
+      "Spec_ID": "C02",
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "C_ADC_VREF_L",
+      "kind": "capacitor",
+      "value": "4.7uF ceramic16V",
+      "nodes": [
+        "ADC_VREF_L",
+        "GND"
+      ],
+      "note": "ESS standard reference capacitor; not a bias-supply port",
+      "Spec_ID": "C22",
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "C_ADC_VREF_R",
+      "kind": "capacitor",
+      "value": "4.7uF ceramic16V",
+      "nodes": [
+        "ADC_VREF_R",
+        "GND"
+      ],
+      "note": "ESS standard reference capacitor; not a bias-supply port",
+      "Spec_ID": "C22",
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "C_DAC_AVCC1",
+      "kind": "capacitor",
+      "value": "1uF tantalum >=10V",
+      "nodes": [
+        "V3V3_DAC_L",
+        "GND"
+      ],
+      "note": "Positive terminal at rail. DVDD only bypass, never external power",
+      "Spec_ID": "C17",
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "C_DAC_AVCC1_100N",
+      "kind": "capacitor",
+      "value": "100nF X7R25V",
+      "nodes": [
+        "V3V3_DAC_L",
+        "GND"
+      ],
+      "note": "Close analog supply bypass",
+      "Spec_ID": "C01",
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "C_DAC_AVCC2",
+      "kind": "capacitor",
+      "value": "1uF tantalum >=10V",
+      "nodes": [
+        "V3V3_DAC_R",
+        "GND"
+      ],
+      "note": "Positive terminal at rail. DVDD only bypass, never external power",
+      "Spec_ID": "C17",
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "C_DAC_AVCC2_100N",
+      "kind": "capacitor",
+      "value": "100nF X7R25V",
+      "nodes": [
+        "V3V3_DAC_R",
+        "GND"
+      ],
+      "note": "Close analog supply bypass",
+      "Spec_ID": "C01",
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "C_DAC_DVDD",
+      "kind": "capacitor",
+      "value": "1uF tantalum >=10V",
+      "nodes": [
+        "DAC_DVDD_INT",
+        "GND"
+      ],
+      "note": "Positive terminal at rail. DVDD only bypass, never external power",
+      "Spec_ID": "C17",
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "C_DAC_AVDD",
+      "kind": "capacitor",
+      "value": "1uF X7R16V",
+      "nodes": [
+        "V3V3_DAC_DIG",
+        "GND"
+      ],
+      "note": "",
+      "Spec_ID": "C02",
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "C_DAC_AVDD_100N",
+      "kind": "capacitor",
+      "value": "100nF X7R25V",
+      "nodes": [
+        "V3V3_DAC_DIG",
+        "GND"
+      ],
+      "note": "",
+      "Spec_ID": "C01",
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "C_DAC_VCCA",
+      "kind": "capacitor",
+      "value": "1uF X7R16V",
+      "nodes": [
+        "V3V3_DAC_CLK",
+        "GND"
+      ],
+      "note": "",
+      "Spec_ID": "C02",
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "C_DAC_VCCA_100N",
+      "kind": "capacitor",
+      "value": "100nF X7R25V",
+      "nodes": [
+        "V3V3_DAC_CLK",
+        "GND"
+      ],
+      "note": "",
+      "Spec_ID": "C01",
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "R_ADC_EN_PD",
+      "kind": "resistor",
+      "value": "10k",
+      "nodes": [
+        "ADC_EN",
+        "GND"
+      ],
+      "note": "Default disabled",
+      "Spec_ID": "R10",
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "R_DAC_EN_PD",
+      "kind": "resistor",
+      "value": "10k",
+      "nodes": [
+        "DAC_EN",
+        "GND"
+      ],
+      "note": "Default disabled",
+      "Spec_ID": "R10",
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "R_PGA_VCOM",
+      "kind": "resistor",
+      "value": "0ohm",
+      "nodes": [
+        "PGA_VCOM",
+        "GND"
+      ],
+      "note": "",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "R_PGA_VD",
+      "kind": "resistor",
+      "value": "10ohm",
+      "nodes": [
+        "PGA_VD_N",
+        "V5N_AFE"
+      ],
+      "note": "",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "R_PGA_ZCEN",
+      "kind": "resistor",
+      "value": "10k",
+      "nodes": [
+        "PGA_ZCEN",
+        "V5P_AFE"
+      ],
+      "note": "",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "R_PGA_CS_PU",
+      "kind": "resistor",
+      "value": "10k",
+      "nodes": [
+        "PGA_CS_N_3V3",
+        "V3V3_D"
+      ],
+      "note": "MCU power sequence must avoid PGA input overvoltage when AFE off",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "R_PGA_SDI_SER",
+      "kind": "resistor",
+      "value": "100ohm",
+      "nodes": [
+        "MCU_PGA_SDI_3V3",
+        "PGA_SDI_3V3"
+      ],
+      "note": "Series damping only, not a power-off isolation device",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "R_PGA_CS_N_SER",
+      "kind": "resistor",
+      "value": "100ohm",
+      "nodes": [
+        "MCU_PGA_CS_N_3V3",
+        "PGA_CS_N_3V3"
+      ],
+      "note": "Series damping only, not a power-off isolation device",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "R_PGA_SCLK_SER",
+      "kind": "resistor",
+      "value": "100ohm",
+      "nodes": [
+        "MCU_PGA_SCLK_3V3",
+        "PGA_SCLK_3V3"
+      ],
+      "note": "Series damping only, not a power-off isolation device",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "C_PGA_SERVO1",
+      "kind": "capacitor",
+      "value": "1uF X7R16V",
+      "nodes": [
+        "PGA_CS11",
+        "PGA_CS12"
+      ],
+      "note": "Nonpolar floating servo capacitor",
+      "Spec_ID": "C02",
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "C_PGA_SERVO2",
+      "kind": "capacitor",
+      "value": "1uF X7R16V",
+      "nodes": [
+        "PGA_CS21",
+        "PGA_CS22"
+      ],
+      "note": "Nonpolar floating servo capacitor",
+      "Spec_ID": "C02",
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "C_PGA_VD",
+      "kind": "capacitor",
+      "value": "100nF X7R25V",
+      "nodes": [
+        "PGA_VD_N",
+        "GND"
+      ],
+      "note": "",
+      "Spec_ID": "C01",
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "C_PGA_P15",
+      "kind": "capacitor",
+      "value": "100nF X7R25V",
+      "nodes": [
+        "V5N_AFE",
+        "GND"
+      ],
+      "note": "Separate close capacitor for each physical pin",
+      "Spec_ID": "C01",
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "C_PGA_P20",
+      "kind": "capacitor",
+      "value": "100nF X7R25V",
+      "nodes": [
+        "V5N_AFE",
+        "GND"
+      ],
+      "note": "Separate close capacitor for each physical pin",
+      "Spec_ID": "C01",
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "C_PGA_P18",
+      "kind": "capacitor",
+      "value": "100nF X7R25V",
+      "nodes": [
+        "V5P_AFE",
+        "GND"
+      ],
+      "note": "Separate close capacitor for each physical pin",
+      "Spec_ID": "C01",
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "C_PGA_P19",
+      "kind": "capacitor",
+      "value": "100nF X7R25V",
+      "nodes": [
+        "V5P_AFE",
+        "GND"
+      ],
+      "note": "Separate close capacitor for each physical pin",
+      "Spec_ID": "C01",
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "C_PGA_POS",
+      "kind": "capacitor",
+      "value": "4.7uF lowESR >=16V",
+      "nodes": [
+        "V5P_AFE",
+        "GND"
+      ],
+      "note": "TI Fig6 uses tantalum; select per stability/inrush requirements",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "C_PGA_NEG",
+      "kind": "capacitor",
+      "value": "4.7uF lowESR >=16V",
+      "nodes": [
+        "GND",
+        "V5N_AFE"
+      ],
+      "note": "If polarized, positive at GND, negative at negative rail",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "FB_MIC_P",
+      "kind": "ferrite_bead",
+      "value": "600ohm@100MHz",
+      "nodes": [
+        "J4_XLR2",
+        "MIC_RF_P"
+      ],
+      "note": "Optional RF bead; DCR/noise and surge to verify",
+      "Spec_ID": "FB01",
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "C_MIC_RF_P",
+      "kind": "capacitor",
+      "value": "1nF C0G >=100V",
+      "nodes": [
+        "MIC_RF_P",
+        "CHASSIS"
+      ],
+      "note": "TI PGA Fig7 reference value; new specification, not low-voltage C12",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "R_PH_P",
+      "kind": "resistor",
+      "value": "6.81k >=1W >=100V matched",
+      "nodes": [
+        "PH48",
+        "MIC_RF_P"
+      ],
+      "note": "Pair matching target<=0.1%; phantom before DC block",
+      "Spec_ID": "R23",
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "C_MIC_BLOCK_P",
+      "kind": "capacitor",
+      "value": "47uF bipolar >=63V",
+      "nodes": [
+        "MIC_RF_P",
+        "MIC_AC_P"
+      ],
+      "note": "No polarity assumption; surge energy must be verified",
+      "Spec_ID": "C18",
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "R_MIC_LIMIT_P",
+      "kind": "resistor",
+      "value": "10ohm pulse-rated",
+      "nodes": [
+        "MIC_AC_P",
+        "MIC_PRE_P"
+      ],
+      "note": "Engineering starting value; input-noise and pulse qualification pending",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "D_MIC_P_HI",
+      "kind": "power_schottky",
+      "value": ">=10A surge",
+      "nodes": [
+        "MIC_PRE_P",
+        "V5P_AFE"
+      ],
+      "note": "Nodes=[anode,cathode]; TI MBRA120LT3 reference class, exact surge/VF selection pending",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "D_MIC_P_LO",
+      "kind": "power_schottky",
+      "value": ">=10A surge",
+      "nodes": [
+        "V5N_AFE",
+        "MIC_PRE_P"
+      ],
+      "note": "Nodes=[anode,cathode]; rails need ability to absorb clamp transient",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "FB_MIC_N",
+      "kind": "ferrite_bead",
+      "value": "600ohm@100MHz",
+      "nodes": [
+        "J4_XLR3",
+        "MIC_RF_N"
+      ],
+      "note": "Optional RF bead; DCR/noise and surge to verify",
+      "Spec_ID": "FB01",
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "C_MIC_RF_N",
+      "kind": "capacitor",
+      "value": "1nF C0G >=100V",
+      "nodes": [
+        "MIC_RF_N",
+        "CHASSIS"
+      ],
+      "note": "TI PGA Fig7 reference value; new specification, not low-voltage C12",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "R_PH_N",
+      "kind": "resistor",
+      "value": "6.81k >=1W >=100V matched",
+      "nodes": [
+        "PH48",
+        "MIC_RF_N"
+      ],
+      "note": "Pair matching target<=0.1%; phantom before DC block",
+      "Spec_ID": "R23",
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "C_MIC_BLOCK_N",
+      "kind": "capacitor",
+      "value": "47uF bipolar >=63V",
+      "nodes": [
+        "MIC_RF_N",
+        "MIC_AC_N"
+      ],
+      "note": "No polarity assumption; surge energy must be verified",
+      "Spec_ID": "C18",
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "R_MIC_LIMIT_N",
+      "kind": "resistor",
+      "value": "10ohm pulse-rated",
+      "nodes": [
+        "MIC_AC_N",
+        "MIC_PRE_N"
+      ],
+      "note": "Engineering starting value; input-noise and pulse qualification pending",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "D_MIC_N_HI",
+      "kind": "power_schottky",
+      "value": ">=10A surge",
+      "nodes": [
+        "MIC_PRE_N",
+        "V5P_AFE"
+      ],
+      "note": "Nodes=[anode,cathode]; TI MBRA120LT3 reference class, exact surge/VF selection pending",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "D_MIC_N_LO",
+      "kind": "power_schottky",
+      "value": ">=10A surge",
+      "nodes": [
+        "V5N_AFE",
+        "MIC_PRE_N"
+      ],
+      "note": "Nodes=[anode,cathode]; rails need ability to absorb clamp transient",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "R_AUX_TIP_SER",
+      "kind": "resistor",
+      "value": "100ohm",
+      "nodes": [
+        "J5_TIP",
+        "AUX_TIP_IN"
+      ],
+      "note": "",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "R_AUX_RING_SER",
+      "kind": "resistor",
+      "value": "100ohm",
+      "nodes": [
+        "J5_RING",
+        "AUX_RING_IN"
+      ],
+      "note": "",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "R_AUX_TIP_BIAS",
+      "kind": "resistor",
+      "value": "1Mohm",
+      "nodes": [
+        "AUX_TIP_IN",
+        "GND"
+      ],
+      "note": "",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "R_AUX_RING_BIAS",
+      "kind": "resistor",
+      "value": "1Mohm",
+      "nodes": [
+        "AUX_RING_IN",
+        "GND"
+      ],
+      "note": "",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "R_AUX_RING_TERM",
+      "kind": "resistor",
+      "value": "10.1k",
+      "nodes": [
+        "J5_RING",
+        "GND"
+      ],
+      "note": "Fixed line-side load; not connected to Tip",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "R_AUX_TIP_TERM",
+      "kind": "resistor",
+      "value": "10.1k",
+      "nodes": [
+        "AUX_TIP_TERM",
+        "GND"
+      ],
+      "note": "Connected to Tip only by K2 poleA in LINE state",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "R_AUX_INV_IN",
+      "kind": "resistor",
+      "value": "10k 0.1%",
+      "nodes": [
+        "AUX_BUF_P",
+        "AUX_INV_SUM"
+      ],
+      "note": "",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "R_AUX_INV_FB",
+      "kind": "resistor",
+      "value": "10k 0.1%",
+      "nodes": [
+        "AUX_HIZ_INV",
+        "AUX_INV_SUM"
+      ],
+      "note": "",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "R_ADC_CM_L_TOP",
+      "kind": "resistor",
+      "value": "10k 0.1%",
+      "nodes": [
+        "V4V5_ADC_L",
+        "ADC_CM_L"
+      ],
+      "note": "",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "R_ADC_CM_L_BOT",
+      "kind": "resistor",
+      "value": "10k 0.1%",
+      "nodes": [
+        "ADC_CM_L",
+        "GND"
+      ],
+      "note": "",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "C_ADC_CM_L_BULK",
+      "kind": "capacitor",
+      "value": "10uF >=16V",
+      "nodes": [
+        "ADC_CM_L",
+        "GND"
+      ],
+      "note": "",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "C_ADC_CM_L_HF",
+      "kind": "capacitor",
+      "value": "100nF",
+      "nodes": [
+        "ADC_CM_L",
+        "GND"
+      ],
+      "note": "",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "R_ADC_CM_R_TOP",
+      "kind": "resistor",
+      "value": "10k 0.1%",
+      "nodes": [
+        "V4V5_ADC_R",
+        "ADC_CM_R"
+      ],
+      "note": "",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "R_ADC_CM_R_BOT",
+      "kind": "resistor",
+      "value": "10k 0.1%",
+      "nodes": [
+        "ADC_CM_R",
+        "GND"
+      ],
+      "note": "",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "C_ADC_CM_R_BULK",
+      "kind": "capacitor",
+      "value": "10uF >=16V",
+      "nodes": [
+        "ADC_CM_R",
+        "GND"
+      ],
+      "note": "",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "C_ADC_CM_R_HF",
+      "kind": "capacitor",
+      "value": "100nF",
+      "nodes": [
+        "ADC_CM_R",
+        "GND"
+      ],
+      "note": "",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "C_DRV_MIC_P",
+      "kind": "capacitor",
+      "value": "47uF >=16V bipolar preferred",
+      "nodes": [
+        "PGA_OUT_N",
+        "ADC_COUPLED_MIC_P"
+      ],
+      "note": "Bias side sits at2.25V; if polarized substitute, positive faces driver and reverse transient must be checked",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "R_DRV_MIC_P_IN",
+      "kind": "resistor",
+      "value": "2k 0.1%",
+      "nodes": [
+        "ADC_COUPLED_MIC_P",
+        "MIC_SUM_P"
+      ],
+      "note": "",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "R_DRV_MIC_P_FB",
+      "kind": "resistor",
+      "value": "1k 0.1%",
+      "nodes": [
+        "MIC_DRV_P",
+        "MIC_SUM_P"
+      ],
+      "note": "",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "C_DRV_MIC_P_FB",
+      "kind": "capacitor",
+      "value": "680pF C0G50V",
+      "nodes": [
+        "MIC_DRV_P",
+        "MIC_SUM_P"
+      ],
+      "note": "Voltage-feedback OPA only. Never TPA feedback",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "R_DRV_MIC_P_OUT",
+      "kind": "resistor",
+      "value": "36ohm",
+      "nodes": [
+        "MIC_DRV_P",
+        "ADC_IN1_P"
+      ],
+      "note": "ESS reference Fig29 starting output isolation",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "C_DRV_MIC_N",
+      "kind": "capacitor",
+      "value": "47uF >=16V bipolar preferred",
+      "nodes": [
+        "PGA_OUT_P",
+        "ADC_COUPLED_MIC_N"
+      ],
+      "note": "Bias side sits at2.25V; if polarized substitute, positive faces driver and reverse transient must be checked",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "R_DRV_MIC_N_IN",
+      "kind": "resistor",
+      "value": "2k 0.1%",
+      "nodes": [
+        "ADC_COUPLED_MIC_N",
+        "MIC_SUM_N"
+      ],
+      "note": "",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "R_DRV_MIC_N_FB",
+      "kind": "resistor",
+      "value": "1k 0.1%",
+      "nodes": [
+        "MIC_DRV_N",
+        "MIC_SUM_N"
+      ],
+      "note": "",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "C_DRV_MIC_N_FB",
+      "kind": "capacitor",
+      "value": "680pF C0G50V",
+      "nodes": [
+        "MIC_DRV_N",
+        "MIC_SUM_N"
+      ],
+      "note": "Voltage-feedback OPA only. Never TPA feedback",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "R_DRV_MIC_N_OUT",
+      "kind": "resistor",
+      "value": "36ohm",
+      "nodes": [
+        "MIC_DRV_N",
+        "ADC_IN1_N"
+      ],
+      "note": "ESS reference Fig29 starting output isolation",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "C_DRV_AUX_P",
+      "kind": "capacitor",
+      "value": "47uF >=16V bipolar preferred",
+      "nodes": [
+        "AUX_NEG_SELECTED",
+        "ADC_COUPLED_AUX_P"
+      ],
+      "note": "Bias side sits at2.25V; if polarized substitute, positive faces driver and reverse transient must be checked",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "R_DRV_AUX_P_IN",
+      "kind": "resistor",
+      "value": "2k 0.1%",
+      "nodes": [
+        "ADC_COUPLED_AUX_P",
+        "AUX_SUM_P"
+      ],
+      "note": "",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "R_DRV_AUX_P_FB",
+      "kind": "resistor",
+      "value": "2k 0.1%",
+      "nodes": [
+        "AUX_DRV_P",
+        "AUX_SUM_P"
+      ],
+      "note": "",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "C_DRV_AUX_P_FB",
+      "kind": "capacitor",
+      "value": "330pF C0G50V",
+      "nodes": [
+        "AUX_DRV_P",
+        "AUX_SUM_P"
+      ],
+      "note": "Voltage-feedback OPA only. Never TPA feedback",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "R_DRV_AUX_P_OUT",
+      "kind": "resistor",
+      "value": "36ohm",
+      "nodes": [
+        "AUX_DRV_P",
+        "ADC_IN2_P"
+      ],
+      "note": "ESS reference Fig29 starting output isolation",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "C_DRV_AUX_N",
+      "kind": "capacitor",
+      "value": "47uF >=16V bipolar preferred",
+      "nodes": [
+        "AUX_BUF_P",
+        "ADC_COUPLED_AUX_N"
+      ],
+      "note": "Bias side sits at2.25V; if polarized substitute, positive faces driver and reverse transient must be checked",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "R_DRV_AUX_N_IN",
+      "kind": "resistor",
+      "value": "2k 0.1%",
+      "nodes": [
+        "ADC_COUPLED_AUX_N",
+        "AUX_SUM_N"
+      ],
+      "note": "",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "R_DRV_AUX_N_FB",
+      "kind": "resistor",
+      "value": "2k 0.1%",
+      "nodes": [
+        "AUX_DRV_N",
+        "AUX_SUM_N"
+      ],
+      "note": "",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "C_DRV_AUX_N_FB",
+      "kind": "capacitor",
+      "value": "330pF C0G50V",
+      "nodes": [
+        "AUX_DRV_N",
+        "AUX_SUM_N"
+      ],
+      "note": "Voltage-feedback OPA only. Never TPA feedback",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "R_DRV_AUX_N_OUT",
+      "kind": "resistor",
+      "value": "36ohm",
+      "nodes": [
+        "AUX_DRV_N",
+        "ADC_IN2_N"
+      ],
+      "note": "ESS reference Fig29 starting output isolation",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "C_ADC_DIFF_1",
+      "kind": "capacitor",
+      "value": "100pF C0G50V",
+      "nodes": [
+        "ADC_IN1_P",
+        "ADC_IN1_N"
+      ],
+      "note": "ESS Fig29 starting differential shunt, not to GND",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "C_ADC_DIFF_2",
+      "kind": "capacitor",
+      "value": "100pF C0G50V",
+      "nodes": [
+        "ADC_IN2_P",
+        "ADC_IN2_N"
+      ],
+      "note": "ESS Fig29 starting differential shunt, not to GND",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "R_DAC_L_INP",
+      "kind": "resistor",
+      "value": "10k matched0.1%",
+      "nodes": [
+        "DAC_L_P",
+        "DAC_DIFF_L_P"
+      ],
+      "note": "",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "R_DAC_L_INN",
+      "kind": "resistor",
+      "value": "10k matched0.1%",
+      "nodes": [
+        "DAC_L_N",
+        "DAC_DIFF_L_N"
+      ],
+      "note": "",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "R_DAC_L_FB",
+      "kind": "resistor",
+      "value": "10k matched0.1%",
+      "nodes": [
+        "DAC_SE_L",
+        "DAC_DIFF_L_N"
+      ],
+      "note": "",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "R_DAC_L_REF",
+      "kind": "resistor",
+      "value": "10k matched0.1%",
+      "nodes": [
+        "DAC_DIFF_L_P",
+        "GND"
+      ],
+      "note": "",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "C_DAC_L_FB",
+      "kind": "capacitor",
+      "value": "100pF C0G50V",
+      "nodes": [
+        "DAC_SE_L",
+        "DAC_DIFF_L_N"
+      ],
+      "note": "Match to reference-leg capacitor",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "C_DAC_L_REF",
+      "kind": "capacitor",
+      "value": "100pF C0G50V",
+      "nodes": [
+        "DAC_DIFF_L_P",
+        "GND"
+      ],
+      "note": "Match to feedback capacitor",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "R_LINE_L",
+      "kind": "resistor",
+      "value": "47.5ohm",
+      "nodes": [
+        "DAC_SE_L",
+        "LINE_PREMUTE_L"
+      ],
+      "note": "Isolates line cable; K3 breaks path when muted",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "R_HP_L_PAD",
+      "kind": "resistor",
+      "value": "7.32k 0.1%",
+      "nodes": [
+        "DAC_SE_L",
+        "HP_POT_TOP_L"
+      ],
+      "note": "Fixed input attenuation establishes about1Vrms/32ohm budget at pot maximum; line output remains unattenuated",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "RV1_L",
+      "kind": "potentiometer",
+      "value": "10kA",
+      "nodes": [
+        "HP_POT_TOP_L",
+        "HP_VOL_L",
+        "GND"
+      ],
+      "note": "Nodes=[top,wiper,bottom]; dual gang, exact physical pads pending selected part",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "R_HP_L_BIAS",
+      "kind": "resistor",
+      "value": "100k",
+      "nodes": [
+        "HP_VOL_L",
+        "GND"
+      ],
+      "note": "Wiper-failure DC return",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "R_HP_L_IN",
+      "kind": "resistor",
+      "value": "49.9ohm",
+      "nodes": [
+        "HP_VOL_L",
+        "HP_IN_L"
+      ],
+      "note": "TI reference input isolation",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "R_HP_L_FB",
+      "kind": "resistor",
+      "value": "1k 0.1%",
+      "nodes": [
+        "HP_AMP_L",
+        "HP_FB_L"
+      ],
+      "note": "Feedback taken BEFORE output39.2ohm; no feedback capacitor",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "R_HP_L_GAIN",
+      "kind": "resistor",
+      "value": "1k 0.1%",
+      "nodes": [
+        "HP_FB_L",
+        "GND"
+      ],
+      "note": "Noninverting gain2",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "R_HP_L_OUT",
+      "kind": "resistor",
+      "value": "39.2ohm >=0.5W low-inductance",
+      "nodes": [
+        "HP_AMP_L",
+        "HP_PREMUTE_L"
+      ],
+      "note": "TI Fig14 reference; must include divider with32ohm load",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "R_HP_L_BLEED",
+      "kind": "resistor",
+      "value": "100k",
+      "nodes": [
+        "HP_PREMUTE_L",
+        "GND"
+      ],
+      "note": "Keeps relay side defined while open",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "R_DAC_R_INP",
+      "kind": "resistor",
+      "value": "10k matched0.1%",
+      "nodes": [
+        "DAC_R_P",
+        "DAC_DIFF_R_P"
+      ],
+      "note": "",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "R_DAC_R_INN",
+      "kind": "resistor",
+      "value": "10k matched0.1%",
+      "nodes": [
+        "DAC_R_N",
+        "DAC_DIFF_R_N"
+      ],
+      "note": "",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "R_DAC_R_FB",
+      "kind": "resistor",
+      "value": "10k matched0.1%",
+      "nodes": [
+        "DAC_SE_R",
+        "DAC_DIFF_R_N"
+      ],
+      "note": "",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "R_DAC_R_REF",
+      "kind": "resistor",
+      "value": "10k matched0.1%",
+      "nodes": [
+        "DAC_DIFF_R_P",
+        "GND"
+      ],
+      "note": "",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "C_DAC_R_FB",
+      "kind": "capacitor",
+      "value": "100pF C0G50V",
+      "nodes": [
+        "DAC_SE_R",
+        "DAC_DIFF_R_N"
+      ],
+      "note": "Match to reference-leg capacitor",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "C_DAC_R_REF",
+      "kind": "capacitor",
+      "value": "100pF C0G50V",
+      "nodes": [
+        "DAC_DIFF_R_P",
+        "GND"
+      ],
+      "note": "Match to feedback capacitor",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "R_LINE_R",
+      "kind": "resistor",
+      "value": "47.5ohm",
+      "nodes": [
+        "DAC_SE_R",
+        "LINE_PREMUTE_R"
+      ],
+      "note": "Isolates line cable; K3 breaks path when muted",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "R_HP_R_PAD",
+      "kind": "resistor",
+      "value": "7.32k 0.1%",
+      "nodes": [
+        "DAC_SE_R",
+        "HP_POT_TOP_R"
+      ],
+      "note": "Fixed input attenuation establishes about1Vrms/32ohm budget at pot maximum; line output remains unattenuated",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "RV1_R",
+      "kind": "potentiometer",
+      "value": "10kA",
+      "nodes": [
+        "HP_POT_TOP_R",
+        "HP_VOL_R",
+        "GND"
+      ],
+      "note": "Nodes=[top,wiper,bottom]; dual gang, exact physical pads pending selected part",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "R_HP_R_BIAS",
+      "kind": "resistor",
+      "value": "100k",
+      "nodes": [
+        "HP_VOL_R",
+        "GND"
+      ],
+      "note": "Wiper-failure DC return",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "R_HP_R_IN",
+      "kind": "resistor",
+      "value": "49.9ohm",
+      "nodes": [
+        "HP_VOL_R",
+        "HP_IN_R"
+      ],
+      "note": "TI reference input isolation",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "R_HP_R_FB",
+      "kind": "resistor",
+      "value": "1k 0.1%",
+      "nodes": [
+        "HP_AMP_R",
+        "HP_FB_R"
+      ],
+      "note": "Feedback taken BEFORE output39.2ohm; no feedback capacitor",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "R_HP_R_GAIN",
+      "kind": "resistor",
+      "value": "1k 0.1%",
+      "nodes": [
+        "HP_FB_R",
+        "GND"
+      ],
+      "note": "Noninverting gain2",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "R_HP_R_OUT",
+      "kind": "resistor",
+      "value": "39.2ohm >=0.5W low-inductance",
+      "nodes": [
+        "HP_AMP_R",
+        "HP_PREMUTE_R"
+      ],
+      "note": "TI Fig14 reference; must include divider with32ohm load",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "R_HP_R_BLEED",
+      "kind": "resistor",
+      "value": "100k",
+      "nodes": [
+        "HP_PREMUTE_R",
+        "GND"
+      ],
+      "note": "Keeps relay side defined while open",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "C_U14_POS",
+      "kind": "capacitor",
+      "value": "100nF X7R25V",
+      "nodes": [
+        "V5P_AFE",
+        "GND"
+      ],
+      "note": "At pin8",
+      "Spec_ID": "C01",
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "C_U14_NEG",
+      "kind": "capacitor",
+      "value": "100nF X7R25V",
+      "nodes": [
+        "V5N_AFE",
+        "GND"
+      ],
+      "note": "At pin4",
+      "Spec_ID": "C01",
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "C_U18_POS",
+      "kind": "capacitor",
+      "value": "100nF X7R25V",
+      "nodes": [
+        "V5P_AFE",
+        "GND"
+      ],
+      "note": "At pin8",
+      "Spec_ID": "C01",
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "C_U18_NEG",
+      "kind": "capacitor",
+      "value": "100nF X7R25V",
+      "nodes": [
+        "V5N_AFE",
+        "GND"
+      ],
+      "note": "At pin4",
+      "Spec_ID": "C01",
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "C_U16_POS",
+      "kind": "capacitor",
+      "value": "100nF X7R25V",
+      "nodes": [
+        "V5P_AFE",
+        "GND"
+      ],
+      "note": "At pin8",
+      "Spec_ID": "C01",
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "C_U16_NEG",
+      "kind": "capacitor",
+      "value": "100nF X7R25V",
+      "nodes": [
+        "V5N_AFE",
+        "GND"
+      ],
+      "note": "At pin4",
+      "Spec_ID": "C01",
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "C_U17_POS",
+      "kind": "capacitor",
+      "value": "100nF X7R25V",
+      "nodes": [
+        "V5P_AFE",
+        "GND"
+      ],
+      "note": "At pin8",
+      "Spec_ID": "C01",
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "C_U17_NEG",
+      "kind": "capacitor",
+      "value": "100nF X7R25V",
+      "nodes": [
+        "V5N_AFE",
+        "GND"
+      ],
+      "note": "At pin4",
+      "Spec_ID": "C01",
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "C_U21_POS",
+      "kind": "capacitor",
+      "value": "100nF X7R25V",
+      "nodes": [
+        "V5P_AFE",
+        "GND"
+      ],
+      "note": "At pin8",
+      "Spec_ID": "C01",
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "C_U21_NEG",
+      "kind": "capacitor",
+      "value": "100nF X7R25V",
+      "nodes": [
+        "V5N_AFE",
+        "GND"
+      ],
+      "note": "At pin4",
+      "Spec_ID": "C01",
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "C_TPA_P1",
+      "kind": "capacitor",
+      "value": "100nF X7R25V",
+      "nodes": [
+        "V6N_RAW",
+        "GND"
+      ],
+      "note": "At each physical supply pin",
+      "Spec_ID": "C01",
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "C_TPA_P1_1U",
+      "kind": "capacitor",
+      "value": "1uF X7R16V",
+      "nodes": [
+        "V6N_RAW",
+        "GND"
+      ],
+      "note": "Extra local decoupling, close loop",
+      "Spec_ID": "C02",
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "C_TPA_P20",
+      "kind": "capacitor",
+      "value": "100nF X7R25V",
+      "nodes": [
+        "V6N_RAW",
+        "GND"
+      ],
+      "note": "At each physical supply pin",
+      "Spec_ID": "C01",
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "C_TPA_P20_1U",
+      "kind": "capacitor",
+      "value": "1uF X7R16V",
+      "nodes": [
+        "V6N_RAW",
+        "GND"
+      ],
+      "note": "Extra local decoupling, close loop",
+      "Spec_ID": "C02",
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "C_TPA_P3",
+      "kind": "capacitor",
+      "value": "100nF X7R25V",
+      "nodes": [
+        "V6P_RAW",
+        "GND"
+      ],
+      "note": "At each physical supply pin",
+      "Spec_ID": "C01",
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "C_TPA_P3_1U",
+      "kind": "capacitor",
+      "value": "1uF X7R16V",
+      "nodes": [
+        "V6P_RAW",
+        "GND"
+      ],
+      "note": "Extra local decoupling, close loop",
+      "Spec_ID": "C02",
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "C_TPA_P18",
+      "kind": "capacitor",
+      "value": "100nF X7R25V",
+      "nodes": [
+        "V6P_RAW",
+        "GND"
+      ],
+      "note": "At each physical supply pin",
+      "Spec_ID": "C01",
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "C_TPA_P18_1U",
+      "kind": "capacitor",
+      "value": "1uF X7R16V",
+      "nodes": [
+        "V6P_RAW",
+        "GND"
+      ],
+      "note": "Extra local decoupling, close loop",
+      "Spec_ID": "C02",
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "C_TPA_V6P_RAW_BULK",
+      "kind": "capacitor",
+      "value": "10uF >=16V",
+      "nodes": [
+        "V6P_RAW",
+        "GND"
+      ],
+      "note": "If polarized, positive node is first; effective capacitance and layout pending",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "C_TPA_V6N_RAW_BULK",
+      "kind": "capacitor",
+      "value": "10uF >=16V",
+      "nodes": [
+        "GND",
+        "V6N_RAW"
+      ],
+      "note": "If polarized, positive node is first; effective capacitance and layout pending",
+      "Spec_ID": null,
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "R_ADC_I2C_SDA",
+      "kind": "resistor",
+      "value": "2.2k",
+      "nodes": [
+        "ADC_I2C_SDA",
+        "V3V3_ADC_DIG"
+      ],
+      "note": "Device-side pull-up owned by audio page; upstreamMCU pull-ups andTCA9517A on digital page",
+      "Spec_ID": "R05",
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "R_ADC_I2C_SCL",
+      "kind": "resistor",
+      "value": "2.2k",
+      "nodes": [
+        "ADC_I2C_SCL",
+        "V3V3_ADC_DIG"
+      ],
+      "note": "Device-side pull-up owned by audio page; upstreamMCU pull-ups andTCA9517A on digital page",
+      "Spec_ID": "R05",
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "R_DAC_I2C_SDA",
+      "kind": "resistor",
+      "value": "2.2k",
+      "nodes": [
+        "DAC_I2C_SDA",
+        "V3V3_DAC_DIG"
+      ],
+      "note": "Device-side pull-up owned by audio page; upstreamMCU pull-ups andTCA9517A on digital page",
+      "Spec_ID": "R05",
+      "procurement_status": "generic electrical specification; no MPN selected"
+    },
+    {
+      "reference": "R_DAC_I2C_SCL",
+      "kind": "resistor",
+      "value": "2.2k",
+      "nodes": [
+        "DAC_I2C_SCL",
+        "V3V3_DAC_DIG"
+      ],
+      "note": "Device-side pull-up owned by audio page; upstreamMCU pull-ups andTCA9517A on digital page",
+      "Spec_ID": "R05",
+      "procurement_status": "generic electrical specification; no MPN selected"
+    }
+  ],
+  "relay_functional_connections": [
+    {
+      "reference": "K1",
+      "purpose": "phantom_enable",
+      "contact_mapping": {
+        "COM": "PH48",
+        "NO": "V48",
+        "NC": null
+      },
+      "default": "phantom disconnected",
+      "physical_pin_numbers": "requires exact relay datasheet; do not infer",
+      "required_type": "monostable non-latching, break-before-make",
+      "contact_rating_requirement": "must cover actual48V phantom maximum and capacitive inrush; no contact-voltage rating assumed"
+    },
+    {
+      "reference": "K2",
+      "purpose": "LINE_HIZ",
+      "state_deenergized": "LINE",
+      "state_energized": "HIZ",
+      "poles": {
+        "A": {
+          "COM": "AUX_TIP_TERM",
+          "NC": "J5_TIP",
+          "NO": null
+        },
+        "B": {
+          "COM": "AUX_NEG_SELECTED",
+          "NC": "AUX_BUF_N",
+          "NO": "AUX_HIZ_INV"
+        }
+      },
+      "physical_pin_numbers": "requires exact DPDT relay datasheet; break-before-make",
+      "required_type": "monostable non-latching, break-before-make"
+    },
+    {
+      "reference": "K3",
+      "purpose": "line_mute",
+      "poles": {
+        "L": {
+          "COM": "J6_L_TIP",
+          "NO": "LINE_PREMUTE_L",
+          "NC": "GND"
+        },
+        "R": {
+          "COM": "J6_R_TIP",
+          "NO": "LINE_PREMUTE_R",
+          "NC": "GND"
+        }
+      },
+      "default": "line connector tip grounded; amplifier isolated",
+      "physical_pin_numbers": "requires exact DPDT relay datasheet; break-before-make",
+      "required_type": "monostable non-latching, break-before-make"
+    },
+    {
+      "reference": "K4",
+      "purpose": "headphone_mute",
+      "poles": {
+        "L": {
+          "COM": "J7_TIP",
+          "NO": "HP_PREMUTE_L",
+          "NC": "GND"
+        },
+        "R": {
+          "COM": "J7_RING",
+          "NO": "HP_PREMUTE_R",
+          "NC": "GND"
+        }
+      },
+      "default": "headphone terminals grounded; amplifier isolated",
+      "physical_pin_numbers": "requires exact DPDT relay datasheet; break-before-make",
+      "required_type": "monostable non-latching, break-before-make"
+    }
+  ],
+  "connector_functional_connections": {
+    "J4_XLR1": "CHASSIS",
+    "J4_XLR2": "MIC positive",
+    "J4_XLR3": "MIC negative",
+    "J5_SLEEVE": "GND",
+    "J6_L_RING": "GND",
+    "J6_R_RING": "GND",
+    "J6_L_SLEEVE": "GND",
+    "J6_R_SLEEVE": "GND",
+    "J7_SLEEVE": "GND",
+    "notes": "Signal directions use standard contact functions only. Actual chosen connector pad numbering is not assumed."
+  },
+  "firmware_prerequisites": [
+    {
+      "device": "U15",
+      "operation": "Enable source through7bit0x24 synchronous write-only registers193/194 before normal0x20 accesses; source=MCLK when drivingXIN"
+    },
+    {
+      "device": "U15",
+      "operation": "Reg11=0x81 (32bit,2ch,TDM_GPIO456 enabled, cascade off); Reg12=0x20 (CH1 GPIO4 slot1); Reg13=0x21 (CH2 GPIO4 slot2). Configure GPIO1/2 inputs,GPIO4 AUX output,GPIO3 disabled. These are partial interface settings, not full init sequence.",
+      "source_pages": [
+        76,
+        77
+      ]
+    },
+    {
+      "device": "U20",
+      "operation": "Set Reg34[6] CAL_RES_ENB=1 to disable unusedGPIO8 calibration resistor; leaveGPIO8 disabled; configureASYNC slave and49.152MHz, no4x PCM gain.",
+      "source_pages": [
+        67
+      ]
+    },
+    {
+      "device": "U13",
+      "operation": "DCEN low,ZCEN high; initial gain conservatively10dB, no presumed mute gain. Use actual DAC/DSP mute around phantom/HiZ/gain transitions."
+    }
+  ],
+  "power_net_mapping": {
+    "V5P_AFE": "PGA VA+ and all SOIC8 audio opamps positive",
+    "V5N_AFE": "PGA VA-,PGA VD- via10ohm,SOIC8 opamps negative",
+    "V6P_RAW": "TPA positive rail, regulated upstream by power plan",
+    "V6N_RAW": "TPA negative rail",
+    "V4V5_ADC_CLK/L/R": "filtered branches from V4V5_ADC, actual branch components in power plan",
+    "V3V3_ADC_DIG": "ADC3.3 digital rail",
+    "V3V3_DAC_DIG/CLK/L/R": "separate sequenced local rails from power plan",
+    "V3V3_D": "MCU side3.3V control pull-ups"
+  },
+  "calculations": {
+    "headphone": {
+      "load_ohm": 32,
+      "v_rms_load": 1,
+      "i_rms_A": 0.03125,
+      "i_peak_A": 0.04419417382415922,
+      "p_load_W": 0.03125,
+      "series_R_ohm": 39.2,
+      "v_rms_amplifier": 2.225,
+      "v_peak_amplifier": 3.146625176280137,
+      "p_series_R_W": 0.03828125,
+      "required_input_vrms_gain2": 1.1125,
+      "output_voltage_divider": 0.449438202247191,
+      "pad_series_ohm": 7320,
+      "pot_ohm": 10000,
+      "wiper_bleed_ohm": 100000,
+      "input_impedance_typ_ohm": 300000,
+      "full_volume_input_attenuation_typ": 0.5465675557498907,
+      "fullscale_headphone_vrms_typ": 0.9809095983832993,
+      "raw_rails_nominal_V": [
+        6.453,
+        -6.502
+      ],
+      "conservative_quiescent_each_channel_A": 0.015,
+      "two_channels_average_current_each_rail_A": 0.05813488487990957,
+      "estimated_chip_dissipation_W": 0.6140749336192285
+    },
+    "dac": {
+      "rdac_ohm_per_leg_typ": 390,
+      "rin_ohm": 10000,
+      "rf_ohm": 10000,
+      "gain_typ": 0.9624639076034649,
+      "dac_differential_open_circuit_vrms_typ": 2.074439163966974,
+      "se_fullscale_vrms_typ": 1.9965728238373188,
+      "feedback_pole_Hz": 159154.94309189534,
+      "magnitude_dB_at_20k": -0.06804517547446491
+    },
+    "adc_driver": {
+      "mic_gain_before_output_load": 0.5,
+      "aux_gain_before_output_load": 1.0,
+      "coupling_cap_F": 4.7e-05,
+      "input_resistor_ohm": 2000,
+      "coupling_pole_Hz": 1.693137692466972,
+      "mic_feedback_pole_Hz": 234051.38689984608,
+      "aux_feedback_pole_Hz": 241143.85316953843,
+      "common_mode_V_typ": 2.25,
+      "load_caveat": "ADC input430ohm typ is not a guaranteed ideal broadband resistor.36ohm source resistors and sampled-input effects alter gain; do not claim exact fullscale from this simplified gain."
+    },
+    "aux_load": {
+      "hiz_input_ohm_typ": 1000100,
+      "line_input_ohm_typ": 9999.019996040386,
+      "hiz_pair": "AUX_BUF_P=+Tip;AUX_HIZ_INV=-Tip, so differential2*Tip before AUX driver"
+    },
+    "phantom": {
+      "coupling_energy_per_47uF_at48V_J": 0.054144,
+      "feed_resistor_short_power_at48V_W": 0.3383259911894273,
+      "feed_resistor_short_power_at52V_W": 0.3970631424375918
+    },
+    "afe_quiescent_full_temperature_budget_mA": {
+      "positive": 93,
+      "negative": 95,
+      "pga_analog_max_each": 40,
+      "pga_digital_negative_max": 2,
+      "opa1656_four_amplifiers": 20,
+      "opa1612_six_amplifiers": 33
+    },
+    "pga_input_0db_check": {
+      "weak_supply_magnitude_V": 4.75,
+      "input_dc_typ_V": -0.65,
+      "input_pin_min_V": -3.25,
+      "input_pin_max_V": 2.75,
+      "balanced_differential_sine_rms_limit_using_typ_dc_V": 3.6769552621700474,
+      "margin_at3_5Vrms_negative_V": 0.12512626584708375,
+      "caveat": "typical DC offset and simplified symmetric sine are not guaranteed operating envelope"
+    }
+  },
+  "open_engineering_checks": [
+    "This plan is not manufacture release. Exact relay/connector physical contact pads and coil polarity still require selected mechanical datasheets.",
+    "ADC driver output swing/settling into sampled input and36ohm+100pF network requires simulation/measurement; preserve2Vrms differential nominal test budget rather than claiming full3.2Vrms low-distortion.",
+    "PGA MCU signals must not backpower unpoweredAFE; digital interface buffer/sequence implementation remains digital-page responsibility.",
+    "PGA input surge clamp requires actual >=10A surge diode qualification and a rail-clamp/absorption path; generic Schottky label alone is not signoff.",
+    "DAC source-resistor mismatch and amplifier offsets create residual DC. Verify DC offset before headphone relay closes; independentDC-fault cutoff circuit is not yet designed.",
+    "TPA feedback capacitor forbidden. Verify stability with actual headphone cable/open-circuit/high-Z load;39.2ohm is retained as conservative TI reference.",
+    "K3/K4 must be held off by hardware on power fault, not onlyMCU software; power-good gating and relay coil drivers are external control/power plan.",
+    "Effective capacitance/leakage/ESR and exact control-register sequence require completion beforePCB release. No inventory/pricing or purchase work was done.",
+    "TPA unpowered inputs require hardware isolation/clamp to <600mV; K4 output relay alone insufficient",
+    "Relay supply must be separately budgeted and pickup-qualified at minimum available voltage; not onAFE LDO"
+  ],
+  "cross_review": {
+    "date": "2026-09-16",
+    "power_plan_snapshot": "docs/schematic/reva-power-design.md",
+    "findings": [
+      "AFE current headroom must include93mA positive/95mA negative full-temperature static budget",
+      "350mA positiveRAW prior allocation does not cover514mA sum of prior downstream allocations",
+      "TPS7A39 total accuracy includes internal reference/buffer/load/line/process/temp; do not double-count them, but add external resistor/current-error budget",
+      "Phantom clamp injection requires rail energy absorption, not just LDO reverse-current diodes",
+      "TPA unpowered input peak must remain below600mV; output relays alone do not ensure this",
+      "Relay5V pickup at V5_SYS minimum3.8V not established; separate coil supply/load budget required",
+      "Full ADC3.2Vrms swing into sampled430ohm load not guaranteed fromOPA1612 2kohm output table",
+      "MCLK-BCLK phase budget must include translator skew and PCB delay"
+    ],
+    "resolved_findings": [
+      "Prior350mA positiveRAW allocation revised to600mA capability,448mA normal positive/190mA negative allocation;ADC150mA capability separate from60mA normal"
+    ],
+    "remaining_findings": [
+      "Relay coil supply and3-4 simultaneous coil load not yet qualified; old30mA/5V placeholder means0.45-0.60W unbudgeted if only200mW misc margin"
+    ]
+  },
+  "source_document": "docs/schematic/reva-audio-design.md"
+}

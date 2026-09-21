@@ -1,0 +1,8 @@
+{"playbookSha256":"ab6a8715300adf177b461bca01aa25a29755939fd22817518d08aec8e3b76f58","name":"single-name-1v8-bus","project":"ASIO_CARD_USB5V_REV_A","startedAt":"2026-09-16T21:01:41+08:00"}
+{"idx":1,"id":"unnamed-io-bus","status":"ok","ms":134}
+{"idx":2,"id":"unnamed-io-tap-52","status":"ok","ms":129}
+{"idx":3,"id":"unnamed-io-tap-38","status":"ok","ms":209}
+{"idx":4,"id":"unnamed-io-tap-8","status":"ok","ms":285}
+{"idx":5,"id":"unnamed-io-tap-26","status":"ok","ms":189}
+{"idx":6,"id":"unnamed-io-tap-17","status":"ok","ms":194}
+{"idx":7,"id":"save-single-net-name","status":"ok","ms":135}

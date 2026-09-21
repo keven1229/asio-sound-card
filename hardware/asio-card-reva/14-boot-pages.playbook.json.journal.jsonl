@@ -1,0 +1,7 @@
+{"playbookSha256":"4194595285ab2a25a8264b1a59514c1d52312132b5fd5bb77c01bd9b826a0167","name":"add-xmos-boot-functional-pages","project":"ASIO_CARD_USB5V_REV_A","startedAt":"2026-09-16T21:06:15+08:00"}
+{"idx":1,"id":"create-XMOS_BOOT","status":"ok","ms":1176,"captured":{"P0":"faac4f4823e615c6"}}
+{"idx":2,"id":"rename-XMOS_BOOT","status":"ok","ms":1478}
+{"idx":3,"id":"save-XMOS_BOOT","status":"ok","ms":19}
+{"idx":4,"id":"create-XU_POWER_SEQUENCE","status":"ok","ms":1606,"captured":{"P1":"9fe0bd256274ddcf"}}
+{"idx":5,"id":"rename-XU_POWER_SEQUENCE","status":"ok","ms":741}
+{"idx":6,"id":"save-XU_POWER_SEQUENCE","status":"ok","ms":36}

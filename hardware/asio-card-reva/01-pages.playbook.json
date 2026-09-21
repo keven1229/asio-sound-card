@@ -1,0 +1,253 @@
+{
+  "version": 1,
+  "meta": {
+    "name": "reva-functional-pages",
+    "project": "ASIO_CARD_USB5V_REV_A",
+    "doc": "aa5ffb19b5d8ea0e"
+  },
+  "defaults": {
+    "timeoutSec": 60,
+    "retry": 0,
+    "continueOnError": false
+  },
+  "steps": [
+    {
+      "id": "rename-usb-input",
+      "action": "schematic.page.rename",
+      "payload": {
+        "pageUuid": "e59f4daa69e08159",
+        "name": "USB_INPUT"
+      }
+    },
+    {
+      "id": "create-USB_HUB",
+      "action": "schematic.page.create",
+      "payload": {
+        "schematicUuid": "4256e3ead5652257"
+      },
+      "capture": {
+        "PAGE0": "$.pageUuid"
+      }
+    },
+    {
+      "id": "rename-USB_HUB",
+      "action": "schematic.page.rename",
+      "payload": {
+        "pageUuid": "${PAGE0}",
+        "name": "USB_HUB"
+      }
+    },
+    {
+      "id": "save-USB_HUB",
+      "action": "schematic.save",
+      "checkpoint": true
+    },
+    {
+      "id": "create-DIGITAL_POWER",
+      "action": "schematic.page.create",
+      "payload": {
+        "schematicUuid": "4256e3ead5652257"
+      },
+      "capture": {
+        "PAGE1": "$.pageUuid"
+      }
+    },
+    {
+      "id": "rename-DIGITAL_POWER",
+      "action": "schematic.page.rename",
+      "payload": {
+        "pageUuid": "${PAGE1}",
+        "name": "DIGITAL_POWER"
+      }
+    },
+    {
+      "id": "save-DIGITAL_POWER",
+      "action": "schematic.save",
+      "checkpoint": true
+    },
+    {
+      "id": "create-XMOS_CORE",
+      "action": "schematic.page.create",
+      "payload": {
+        "schematicUuid": "4256e3ead5652257"
+      },
+      "capture": {
+        "PAGE2": "$.pageUuid"
+      }
+    },
+    {
+      "id": "rename-XMOS_CORE",
+      "action": "schematic.page.rename",
+      "payload": {
+        "pageUuid": "${PAGE2}",
+        "name": "XMOS_CORE"
+      }
+    },
+    {
+      "id": "save-XMOS_CORE",
+      "action": "schematic.save",
+      "checkpoint": true
+    },
+    {
+      "id": "create-CONTROL",
+      "action": "schematic.page.create",
+      "payload": {
+        "schematicUuid": "4256e3ead5652257"
+      },
+      "capture": {
+        "PAGE3": "$.pageUuid"
+      }
+    },
+    {
+      "id": "rename-CONTROL",
+      "action": "schematic.page.rename",
+      "payload": {
+        "pageUuid": "${PAGE3}",
+        "name": "CONTROL"
+      }
+    },
+    {
+      "id": "save-CONTROL",
+      "action": "schematic.save",
+      "checkpoint": true
+    },
+    {
+      "id": "create-MIC_PREAMP",
+      "action": "schematic.page.create",
+      "payload": {
+        "schematicUuid": "4256e3ead5652257"
+      },
+      "capture": {
+        "PAGE4": "$.pageUuid"
+      }
+    },
+    {
+      "id": "rename-MIC_PREAMP",
+      "action": "schematic.page.rename",
+      "payload": {
+        "pageUuid": "${PAGE4}",
+        "name": "MIC_PREAMP"
+      }
+    },
+    {
+      "id": "save-MIC_PREAMP",
+      "action": "schematic.save",
+      "checkpoint": true
+    },
+    {
+      "id": "create-LINE_INPUT",
+      "action": "schematic.page.create",
+      "payload": {
+        "schematicUuid": "4256e3ead5652257"
+      },
+      "capture": {
+        "PAGE5": "$.pageUuid"
+      }
+    },
+    {
+      "id": "rename-LINE_INPUT",
+      "action": "schematic.page.rename",
+      "payload": {
+        "pageUuid": "${PAGE5}",
+        "name": "LINE_INPUT"
+      }
+    },
+    {
+      "id": "save-LINE_INPUT",
+      "action": "schematic.save",
+      "checkpoint": true
+    },
+    {
+      "id": "create-ADC",
+      "action": "schematic.page.create",
+      "payload": {
+        "schematicUuid": "4256e3ead5652257"
+      },
+      "capture": {
+        "PAGE6": "$.pageUuid"
+      }
+    },
+    {
+      "id": "rename-ADC",
+      "action": "schematic.page.rename",
+      "payload": {
+        "pageUuid": "${PAGE6}",
+        "name": "ADC"
+      }
+    },
+    {
+      "id": "save-ADC",
+      "action": "schematic.save",
+      "checkpoint": true
+    },
+    {
+      "id": "create-DAC",
+      "action": "schematic.page.create",
+      "payload": {
+        "schematicUuid": "4256e3ead5652257"
+      },
+      "capture": {
+        "PAGE7": "$.pageUuid"
+      }
+    },
+    {
+      "id": "rename-DAC",
+      "action": "schematic.page.rename",
+      "payload": {
+        "pageUuid": "${PAGE7}",
+        "name": "DAC"
+      }
+    },
+    {
+      "id": "save-DAC",
+      "action": "schematic.save",
+      "checkpoint": true
+    },
+    {
+      "id": "create-OUTPUT",
+      "action": "schematic.page.create",
+      "payload": {
+        "schematicUuid": "4256e3ead5652257"
+      },
+      "capture": {
+        "PAGE8": "$.pageUuid"
+      }
+    },
+    {
+      "id": "rename-OUTPUT",
+      "action": "schematic.page.rename",
+      "payload": {
+        "pageUuid": "${PAGE8}",
+        "name": "OUTPUT"
+      }
+    },
+    {
+      "id": "save-OUTPUT",
+      "action": "schematic.save",
+      "checkpoint": true
+    },
+    {
+      "id": "create-ANALOG_POWER",
+      "action": "schematic.page.create",
+      "payload": {
+        "schematicUuid": "4256e3ead5652257"
+      },
+      "capture": {
+        "PAGE9": "$.pageUuid"
+      }
+    },
+    {
+      "id": "rename-ANALOG_POWER",
+      "action": "schematic.page.rename",
+      "payload": {
+        "pageUuid": "${PAGE9}",
+        "name": "ANALOG_POWER"
+      }
+    },
+    {
+      "id": "save-ANALOG_POWER",
+      "action": "schematic.save",
+      "checkpoint": true
+    }
+  ]
+}

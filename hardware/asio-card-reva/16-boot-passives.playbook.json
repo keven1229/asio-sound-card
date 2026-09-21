@@ -1,0 +1,554 @@
+{
+  "version": 1,
+  "meta": {
+    "name": "xmos-boot-passives",
+    "project": "ASIO_CARD_USB5V_REV_A",
+    "doc": "XMOS_BOOT"
+  },
+  "defaults": {
+    "timeoutSec": 60,
+    "retry": 0
+  },
+  "steps": [
+    {
+      "id": "move-debug-anchor",
+      "action": "schematic.component.modify",
+      "payload": {
+        "primitiveId": "0ff2a643fb590706",
+        "patch": {
+          "x": 850,
+          "y": 335
+        }
+      }
+    },
+    {
+      "id": "flash-candidate-status",
+      "action": "schematic.component.modify",
+      "payload": {
+        "primitiveId": "d2328589610de1a0",
+        "patch": {
+          "name": "W25Q16FWSNIQ",
+          "supplier": "UNSELECTED",
+          "supplierId": "UNSELECTED",
+          "customAttributes": {
+            "Design_Status": "CONDITIONAL: ROM cold/warm boot pending",
+            "Pin7_Role": "IO3/HOLD#, not an independent reset",
+            "Procurement Status": "UNSELECTED"
+          }
+        }
+      }
+    },
+    {
+      "id": "generic-crystal-status",
+      "action": "schematic.component.modify",
+      "payload": {
+        "primitiveId": "b897182c330cdc4a",
+        "patch": {
+          "name": "24MHz / 12pF",
+          "manufacturer": "UNSELECTED",
+          "manufacturerId": "UNSELECTED",
+          "supplier": "UNSELECTED",
+          "supplierId": "UNSELECTED",
+          "customAttributes": {
+            "Value": "24MHz",
+            "Design_Status": "Generic 3225 crystal; verify selected MPN before PCB",
+            "Electrical_Requirement": "CL12pF; ESR<=60ohm; drive10-200uW",
+            "Datasheet": "",
+            "Technical_Candidate": "Epson Q22FA2380006517",
+            "Procurement Status": "UNSELECTED"
+          }
+        }
+      }
+    },
+    {
+      "id": "generic-debug-header",
+      "action": "schematic.component.modify",
+      "payload": {
+        "primitiveId": "0ff2a643fb590706",
+        "patch": {
+          "name": "xSYS2 JTAG 2x5 / 1.27mm",
+          "manufacturer": "UNSELECTED",
+          "manufacturerId": "UNSELECTED",
+          "supplier": "UNSELECTED",
+          "supplierId": "UNSELECTED",
+          "customAttributes": {
+            "Design_Status": "Schematic pin mapping verified; physical mating/pad order pending",
+            "Procurement Status": "UNSELECTED"
+          }
+        }
+      }
+    },
+    {
+      "id": "place-R201",
+      "action": "schematic.component.place",
+      "payload": {
+        "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+        "uuid": "b948db94476e4027ac8953235755ec96",
+        "x": 395,
+        "y": 625,
+        "rotation": 270,
+        "designator": "R201"
+      },
+      "capture": {
+        "R201": "$.primitiveId"
+      }
+    },
+    {
+      "id": "spec-R201",
+      "action": "schematic.component.modify",
+      "payload": {
+        "primitiveId": "${R201}",
+        "patch": {
+          "name": "4.7k",
+          "manufacturer": "UNSELECTED",
+          "manufacturerId": "UNSELECTED",
+          "supplier": "UNSELECTED",
+          "supplierId": "UNSELECTED",
+          "customAttributes": {
+            "Value": "4.7k",
+            "Spec_ID": "BOOT_R_CS_4K7",
+            "Electrical_Spec": "4.7k,1%,0603,>=0.1W",
+            "Datasheet": "",
+            "Description": "Generic passive; procurement deferred",
+            "JLCPCB Part Class": "",
+            "LCSC Part Name": "",
+            "Procurement Status": "UNSELECTED",
+            "Tolerance": "1%",
+            "Voltage Rating": "50",
+            "Temperature Coefficient": "100"
+          }
+        }
+      }
+    },
+    {
+      "id": "place-R202",
+      "action": "schematic.component.place",
+      "payload": {
+        "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+        "uuid": "b948db94476e4027ac8953235755ec96",
+        "x": 130,
+        "y": 430,
+        "rotation": 90,
+        "designator": "R202"
+      },
+      "capture": {
+        "R202": "$.primitiveId"
+      }
+    },
+    {
+      "id": "spec-R202",
+      "action": "schematic.component.modify",
+      "payload": {
+        "primitiveId": "${R202}",
+        "patch": {
+          "name": "100k",
+          "manufacturer": "UNSELECTED",
+          "manufacturerId": "UNSELECTED",
+          "supplier": "UNSELECTED",
+          "supplierId": "UNSELECTED",
+          "customAttributes": {
+            "Value": "100k",
+            "Spec_ID": "R12",
+            "Electrical_Spec": "100k,1%,0603",
+            "Datasheet": "",
+            "Description": "Generic passive; procurement deferred",
+            "JLCPCB Part Class": "",
+            "LCSC Part Name": "",
+            "Procurement Status": "UNSELECTED",
+            "Tolerance": "1%",
+            "Voltage Rating": "50",
+            "Temperature Coefficient": "100"
+          }
+        }
+      }
+    },
+    {
+      "id": "place-R203",
+      "action": "schematic.component.place",
+      "payload": {
+        "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+        "uuid": "b948db94476e4027ac8953235755ec96",
+        "x": 250,
+        "y": 430,
+        "rotation": 90,
+        "designator": "R203"
+      },
+      "capture": {
+        "R203": "$.primitiveId"
+      }
+    },
+    {
+      "id": "spec-R203",
+      "action": "schematic.component.modify",
+      "payload": {
+        "primitiveId": "${R203}",
+        "patch": {
+          "name": "100k",
+          "manufacturer": "UNSELECTED",
+          "manufacturerId": "UNSELECTED",
+          "supplier": "UNSELECTED",
+          "supplierId": "UNSELECTED",
+          "customAttributes": {
+            "Value": "100k",
+            "Spec_ID": "R12",
+            "Electrical_Spec": "100k,1%,0603",
+            "Datasheet": "",
+            "Description": "Generic passive; procurement deferred",
+            "JLCPCB Part Class": "",
+            "LCSC Part Name": "",
+            "Procurement Status": "UNSELECTED",
+            "Tolerance": "1%",
+            "Voltage Rating": "50",
+            "Temperature Coefficient": "100"
+          }
+        }
+      }
+    },
+    {
+      "id": "place-R204",
+      "action": "schematic.component.place",
+      "payload": {
+        "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+        "uuid": "b948db94476e4027ac8953235755ec96",
+        "x": 370,
+        "y": 430,
+        "rotation": 90,
+        "designator": "R204"
+      },
+      "capture": {
+        "R204": "$.primitiveId"
+      }
+    },
+    {
+      "id": "spec-R204",
+      "action": "schematic.component.modify",
+      "payload": {
+        "primitiveId": "${R204}",
+        "patch": {
+          "name": "100k",
+          "manufacturer": "UNSELECTED",
+          "manufacturerId": "UNSELECTED",
+          "supplier": "UNSELECTED",
+          "supplierId": "UNSELECTED",
+          "customAttributes": {
+            "Value": "100k",
+            "Spec_ID": "R12",
+            "Electrical_Spec": "100k,1%,0603",
+            "Datasheet": "",
+            "Description": "Generic passive; procurement deferred",
+            "JLCPCB Part Class": "",
+            "LCSC Part Name": "",
+            "Procurement Status": "UNSELECTED",
+            "Tolerance": "1%",
+            "Voltage Rating": "50",
+            "Temperature Coefficient": "100"
+          }
+        }
+      }
+    },
+    {
+      "id": "place-R205",
+      "action": "schematic.component.place",
+      "payload": {
+        "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+        "uuid": "b948db94476e4027ac8953235755ec96",
+        "x": 420,
+        "y": 535,
+        "rotation": 180,
+        "designator": "R205"
+      },
+      "capture": {
+        "R205": "$.primitiveId"
+      }
+    },
+    {
+      "id": "spec-R205",
+      "action": "schematic.component.modify",
+      "payload": {
+        "primitiveId": "${R205}",
+        "patch": {
+          "name": "0ohm",
+          "manufacturer": "UNSELECTED",
+          "manufacturerId": "UNSELECTED",
+          "supplier": "UNSELECTED",
+          "supplierId": "UNSELECTED",
+          "customAttributes": {
+            "Value": "0ohm",
+            "Spec_ID": "BOOT_R_CLK_LINK",
+            "Electrical_Spec": "0ohm,0603",
+            "Datasheet": "",
+            "Description": "Generic passive; procurement deferred",
+            "JLCPCB Part Class": "",
+            "LCSC Part Name": "",
+            "Procurement Status": "UNSELECTED",
+            "Tolerance": "None%",
+            "Voltage Rating": "50",
+            "Temperature Coefficient": "None"
+          }
+        }
+      }
+    },
+    {
+      "id": "place-C201",
+      "action": "schematic.component.place",
+      "payload": {
+        "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+        "uuid": "96b39256cc3f4d80bd3b503deb4f3328",
+        "x": 355,
+        "y": 660,
+        "rotation": 90,
+        "designator": "C201"
+      },
+      "capture": {
+        "C201": "$.primitiveId"
+      }
+    },
+    {
+      "id": "spec-C201",
+      "action": "schematic.component.modify",
+      "payload": {
+        "primitiveId": "${C201}",
+        "patch": {
+          "name": "100nF",
+          "manufacturer": "UNSELECTED",
+          "manufacturerId": "UNSELECTED",
+          "supplier": "UNSELECTED",
+          "supplierId": "UNSELECTED",
+          "customAttributes": {
+            "Value": "100nF",
+            "Spec_ID": "C01",
+            "Electrical_Spec": "100nF,X7R,25V,0603",
+            "Datasheet": "",
+            "Description": "Generic passive; procurement deferred",
+            "JLCPCB Part Class": "",
+            "LCSC Part Name": "",
+            "Procurement Status": "UNSELECTED",
+            "Tolerance": "10%",
+            "Voltage Rating": "",
+            "Temperature Coefficient": "X7R"
+          }
+        }
+      }
+    },
+    {
+      "id": "place-C202",
+      "action": "schematic.component.place",
+      "payload": {
+        "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+        "uuid": "8c1f4a9e9d204b148b36ce719c891bd1",
+        "x": 465,
+        "y": 660,
+        "rotation": 90,
+        "designator": "C202"
+      },
+      "capture": {
+        "C202": "$.primitiveId"
+      }
+    },
+    {
+      "id": "spec-C202",
+      "action": "schematic.component.modify",
+      "payload": {
+        "primitiveId": "${C202}",
+        "patch": {
+          "name": "1uF",
+          "manufacturer": "UNSELECTED",
+          "manufacturerId": "UNSELECTED",
+          "supplier": "UNSELECTED",
+          "supplierId": "UNSELECTED",
+          "customAttributes": {
+            "Value": "1uF",
+            "Spec_ID": "C02",
+            "Electrical_Spec": "1uF,X7R,16V,0805",
+            "Datasheet": "",
+            "Description": "Generic passive; procurement deferred",
+            "JLCPCB Part Class": "",
+            "LCSC Part Name": "",
+            "Procurement Status": "UNSELECTED",
+            "Tolerance": "10%",
+            "Voltage Rating": "",
+            "Temperature Coefficient": "X7R"
+          }
+        }
+      }
+    },
+    {
+      "id": "save-C202",
+      "action": "schematic.save",
+      "checkpoint": true
+    },
+    {
+      "id": "place-R206",
+      "action": "schematic.component.place",
+      "payload": {
+        "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+        "uuid": "b948db94476e4027ac8953235755ec96",
+        "x": 800,
+        "y": 660,
+        "rotation": 90,
+        "designator": "R206"
+      },
+      "capture": {
+        "R206": "$.primitiveId"
+      }
+    },
+    {
+      "id": "spec-R206",
+      "action": "schematic.component.modify",
+      "payload": {
+        "primitiveId": "${R206}",
+        "patch": {
+          "name": "1M",
+          "manufacturer": "UNSELECTED",
+          "manufacturerId": "UNSELECTED",
+          "supplier": "UNSELECTED",
+          "supplierId": "UNSELECTED",
+          "customAttributes": {
+            "Value": "1M",
+            "Spec_ID": "BOOT_R_XTAL_FB",
+            "Electrical_Spec": "1M,1%,0603",
+            "Datasheet": "",
+            "Description": "Generic passive; procurement deferred",
+            "JLCPCB Part Class": "",
+            "LCSC Part Name": "",
+            "Procurement Status": "UNSELECTED",
+            "Tolerance": "1%",
+            "Voltage Rating": "50",
+            "Temperature Coefficient": "100"
+          }
+        }
+      }
+    },
+    {
+      "id": "place-R207",
+      "action": "schematic.component.place",
+      "payload": {
+        "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+        "uuid": "b948db94476e4027ac8953235755ec96",
+        "x": 950,
+        "y": 710,
+        "rotation": 0,
+        "designator": "R207"
+      },
+      "capture": {
+        "R207": "$.primitiveId"
+      }
+    },
+    {
+      "id": "spec-R207",
+      "action": "schematic.component.modify",
+      "payload": {
+        "primitiveId": "${R207}",
+        "patch": {
+          "name": "680ohm",
+          "manufacturer": "UNSELECTED",
+          "manufacturerId": "UNSELECTED",
+          "supplier": "UNSELECTED",
+          "supplierId": "UNSELECTED",
+          "customAttributes": {
+            "Value": "680ohm",
+            "Spec_ID": "BOOT_R_XTAL_DAMP",
+            "Electrical_Spec": "680ohm,1%,0603",
+            "Datasheet": "",
+            "Description": "Generic passive; procurement deferred",
+            "JLCPCB Part Class": "",
+            "LCSC Part Name": "",
+            "Procurement Status": "UNSELECTED",
+            "Tolerance": "1%",
+            "Voltage Rating": "50",
+            "Temperature Coefficient": "100"
+          }
+        }
+      }
+    },
+    {
+      "id": "place-C203",
+      "action": "schematic.component.place",
+      "payload": {
+        "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+        "uuid": "96b39256cc3f4d80bd3b503deb4f3328",
+        "x": 980,
+        "y": 550,
+        "rotation": 90,
+        "designator": "C203"
+      },
+      "capture": {
+        "C203": "$.primitiveId"
+      }
+    },
+    {
+      "id": "spec-C203",
+      "action": "schematic.component.modify",
+      "payload": {
+        "primitiveId": "${C203}",
+        "patch": {
+          "name": "22pF",
+          "manufacturer": "UNSELECTED",
+          "manufacturerId": "UNSELECTED",
+          "supplier": "UNSELECTED",
+          "supplierId": "UNSELECTED",
+          "customAttributes": {
+            "Value": "22pF",
+            "Spec_ID": "BOOT_C_XTAL_LOAD",
+            "Electrical_Spec": "22pF,C0G,5%,50V,0603",
+            "Datasheet": "",
+            "Description": "Generic passive; procurement deferred",
+            "JLCPCB Part Class": "",
+            "LCSC Part Name": "",
+            "Procurement Status": "UNSELECTED",
+            "Tolerance": "5%",
+            "Voltage Rating": "",
+            "Temperature Coefficient": "C0G/NP0"
+          }
+        }
+      }
+    },
+    {
+      "id": "place-C204",
+      "action": "schematic.component.place",
+      "payload": {
+        "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+        "uuid": "96b39256cc3f4d80bd3b503deb4f3328",
+        "x": 800,
+        "y": 550,
+        "rotation": 90,
+        "designator": "C204"
+      },
+      "capture": {
+        "C204": "$.primitiveId"
+      }
+    },
+    {
+      "id": "spec-C204",
+      "action": "schematic.component.modify",
+      "payload": {
+        "primitiveId": "${C204}",
+        "patch": {
+          "name": "22pF",
+          "manufacturer": "UNSELECTED",
+          "manufacturerId": "UNSELECTED",
+          "supplier": "UNSELECTED",
+          "supplierId": "UNSELECTED",
+          "customAttributes": {
+            "Value": "22pF",
+            "Spec_ID": "BOOT_C_XTAL_LOAD",
+            "Electrical_Spec": "22pF,C0G,5%,50V,0603",
+            "Datasheet": "",
+            "Description": "Generic passive; procurement deferred",
+            "JLCPCB Part Class": "",
+            "LCSC Part Name": "",
+            "Procurement Status": "UNSELECTED",
+            "Tolerance": "5%",
+            "Voltage Rating": "",
+            "Temperature Coefficient": "C0G/NP0"
+          }
+        }
+      }
+    },
+    {
+      "id": "save-C204",
+      "action": "schematic.save",
+      "checkpoint": true
+    }
+  ]
+}

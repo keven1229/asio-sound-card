@@ -1,0 +1,28 @@
+# 固件：官方上游克隆（独立 git 仓库，本仓库不追踪）
+firmware/sw_usb_audio/
+firmware/lib_*/
+
+# 根目录 XMOS 镜像拆分/构建产物
+/image[01].bin
+/image[01]_*.bin
+/loader.bin
+
+# 参考库克隆（只读研究用）
+tools/ref/
+
+# 工具安装包 / 驱动（大文件，本地保存不入库）
+tools/*.exe
+tools/*.run
+tools/*.pkg
+tools/*.msi
+tools/*.zip
+
+# 构建产物（上游仓库内部，双保险）
+**/build/
+
+# 本地工作区
+.jspace/
+.dsh-screenshots/
+
+# EasyEDA Agent 临时状态/导出缓存；验收产物固定保存至 hardware/ai-smoke/
+.easyeda/

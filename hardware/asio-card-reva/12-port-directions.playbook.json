@@ -1,0 +1,316 @@
+{
+  "version": 1,
+  "meta": {
+    "name": "restore-xmos-signal-port-directions",
+    "project": "ASIO_CARD_USB5V_REV_A",
+    "doc": "XMOS_CORE"
+  },
+  "defaults": {
+    "timeoutSec": 60,
+    "retry": 0
+  },
+  "steps": [
+    {
+      "id": "replace-only-directed-markers",
+      "action": "schematic.primitives.delete",
+      "payload": {
+        "primitiveIds": [
+          "dd16610aa6f822a7",
+          "89ee62b4e238b982",
+          "0cd5a6f5f74c8e65",
+          "629abdb341133422",
+          "ab7054dcfae85d76",
+          "11be05745017870d",
+          "b0626103d27fb5b8",
+          "a6ba9023586cdc36",
+          "fe9dea0254549830",
+          "38dea97fb704a223",
+          "f6097584b2daef69",
+          "f91eb50a3c698606",
+          "40a028abf2a28235",
+          "e4dc2f0e8438d8f0",
+          "92c266257ed2e892",
+          "e002df445607eade",
+          "61db038942aa5663",
+          "3bdffa124e74849f",
+          "0d1e3ff7e18c58e1",
+          "6e95bf05b76b11a7",
+          "47c9b9d231c788ab",
+          "0d1863fc4ab64bde",
+          "73d7e410df5de099",
+          "f2109e6bd949782f"
+        ]
+      },
+      "confirm": true
+    },
+    {
+      "id": "restore-port-6",
+      "action": "schematic.netflag.create",
+      "payload": {
+        "kind": "net_port_in",
+        "net": "VBUS_SENSE_1V8",
+        "x": 880,
+        "y": 685,
+        "rotation": 180
+      }
+    },
+    {
+      "id": "restore-port-53",
+      "action": "schematic.netflag.create",
+      "payload": {
+        "kind": "net_port_in",
+        "net": "ADC_DOUT_XU18",
+        "x": 920,
+        "y": 355,
+        "rotation": 180
+      }
+    },
+    {
+      "id": "restore-port-43",
+      "action": "schematic.netflag.create",
+      "payload": {
+        "kind": "net_port_in",
+        "net": "CTRL_RX_XU18",
+        "x": 875,
+        "y": 545,
+        "rotation": 180
+      }
+    },
+    {
+      "id": "restore-port-41",
+      "action": "schematic.netflag.create",
+      "payload": {
+        "kind": "net_port_out",
+        "net": "CTRL_TX_XU18",
+        "x": 760,
+        "y": 555,
+        "rotation": 0
+      }
+    },
+    {
+      "id": "restore-port-9",
+      "action": "schematic.netflag.create",
+      "payload": {
+        "kind": "net_port_out",
+        "net": "DAC_DIN_XU18",
+        "x": 760,
+        "y": 465,
+        "rotation": 0
+      }
+    },
+    {
+      "id": "restore-port-39",
+      "action": "schematic.netflag.create",
+      "payload": {
+        "kind": "net_port_in",
+        "net": "DEBUG_RX_XU18",
+        "x": 760,
+        "y": 365,
+        "rotation": 180
+      }
+    },
+    {
+      "id": "restore-port-32",
+      "action": "schematic.netflag.create",
+      "payload": {
+        "kind": "net_port_out",
+        "net": "DEBUG_TX_XU18",
+        "x": 760,
+        "y": 415,
+        "rotation": 0
+      }
+    },
+    {
+      "id": "restore-port-13",
+      "action": "schematic.netflag.create",
+      "payload": {
+        "kind": "net_port_out",
+        "net": "I2S_BCLK_XU18",
+        "x": 760,
+        "y": 435,
+        "rotation": 0
+      }
+    },
+    {
+      "id": "restore-port-10",
+      "action": "schematic.netflag.create",
+      "payload": {
+        "kind": "net_port_out",
+        "net": "I2S_LRCLK_XU18",
+        "x": 875,
+        "y": 455,
+        "rotation": 0
+      }
+    },
+    {
+      "id": "restore-port-24",
+      "action": "schematic.netflag.create",
+      "payload": {
+        "kind": "net_port_in",
+        "net": "JTCK18",
+        "x": 425,
+        "y": 480,
+        "rotation": 0
+      }
+    },
+    {
+      "id": "restore-port-18",
+      "action": "schematic.netflag.create",
+      "payload": {
+        "kind": "net_port_in",
+        "net": "JTDI18",
+        "x": 575,
+        "y": 460,
+        "rotation": 0
+      }
+    },
+    {
+      "id": "restore-port-20",
+      "action": "schematic.netflag.create",
+      "payload": {
+        "kind": "net_port_out",
+        "net": "JTDO18",
+        "x": 500,
+        "y": 450,
+        "rotation": 180
+      }
+    },
+    {
+      "id": "restore-port-23",
+      "action": "schematic.netflag.create",
+      "payload": {
+        "kind": "net_port_in",
+        "net": "JTMS18",
+        "x": 500,
+        "y": 470,
+        "rotation": 0
+      }
+    },
+    {
+      "id": "restore-port-3",
+      "action": "schematic.netflag.create",
+      "payload": {
+        "kind": "net_port_out",
+        "net": "QSPI_CS_N_1V8",
+        "x": 760,
+        "y": 675,
+        "rotation": 0
+      }
+    },
+    {
+      "id": "restore-port-5",
+      "action": "schematic.netflag.create",
+      "payload": {
+        "kind": "net_port_out",
+        "net": "QSPI_SCLK_1V8",
+        "x": 875,
+        "y": 625,
+        "rotation": 0
+      }
+    },
+    {
+      "id": "restore-port-35",
+      "action": "schematic.netflag.create",
+      "payload": {
+        "kind": "net_port_in",
+        "net": "XSCOPE_IN0_1V8",
+        "x": 1005,
+        "y": 395,
+        "rotation": 180
+      }
+    },
+    {
+      "id": "restore-port-33",
+      "action": "schematic.netflag.create",
+      "payload": {
+        "kind": "net_port_in",
+        "net": "XSCOPE_IN1_1V8",
+        "x": 880,
+        "y": 405,
+        "rotation": 180
+      }
+    },
+    {
+      "id": "restore-port-36",
+      "action": "schematic.netflag.create",
+      "payload": {
+        "kind": "net_port_out",
+        "net": "XSCOPE_OUT0_1V8",
+        "x": 760,
+        "y": 385,
+        "rotation": 0
+      }
+    },
+    {
+      "id": "restore-port-37",
+      "action": "schematic.netflag.create",
+      "payload": {
+        "kind": "net_port_out",
+        "net": "XSCOPE_OUT1_1V8",
+        "x": 890,
+        "y": 375,
+        "rotation": 0
+      }
+    },
+    {
+      "id": "restore-port-14",
+      "action": "schematic.netflag.create",
+      "payload": {
+        "kind": "net_port_out",
+        "net": "XU_MCLK_1V8",
+        "x": 880,
+        "y": 425,
+        "rotation": 0
+      }
+    },
+    {
+      "id": "restore-port-47",
+      "action": "schematic.netflag.create",
+      "payload": {
+        "kind": "net_port_in",
+        "net": "XU_MCLK_1V8",
+        "x": 760,
+        "y": 515,
+        "rotation": 180
+      }
+    },
+    {
+      "id": "restore-port-21",
+      "action": "schematic.netflag.create",
+      "payload": {
+        "kind": "net_port_in",
+        "net": "XU_RST_N_1V8",
+        "x": 575,
+        "y": 410,
+        "rotation": 0
+      }
+    },
+    {
+      "id": "restore-port-16",
+      "action": "schematic.netflag.create",
+      "payload": {
+        "kind": "net_port_in",
+        "net": "XU_XIN",
+        "x": 845,
+        "y": 345,
+        "rotation": 180
+      }
+    },
+    {
+      "id": "restore-port-15",
+      "action": "schematic.netflag.create",
+      "payload": {
+        "kind": "net_port_out",
+        "net": "XU_XOUT",
+        "x": 760,
+        "y": 335,
+        "rotation": 0
+      }
+    },
+    {
+      "id": "save-port-directions",
+      "action": "schematic.save",
+      "checkpoint": true
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "sheet": "A4",
+  "modules": [
+    {
+      "name": "DIVIDER",
+      "kind": "ANALOG",
+      "parts": ["R1", "R2"],
+      "page": "DIVIDER",
+      "zone": "center"
+    }
+  ],
+  "pages": [
+    {
+      "name": "DIVIDER",
+      "sheet": "A4",
+      "modules": ["DIVIDER"]
+    }
+  ],
+  "flowAxis": "y",
+  "interfaces": [],
+  "notes": {
+    "project": "ASIO_AI_ENV_SMOKE",
+    "purpose": "Independent schematic-only environment regression: verify real library component placement, wires, net ports, save, reopen and netlist readback through EasyEDA Agent.",
+    "scope": "Two 10 kohm resistors on one A4 sheet. This fixture is not part of the ASIO sound-card design and is not intended for PCB manufacture.",
+    "executionMode": "automatic environment regression",
+    "parts": [
+      {"ref": "R1", "type": "resistor", "value": "10k", "resistanceOhm": 10000, "librarySelection": "Resolve a real EasyEDA/LCSC library device before placement; inspect its pin numbers."},
+      {"ref": "R2", "type": "resistor", "value": "10k", "resistanceOhm": 10000, "librarySelection": "Use the same verified device as R1."}
+    ],
+    "topology": "VIN -> R1 -> VOUT -> R2 -> GND",
+    "goldenPinNets": {
+      "R1.1": "VIN",
+      "R1.2": "VOUT",
+      "R2.1": "VOUT",
+      "R2.2": "GND"
+    },
+    "idealUnloadedTransfer": "VOUT = VIN * R2 / (R1 + R2) = VIN / 2. This is the ideal equation, not a simulated or measured result.",
+    "layout": "Place R1 above R2 in the center functional zone. Draw a DIVIDER frame and a short note: 10k / 10k divider; VOUT = VIN/2 unloaded; environment test only.",
+    "connections": "Use nonzero-length real wires between pins and net ports or flags. Read back every pin-to-net mapping; overlapping coordinates alone are not sufficient.",
+    "flowOmittedReason": "Only one functional domain exists and no PCB is planned. An artificial two-stage functional flow would misstate this fixture; the validator's INFO for omitted PCB flow is expected.",
+    "pcbDecisions": "PCB stackup, board outline, interface edge orientation and assembly are not applicable to this schematic-only regression.",
+    "acceptance": [
+      "Resolve and inspect the real two-pin resistor symbol; place exactly two resistor devices with R1/R2 designators and 10k values.",
+      "Read back the four golden pin-to-net mappings and confirm VIN, VOUT and GND remain distinct.",
+      "Run schematic structural checks and official DRC; report warnings rather than hiding them.",
+      "Explicitly save, reopen or reload the document, and confirm that both components and all golden connections persist.",
+      "Export the native project or schematic artifact plus netlist as environment evidence; do not export manufacturing data."
+    ]
+  }
+}

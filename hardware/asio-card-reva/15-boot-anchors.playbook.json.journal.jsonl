@@ -1,0 +1,5 @@
+{"playbookSha256":"bf30d05ecb219b829159a8aef3500968633d8e5f7ff76fd2aeb2c5d8c5aabb2a","name":"xmos-boot-real-library-anchors","project":"ASIO_CARD_USB5V_REV_A","startedAt":"2026-09-16T21:08:10+08:00"}
+{"idx":1,"id":"place-U11","status":"ok","ms":5704,"captured":{"U11":"d2328589610de1a0"}}
+{"idx":2,"id":"place-Y10","status":"ok","ms":9470,"captured":{"Y10":"b897182c330cdc4a"}}
+{"idx":3,"id":"place-J2","status":"ok","ms":4800,"captured":{"J2":"0ff2a643fb590706"}}
+{"idx":4,"id":"save-boot-anchors","status":"ok","ms":83}

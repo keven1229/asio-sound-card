@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "meta": {
+    "name": "add-xmos-boot-functional-pages",
+    "project": "ASIO_CARD_USB5V_REV_A",
+    "doc": "XMOS_CORE"
+  },
+  "defaults": {
+    "timeoutSec": 60,
+    "retry": 0
+  },
+  "steps": [
+    {
+      "id": "create-XMOS_BOOT",
+      "action": "schematic.page.create",
+      "payload": {
+        "schematicUuid": "4256e3ead5652257"
+      },
+      "capture": {
+        "P0": "$.pageUuid"
+      }
+    },
+    {
+      "id": "rename-XMOS_BOOT",
+      "action": "schematic.page.rename",
+      "payload": {
+        "pageUuid": "${P0}",
+        "name": "XMOS_BOOT"
+      }
+    },
+    {
+      "id": "save-XMOS_BOOT",
+      "action": "schematic.save",
+      "checkpoint": true
+    },
+    {
+      "id": "create-XU_POWER_SEQUENCE",
+      "action": "schematic.page.create",
+      "payload": {
+        "schematicUuid": "4256e3ead5652257"
+      },
+      "capture": {
+        "P1": "$.pageUuid"
+      }
+    },
+    {
+      "id": "rename-XU_POWER_SEQUENCE",
+      "action": "schematic.page.rename",
+      "payload": {
+        "pageUuid": "${P1}",
+        "name": "XU_POWER_SEQUENCE"
+      }
+    },
+    {
+      "id": "save-XU_POWER_SEQUENCE",
+      "action": "schematic.save",
+      "checkpoint": true
+    }
+  ]
+}

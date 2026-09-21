@@ -1,5 +1,7 @@
 # 模块五：ESP32-S3 控制板（屏幕/旋钮/继电器/协议）
 
+> **2026-09-06 已回写接口参数，控制实现仍未完成。** 证据见[数字/编码器核验](../datasheet-audit/digital-protection.md)及[模拟器件核验](../datasheet-audit/analog.md)；固件状态见[固件审阅](../firmware-review-2026-09-05.md)。
+
 ## 5.1 框图
 
 ```mermaid
@@ -13,15 +15,15 @@ flowchart TD
   U30 --"SPI位段"--> PGA["PGA2500 增益"]
   U30 --"UART 921600"--> XU["XU316 CTRL_RX/TX"]
   U30 --> LED["LED×4 状态灯"]
-  J8["USB-C 编程口<br/>(ESP32 native USB)"] --> U30
+  HUB2["内置Hub下游2<br/>(CH334U)"] -->|"GPIO19/20"| U30
+  UART3["Hub下游3 CH343P-A<br/>调试串口"] -->|"UART0"| U30
 ```
 
 ## 5.2 器件清单
 
 | 位号 | 型号 | 说明 | 立创 | 参考价 |
 |---|---|---|---|---|
-| U30 | ESP32-S3-WROOM-1-N8R8 | 管理 MCU | item 3198299 | ¥20.93 |
-| J8 | USB-C 16P 母座 | 编程/日志口（native USB GPIO19/20） | 立创 | ¥1.5 |
+| U30 | ESP32-S3-WROOM-1-N8R8 | 管理 MCU | item 3198299（C2913201） | ¥20.93 |
 | LCD1 | ST7789 1.3" 240×240 模块 | 电平表/参数屏 | 淘宝 | ¥18 |
 | SW2/3 | EC11 编码器（国产即可） | 旋钮×2 | 立创 | ¥1×2 |
 | SW4~7 | 轻触按键×4 | 功能键 | 立创 | ¥0.2×4 |
@@ -32,13 +34,13 @@ flowchart TD
 
 ## 5.3 电路要点
 
-- **供电**：V3V3D，模块脚位 10µF+0.1µF；EN 脚 10k 上拉 + 1µF 到地 + 复位按键（可选）；
-- **编程**：J8 的 D± → ESP32 GPIO19/20（native USB），CC 5.1k 下拉，ESD 同 U12 规格；烧录用 Arduino/ESP-IDF 均可（LVGL 有现成 demo）；
+- **供电**：模块推荐3.0–3.6V、标称V3V3D，外部电源需具备至少0.5A能力；10µF+0.1µF为局部去耦候选，EN的10k/1µF按实际爬升调整。N8R8的GPIO35–37已被PSRAM占用，不可分配面板功能；GPIO0/3/45/46还需满足strap时序。
+- **编程/维护**：native USB（GPIO19/20）← 内置 Hub 下游2；**独立调试 COM 口由下游3 的 CH343P-A 提供（接 UART0 GPIO43/44）**；XU316 调试串口由下游4 的 CH343P-B 单独提供（见 07-usb-c），两个 COM 口同时在线互不干扰；烧录用 Arduino/ESP-IDF 均可（LVGL 有现成 demo）；
 - **屏幕**：SPI 四线（SCK/MOSI/CS/DC）+ RST + BL（GPIO PWM 调背光）；3.3V 供电，信号电平 3.3V 直连；
-- **编码器/按键**：A/B 脚各 10k 上拉 + 100nF 滤波（或软件消抖），公共脚接地；按键用 ESP32 内部上拉即可；
+- **编码器/按键**：本地EC11实际为ALPS EC11L1525E05，旋转接点至少1mA、内置按键至少500µA；旧3.3V/10k和约45k内部上拉均低于对应最小接点电流。最终上拉/滤波须按精确型号、电流、容差、接触浪涌及消抖重定，不能直接确认10k+100nF方案。
 - **继电器驱动**：GPIO → 1k → 2N7002 栅极（栅源并 100k 下拉），漏极接线圈负端，线圈正端接 V5D，线圈并 SS14 续流。**线圈用 V5D 5V**（HFD4 5V 型）；
 - **I2C 总线**：SDA/SCL（用 ESP32 硬件 I2C 外设脚），2.2k 上拉到 V3V3D，挂 ES9822 + ES9039（地址按 03/04 模块错开）；PGA2500 的 CS/SCLK/SDI/SDO 用独立 GPIO 位段；
-- **VBUS 检测**（可选）：V5D 分压 → GPIO，用于显示"USB 已连接/掉线"。
+- **VBUS检测**：取真实VUSB并按ESP32门槛/耐压分压；V5D可能被外部DC维持，不能作为USB在位依据。若与XU共享，必须先满足XU1.8V域，不能共享2.5V检测节点。
 
 ## 5.4 UART 协议（XU316 ↔ ESP32，921600-8N1）
 
@@ -55,7 +57,7 @@ flowchart TD
 | 0x03 | ESP→XU | 恢复出厂混音 | 空 |
 | 0x04 | ESP→XU | 混音预设切换 | 预设编号(1B)：0=直通 1=直播标准 2=纯监听 |
 | 0x11 | XU→ESP | VU 电平（30~50Hz） | mic(2B dBFS×100)、line(2B)、streamMixL(2B)、streamMixR(2B)、monitorL(2B)、monitorR(2B)、clip标志(1B) |
-| 0x12 | XU→ESP | 状态回包 | usb连接(1B)、采样率(1B: 0=44.1k族 1=48k族)、当前速率(2B, Hz)、固件版本(2B) |
+| 0x12 | XU→ESP | 状态回包 | usb连接(1B)、采样率(1B: 0=44.1k族 1=48k族)、当前速率(2B, **Hz/100**: 192000→1920, 44100→441)、固件版本(2B) |
 | 0x13 | XU→ESP | 事件 | 0x01=USB断连 0x02=USB恢复 0x03=ASIO流启动 0x04=ASIO流停止 |
 
 - CRC 校验失败丢弃重发（ESP→XU 命令重发一次）；

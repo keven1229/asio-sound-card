@@ -1,0 +1,774 @@
+{
+  "version": 1,
+  "meta": {
+    "name": "xmos-generic-decoupling",
+    "project": "ASIO_CARD_USB5V_REV_A",
+    "doc": "XMOS_CORE"
+  },
+  "defaults": {
+    "timeoutSec": 60,
+    "retry": 0
+  },
+  "vars": {
+    "LIB": "0819f05c4eef4c71ace90d822a990e87",
+    "C101": "f920f194c8fb92c3"
+  },
+  "steps": [
+    {
+      "id": "spec-C101",
+      "action": "schematic.component.modify",
+      "payload": {
+        "primitiveId": "${C101}",
+        "patch": {
+          "name": "100nF",
+          "manufacturer": "UNSELECTED",
+          "manufacturerId": "UNSELECTED",
+          "supplier": "UNSELECTED",
+          "supplierId": "UNSELECTED",
+          "customAttributes": {
+            "Spec_ID": "C01",
+            "Value": "100nF",
+            "Tolerance": "10%",
+            "Voltage Rating": ">=25V",
+            "Temperature Coefficient": "X7R preferred",
+            "Datasheet": "",
+            "Description": "Generic capacitor; MPN deferred",
+            "JLCPCB Part Class": "",
+            "LCSC Part Name": "",
+            "Procurement Status": "UNSELECTED",
+            "Design Role": "XU VDD pin4"
+          }
+        }
+      }
+    },
+    {
+      "id": "place-C102",
+      "action": "schematic.component.place",
+      "payload": {
+        "libraryUuid": "${LIB}",
+        "uuid": "96b39256cc3f4d80bd3b503deb4f3328",
+        "x": 180,
+        "y": 665,
+        "rotation": 90,
+        "designator": "C102"
+      },
+      "capture": {
+        "C102": "$.primitiveId"
+      }
+    },
+    {
+      "id": "spec-C102",
+      "action": "schematic.component.modify",
+      "payload": {
+        "primitiveId": "${C102}",
+        "patch": {
+          "name": "100nF",
+          "manufacturer": "UNSELECTED",
+          "manufacturerId": "UNSELECTED",
+          "supplier": "UNSELECTED",
+          "supplierId": "UNSELECTED",
+          "customAttributes": {
+            "Spec_ID": "C01",
+            "Value": "100nF",
+            "Tolerance": "10%",
+            "Voltage Rating": ">=25V",
+            "Temperature Coefficient": "X7R preferred",
+            "Datasheet": "",
+            "Description": "Generic capacitor; MPN deferred",
+            "JLCPCB Part Class": "",
+            "LCSC Part Name": "",
+            "Procurement Status": "UNSELECTED",
+            "Design Role": "XU VDD pin12"
+          }
+        }
+      }
+    },
+    {
+      "id": "place-C103",
+      "action": "schematic.component.place",
+      "payload": {
+        "libraryUuid": "${LIB}",
+        "uuid": "96b39256cc3f4d80bd3b503deb4f3328",
+        "x": 260,
+        "y": 665,
+        "rotation": 90,
+        "designator": "C103"
+      },
+      "capture": {
+        "C103": "$.primitiveId"
+      }
+    },
+    {
+      "id": "spec-C103",
+      "action": "schematic.component.modify",
+      "payload": {
+        "primitiveId": "${C103}",
+        "patch": {
+          "name": "100nF",
+          "manufacturer": "UNSELECTED",
+          "manufacturerId": "UNSELECTED",
+          "supplier": "UNSELECTED",
+          "supplierId": "UNSELECTED",
+          "customAttributes": {
+            "Spec_ID": "C01",
+            "Value": "100nF",
+            "Tolerance": "10%",
+            "Voltage Rating": ">=25V",
+            "Temperature Coefficient": "X7R preferred",
+            "Datasheet": "",
+            "Description": "Generic capacitor; MPN deferred",
+            "JLCPCB Part Class": "",
+            "LCSC Part Name": "",
+            "Procurement Status": "UNSELECTED",
+            "Design Role": "XU VDD pin19"
+          }
+        }
+      }
+    },
+    {
+      "id": "place-C104",
+      "action": "schematic.component.place",
+      "payload": {
+        "libraryUuid": "${LIB}",
+        "uuid": "96b39256cc3f4d80bd3b503deb4f3328",
+        "x": 340,
+        "y": 665,
+        "rotation": 90,
+        "designator": "C104"
+      },
+      "capture": {
+        "C104": "$.primitiveId"
+      }
+    },
+    {
+      "id": "spec-C104",
+      "action": "schematic.component.modify",
+      "payload": {
+        "primitiveId": "${C104}",
+        "patch": {
+          "name": "100nF",
+          "manufacturer": "UNSELECTED",
+          "manufacturerId": "UNSELECTED",
+          "supplier": "UNSELECTED",
+          "supplierId": "UNSELECTED",
+          "customAttributes": {
+            "Spec_ID": "C01",
+            "Value": "100nF",
+            "Tolerance": "10%",
+            "Voltage Rating": ">=25V",
+            "Temperature Coefficient": "X7R preferred",
+            "Datasheet": "",
+            "Description": "Generic capacitor; MPN deferred",
+            "JLCPCB Part Class": "",
+            "LCSC Part Name": "",
+            "Procurement Status": "UNSELECTED",
+            "Design Role": "XU VDD pin27"
+          }
+        }
+      }
+    },
+    {
+      "id": "place-C105",
+      "action": "schematic.component.place",
+      "payload": {
+        "libraryUuid": "${LIB}",
+        "uuid": "96b39256cc3f4d80bd3b503deb4f3328",
+        "x": 100,
+        "y": 565,
+        "rotation": 90,
+        "designator": "C105"
+      },
+      "capture": {
+        "C105": "$.primitiveId"
+      }
+    },
+    {
+      "id": "spec-C105",
+      "action": "schematic.component.modify",
+      "payload": {
+        "primitiveId": "${C105}",
+        "patch": {
+          "name": "100nF",
+          "manufacturer": "UNSELECTED",
+          "manufacturerId": "UNSELECTED",
+          "supplier": "UNSELECTED",
+          "supplierId": "UNSELECTED",
+          "customAttributes": {
+            "Spec_ID": "C01",
+            "Value": "100nF",
+            "Tolerance": "10%",
+            "Voltage Rating": ">=25V",
+            "Temperature Coefficient": "X7R preferred",
+            "Datasheet": "",
+            "Description": "Generic capacitor; MPN deferred",
+            "JLCPCB Part Class": "",
+            "LCSC Part Name": "",
+            "Procurement Status": "UNSELECTED",
+            "Design Role": "XU VDD pin34"
+          }
+        }
+      }
+    },
+    {
+      "id": "place-C106",
+      "action": "schematic.component.place",
+      "payload": {
+        "libraryUuid": "${LIB}",
+        "uuid": "96b39256cc3f4d80bd3b503deb4f3328",
+        "x": 180,
+        "y": 565,
+        "rotation": 90,
+        "designator": "C106"
+      },
+      "capture": {
+        "C106": "$.primitiveId"
+      }
+    },
+    {
+      "id": "spec-C106",
+      "action": "schematic.component.modify",
+      "payload": {
+        "primitiveId": "${C106}",
+        "patch": {
+          "name": "100nF",
+          "manufacturer": "UNSELECTED",
+          "manufacturerId": "UNSELECTED",
+          "supplier": "UNSELECTED",
+          "supplierId": "UNSELECTED",
+          "customAttributes": {
+            "Spec_ID": "C01",
+            "Value": "100nF",
+            "Tolerance": "10%",
+            "Voltage Rating": ">=25V",
+            "Temperature Coefficient": "X7R preferred",
+            "Datasheet": "",
+            "Description": "Generic capacitor; MPN deferred",
+            "JLCPCB Part Class": "",
+            "LCSC Part Name": "",
+            "Procurement Status": "UNSELECTED",
+            "Design Role": "XU VDD pin42"
+          }
+        }
+      }
+    },
+    {
+      "id": "place-C107",
+      "action": "schematic.component.place",
+      "payload": {
+        "libraryUuid": "${LIB}",
+        "uuid": "96b39256cc3f4d80bd3b503deb4f3328",
+        "x": 260,
+        "y": 565,
+        "rotation": 90,
+        "designator": "C107"
+      },
+      "capture": {
+        "C107": "$.primitiveId"
+      }
+    },
+    {
+      "id": "spec-C107",
+      "action": "schematic.component.modify",
+      "payload": {
+        "primitiveId": "${C107}",
+        "patch": {
+          "name": "100nF",
+          "manufacturer": "UNSELECTED",
+          "manufacturerId": "UNSELECTED",
+          "supplier": "UNSELECTED",
+          "supplierId": "UNSELECTED",
+          "customAttributes": {
+            "Spec_ID": "C01",
+            "Value": "100nF",
+            "Tolerance": "10%",
+            "Voltage Rating": ">=25V",
+            "Temperature Coefficient": "X7R preferred",
+            "Datasheet": "",
+            "Description": "Generic capacitor; MPN deferred",
+            "JLCPCB Part Class": "",
+            "LCSC Part Name": "",
+            "Procurement Status": "UNSELECTED",
+            "Design Role": "XU VDD pin49"
+          }
+        }
+      }
+    },
+    {
+      "id": "place-C108",
+      "action": "schematic.component.place",
+      "payload": {
+        "libraryUuid": "${LIB}",
+        "uuid": "96b39256cc3f4d80bd3b503deb4f3328",
+        "x": 340,
+        "y": 565,
+        "rotation": 90,
+        "designator": "C108"
+      },
+      "capture": {
+        "C108": "$.primitiveId"
+      }
+    },
+    {
+      "id": "spec-C108",
+      "action": "schematic.component.modify",
+      "payload": {
+        "primitiveId": "${C108}",
+        "patch": {
+          "name": "100nF",
+          "manufacturer": "UNSELECTED",
+          "manufacturerId": "UNSELECTED",
+          "supplier": "UNSELECTED",
+          "supplierId": "UNSELECTED",
+          "customAttributes": {
+            "Spec_ID": "C01",
+            "Value": "100nF",
+            "Tolerance": "10%",
+            "Voltage Rating": ">=25V",
+            "Temperature Coefficient": "X7R preferred",
+            "Datasheet": "",
+            "Description": "Generic capacitor; MPN deferred",
+            "JLCPCB Part Class": "",
+            "LCSC Part Name": "",
+            "Procurement Status": "UNSELECTED",
+            "Design Role": "XU VDD pin57"
+          }
+        }
+      }
+    },
+    {
+      "id": "save-C108",
+      "action": "schematic.save",
+      "checkpoint": true
+    },
+    {
+      "id": "place-C109",
+      "action": "schematic.component.place",
+      "payload": {
+        "libraryUuid": "${LIB}",
+        "uuid": "96b39256cc3f4d80bd3b503deb4f3328",
+        "x": 100,
+        "y": 460,
+        "rotation": 90,
+        "designator": "C109"
+      },
+      "capture": {
+        "C109": "$.primitiveId"
+      }
+    },
+    {
+      "id": "spec-C109",
+      "action": "schematic.component.modify",
+      "payload": {
+        "primitiveId": "${C109}",
+        "patch": {
+          "name": "100nF",
+          "manufacturer": "UNSELECTED",
+          "manufacturerId": "UNSELECTED",
+          "supplier": "UNSELECTED",
+          "supplierId": "UNSELECTED",
+          "customAttributes": {
+            "Spec_ID": "C01",
+            "Value": "100nF",
+            "Tolerance": "10%",
+            "Voltage Rating": ">=25V",
+            "Temperature Coefficient": "X7R preferred",
+            "Datasheet": "",
+            "Description": "Generic capacitor; MPN deferred",
+            "JLCPCB Part Class": "",
+            "LCSC Part Name": "",
+            "Procurement Status": "UNSELECTED",
+            "Design Role": "XU IO pin8"
+          }
+        }
+      }
+    },
+    {
+      "id": "place-C110",
+      "action": "schematic.component.place",
+      "payload": {
+        "libraryUuid": "${LIB}",
+        "uuid": "96b39256cc3f4d80bd3b503deb4f3328",
+        "x": 180,
+        "y": 460,
+        "rotation": 90,
+        "designator": "C110"
+      },
+      "capture": {
+        "C110": "$.primitiveId"
+      }
+    },
+    {
+      "id": "spec-C110",
+      "action": "schematic.component.modify",
+      "payload": {
+        "primitiveId": "${C110}",
+        "patch": {
+          "name": "100nF",
+          "manufacturer": "UNSELECTED",
+          "manufacturerId": "UNSELECTED",
+          "supplier": "UNSELECTED",
+          "supplierId": "UNSELECTED",
+          "customAttributes": {
+            "Spec_ID": "C01",
+            "Value": "100nF",
+            "Tolerance": "10%",
+            "Voltage Rating": ">=25V",
+            "Temperature Coefficient": "X7R preferred",
+            "Datasheet": "",
+            "Description": "Generic capacitor; MPN deferred",
+            "JLCPCB Part Class": "",
+            "LCSC Part Name": "",
+            "Procurement Status": "UNSELECTED",
+            "Design Role": "XU IO pin17"
+          }
+        }
+      }
+    },
+    {
+      "id": "place-C111",
+      "action": "schematic.component.place",
+      "payload": {
+        "libraryUuid": "${LIB}",
+        "uuid": "96b39256cc3f4d80bd3b503deb4f3328",
+        "x": 260,
+        "y": 460,
+        "rotation": 90,
+        "designator": "C111"
+      },
+      "capture": {
+        "C111": "$.primitiveId"
+      }
+    },
+    {
+      "id": "spec-C111",
+      "action": "schematic.component.modify",
+      "payload": {
+        "primitiveId": "${C111}",
+        "patch": {
+          "name": "100nF",
+          "manufacturer": "UNSELECTED",
+          "manufacturerId": "UNSELECTED",
+          "supplier": "UNSELECTED",
+          "supplierId": "UNSELECTED",
+          "customAttributes": {
+            "Spec_ID": "C01",
+            "Value": "100nF",
+            "Tolerance": "10%",
+            "Voltage Rating": ">=25V",
+            "Temperature Coefficient": "X7R preferred",
+            "Datasheet": "",
+            "Description": "Generic capacitor; MPN deferred",
+            "JLCPCB Part Class": "",
+            "LCSC Part Name": "",
+            "Procurement Status": "UNSELECTED",
+            "Design Role": "XU IO pin26"
+          }
+        }
+      }
+    },
+    {
+      "id": "place-C112",
+      "action": "schematic.component.place",
+      "payload": {
+        "libraryUuid": "${LIB}",
+        "uuid": "96b39256cc3f4d80bd3b503deb4f3328",
+        "x": 340,
+        "y": 460,
+        "rotation": 90,
+        "designator": "C112"
+      },
+      "capture": {
+        "C112": "$.primitiveId"
+      }
+    },
+    {
+      "id": "spec-C112",
+      "action": "schematic.component.modify",
+      "payload": {
+        "primitiveId": "${C112}",
+        "patch": {
+          "name": "100nF",
+          "manufacturer": "UNSELECTED",
+          "manufacturerId": "UNSELECTED",
+          "supplier": "UNSELECTED",
+          "supplierId": "UNSELECTED",
+          "customAttributes": {
+            "Spec_ID": "C01",
+            "Value": "100nF",
+            "Tolerance": "10%",
+            "Voltage Rating": ">=25V",
+            "Temperature Coefficient": "X7R preferred",
+            "Datasheet": "",
+            "Description": "Generic capacitor; MPN deferred",
+            "JLCPCB Part Class": "",
+            "LCSC Part Name": "",
+            "Procurement Status": "UNSELECTED",
+            "Design Role": "XU IO pin38"
+          }
+        }
+      }
+    },
+    {
+      "id": "place-C113",
+      "action": "schematic.component.place",
+      "payload": {
+        "libraryUuid": "${LIB}",
+        "uuid": "96b39256cc3f4d80bd3b503deb4f3328",
+        "x": 100,
+        "y": 355,
+        "rotation": 90,
+        "designator": "C113"
+      },
+      "capture": {
+        "C113": "$.primitiveId"
+      }
+    },
+    {
+      "id": "spec-C113",
+      "action": "schematic.component.modify",
+      "payload": {
+        "primitiveId": "${C113}",
+        "patch": {
+          "name": "100nF",
+          "manufacturer": "UNSELECTED",
+          "manufacturerId": "UNSELECTED",
+          "supplier": "UNSELECTED",
+          "supplierId": "UNSELECTED",
+          "customAttributes": {
+            "Spec_ID": "C01",
+            "Value": "100nF",
+            "Tolerance": "10%",
+            "Voltage Rating": ">=25V",
+            "Temperature Coefficient": "X7R preferred",
+            "Datasheet": "",
+            "Description": "Generic capacitor; MPN deferred",
+            "JLCPCB Part Class": "",
+            "LCSC Part Name": "",
+            "Procurement Status": "UNSELECTED",
+            "Design Role": "XU IO pin52"
+          }
+        }
+      }
+    },
+    {
+      "id": "save-C113",
+      "action": "schematic.save",
+      "checkpoint": true
+    },
+    {
+      "id": "place-C114",
+      "action": "schematic.component.place",
+      "payload": {
+        "libraryUuid": "${LIB}",
+        "uuid": "96b39256cc3f4d80bd3b503deb4f3328",
+        "x": 180,
+        "y": 355,
+        "rotation": 90,
+        "designator": "C114"
+      },
+      "capture": {
+        "C114": "$.primitiveId"
+      }
+    },
+    {
+      "id": "spec-C114",
+      "action": "schematic.component.modify",
+      "payload": {
+        "primitiveId": "${C114}",
+        "patch": {
+          "name": "100nF",
+          "manufacturer": "UNSELECTED",
+          "manufacturerId": "UNSELECTED",
+          "supplier": "UNSELECTED",
+          "supplierId": "UNSELECTED",
+          "customAttributes": {
+            "Spec_ID": "C01",
+            "Value": "100nF",
+            "Tolerance": "10%",
+            "Voltage Rating": ">=25V",
+            "Temperature Coefficient": "X7R preferred",
+            "Datasheet": "",
+            "Description": "Generic capacitor; MPN deferred",
+            "JLCPCB Part Class": "",
+            "LCSC Part Name": "",
+            "Procurement Status": "UNSELECTED",
+            "Design Role": "XU USB PHY pin31"
+          }
+        }
+      }
+    },
+    {
+      "id": "place-C115",
+      "action": "schematic.component.place",
+      "payload": {
+        "libraryUuid": "${LIB}",
+        "uuid": "96b39256cc3f4d80bd3b503deb4f3328",
+        "x": 270,
+        "y": 355,
+        "rotation": 90,
+        "designator": "C115"
+      },
+      "capture": {
+        "C115": "$.primitiveId"
+      }
+    },
+    {
+      "id": "spec-C115",
+      "action": "schematic.component.modify",
+      "payload": {
+        "primitiveId": "${C115}",
+        "patch": {
+          "name": "100nF",
+          "manufacturer": "UNSELECTED",
+          "manufacturerId": "UNSELECTED",
+          "supplier": "UNSELECTED",
+          "supplierId": "UNSELECTED",
+          "customAttributes": {
+            "Spec_ID": "C01",
+            "Value": "100nF",
+            "Tolerance": "10%",
+            "Voltage Rating": ">=25V",
+            "Temperature Coefficient": "X7R preferred",
+            "Datasheet": "",
+            "Description": "Generic capacitor; MPN deferred",
+            "JLCPCB Part Class": "",
+            "LCSC Part Name": "",
+            "Procurement Status": "UNSELECTED",
+            "Design Role": "XU USB PHY pin30"
+          }
+        }
+      }
+    },
+    {
+      "id": "place-C116",
+      "action": "schematic.component.place",
+      "payload": {
+        "libraryUuid": "${LIB}",
+        "uuid": "8c1f4a9e9d204b148b36ce719c891bd1",
+        "x": 370,
+        "y": 355,
+        "rotation": 90,
+        "designator": "C116"
+      },
+      "capture": {
+        "C116": "$.primitiveId"
+      }
+    },
+    {
+      "id": "spec-C116",
+      "action": "schematic.component.modify",
+      "payload": {
+        "primitiveId": "${C116}",
+        "patch": {
+          "name": "1uF",
+          "manufacturer": "UNSELECTED",
+          "manufacturerId": "UNSELECTED",
+          "supplier": "UNSELECTED",
+          "supplierId": "UNSELECTED",
+          "customAttributes": {
+            "Spec_ID": "C02",
+            "Value": "1uF",
+            "Tolerance": "10%",
+            "Voltage Rating": ">=16V",
+            "Temperature Coefficient": "X7R preferred",
+            "Datasheet": "",
+            "Description": "Generic capacitor; MPN deferred",
+            "JLCPCB Part Class": "",
+            "LCSC Part Name": "",
+            "Procurement Status": "UNSELECTED",
+            "Design Role": "XU PLL pin22"
+          }
+        }
+      }
+    },
+    {
+      "id": "place-C117",
+      "action": "schematic.component.place",
+      "payload": {
+        "libraryUuid": "${LIB}",
+        "uuid": "7e420c672c864e52b016f9ca4bfdb5ec",
+        "x": 110,
+        "y": 245,
+        "rotation": 90,
+        "designator": "C117"
+      },
+      "capture": {
+        "C117": "$.primitiveId"
+      }
+    },
+    {
+      "id": "spec-C117",
+      "action": "schematic.component.modify",
+      "payload": {
+        "primitiveId": "${C117}",
+        "patch": {
+          "name": "10uF",
+          "manufacturer": "UNSELECTED",
+          "manufacturerId": "UNSELECTED",
+          "supplier": "UNSELECTED",
+          "supplierId": "UNSELECTED",
+          "customAttributes": {
+            "Spec_ID": "C05",
+            "Value": "10uF",
+            "Tolerance": "10%",
+            "Voltage Rating": ">=16V",
+            "Temperature Coefficient": "X7R preferred",
+            "Datasheet": "",
+            "Description": "Generic capacitor; MPN deferred",
+            "JLCPCB Part Class": "",
+            "LCSC Part Name": "",
+            "Procurement Status": "UNSELECTED",
+            "Design Role": "XU core bulk; effective >=10uF"
+          }
+        }
+      }
+    },
+    {
+      "id": "place-C118",
+      "action": "schematic.component.place",
+      "payload": {
+        "libraryUuid": "${LIB}",
+        "uuid": "7e420c672c864e52b016f9ca4bfdb5ec",
+        "x": 250,
+        "y": 245,
+        "rotation": 90,
+        "designator": "C118"
+      },
+      "capture": {
+        "C118": "$.primitiveId"
+      }
+    },
+    {
+      "id": "spec-C118",
+      "action": "schematic.component.modify",
+      "payload": {
+        "primitiveId": "${C118}",
+        "patch": {
+          "name": "10uF",
+          "manufacturer": "UNSELECTED",
+          "manufacturerId": "UNSELECTED",
+          "supplier": "UNSELECTED",
+          "supplierId": "UNSELECTED",
+          "customAttributes": {
+            "Spec_ID": "C05",
+            "Value": "10uF",
+            "Tolerance": "10%",
+            "Voltage Rating": ">=16V",
+            "Temperature Coefficient": "X7R preferred",
+            "Datasheet": "",
+            "Description": "Generic capacitor; MPN deferred",
+            "JLCPCB Part Class": "",
+            "LCSC Part Name": "",
+            "Procurement Status": "UNSELECTED",
+            "Design Role": "XU IO bulk; effective >=10uF"
+          }
+        }
+      }
+    },
+    {
+      "id": "save-C118",
+      "action": "schematic.save",
+      "checkpoint": true
+    }
+  ]
+}

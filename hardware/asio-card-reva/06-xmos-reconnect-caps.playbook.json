@@ -1,0 +1,461 @@
+{
+  "version": 1,
+  "meta": {
+    "name": "xmos-corrected-decoupling-wires",
+    "project": "ASIO_CARD_USB5V_REV_A",
+    "doc": "XMOS_CORE"
+  },
+  "defaults": {
+    "timeoutSec": 60,
+    "retry": 0
+  },
+  "steps": [
+    {
+      "id": "connect-C101-1",
+      "action": "schematic.power.connect_pin",
+      "payload": {
+        "pinX": 80,
+        "pinY": 665,
+        "kind": "ground",
+        "net": "GND",
+        "direction": "down",
+        "offset": 15
+      }
+    },
+    {
+      "id": "connect-C101-2",
+      "action": "schematic.power.connect_pin",
+      "payload": {
+        "pinX": 80,
+        "pinY": 705,
+        "kind": "power",
+        "net": "V0V9",
+        "direction": "up",
+        "offset": 15
+      }
+    },
+    {
+      "id": "connect-C102-1",
+      "action": "schematic.power.connect_pin",
+      "payload": {
+        "pinX": 140,
+        "pinY": 665,
+        "kind": "ground",
+        "net": "GND",
+        "direction": "down",
+        "offset": 15
+      }
+    },
+    {
+      "id": "connect-C102-2",
+      "action": "schematic.power.connect_pin",
+      "payload": {
+        "pinX": 140,
+        "pinY": 705,
+        "kind": "power",
+        "net": "V0V9",
+        "direction": "up",
+        "offset": 15
+      }
+    },
+    {
+      "id": "connect-C103-1",
+      "action": "schematic.power.connect_pin",
+      "payload": {
+        "pinX": 200,
+        "pinY": 665,
+        "kind": "ground",
+        "net": "GND",
+        "direction": "down",
+        "offset": 15
+      }
+    },
+    {
+      "id": "connect-C103-2",
+      "action": "schematic.power.connect_pin",
+      "payload": {
+        "pinX": 200,
+        "pinY": 705,
+        "kind": "power",
+        "net": "V0V9",
+        "direction": "up",
+        "offset": 15
+      }
+    },
+    {
+      "id": "connect-C104-1",
+      "action": "schematic.power.connect_pin",
+      "payload": {
+        "pinX": 260,
+        "pinY": 665,
+        "kind": "ground",
+        "net": "GND",
+        "direction": "down",
+        "offset": 15
+      }
+    },
+    {
+      "id": "connect-C104-2",
+      "action": "schematic.power.connect_pin",
+      "payload": {
+        "pinX": 260,
+        "pinY": 705,
+        "kind": "power",
+        "net": "V0V9",
+        "direction": "up",
+        "offset": 15
+      }
+    },
+    {
+      "id": "connect-C105-1",
+      "action": "schematic.power.connect_pin",
+      "payload": {
+        "pinX": 80,
+        "pinY": 545,
+        "kind": "ground",
+        "net": "GND",
+        "direction": "down",
+        "offset": 15
+      }
+    },
+    {
+      "id": "connect-C105-2",
+      "action": "schematic.power.connect_pin",
+      "payload": {
+        "pinX": 80,
+        "pinY": 585,
+        "kind": "power",
+        "net": "V0V9",
+        "direction": "up",
+        "offset": 15
+      }
+    },
+    {
+      "id": "connect-C106-1",
+      "action": "schematic.power.connect_pin",
+      "payload": {
+        "pinX": 140,
+        "pinY": 545,
+        "kind": "ground",
+        "net": "GND",
+        "direction": "down",
+        "offset": 15
+      }
+    },
+    {
+      "id": "connect-C106-2",
+      "action": "schematic.power.connect_pin",
+      "payload": {
+        "pinX": 140,
+        "pinY": 585,
+        "kind": "power",
+        "net": "V0V9",
+        "direction": "up",
+        "offset": 15
+      }
+    },
+    {
+      "id": "save-C106",
+      "action": "schematic.save",
+      "checkpoint": true
+    },
+    {
+      "id": "connect-C107-1",
+      "action": "schematic.power.connect_pin",
+      "payload": {
+        "pinX": 200,
+        "pinY": 545,
+        "kind": "ground",
+        "net": "GND",
+        "direction": "down",
+        "offset": 15
+      }
+    },
+    {
+      "id": "connect-C107-2",
+      "action": "schematic.power.connect_pin",
+      "payload": {
+        "pinX": 200,
+        "pinY": 585,
+        "kind": "power",
+        "net": "V0V9",
+        "direction": "up",
+        "offset": 15
+      }
+    },
+    {
+      "id": "connect-C108-1",
+      "action": "schematic.power.connect_pin",
+      "payload": {
+        "pinX": 260,
+        "pinY": 545,
+        "kind": "ground",
+        "net": "GND",
+        "direction": "down",
+        "offset": 15
+      }
+    },
+    {
+      "id": "connect-C108-2",
+      "action": "schematic.power.connect_pin",
+      "payload": {
+        "pinX": 260,
+        "pinY": 585,
+        "kind": "power",
+        "net": "V0V9",
+        "direction": "up",
+        "offset": 15
+      }
+    },
+    {
+      "id": "connect-C109-1",
+      "action": "schematic.power.connect_pin",
+      "payload": {
+        "pinX": 80,
+        "pinY": 425,
+        "kind": "ground",
+        "net": "GND",
+        "direction": "down",
+        "offset": 15
+      }
+    },
+    {
+      "id": "connect-C109-2",
+      "action": "schematic.power.connect_pin",
+      "payload": {
+        "pinX": 80,
+        "pinY": 465,
+        "kind": "power",
+        "net": "V1V8",
+        "direction": "up",
+        "offset": 15
+      }
+    },
+    {
+      "id": "connect-C110-1",
+      "action": "schematic.power.connect_pin",
+      "payload": {
+        "pinX": 140,
+        "pinY": 425,
+        "kind": "ground",
+        "net": "GND",
+        "direction": "down",
+        "offset": 15
+      }
+    },
+    {
+      "id": "connect-C110-2",
+      "action": "schematic.power.connect_pin",
+      "payload": {
+        "pinX": 140,
+        "pinY": 465,
+        "kind": "power",
+        "net": "V1V8",
+        "direction": "up",
+        "offset": 15
+      }
+    },
+    {
+      "id": "connect-C111-1",
+      "action": "schematic.power.connect_pin",
+      "payload": {
+        "pinX": 200,
+        "pinY": 425,
+        "kind": "ground",
+        "net": "GND",
+        "direction": "down",
+        "offset": 15
+      }
+    },
+    {
+      "id": "connect-C111-2",
+      "action": "schematic.power.connect_pin",
+      "payload": {
+        "pinX": 200,
+        "pinY": 465,
+        "kind": "power",
+        "net": "V1V8",
+        "direction": "up",
+        "offset": 15
+      }
+    },
+    {
+      "id": "connect-C112-1",
+      "action": "schematic.power.connect_pin",
+      "payload": {
+        "pinX": 260,
+        "pinY": 425,
+        "kind": "ground",
+        "net": "GND",
+        "direction": "down",
+        "offset": 15
+      }
+    },
+    {
+      "id": "connect-C112-2",
+      "action": "schematic.power.connect_pin",
+      "payload": {
+        "pinX": 260,
+        "pinY": 465,
+        "kind": "power",
+        "net": "V1V8",
+        "direction": "up",
+        "offset": 15
+      }
+    },
+    {
+      "id": "save-C112",
+      "action": "schematic.save",
+      "checkpoint": true
+    },
+    {
+      "id": "connect-C113-1",
+      "action": "schematic.power.connect_pin",
+      "payload": {
+        "pinX": 80,
+        "pinY": 305,
+        "kind": "ground",
+        "net": "GND",
+        "direction": "down",
+        "offset": 15
+      }
+    },
+    {
+      "id": "connect-C113-2",
+      "action": "schematic.power.connect_pin",
+      "payload": {
+        "pinX": 80,
+        "pinY": 345,
+        "kind": "power",
+        "net": "V1V8",
+        "direction": "up",
+        "offset": 15
+      }
+    },
+    {
+      "id": "connect-C114-1",
+      "action": "schematic.power.connect_pin",
+      "payload": {
+        "pinX": 140,
+        "pinY": 305,
+        "kind": "ground",
+        "net": "GND",
+        "direction": "down",
+        "offset": 15
+      }
+    },
+    {
+      "id": "connect-C114-2",
+      "action": "schematic.power.connect_pin",
+      "payload": {
+        "pinX": 140,
+        "pinY": 345,
+        "kind": "power",
+        "net": "V1V8_USB",
+        "direction": "up",
+        "offset": 15
+      }
+    },
+    {
+      "id": "connect-C115-1",
+      "action": "schematic.power.connect_pin",
+      "payload": {
+        "pinX": 200,
+        "pinY": 305,
+        "kind": "ground",
+        "net": "GND",
+        "direction": "down",
+        "offset": 15
+      }
+    },
+    {
+      "id": "connect-C115-2",
+      "action": "schematic.power.connect_pin",
+      "payload": {
+        "pinX": 200,
+        "pinY": 345,
+        "kind": "power",
+        "net": "V3V3_USB",
+        "direction": "up",
+        "offset": 15
+      }
+    },
+    {
+      "id": "connect-C116-2",
+      "action": "schematic.power.connect_pin",
+      "payload": {
+        "pinX": 260,
+        "pinY": 345,
+        "kind": "power",
+        "net": "V0V9_PLL",
+        "direction": "up",
+        "offset": 15
+      }
+    },
+    {
+      "id": "connect-C116-1",
+      "action": "schematic.power.connect_pin",
+      "payload": {
+        "pinX": 260,
+        "pinY": 305,
+        "kind": "ground",
+        "net": "GND",
+        "direction": "down",
+        "offset": 15
+      }
+    },
+    {
+      "id": "connect-C117-1",
+      "action": "schematic.power.connect_pin",
+      "payload": {
+        "pinX": 80,
+        "pinY": 190,
+        "kind": "ground",
+        "net": "GND",
+        "direction": "down",
+        "offset": 15
+      }
+    },
+    {
+      "id": "connect-C117-2",
+      "action": "schematic.power.connect_pin",
+      "payload": {
+        "pinX": 80,
+        "pinY": 220,
+        "kind": "power",
+        "net": "V0V9",
+        "direction": "up",
+        "offset": 15
+      }
+    },
+    {
+      "id": "connect-C118-1",
+      "action": "schematic.power.connect_pin",
+      "payload": {
+        "pinX": 140,
+        "pinY": 190,
+        "kind": "ground",
+        "net": "GND",
+        "direction": "down",
+        "offset": 15
+      }
+    },
+    {
+      "id": "connect-C118-2",
+      "action": "schematic.power.connect_pin",
+      "payload": {
+        "pinX": 140,
+        "pinY": 220,
+        "kind": "power",
+        "net": "V1V8",
+        "direction": "up",
+        "offset": 15
+      }
+    },
+    {
+      "id": "save-C118",
+      "action": "schematic.save",
+      "checkpoint": true
+    }
+  ]
+}

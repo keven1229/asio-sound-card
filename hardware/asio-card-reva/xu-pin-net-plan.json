@@ -1,0 +1,2068 @@
+{
+  "schema_version": 1,
+  "created_date": "2026-09-16",
+  "scope": "Read-only XU316 firmware-to-package pin audit; schematic functional plan; no firmware or EDA mutation",
+  "package": "XU316-1024-QF60A-C24",
+  "pin_number_basis": "physical leads1-60 plus underside paddles61-65; top-view orientation per package figure",
+  "pcb_and_firmware_approved": false,
+  "source_pdf": {
+    "path": "docs/datasheets/XU316-1024-QF60A.pdf",
+    "document": "XM014034B",
+    "cover_date": "2021-06-25",
+    "page_numbers": "physical,1-based",
+    "sha256": "B36C0A754BC8D9D203037241367F36772D441F6F44208C4AB6222705BA1F966B"
+  },
+  "source_files": [
+    {
+      "path": "firmware/sw_usb_audio/app_usb_aud_asiocard/src/core/asiocard.xn",
+      "sha256": "7C85EE119CFB0A17EA4FAE0B45C40C4631E7241C2215C3AF016B8028860E60FA"
+    },
+    {
+      "path": "firmware/sw_usb_audio/app_usb_aud_asiocard/src/core/xua_conf.h",
+      "sha256": "5DF4054079A358E8999920015CA7C739EE028F99A14B31BA3333B328DCCCCDF9"
+    },
+    {
+      "path": "firmware/sw_usb_audio/app_usb_aud_asiocard/src/core/xua_conf_tasks.h",
+      "sha256": "02C7DB7E617AACEAB4BF6E4DC78A0E8E00B969CF6FC738C2BA38B4207D47DDD3"
+    },
+    {
+      "path": "firmware/lib_sw_pll/lib_sw_pll/src/sw_pll_common.c",
+      "sha256": "D253F018CC619E4DACD2F61FEF4866EEE3D23CE2C6A448134B846F90062E33CE"
+    }
+  ],
+  "firmware_configuration": {
+    "xud_tile": 0,
+    "audio_tile": 1,
+    "control_uart_tile": 0,
+    "debug_uart_tile": 1,
+    "system_clock_MHz": 600,
+    "reference_clock_MHz": 100,
+    "crystal_MHz": 24,
+    "usb_channels_in": 6,
+    "usb_channels_out": 6,
+    "physical_i2s_adc_channels": 2,
+    "physical_i2s_dac_channels": 2,
+    "codec_master": 0,
+    "uart_baud": 921600,
+    "spdif_enabled": false,
+    "adat_enabled": false,
+    "midi_enabled": false
+  },
+  "pins": [
+    {
+      "pin": 1,
+      "signal": "X0D05",
+      "tile": 0,
+      "power_domain": "VDDIOL",
+      "nominal_io_voltage_V": 1.8,
+      "available_functions": [
+        "4B[1]",
+        "8A[3]",
+        "16A[3]",
+        "32A[23]"
+      ],
+      "port": "4B",
+      "port_bit": 1,
+      "firmware_symbol": "PORT_SQI_SIO",
+      "net": "QSPI_IO1_1V8",
+      "direction": "bidirectional",
+      "status": "boot_and_flash",
+      "port_counter_overlap": null,
+      "notes": "Flash functional pin2; boot sample X0D05=0.",
+      "source_pdf_pages": [
+        7,
+        8,
+        9,
+        12
+      ]
+    },
+    {
+      "pin": 2,
+      "signal": "X0D07",
+      "tile": 0,
+      "power_domain": "VDDIOL",
+      "nominal_io_voltage_V": 1.8,
+      "available_functions": [
+        "4B[3]",
+        "8A[5]",
+        "16A[5]",
+        "32A[25]"
+      ],
+      "port": "4B",
+      "port_bit": 3,
+      "firmware_symbol": "PORT_SQI_SIO",
+      "net": "QSPI_IO3_1V8",
+      "direction": "bidirectional",
+      "status": "boot_and_flash",
+      "port_counter_overlap": null,
+      "notes": "Flash functional pin7 IO3/HOLD#/RESET#; exact function and pulls depend on selected Flash.",
+      "source_pdf_pages": [
+        7,
+        8,
+        9,
+        12
+      ]
+    },
+    {
+      "pin": 3,
+      "signal": "X0D01",
+      "tile": 0,
+      "power_domain": "VDDIOL",
+      "nominal_io_voltage_V": 1.8,
+      "available_functions": [
+        "1B[0]"
+      ],
+      "port": "1B",
+      "port_bit": 0,
+      "firmware_symbol": "PORT_SQI_CS",
+      "net": "QSPI_CS_N_1V8",
+      "direction": "output",
+      "status": "boot_and_flash",
+      "port_counter_overlap": null,
+      "notes": "Flash functional pin1; pull up to V1V8 so Flash stays deselected during reset.",
+      "source_pdf_pages": [
+        7,
+        8,
+        9,
+        12
+      ]
+    },
+    {
+      "pin": 4,
+      "signal": "VDD",
+      "tile": null,
+      "port": null,
+      "port_bit": null,
+      "firmware_symbol": null,
+      "net": "V0V9",
+      "direction": "power_input",
+      "power_domain": "VDD",
+      "status": "required",
+      "is_bottom_pad": false,
+      "notes": "Connect every VDD pin/paddle to0.9V; bottom61-64 are not ground.",
+      "source_pdf_pages": [
+        6,
+        27,
+        31
+      ]
+    },
+    {
+      "pin": 5,
+      "signal": "X0D10",
+      "tile": 0,
+      "power_domain": "VDDIOL",
+      "nominal_io_voltage_V": 1.8,
+      "available_functions": [
+        "1C[0]"
+      ],
+      "port": "1C",
+      "port_bit": 0,
+      "firmware_symbol": "PORT_SQI_SCLK",
+      "net": "QSPI_SCLK_1V8",
+      "direction": "output",
+      "status": "boot_and_flash",
+      "port_counter_overlap": null,
+      "notes": "Flash functional pin6; boot mode0/0.",
+      "source_pdf_pages": [
+        7,
+        8,
+        9,
+        12
+      ]
+    },
+    {
+      "pin": 6,
+      "signal": "X0D00",
+      "tile": 0,
+      "power_domain": "VDDIOL",
+      "nominal_io_voltage_V": 1.8,
+      "available_functions": [
+        "1A[0]"
+      ],
+      "port": "1A",
+      "port_bit": 0,
+      "firmware_symbol": "PORT_VBUS_SENSE",
+      "net": "VBUS_SENSE_1V8",
+      "direction": "input",
+      "status": "active",
+      "port_counter_overlap": null,
+      "notes": "From true upstream USB VBUS via 220k upper/100k lower divider candidate; do not use a rail held up by external power.",
+      "source_pdf_pages": [
+        7,
+        8,
+        9,
+        12
+      ]
+    },
+    {
+      "pin": 7,
+      "signal": "X0D11",
+      "tile": 0,
+      "power_domain": "VDDIOL",
+      "nominal_io_voltage_V": 1.8,
+      "available_functions": [
+        "1D[0]"
+      ],
+      "port": null,
+      "port_bit": null,
+      "firmware_symbol": null,
+      "net": null,
+      "direction": "unused_gpio",
+      "status": "unassigned",
+      "port_counter_overlap": null,
+      "notes": "Leave unconnected or reserve a testpoint; not a package NC. Do not connect to3.3V or ground merely to fill the schematic.",
+      "source_pdf_pages": [
+        7,
+        8,
+        9,
+        12
+      ]
+    },
+    {
+      "pin": 8,
+      "signal": "VDDIOL",
+      "tile": null,
+      "port": null,
+      "port_bit": null,
+      "firmware_symbol": null,
+      "net": "V1V8",
+      "direction": "power_input",
+      "power_domain": "VDDIOL",
+      "status": "required",
+      "notes": "All QF60A GPIO domains are1.8V only; pin26 is present on package drawing although omitted from abbreviated power-pin list.",
+      "source_pdf_pages": [
+        6,
+        7,
+        9,
+        27,
+        31
+      ]
+    },
+    {
+      "pin": 9,
+      "signal": "X1D00",
+      "tile": 1,
+      "power_domain": "VDDIOL",
+      "nominal_io_voltage_V": 1.8,
+      "available_functions": [
+        "1A[0]"
+      ],
+      "port": "1A",
+      "port_bit": 0,
+      "firmware_symbol": "PORT_I2S_DAC0",
+      "net": "DAC_DIN_XU18",
+      "direction": "output",
+      "status": "active",
+      "port_counter_overlap": null,
+      "notes": "1.8V -> 3.3V fixed-direction translator -> DAC data input. Preserve legacy signal role DAC_DIN.",
+      "source_pdf_pages": [
+        7,
+        8,
+        9,
+        12
+      ]
+    },
+    {
+      "pin": 10,
+      "signal": "X1D01",
+      "tile": 1,
+      "power_domain": "VDDIOL",
+      "nominal_io_voltage_V": 1.8,
+      "available_functions": [
+        "1B[0]"
+      ],
+      "port": "1B",
+      "port_bit": 0,
+      "firmware_symbol": "PORT_I2S_LRCLK",
+      "net": "I2S_LRCLK_XU18",
+      "direction": "output",
+      "status": "active",
+      "port_counter_overlap": null,
+      "notes": "Shared frame clock source for ADC and DAC; level-shift and fan out. Legacy ADC_LRCK/DAC_LRCK are branches of one source.",
+      "source_pdf_pages": [
+        7,
+        8,
+        9,
+        12
+      ]
+    },
+    {
+      "pin": 11,
+      "signal": "X1D09",
+      "tile": 1,
+      "power_domain": "VDDIOL",
+      "nominal_io_voltage_V": 1.8,
+      "available_functions": [
+        "4A[3]",
+        "8A[7]",
+        "16A[7]",
+        "32A[27]"
+      ],
+      "port": null,
+      "port_bit": null,
+      "firmware_symbol": null,
+      "net": null,
+      "direction": "unused_gpio",
+      "status": "unassigned",
+      "port_counter_overlap": null,
+      "notes": "Leave unconnected or reserve a testpoint; not a package NC. Do not connect to3.3V or ground merely to fill the schematic.",
+      "source_pdf_pages": [
+        7,
+        8,
+        9,
+        12
+      ]
+    },
+    {
+      "pin": 12,
+      "signal": "VDD",
+      "tile": null,
+      "port": null,
+      "port_bit": null,
+      "firmware_symbol": null,
+      "net": "V0V9",
+      "direction": "power_input",
+      "power_domain": "VDD",
+      "status": "required",
+      "is_bottom_pad": false,
+      "notes": "Connect every VDD pin/paddle to0.9V; bottom61-64 are not ground.",
+      "source_pdf_pages": [
+        6,
+        27,
+        31
+      ]
+    },
+    {
+      "pin": 13,
+      "signal": "X1D10",
+      "tile": 1,
+      "power_domain": "VDDIOL",
+      "nominal_io_voltage_V": 1.8,
+      "available_functions": [
+        "1C[0]"
+      ],
+      "port": "1C",
+      "port_bit": 0,
+      "firmware_symbol": "PORT_I2S_BCLK",
+      "net": "I2S_BCLK_XU18",
+      "direction": "output",
+      "status": "active",
+      "port_counter_overlap": null,
+      "notes": "Shared bit clock source for ADC and DAC; level-shift and fan out. Legacy ADC_BCLK/DAC_BCLK are branches of one source.",
+      "source_pdf_pages": [
+        7,
+        8,
+        9,
+        12
+      ]
+    },
+    {
+      "pin": 14,
+      "signal": "X1D11",
+      "tile": 1,
+      "power_domain": "VDDIOL",
+      "nominal_io_voltage_V": 1.8,
+      "available_functions": [
+        "1D[0]",
+        "APP_PLL_CLK_OUT"
+      ],
+      "port": "1D",
+      "port_bit": 0,
+      "firmware_symbol": "PORT_MCLK_IN",
+      "net": "XU_MCLK_1V8",
+      "direction": "app_pll_output_and_internal_port_input",
+      "status": "active_special_function",
+      "port_counter_overlap": null,
+      "notes": "AppPLL fixed output pin; tile1 port1D internally reads same clock. Wire externally to XU pin47 and to ADC MCLK level translator. No second tile1 return pin.",
+      "source_pdf_pages": [
+        7,
+        8,
+        9,
+        12
+      ]
+    },
+    {
+      "pin": 15,
+      "signal": "XOUT",
+      "tile": null,
+      "port": null,
+      "port_bit": null,
+      "firmware_symbol": null,
+      "net": "XU_XOUT",
+      "direction": "oscillator_output",
+      "power_domain": "VDDIOB18",
+      "status": "required",
+      "notes": "24MHz fundamental crystal network; not a GPIO; crystal-feedback/damping/load components must follow oscillator design.",
+      "source_pdf_pages": [
+        6,
+        8,
+        16,
+        27,
+        31,
+        77
+      ]
+    },
+    {
+      "pin": 16,
+      "signal": "XIN",
+      "tile": null,
+      "port": null,
+      "port_bit": null,
+      "firmware_symbol": null,
+      "net": "XU_XIN",
+      "direction": "oscillator_input",
+      "power_domain": "VDDIOB18",
+      "status": "required",
+      "notes": "24MHz crystal with XOUT, or external1.8V clock; do not attach3.3V oscillator directly.",
+      "source_pdf_pages": [
+        6,
+        8,
+        16,
+        27,
+        31,
+        77
+      ]
+    },
+    {
+      "pin": 17,
+      "signal": "VDDIOB18",
+      "tile": null,
+      "port": null,
+      "port_bit": null,
+      "firmware_symbol": null,
+      "net": "V1V8",
+      "direction": "power_input",
+      "power_domain": "VDDIOB18",
+      "status": "required",
+      "notes": "All QF60A GPIO domains are1.8V only; pin26 is present on package drawing although omitted from abbreviated power-pin list.",
+      "source_pdf_pages": [
+        6,
+        7,
+        9,
+        27,
+        31
+      ]
+    },
+    {
+      "pin": 18,
+      "signal": "TDI",
+      "tile": null,
+      "port": null,
+      "port_bit": null,
+      "firmware_symbol": null,
+      "net": "JTAG_TDI_1V8",
+      "direction": "input",
+      "power_domain": "VDDIOB18",
+      "status": "required",
+      "notes": "xSYS2 JTAG pin8; internal pull-up.",
+      "source_pdf_pages": [
+        6,
+        8,
+        16,
+        27,
+        31,
+        77
+      ]
+    },
+    {
+      "pin": 19,
+      "signal": "VDD",
+      "tile": null,
+      "port": null,
+      "port_bit": null,
+      "firmware_symbol": null,
+      "net": "V0V9",
+      "direction": "power_input",
+      "power_domain": "VDD",
+      "status": "required",
+      "is_bottom_pad": false,
+      "notes": "Connect every VDD pin/paddle to0.9V; bottom61-64 are not ground.",
+      "source_pdf_pages": [
+        6,
+        27,
+        31
+      ]
+    },
+    {
+      "pin": 20,
+      "signal": "TDO",
+      "tile": null,
+      "port": null,
+      "port_bit": null,
+      "firmware_symbol": null,
+      "net": "JTAG_TDO_1V8",
+      "direction": "output",
+      "power_domain": "VDDIOB18",
+      "status": "required",
+      "notes": "xSYS2 JTAG pin6.",
+      "source_pdf_pages": [
+        6,
+        8,
+        16,
+        27,
+        31,
+        77
+      ]
+    },
+    {
+      "pin": 21,
+      "signal": "RST_N",
+      "tile": null,
+      "port": null,
+      "port_bit": null,
+      "firmware_symbol": null,
+      "net": "XU_RST_N_1V8",
+      "direction": "input_active_low",
+      "power_domain": "VDDIOB18",
+      "status": "required",
+      "notes": "xSYS2 JTAG pin10; internal pull-up/Schmitt. External reset supervisor/driver must be1.8V-safe and hold reset until required supplies and Flash are ready.",
+      "source_pdf_pages": [
+        6,
+        8,
+        16,
+        27,
+        31,
+        77
+      ]
+    },
+    {
+      "pin": 22,
+      "signal": "PLL_AVDD",
+      "tile": null,
+      "port": null,
+      "port_bit": null,
+      "firmware_symbol": null,
+      "net": "V0V9_PLL",
+      "direction": "power_input",
+      "power_domain": "PLL_AVDD",
+      "status": "required",
+      "notes": "Filtered0.9V branch; local1uF plus ferrite example600ohm@100MHz,DCR<1ohm; account for DC drop.",
+      "source_pdf_pages": [
+        6,
+        8,
+        16,
+        27,
+        31,
+        77
+      ]
+    },
+    {
+      "pin": 23,
+      "signal": "TMS",
+      "tile": null,
+      "port": null,
+      "port_bit": null,
+      "firmware_symbol": null,
+      "net": "JTAG_TMS_1V8",
+      "direction": "input",
+      "power_domain": "VDDIOB18",
+      "status": "required",
+      "notes": "xSYS2 JTAG pin2; internal pull-up.",
+      "source_pdf_pages": [
+        6,
+        8,
+        16,
+        27,
+        31,
+        77
+      ]
+    },
+    {
+      "pin": 24,
+      "signal": "TCK",
+      "tile": null,
+      "port": null,
+      "port_bit": null,
+      "firmware_symbol": null,
+      "net": "JTAG_TCK_1V8",
+      "direction": "input",
+      "power_domain": "VDDIOB18",
+      "status": "required",
+      "notes": "xSYS2 JTAG pin4; internal pull-down/Schmitt.",
+      "source_pdf_pages": [
+        6,
+        8,
+        16,
+        27,
+        31,
+        77
+      ]
+    },
+    {
+      "pin": 25,
+      "signal": "NC",
+      "tile": null,
+      "port": null,
+      "port_bit": null,
+      "firmware_symbol": null,
+      "net": null,
+      "direction": "no_connect",
+      "power_domain": null,
+      "status": "must_be_unconnected",
+      "notes": "True package NC: do not connect to any net/testpoint/ground.",
+      "source_pdf_pages": [
+        6,
+        8,
+        16,
+        27,
+        31,
+        77
+      ]
+    },
+    {
+      "pin": 26,
+      "signal": "VDDIOB18",
+      "tile": null,
+      "port": null,
+      "port_bit": null,
+      "firmware_symbol": null,
+      "net": "V1V8",
+      "direction": "power_input",
+      "power_domain": "VDDIOB18",
+      "status": "required",
+      "notes": "All QF60A GPIO domains are1.8V only; pin26 is present on package drawing although omitted from abbreviated power-pin list.",
+      "source_pdf_pages": [
+        6,
+        7,
+        9,
+        27,
+        31
+      ]
+    },
+    {
+      "pin": 27,
+      "signal": "VDD",
+      "tile": null,
+      "port": null,
+      "port_bit": null,
+      "firmware_symbol": null,
+      "net": "V0V9",
+      "direction": "power_input",
+      "power_domain": "VDD",
+      "status": "required",
+      "is_bottom_pad": false,
+      "notes": "Connect every VDD pin/paddle to0.9V; bottom61-64 are not ground.",
+      "source_pdf_pages": [
+        6,
+        27,
+        31
+      ]
+    },
+    {
+      "pin": 28,
+      "signal": "USB_DM",
+      "tile": null,
+      "port": null,
+      "port_bit": null,
+      "firmware_symbol": null,
+      "net": "USB_HUB1_DM",
+      "direction": "usb_bidirectional",
+      "power_domain": "USB_PHY",
+      "status": "required",
+      "notes": "Dedicated USB2.0 PHY pin, not1.8V GPIO. Route from hub downstream1 D-.",
+      "source_pdf_pages": [
+        6,
+        9,
+        25,
+        27,
+        31
+      ]
+    },
+    {
+      "pin": 29,
+      "signal": "USB_DP",
+      "tile": null,
+      "port": null,
+      "port_bit": null,
+      "firmware_symbol": null,
+      "net": "USB_HUB1_DP",
+      "direction": "usb_bidirectional",
+      "power_domain": "USB_PHY",
+      "status": "required",
+      "notes": "Dedicated USB2.0 PHY pin, not1.8V GPIO. Route from hub downstream1 D+.",
+      "source_pdf_pages": [
+        6,
+        9,
+        25,
+        27,
+        31
+      ]
+    },
+    {
+      "pin": 30,
+      "signal": "USB_VDD33",
+      "tile": null,
+      "port": null,
+      "port_bit": null,
+      "firmware_symbol": null,
+      "net": "V3V3_USB",
+      "direction": "power_input",
+      "power_domain": "USB_VDD33",
+      "status": "required",
+      "notes": "USB PHY3.3V analog rail; required because USB is used.",
+      "source_pdf_pages": [
+        6,
+        9,
+        25,
+        27,
+        31
+      ]
+    },
+    {
+      "pin": 31,
+      "signal": "USB_VDD18",
+      "tile": null,
+      "port": null,
+      "port_bit": null,
+      "firmware_symbol": null,
+      "net": "V1V8_USB",
+      "direction": "power_input",
+      "power_domain": "USB_VDD18",
+      "status": "required",
+      "notes": "USB PHY1.8V analog rail; required because USB is used.",
+      "source_pdf_pages": [
+        6,
+        9,
+        25,
+        27,
+        31
+      ]
+    },
+    {
+      "pin": 32,
+      "signal": "X1D13",
+      "tile": 1,
+      "power_domain": "VDDIOR",
+      "nominal_io_voltage_V": 1.8,
+      "available_functions": [
+        "1F[0]"
+      ],
+      "port": "1F",
+      "port_bit": 0,
+      "firmware_symbol": "PORT_DEBUG_TX",
+      "net": "DEBUG_TX_XU18",
+      "direction": "output",
+      "status": "active",
+      "port_counter_overlap": null,
+      "notes": "dbg_console_tx on tile1; CH343P-B RX may connect directly only with its VIO set to1.8V.",
+      "source_pdf_pages": [
+        7,
+        8,
+        9,
+        12
+      ]
+    },
+    {
+      "pin": 33,
+      "signal": "X1D16",
+      "tile": 1,
+      "power_domain": "VDDIOR",
+      "nominal_io_voltage_V": 1.8,
+      "available_functions": [
+        "4D[0]",
+        "8B[2]",
+        "16A[10]",
+        "XL0_IN1"
+      ],
+      "port": "XL0_IN1",
+      "port_bit": null,
+      "firmware_symbol": null,
+      "net": "XSCOPE_IN1_1V8",
+      "direction": "input",
+      "status": "reserved_xscope",
+      "port_counter_overlap": null,
+      "notes": "Optional full xSYS2 header pin12. XN enables XL0 link; do not reuse underlying4D/8B pins.",
+      "source_pdf_pages": [
+        7,
+        8,
+        9,
+        12
+      ]
+    },
+    {
+      "pin": 34,
+      "signal": "VDD",
+      "tile": null,
+      "port": null,
+      "port_bit": null,
+      "firmware_symbol": null,
+      "net": "V0V9",
+      "direction": "power_input",
+      "power_domain": "VDD",
+      "status": "required",
+      "is_bottom_pad": false,
+      "notes": "Connect every VDD pin/paddle to0.9V; bottom61-64 are not ground.",
+      "source_pdf_pages": [
+        6,
+        27,
+        31
+      ]
+    },
+    {
+      "pin": 35,
+      "signal": "X1D17",
+      "tile": 1,
+      "power_domain": "VDDIOR",
+      "nominal_io_voltage_V": 1.8,
+      "available_functions": [
+        "4D[1]",
+        "8B[3]",
+        "16A[11]",
+        "XL0_IN0"
+      ],
+      "port": "XL0_IN0",
+      "port_bit": null,
+      "firmware_symbol": null,
+      "net": "XSCOPE_IN0_1V8",
+      "direction": "input",
+      "status": "reserved_xscope",
+      "port_counter_overlap": null,
+      "notes": "Optional full xSYS2 header pin14.",
+      "source_pdf_pages": [
+        7,
+        8,
+        9,
+        12
+      ]
+    },
+    {
+      "pin": 36,
+      "signal": "X1D18",
+      "tile": 1,
+      "power_domain": "VDDIOR",
+      "nominal_io_voltage_V": 1.8,
+      "available_functions": [
+        "4D[2]",
+        "8B[4]",
+        "16A[12]",
+        "XL0_OUT0"
+      ],
+      "port": "XL0_OUT0",
+      "port_bit": null,
+      "firmware_symbol": null,
+      "net": "XSCOPE_OUT0_1V8",
+      "direction": "output",
+      "status": "reserved_xscope",
+      "port_counter_overlap": null,
+      "notes": "Optional full xSYS2 header pin16 through43ohm near XU output.",
+      "source_pdf_pages": [
+        7,
+        8,
+        9,
+        12
+      ]
+    },
+    {
+      "pin": 37,
+      "signal": "X1D19",
+      "tile": 1,
+      "power_domain": "VDDIOR",
+      "nominal_io_voltage_V": 1.8,
+      "available_functions": [
+        "4D[3]",
+        "8B[5]",
+        "16A[13]",
+        "XL0_OUT1"
+      ],
+      "port": "XL0_OUT1",
+      "port_bit": null,
+      "firmware_symbol": null,
+      "net": "XSCOPE_OUT1_1V8",
+      "direction": "output",
+      "status": "reserved_xscope",
+      "port_counter_overlap": null,
+      "notes": "Optional full xSYS2 header pin18 through43ohm near XU output.",
+      "source_pdf_pages": [
+        7,
+        8,
+        9,
+        12
+      ]
+    },
+    {
+      "pin": 38,
+      "signal": "VDDIOR",
+      "tile": null,
+      "port": null,
+      "port_bit": null,
+      "firmware_symbol": null,
+      "net": "V1V8",
+      "direction": "power_input",
+      "power_domain": "VDDIOR",
+      "status": "required",
+      "notes": "All QF60A GPIO domains are1.8V only; pin26 is present on package drawing although omitted from abbreviated power-pin list.",
+      "source_pdf_pages": [
+        6,
+        7,
+        9,
+        27,
+        31
+      ]
+    },
+    {
+      "pin": 39,
+      "signal": "X1D22",
+      "tile": 1,
+      "power_domain": "VDDIOR",
+      "nominal_io_voltage_V": 1.8,
+      "available_functions": [
+        "1G[0]"
+      ],
+      "port": "1G",
+      "port_bit": 0,
+      "firmware_symbol": "PORT_DEBUG_RX",
+      "net": "DEBUG_RX_XU18",
+      "direction": "input_reserved_not_implemented",
+      "status": "reserved",
+      "port_counter_overlap": null,
+      "notes": "Defined in XN only; no input port declaration or CLI receiver exists in current app. Optional CH343P-B TX/testpoint; not claimed functional.",
+      "source_pdf_pages": [
+        7,
+        8,
+        9,
+        12
+      ]
+    },
+    {
+      "pin": 40,
+      "signal": "X0D29",
+      "tile": 0,
+      "power_domain": "VDDIOR",
+      "nominal_io_voltage_V": 1.8,
+      "available_functions": [
+        "4F[1]",
+        "8C[3]",
+        "16B[3]"
+      ],
+      "port": "16B",
+      "port_bit": 3,
+      "firmware_symbol": "PORT_MCLK_COUNT",
+      "net": null,
+      "direction": "unused_gpio",
+      "status": "unconnected_counter_resource_pin",
+      "port_counter_overlap": "16B[3]",
+      "notes": "16B is enabled as an input timestamp resource; no MCLK wire or data source goes to this pad. Leave unconnected/testpoint. Explicit weak-pull handling should be verified in firmware.",
+      "source_pdf_pages": [
+        7,
+        8,
+        9,
+        12
+      ]
+    },
+    {
+      "pin": 41,
+      "signal": "X0D35",
+      "tile": 0,
+      "power_domain": "VDDIOR",
+      "nominal_io_voltage_V": 1.8,
+      "available_functions": [
+        "1L[0]"
+      ],
+      "port": "1L",
+      "port_bit": 0,
+      "firmware_symbol": "PORT_CTRL_UART_TX",
+      "net": "CTRL_TX_XU18",
+      "direction": "output",
+      "status": "active",
+      "port_counter_overlap": null,
+      "notes": "tile0 uart_tx_streaming,921600-8N1; upshift to ESP32 RX.",
+      "source_pdf_pages": [
+        7,
+        8,
+        9,
+        12
+      ]
+    },
+    {
+      "pin": 42,
+      "signal": "VDD",
+      "tile": null,
+      "port": null,
+      "port_bit": null,
+      "firmware_symbol": null,
+      "net": "V0V9",
+      "direction": "power_input",
+      "power_domain": "VDD",
+      "status": "required",
+      "is_bottom_pad": false,
+      "notes": "Connect every VDD pin/paddle to0.9V; bottom61-64 are not ground.",
+      "source_pdf_pages": [
+        6,
+        27,
+        31
+      ]
+    },
+    {
+      "pin": 43,
+      "signal": "X0D36",
+      "tile": 0,
+      "power_domain": "VDDIOR",
+      "nominal_io_voltage_V": 1.8,
+      "available_functions": [
+        "1M[0]",
+        "8D[0]",
+        "16B[8]"
+      ],
+      "port": "1M",
+      "port_bit": 0,
+      "firmware_symbol": "PORT_CTRL_UART_RX",
+      "net": "CTRL_RX_XU18",
+      "direction": "input",
+      "status": "active",
+      "port_counter_overlap": "16B[8]",
+      "notes": "tile0 uart_rx_streaming,921600-8N1; downshift from ESP32 TX. Narrow1M takes priority over16B[8].",
+      "source_pdf_pages": [
+        7,
+        8,
+        9,
+        12
+      ]
+    },
+    {
+      "pin": 44,
+      "signal": "X0D37",
+      "tile": 0,
+      "power_domain": "VDDIOR",
+      "nominal_io_voltage_V": 1.8,
+      "available_functions": [
+        "1N[0]",
+        "8D[1]",
+        "16B[9]"
+      ],
+      "port": "16B",
+      "port_bit": 9,
+      "firmware_symbol": "PORT_MCLK_COUNT",
+      "net": null,
+      "direction": "unused_gpio",
+      "status": "unconnected_counter_resource_pin",
+      "port_counter_overlap": "16B[9]",
+      "notes": "16B is enabled as an input timestamp resource; no MCLK wire or data source goes to this pad. Leave unconnected/testpoint. Explicit weak-pull handling should be verified in firmware.",
+      "source_pdf_pages": [
+        7,
+        8,
+        9,
+        12
+      ]
+    },
+    {
+      "pin": 45,
+      "signal": "X0D38",
+      "tile": 0,
+      "power_domain": "VDDIOR",
+      "nominal_io_voltage_V": 1.8,
+      "available_functions": [
+        "1O[0]",
+        "8D[2]",
+        "16B[10]"
+      ],
+      "port": "16B",
+      "port_bit": 10,
+      "firmware_symbol": "PORT_MCLK_COUNT",
+      "net": null,
+      "direction": "unused_gpio",
+      "status": "unconnected_counter_resource_pin",
+      "port_counter_overlap": "16B[10]",
+      "notes": "16B is enabled as an input timestamp resource; no MCLK wire or data source goes to this pad. Leave unconnected/testpoint. Explicit weak-pull handling should be verified in firmware.",
+      "source_pdf_pages": [
+        7,
+        8,
+        9,
+        12
+      ]
+    },
+    {
+      "pin": 46,
+      "signal": "X0D40",
+      "tile": 0,
+      "power_domain": "VDDIOT",
+      "nominal_io_voltage_V": 1.8,
+      "available_functions": [
+        "8D[4]",
+        "16B[12]"
+      ],
+      "port": "16B",
+      "port_bit": 12,
+      "firmware_symbol": "PORT_MCLK_COUNT",
+      "net": null,
+      "direction": "unused_gpio",
+      "status": "unconnected_counter_resource_pin",
+      "port_counter_overlap": "16B[12]",
+      "notes": "16B is enabled as an input timestamp resource; no MCLK wire or data source goes to this pad. Leave unconnected/testpoint. Explicit weak-pull handling should be verified in firmware.",
+      "source_pdf_pages": [
+        7,
+        8,
+        9,
+        12
+      ]
+    },
+    {
+      "pin": 47,
+      "signal": "X0D39",
+      "tile": 0,
+      "power_domain": "VDDIOT",
+      "nominal_io_voltage_V": 1.8,
+      "available_functions": [
+        "1P[0]",
+        "8D[3]",
+        "16B[11]"
+      ],
+      "port": "1P",
+      "port_bit": 0,
+      "firmware_symbol": "PORT_MCLK_IN_USB",
+      "net": "XU_MCLK_1V8",
+      "direction": "input",
+      "status": "active",
+      "port_counter_overlap": "16B[11]",
+      "notes": "External PCB feedback from physical14 is mandatory with present dual-tile configuration. Powered by VDDIOT, not VDDIOR. Narrow1P takes priority over16B[11].",
+      "source_pdf_pages": [
+        7,
+        8,
+        9,
+        12
+      ]
+    },
+    {
+      "pin": 48,
+      "signal": "X0D42",
+      "tile": 0,
+      "power_domain": "VDDIOT",
+      "nominal_io_voltage_V": 1.8,
+      "available_functions": [
+        "8D[6]",
+        "16B[14]"
+      ],
+      "port": "16B",
+      "port_bit": 14,
+      "firmware_symbol": "PORT_MCLK_COUNT",
+      "net": null,
+      "direction": "unused_gpio",
+      "status": "unconnected_counter_resource_pin",
+      "port_counter_overlap": "16B[14]",
+      "notes": "16B is enabled as an input timestamp resource; no MCLK wire or data source goes to this pad. Leave unconnected/testpoint. Explicit weak-pull handling should be verified in firmware.",
+      "source_pdf_pages": [
+        7,
+        8,
+        9,
+        12
+      ]
+    },
+    {
+      "pin": 49,
+      "signal": "VDD",
+      "tile": null,
+      "port": null,
+      "port_bit": null,
+      "firmware_symbol": null,
+      "net": "V0V9",
+      "direction": "power_input",
+      "power_domain": "VDD",
+      "status": "required",
+      "is_bottom_pad": false,
+      "notes": "Connect every VDD pin/paddle to0.9V; bottom61-64 are not ground.",
+      "source_pdf_pages": [
+        6,
+        27,
+        31
+      ]
+    },
+    {
+      "pin": 50,
+      "signal": "X0D41",
+      "tile": 0,
+      "power_domain": "VDDIOT",
+      "nominal_io_voltage_V": 1.8,
+      "available_functions": [
+        "8D[5]",
+        "16B[13]"
+      ],
+      "port": "16B",
+      "port_bit": 13,
+      "firmware_symbol": "PORT_MCLK_COUNT",
+      "net": null,
+      "direction": "unused_gpio",
+      "status": "unconnected_counter_resource_pin",
+      "port_counter_overlap": "16B[13]",
+      "notes": "16B is enabled as an input timestamp resource; no MCLK wire or data source goes to this pad. Leave unconnected/testpoint. Explicit weak-pull handling should be verified in firmware.",
+      "source_pdf_pages": [
+        7,
+        8,
+        9,
+        12
+      ]
+    },
+    {
+      "pin": 51,
+      "signal": "X0D43",
+      "tile": 0,
+      "power_domain": "VDDIOT",
+      "nominal_io_voltage_V": 1.8,
+      "available_functions": [
+        "8D[7]",
+        "16B[15]"
+      ],
+      "port": "16B",
+      "port_bit": 15,
+      "firmware_symbol": "PORT_MCLK_COUNT",
+      "net": null,
+      "direction": "unused_gpio",
+      "status": "unconnected_counter_resource_pin",
+      "port_counter_overlap": "16B[15]",
+      "notes": "16B is enabled as an input timestamp resource; no MCLK wire or data source goes to this pad. Leave unconnected/testpoint. Explicit weak-pull handling should be verified in firmware.",
+      "source_pdf_pages": [
+        7,
+        8,
+        9,
+        12
+      ]
+    },
+    {
+      "pin": 52,
+      "signal": "VDDIOT",
+      "tile": null,
+      "port": null,
+      "port_bit": null,
+      "firmware_symbol": null,
+      "net": "V1V8",
+      "direction": "power_input",
+      "power_domain": "VDDIOT",
+      "status": "required",
+      "notes": "All QF60A GPIO domains are1.8V only; pin26 is present on package drawing although omitted from abbreviated power-pin list.",
+      "source_pdf_pages": [
+        6,
+        7,
+        9,
+        27,
+        31
+      ]
+    },
+    {
+      "pin": 53,
+      "signal": "X1D34",
+      "tile": 1,
+      "power_domain": "VDDIOT",
+      "nominal_io_voltage_V": 1.8,
+      "available_functions": [
+        "1K[0]"
+      ],
+      "port": "1K",
+      "port_bit": 0,
+      "firmware_symbol": "PORT_I2S_ADC0",
+      "net": "ADC_DOUT_XU18",
+      "direction": "input",
+      "status": "active",
+      "port_counter_overlap": null,
+      "notes": "3.3V ADC data -> fixed-direction down translator ->1.8V XU input.",
+      "source_pdf_pages": [
+        7,
+        8,
+        9,
+        12
+      ]
+    },
+    {
+      "pin": 54,
+      "signal": "X0D30",
+      "tile": 0,
+      "power_domain": "VDDIOT",
+      "nominal_io_voltage_V": 1.8,
+      "available_functions": [
+        "4F[2]",
+        "8C[4]",
+        "16B[4]"
+      ],
+      "port": "16B",
+      "port_bit": 4,
+      "firmware_symbol": "PORT_MCLK_COUNT",
+      "net": null,
+      "direction": "unused_gpio",
+      "status": "unconnected_counter_resource_pin",
+      "port_counter_overlap": "16B[4]",
+      "notes": "16B is enabled as an input timestamp resource; no MCLK wire or data source goes to this pad. Leave unconnected/testpoint. Explicit weak-pull handling should be verified in firmware.",
+      "source_pdf_pages": [
+        7,
+        8,
+        9,
+        12
+      ]
+    },
+    {
+      "pin": 55,
+      "signal": "X0D31",
+      "tile": 0,
+      "power_domain": "VDDIOT",
+      "nominal_io_voltage_V": 1.8,
+      "available_functions": [
+        "4F[3]",
+        "8C[5]",
+        "16B[5]"
+      ],
+      "port": "16B",
+      "port_bit": 5,
+      "firmware_symbol": "PORT_MCLK_COUNT",
+      "net": null,
+      "direction": "unused_gpio",
+      "status": "unconnected_counter_resource_pin",
+      "port_counter_overlap": "16B[5]",
+      "notes": "16B is enabled as an input timestamp resource; no MCLK wire or data source goes to this pad. Leave unconnected/testpoint. Explicit weak-pull handling should be verified in firmware.",
+      "source_pdf_pages": [
+        7,
+        8,
+        9,
+        12
+      ]
+    },
+    {
+      "pin": 56,
+      "signal": "X0D32",
+      "tile": 0,
+      "power_domain": "VDDIOT",
+      "nominal_io_voltage_V": 1.8,
+      "available_functions": [
+        "4E[2]",
+        "8C[6]",
+        "16B[6]"
+      ],
+      "port": "16B",
+      "port_bit": 6,
+      "firmware_symbol": "PORT_MCLK_COUNT",
+      "net": null,
+      "direction": "unused_gpio",
+      "status": "unconnected_counter_resource_pin",
+      "port_counter_overlap": "16B[6]",
+      "notes": "16B is enabled as an input timestamp resource; no MCLK wire or data source goes to this pad. Leave unconnected/testpoint. Explicit weak-pull handling should be verified in firmware.",
+      "source_pdf_pages": [
+        7,
+        8,
+        9,
+        12
+      ]
+    },
+    {
+      "pin": 57,
+      "signal": "VDD",
+      "tile": null,
+      "port": null,
+      "port_bit": null,
+      "firmware_symbol": null,
+      "net": "V0V9",
+      "direction": "power_input",
+      "power_domain": "VDD",
+      "status": "required",
+      "is_bottom_pad": false,
+      "notes": "Connect every VDD pin/paddle to0.9V; bottom61-64 are not ground.",
+      "source_pdf_pages": [
+        6,
+        27,
+        31
+      ]
+    },
+    {
+      "pin": 58,
+      "signal": "X0D33",
+      "tile": 0,
+      "power_domain": "VDDIOT",
+      "nominal_io_voltage_V": 1.8,
+      "available_functions": [
+        "4E[3]",
+        "8C[7]",
+        "16B[7]"
+      ],
+      "port": "16B",
+      "port_bit": 7,
+      "firmware_symbol": "PORT_MCLK_COUNT",
+      "net": null,
+      "direction": "unused_gpio",
+      "status": "unconnected_counter_resource_pin",
+      "port_counter_overlap": "16B[7]",
+      "notes": "16B is enabled as an input timestamp resource; no MCLK wire or data source goes to this pad. Leave unconnected/testpoint. Explicit weak-pull handling should be verified in firmware.",
+      "source_pdf_pages": [
+        7,
+        8,
+        9,
+        12
+      ]
+    },
+    {
+      "pin": 59,
+      "signal": "X0D04",
+      "tile": 0,
+      "power_domain": "VDDIOL",
+      "nominal_io_voltage_V": 1.8,
+      "available_functions": [
+        "4B[0]",
+        "8A[2]",
+        "16A[2]",
+        "32A[22]"
+      ],
+      "port": "4B",
+      "port_bit": 0,
+      "firmware_symbol": "PORT_SQI_SIO",
+      "net": "QSPI_IO0_1V8",
+      "direction": "bidirectional",
+      "status": "boot_and_flash",
+      "port_counter_overlap": null,
+      "notes": "Flash functional pin5; boot sample X0D04=0.",
+      "source_pdf_pages": [
+        7,
+        8,
+        9,
+        12
+      ]
+    },
+    {
+      "pin": 60,
+      "signal": "X0D06",
+      "tile": 0,
+      "power_domain": "VDDIOL",
+      "nominal_io_voltage_V": 1.8,
+      "available_functions": [
+        "4B[2]",
+        "8A[4]",
+        "16A[4]",
+        "32A[24]"
+      ],
+      "port": "4B",
+      "port_bit": 2,
+      "firmware_symbol": "PORT_SQI_SIO",
+      "net": "QSPI_IO2_1V8",
+      "direction": "bidirectional",
+      "status": "boot_and_flash",
+      "port_counter_overlap": null,
+      "notes": "Flash functional pin3 IO2/WP#; boot sample X0D06=0. Do not blindly add pull-up for WP#.",
+      "source_pdf_pages": [
+        7,
+        8,
+        9,
+        12
+      ]
+    },
+    {
+      "pin": 61,
+      "signal": "VDD",
+      "tile": null,
+      "port": null,
+      "port_bit": null,
+      "firmware_symbol": null,
+      "net": "V0V9",
+      "direction": "power_input",
+      "power_domain": "VDD",
+      "status": "required",
+      "is_bottom_pad": true,
+      "notes": "Connect every VDD pin/paddle to0.9V; bottom61-64 are not ground.",
+      "source_pdf_pages": [
+        6,
+        27,
+        31
+      ]
+    },
+    {
+      "pin": 62,
+      "signal": "VDD",
+      "tile": null,
+      "port": null,
+      "port_bit": null,
+      "firmware_symbol": null,
+      "net": "V0V9",
+      "direction": "power_input",
+      "power_domain": "VDD",
+      "status": "required",
+      "is_bottom_pad": true,
+      "notes": "Connect every VDD pin/paddle to0.9V; bottom61-64 are not ground.",
+      "source_pdf_pages": [
+        6,
+        27,
+        31
+      ]
+    },
+    {
+      "pin": 63,
+      "signal": "VDD",
+      "tile": null,
+      "port": null,
+      "port_bit": null,
+      "firmware_symbol": null,
+      "net": "V0V9",
+      "direction": "power_input",
+      "power_domain": "VDD",
+      "status": "required",
+      "is_bottom_pad": true,
+      "notes": "Connect every VDD pin/paddle to0.9V; bottom61-64 are not ground.",
+      "source_pdf_pages": [
+        6,
+        27,
+        31
+      ]
+    },
+    {
+      "pin": 64,
+      "signal": "VDD",
+      "tile": null,
+      "port": null,
+      "port_bit": null,
+      "firmware_symbol": null,
+      "net": "V0V9",
+      "direction": "power_input",
+      "power_domain": "VDD",
+      "status": "required",
+      "is_bottom_pad": true,
+      "notes": "Connect every VDD pin/paddle to0.9V; bottom61-64 are not ground.",
+      "source_pdf_pages": [
+        6,
+        27,
+        31
+      ]
+    },
+    {
+      "pin": 65,
+      "signal": "VSS",
+      "tile": null,
+      "port": null,
+      "port_bit": null,
+      "firmware_symbol": null,
+      "net": "GND",
+      "direction": "ground",
+      "power_domain": "GND",
+      "status": "required",
+      "notes": "Central exposed ground paddle; only this large ground paddle isGND. Use ground thermal vias; separate61-64 VDD paddles.",
+      "source_pdf_pages": [
+        6,
+        8,
+        16,
+        27,
+        31,
+        77
+      ]
+    }
+  ],
+  "power_rails": [
+    {
+      "net": "V0V9",
+      "domain": "VDD",
+      "pins": [
+        4,
+        12,
+        19,
+        27,
+        34,
+        42,
+        49,
+        57,
+        61,
+        62,
+        63,
+        64
+      ],
+      "min_V": 0.855,
+      "nom_V": 0.9,
+      "max_V": 0.945,
+      "absolute_max_V": 1.05,
+      "decoupling": "At least8 local100nF plus>=10uF bulk; all VDD pins and four paddles connected."
+    },
+    {
+      "net": "V0V9_PLL",
+      "domain": "PLL_AVDD",
+      "pins": [
+        22
+      ],
+      "min_V": 0.855,
+      "nom_V": 0.9,
+      "max_V": 0.945,
+      "absolute_max_V": 1.05,
+      "decoupling": "Local1uF and filtered0.9V feed;600ohm@100MHz/DCR<1ohm is example, not600ohm DC resistor."
+    },
+    {
+      "net": "V1V8",
+      "domain": "VDDIOL,VDDIOB18,VDDIOR,VDDIOT",
+      "pins": [
+        8,
+        17,
+        26,
+        38,
+        52
+      ],
+      "min_V": 1.62,
+      "nom_V": 1.8,
+      "max_V": 1.98,
+      "absolute_max_V": 1.98,
+      "decoupling": "Local100nF per supply pin and>=10uF bulk; one common1.8V rail simplifies reset sequencing."
+    },
+    {
+      "net": "V1V8_USB",
+      "domain": "USB_VDD18",
+      "pins": [
+        31
+      ],
+      "min_V": 1.62,
+      "nom_V": 1.8,
+      "max_V": 1.98,
+      "decoupling": "Local PHY decoupling and approved1.8V feed; topology/regulator not chosen by this audit."
+    },
+    {
+      "net": "V3V3_USB",
+      "domain": "USB_VDD33",
+      "pins": [
+        30
+      ],
+      "min_V": 3,
+      "nom_V": 3.3,
+      "max_V": 3.6,
+      "decoupling": "Local PHY decoupling and approved3.3V feed; does not powerGPIO."
+    },
+    {
+      "net": "GND",
+      "domain": "VSS",
+      "pins": [
+        65
+      ],
+      "nom_V": 0,
+      "decoupling": "Direct ground paddle and low-inductance return/thermal-via grid."
+    }
+  ],
+  "mclk": {
+    "output": {
+      "pin": 14,
+      "signal": "X1D11",
+      "net": "XU_MCLK_1V8",
+      "domain": "VDDIOL",
+      "source": "AppPLL clock divider",
+      "source_pdf_pages": [
+        15,
+        16,
+        64
+      ]
+    },
+    "tile1_input": {
+      "port": "1D",
+      "pin": 14,
+      "firmware_symbol": "PORT_MCLK_IN",
+      "external_return_required": false,
+      "explanation": "Hardware routes AppPLL to X1D11 and tile1 port1D input simultaneously."
+    },
+    "tile0_input": {
+      "port": "1P",
+      "pin": 47,
+      "firmware_symbol": "PORT_MCLK_IN_USB",
+      "external_return_required": true,
+      "wire": "physical14 -> physical47 on XU_MCLK_1V8",
+      "domain": "VDDIOT"
+    },
+    "adc_branch": {
+      "from_net": "XU_MCLK_1V8",
+      "to_legacy_net": "ADC_MCLK",
+      "via": "fixed-direction1.8V-to-3.3V clock translator or approved fanout",
+      "not_direct_3v3_connection": true
+    },
+    "nominal_frequencies_Hz": [
+      22579200,
+      24576000
+    ],
+    "implementation_note": "lib_sw_pll fixed table actually comments22.579186MHz (-0.641ppm),24.576000MHz; crystal/PLL jitter and codec clock plan remain separate verification items.",
+    "mclk_count": {
+      "firmware_symbol": "PORT_MCLK_COUNT",
+      "tile": 0,
+      "port": "16B",
+      "dedicated_external_mclk_pin": null,
+      "wire_required": false,
+      "used_operation": "set_port_clock with USB MCLK clock block then getts timestamp; no sampled input data required",
+      "overlap_pins": [
+        40,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        50,
+        51,
+        54,
+        55,
+        56,
+        58
+      ],
+      "why_no_conflict": "Enabled narrow1M/1P override shared bits of16B; unused remaining pads are not separate MCLK inputs. Datasheetp12 defines port priority."
+    },
+    "code_evidence": [
+      "lib_xua/src/core/main.xc:117-131,542-545",
+      "lib_xua/src/core/audiohub/xua_audiohub.xc:807-810",
+      "lib_xua/src/core/buffer/ep/ep_buffer.xc:555,602",
+      "lib_sw_pll/src/sw_pll_common.c:18-40,64-74,95-155"
+    ]
+  },
+  "flash_functional_placeholder": {
+    "status": "functional8-pin placeholder only; not a selected MPN or approved footprint",
+    "supply_class": "1.8V",
+    "capacity_target_bytes": 2097152,
+    "current_xn_geometry": {
+      "page_bytes": 256,
+      "sector_bytes": 4096,
+      "pages": 8192
+    },
+    "pinout_warning": "The following is the common8-pin serial-Flash function mapping, to be verified against the exact future model and package; do not invent a device UUID or MPN.",
+    "pins": [
+      {
+        "pin": 1,
+        "function": "CS#",
+        "net": "QSPI_CS_N_1V8",
+        "xu_pin": 3,
+        "direction": "input_to_flash",
+        "notes": "Pull up to1.8V; inactive during reset."
+      },
+      {
+        "pin": 2,
+        "function": "DO/IO1",
+        "net": "QSPI_IO1_1V8",
+        "xu_pin": 1,
+        "direction": "bidirectional_in_quad",
+        "notes": "XU boot-mode input X0D05 must sample0."
+      },
+      {
+        "pin": 3,
+        "function": "WP#/IO2",
+        "net": "QSPI_IO2_1V8",
+        "xu_pin": 60,
+        "direction": "bidirectional_in_quad",
+        "notes": "Do not force high at XU reset; confirm exact part write-protect/QE behavior."
+      },
+      {
+        "pin": 4,
+        "function": "GND",
+        "net": "GND",
+        "xu_pin": 65,
+        "direction": "ground",
+        "notes": "Ground."
+      },
+      {
+        "pin": 5,
+        "function": "DI/IO0",
+        "net": "QSPI_IO0_1V8",
+        "xu_pin": 59,
+        "direction": "bidirectional_in_quad",
+        "notes": "XU boot-mode input X0D04 must sample0."
+      },
+      {
+        "pin": 6,
+        "function": "CLK",
+        "net": "QSPI_SCLK_1V8",
+        "xu_pin": 5,
+        "direction": "input_to_flash",
+        "notes": "QSPI boot clockmode0/0."
+      },
+      {
+        "pin": 7,
+        "function": "HOLD#/RESET#/IO3",
+        "net": "QSPI_IO3_1V8",
+        "xu_pin": 2,
+        "direction": "bidirectional_in_quad",
+        "notes": "Exact pin function/power-up pulls depend on selected model."
+      },
+      {
+        "pin": 8,
+        "function": "VCC",
+        "net": "V1V8",
+        "xu_pin": null,
+        "direction": "power_input",
+        "notes": "1.8V-class Flash on same rail as XU VDDIOL; local100nF and bulk per eventual part."
+      }
+    ],
+    "boot_mode_samples": [
+      {
+        "xu_pin": 60,
+        "signal": "X0D06",
+        "value": 0
+      },
+      {
+        "xu_pin": 1,
+        "signal": "X0D05",
+        "value": 0
+      },
+      {
+        "xu_pin": 59,
+        "signal": "X0D04",
+        "value": 0
+      }
+    ],
+    "boot_rules": [
+      "QSPI boot uses fixed X0D01/X0D04..07/X0D10; cannot relocate with XN alone.",
+      "ROM sends0xEB,three0x00 address bytes,one dummy byte,mode0/0; bytes expected low nibble first.",
+      "Flash must be ready within300us after power-up or hold RST_N longer.",
+      "QSPI/QE/nonvolatile mode and warm-reset recovery must be verified; QPI mode can break reboot.",
+      "Internal boot weak pulldowns select000; do not blindly pull up IO0/IO1/IO2, especially WP#/IO2.",
+      "Old W25Q16JV is3V and cannot be directly powered/driven by this1.8V domain.",
+      "xflash support and actual Flash geometry must be verified after selecting exact model."
+    ],
+    "source_pdf_pages": [
+      18,
+      19,
+      20
+    ]
+  },
+  "debug_header": {
+    "preferred": {
+      "name": "xSYS2 JTAG-only",
+      "pitch_mm": 1.27,
+      "rows": 2,
+      "columns": 5,
+      "adapter": "XTAG4/1.8V-compatible",
+      "pins": [
+        {
+          "pin": 1,
+          "signal": "VREF_JTAG",
+          "net": "V1V8",
+          "power_domain": "VDDIOB18",
+          "xu_pins": [
+            17,
+            26
+          ]
+        },
+        {
+          "pin": 2,
+          "signal": "TMS",
+          "net": "JTAG_TMS_1V8",
+          "power_domain": "VDDIOB18",
+          "xu_pins": [
+            23
+          ]
+        },
+        {
+          "pin": 3,
+          "signal": "GND",
+          "net": "GND",
+          "power_domain": "GND",
+          "xu_pins": [
+            65
+          ]
+        },
+        {
+          "pin": 4,
+          "signal": "TCK",
+          "net": "JTAG_TCK_1V8",
+          "power_domain": "VDDIOB18",
+          "xu_pins": [
+            24
+          ]
+        },
+        {
+          "pin": 5,
+          "signal": "GND",
+          "net": "GND",
+          "power_domain": "GND",
+          "xu_pins": [
+            65
+          ]
+        },
+        {
+          "pin": 6,
+          "signal": "TDO",
+          "net": "JTAG_TDO_1V8",
+          "power_domain": "VDDIOB18",
+          "xu_pins": [
+            20
+          ]
+        },
+        {
+          "pin": 7,
+          "signal": "GND",
+          "net": "GND",
+          "power_domain": "GND",
+          "xu_pins": [
+            65
+          ]
+        },
+        {
+          "pin": 8,
+          "signal": "TDI",
+          "net": "JTAG_TDI_1V8",
+          "power_domain": "VDDIOB18",
+          "xu_pins": [
+            18
+          ]
+        },
+        {
+          "pin": 9,
+          "signal": "GND",
+          "net": "GND",
+          "power_domain": "GND",
+          "xu_pins": [
+            65
+          ]
+        },
+        {
+          "pin": 10,
+          "signal": "RST_N",
+          "net": "XU_RST_N_1V8",
+          "power_domain": "VDDIOB18",
+          "xu_pins": [
+            21
+          ]
+        }
+      ],
+      "source_pdf_pages": [
+        76,
+        77,
+        78
+      ]
+    },
+    "optional_full": {
+      "name": "xSYS2 full JTAG+xSCOPE",
+      "pitch_mm": 1.27,
+      "rows": 2,
+      "columns": 10,
+      "status": "link signals planned; resolve datasheetpin13 prose erratum before final full-header signoff",
+      "first_10_pins_same_as_preferred": true,
+      "extra_pins": [
+        {
+          "pin": 11,
+          "signal": "VREF_LINK",
+          "net": "V1V8",
+          "domain": "VDDIOR",
+          "note": "Local decoupling; powers/reference for linkIO."
+        },
+        {
+          "pin": 12,
+          "signal": "XL_DN1",
+          "net": "XSCOPE_IN1_1V8",
+          "xu_pin": 33
+        },
+        {
+          "pin": 13,
+          "signal": "GND_in_Figure52",
+          "net": "GND",
+          "status": "diagram_based_pending_crosscheck",
+          "note": "p78 following prose incorrectly calls pin13 a VDDIO reference; do not short V1V8 to GND. Use2x5 until external XTAGSYS2 definition confirms."
+        },
+        {
+          "pin": 14,
+          "signal": "XL_DN0",
+          "net": "XSCOPE_IN0_1V8",
+          "xu_pin": 35
+        },
+        {
+          "pin": 15,
+          "signal": "GND",
+          "net": "GND"
+        },
+        {
+          "pin": 16,
+          "signal": "XL_UP0",
+          "net": "XSCOPE_OUT0_1V8",
+          "xu_pin": 36,
+          "series_resistor_ohm": 43
+        },
+        {
+          "pin": 17,
+          "signal": "GND",
+          "net": "GND"
+        },
+        {
+          "pin": 18,
+          "signal": "XL_UP1",
+          "net": "XSCOPE_OUT1_1V8",
+          "xu_pin": 37,
+          "series_resistor_ohm": 43
+        },
+        {
+          "pin": 19,
+          "signal": "GND",
+          "net": "GND"
+        },
+        {
+          "pin": 20,
+          "signal": "DEBUG_N",
+          "net": null,
+          "status": "not_assigned",
+          "note": "No corresponding QF60A dedicated DEBUG_N package pin; do not invent a chip connection."
+        }
+      ],
+      "note": "AppendixF prose uses X0D16..19 copied from another package. This package's signal table locates XL0 on X1D16..19 physical33/35/36/37."
+    }
+  },
+  "unused_policy": {
+    "true_NC_pins": [
+      25
+    ],
+    "unassigned_GPIO_pins": [
+      7,
+      11,
+      40,
+      44,
+      45,
+      46,
+      48,
+      50,
+      51,
+      54,
+      55,
+      56,
+      58
+    ],
+    "reserved_unimplemented_debug_RX": [
+      39
+    ],
+    "optional_xscope_pins": [
+      33,
+      35,
+      36,
+      37
+    ],
+    "instructions": [
+      "Do not tie packageNC25 to any net.",
+      "Unused GPIO may remain unconnected or use reserved testpoints; no forced3.3V or ground.",
+      "At reset allGPIO have weak pulldowns. Once a wide input counter port is enabled, explicitly verify unused-pad pull state; do not assume reset defaults persist.",
+      "Keep xSCOPE pads reserved while current XN enables XL0 and build usesfxscope; reusing them requires coordinated firmware changes.",
+      "Tile0/1D physical7 is spare; old budget omitted it. It is not the AppPLL output."
+    ]
+  },
+  "conflicts_and_actions": [
+    {
+      "priority": "P1",
+      "issue": "Old Flash and direct3.3V connections incompatible with QF60A1.8V GPIO",
+      "action": "Use1.8V-class functional Flash placeholder and explicit fixed-direction level interfaces; exact MPN/translator timing not frozen."
+    },
+    {
+      "priority": "P1",
+      "issue": "VBUS code comment still says V5D via100k/100k",
+      "action": "Use true USB VBUS and1.8V-compatible divider; update comment later without treating this audit as firmware change."
+    },
+    {
+      "priority": "P1",
+      "issue": "Cross-tile unsafe-global control remains broken",
+      "action": "Pin mapping can be retained; implement channel/interface transfer in firmware later. Do not claim UART controls actual DSP."
+    },
+    {
+      "priority": "P1",
+      "issue": "Old hardware budget treats MCLK_COUNT as extra external MCLK input",
+      "action": "Only physical14 output/internal tile1 input plus PCB return to47; no MCLK wiring to16B pads."
+    },
+    {
+      "priority": "P1",
+      "issue": "xua_conf.h still describes ES9039 as100MHz/noMCLK",
+      "action": "ES9039 clock plan must be updated; this pin plan reserves XU MCLK forADC and USB feedback, not an approved DAC clock."
+    },
+    {
+      "priority": "P2",
+      "issue": "DebugRX is named but has no receiving task",
+      "action": "Reserve physical39 only; noCLI functionality claim."
+    },
+    {
+      "priority": "P2",
+      "issue": "AppendixF full-header pin13 and X0D16..19 prose contradict main pinout/diagram",
+      "action": "Prefer unambiguous2x5 JTAG; full header requires original XTAGSYS2 cross-check."
+    },
+    {
+      "priority": "P2",
+      "issue": "AppendixG says QSPI data pins output-only",
+      "action": "Main signal table and Quad Read show bidirectional operation; usebidirectional4B and do not apply copied checklist as direction constraint."
+    }
+  ],
+  "verification": {
+    "pin_count": 65,
+    "GPIO_count": 34,
+    "unique_pins": true,
+    "source_pinout_rendered_in_prior_audit": true,
+    "MCLK_clock_structure_rendered_this_task": true,
+    "hardware_tested": false,
+    "firmware_rebuilt": false,
+    "ERC_DRC_run": false,
+    "shopping_requests_stopped": true
+  }
+}

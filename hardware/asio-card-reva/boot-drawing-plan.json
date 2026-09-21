@@ -1,0 +1,3587 @@
+{
+  "schema_version": 1,
+  "date": "2026-09-16",
+  "status": "prepared_draw_plan_only_no_EDA_or_hardware_validation",
+  "scope": "Existing approved-intent boot connections mapped to unique draft reference designators; no new circuit research orpartselection",
+  "root_owns_eda": true,
+  "source_files": [
+    {
+      "path": "hardware/asio-card-reva/xmos-boot-plan.json",
+      "sha256": "3df8498f17e4e8faf65a029216fd4fe06262d61de584983fc28dfe992f72da77"
+    },
+    {
+      "path": "docs/passive-parts-spec.md",
+      "sha256": "defea7804392336e2599d0fff310cfa2070b37c5258e2e302e634b6ca03293ee"
+    },
+    {
+      "path": ".jspace/board-design-20260916/xu-pin-net-plan.json",
+      "section": "debug_header.preferred",
+      "purpose": "Only reuses already verified10pinJ2 mapping"
+    },
+    {
+      "path": "hardware/asio-card-reva/net-aliases.json",
+      "purpose": "Must match existing shortenedJTAG net names"
+    },
+    {
+      "path": "hardware/asio-card-reva/xmos-connect.json",
+      "purpose": "ExistingU10 boundary anchors"
+    }
+  ],
+  "source_evidence": [
+    {
+      "id": "XU",
+      "local_evidence": "docs/datasheets/XU316-1024-QF60A.pdf",
+      "url": null,
+      "physical_pdf_pages": [
+        16,
+        17,
+        18,
+        19,
+        27,
+        33
+      ],
+      "sha256": "b36c0a754bc8d9d203037241367f36772d441f6f44208c4ab6222705ba1f966b",
+      "note": "XM014034B; physical pages, not printed page numbers"
+    },
+    {
+      "id": "FW",
+      "local_evidence": "docs/datasheets/xmos-boot-reva/W25Q16FW_RevJ.pdf",
+      "url": "https://www.winbond.com/resource-files/w25q16fw%20revj%2005182017%20sfdp.pdf",
+      "physical_pdf_pages": [
+        6,
+        7,
+        16,
+        17,
+        22,
+        24,
+        39,
+        40,
+        60,
+        74,
+        75,
+        76,
+        81,
+        88,
+        89
+      ],
+      "sha256": "7779326fbe4de06f6524288729324a709d804d23c51f02407eea0e79cb26063d",
+      "note": "RevJ2017-05-18"
+    },
+    {
+      "id": "JW",
+      "local_evidence": "docs/datasheets/xmos-boot-reva/W25Q16JW_RevG.pdf",
+      "url": "https://www.winbond.com/resource-files/W25Q16JW%20RevG%2006302021%20Plus.pdf",
+      "physical_pdf_pages": [
+        6,
+        15,
+        22,
+        32,
+        58,
+        71,
+        72
+      ],
+      "sha256": "e951473340a8c8f6b7487e25a42bb9cfa578fd2b4bed80033993f687e2e2fe73",
+      "note": "RevG2021-06-30; not approved as unconditional replacement"
+    },
+    {
+      "id": "XTAL",
+      "local_evidence": "docs/datasheets/xmos-boot-reva/FA-238_Q22FA23800065_en.pdf",
+      "url": "https://download.epsondevice.com/td/pdf/td_xtal_mhz/FA-238_Q22FA23800065_en.pdf",
+      "physical_pdf_pages": [
+        1
+      ],
+      "sha256": "c65edd541830714d00b1a3ef5ef5e1736f4a0470ce3b8d543ec2069c00721578",
+      "note": "Exact manufacturer specification"
+    },
+    {
+      "id": "MON",
+      "local_evidence": "docs/datasheets/xmos-boot-reva/tps3897.pdf",
+      "url": "https://www.ti.com/lit/ds/symlink/tps3897.pdf",
+      "physical_pdf_pages": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        14,
+        15,
+        26
+      ],
+      "sha256": "118511170b1f0b8ee337396ea73dc85b5632aa11a2df4c4731742d50bd914bb2",
+      "note": "SBVS172B; A version and 3897 polarity are intentional"
+    }
+  ],
+  "allocation": {
+    "resistors": {
+      "first": "R201",
+      "last": "R216",
+      "count": 16
+    },
+    "capacitors": {
+      "first": "C201",
+      "last": "C210",
+      "count": 10
+    },
+    "fixed": [
+      "Y10",
+      "U11",
+      "U151",
+      "U152",
+      "U153",
+      "J2",
+      "SW1"
+    ],
+    "reserved_existing": [
+      "U10",
+      "C101",
+      "C102",
+      "C103",
+      "C104",
+      "C105",
+      "C106",
+      "C107",
+      "C108",
+      "C109",
+      "C110",
+      "C111",
+      "C112",
+      "C113",
+      "C114",
+      "C115",
+      "C116",
+      "C117",
+      "C118"
+    ],
+    "existing_cap_refs_observed_from_file": [
+      "C101",
+      "C102",
+      "C103",
+      "C104",
+      "C105",
+      "C106",
+      "C107",
+      "C108",
+      "C109",
+      "C110",
+      "C111",
+      "C112",
+      "C113",
+      "C114",
+      "C115",
+      "C116",
+      "C117",
+      "C118"
+    ],
+    "scope_note": "Collision check covers the specified existingU10/C101-C118 inventory only; root must still inspect live native project before mutation."
+  },
+  "logical_to_reference": {
+    "R_FLASH_CS": "R201",
+    "R_FLASH_IO0_STRAP": "R202",
+    "R_FLASH_IO1_STRAP": "R203",
+    "R_FLASH_IO2_STRAP": "R204",
+    "R_FLASH_SCLK_0R": "R205",
+    "C_FLASH_HF": "C201",
+    "C_FLASH_BULK": "C202",
+    "R_XTAL_FB": "R206",
+    "R_XTAL_DAMP": "R207",
+    "C_XTAL_OUT": "C203",
+    "C_XTAL_IN": "C204",
+    "R_XU_IO_TOP": "R208",
+    "R_XU_IO_BOT": "R209",
+    "C_XU_IO_CT": "C205",
+    "C_XU_IO_MON": "C206",
+    "R_XU_USB_TOP": "R210",
+    "R_XU_USB_BOT": "R211",
+    "C_XU_USB_CT": "C207",
+    "C_XU_USB_MON": "C208",
+    "R_XU_CORE_TOP": "R212",
+    "R_XU_CORE_BOT": "R213",
+    "C_XU_CORE_CT": "C209",
+    "C_XU_CORE_MON": "C210",
+    "R_CORE_ENABLE_UP": "R214",
+    "R_XU_RESET_ENABLE": "R215",
+    "R_XU_RESET_UP": "R216",
+    "FLASH": "U11",
+    "XTAL_24MHZ": "Y10",
+    "U_XU_IO_MON": "U151",
+    "U_XU_USB_MON": "U152",
+    "U_XU_CORE_MON": "U153",
+    "XSYS2_JTAG_HALF": "J2",
+    "SW_XU_RESET": "SW1"
+  },
+  "components": [
+    {
+      "reference": "R201",
+      "logical_id": "R_FLASH_CS",
+      "page": "XMOS_BOOT",
+      "kind": "resistor",
+      "value_text": "4.7k,1%,0603,>=0.1W",
+      "source_spec_id": "BOOT_R_CS_4K7",
+      "source_spec_id_state": "proposed_design_specific_not_added_to_CSV",
+      "value_specific_spec_key": "BOOT_R_CS_4K7::4.7k",
+      "source_pointer": "hardware/asio-card-reva/xmos-boot-plan.json#/passives/0",
+      "scope_status": "draw_ready",
+      "assembly": "FIT",
+      "generic_spec": {
+        "value_ohm": 4700,
+        "tolerance_percent": 1,
+        "technology": "general-purpose film; thick film permitted",
+        "power_rating_W_min": 0.1,
+        "working_voltage_V_min": 50,
+        "tcr_ppm_per_C_max": 100,
+        "package_target": "0603 imperial",
+        "package_status": "schematic target; actual footprint to verify later",
+        "remaining": []
+      },
+      "pins": [
+        {
+          "pin": 1,
+          "net": "QSPI_CS_N_1V8"
+        },
+        {
+          "pin": 2,
+          "net": "V1V8"
+        }
+      ],
+      "terminal_order_basis": "planning1/2 convention; verify real generic symbol pins before placement",
+      "electrically_swappable_terminal_pairs": [
+        [
+          1,
+          2
+        ]
+      ],
+      "notes": "",
+      "manufacturer": null,
+      "MPN": null,
+      "LCSC": null,
+      "library_uuid": null,
+      "procurement_state": "not_selected_not_queried"
+    },
+    {
+      "reference": "R202",
+      "logical_id": "R_FLASH_IO0_STRAP",
+      "page": "XMOS_BOOT",
+      "kind": "resistor",
+      "value_text": "100k,1%,0603",
+      "source_spec_id": "R12",
+      "source_spec_id_state": "existing",
+      "value_specific_spec_key": "R12::100k",
+      "source_pointer": "hardware/asio-card-reva/xmos-boot-plan.json#/passives/1",
+      "scope_status": "draw_ready",
+      "assembly": "FIT",
+      "generic_spec": {
+        "value_ohm": 100000,
+        "tolerance_percent": 1,
+        "technology": "general-purpose film; thick film permitted",
+        "power_rating_W_min": 0.1,
+        "working_voltage_V_min": 50,
+        "tcr_ppm_per_C_max": 100,
+        "package_target": "0603 imperial",
+        "package_status": "schematic target; actual footprint to verify later",
+        "remaining": []
+      },
+      "pins": [
+        {
+          "pin": 1,
+          "net": "QSPI_IO0_1V8"
+        },
+        {
+          "pin": 2,
+          "net": "GND"
+        }
+      ],
+      "terminal_order_basis": "planning1/2 convention; verify real generic symbol pins before placement",
+      "electrically_swappable_terminal_pairs": [
+        [
+          1,
+          2
+        ]
+      ],
+      "notes": "Boot000; no corresponding IO2/WP pull-up.",
+      "manufacturer": null,
+      "MPN": null,
+      "LCSC": null,
+      "library_uuid": null,
+      "procurement_state": "not_selected_not_queried"
+    },
+    {
+      "reference": "R203",
+      "logical_id": "R_FLASH_IO1_STRAP",
+      "page": "XMOS_BOOT",
+      "kind": "resistor",
+      "value_text": "100k,1%,0603",
+      "source_spec_id": "R12",
+      "source_spec_id_state": "existing",
+      "value_specific_spec_key": "R12::100k",
+      "source_pointer": "hardware/asio-card-reva/xmos-boot-plan.json#/passives/2",
+      "scope_status": "draw_ready",
+      "assembly": "FIT",
+      "generic_spec": {
+        "value_ohm": 100000,
+        "tolerance_percent": 1,
+        "technology": "general-purpose film; thick film permitted",
+        "power_rating_W_min": 0.1,
+        "working_voltage_V_min": 50,
+        "tcr_ppm_per_C_max": 100,
+        "package_target": "0603 imperial",
+        "package_status": "schematic target; actual footprint to verify later",
+        "remaining": []
+      },
+      "pins": [
+        {
+          "pin": 1,
+          "net": "QSPI_IO1_1V8"
+        },
+        {
+          "pin": 2,
+          "net": "GND"
+        }
+      ],
+      "terminal_order_basis": "planning1/2 convention; verify real generic symbol pins before placement",
+      "electrically_swappable_terminal_pairs": [
+        [
+          1,
+          2
+        ]
+      ],
+      "notes": "Boot000; no corresponding IO2/WP pull-up.",
+      "manufacturer": null,
+      "MPN": null,
+      "LCSC": null,
+      "library_uuid": null,
+      "procurement_state": "not_selected_not_queried"
+    },
+    {
+      "reference": "R204",
+      "logical_id": "R_FLASH_IO2_STRAP",
+      "page": "XMOS_BOOT",
+      "kind": "resistor",
+      "value_text": "100k,1%,0603",
+      "source_spec_id": "R12",
+      "source_spec_id_state": "existing",
+      "value_specific_spec_key": "R12::100k",
+      "source_pointer": "hardware/asio-card-reva/xmos-boot-plan.json#/passives/3",
+      "scope_status": "draw_ready",
+      "assembly": "FIT",
+      "generic_spec": {
+        "value_ohm": 100000,
+        "tolerance_percent": 1,
+        "technology": "general-purpose film; thick film permitted",
+        "power_rating_W_min": 0.1,
+        "working_voltage_V_min": 50,
+        "tcr_ppm_per_C_max": 100,
+        "package_target": "0603 imperial",
+        "package_status": "schematic target; actual footprint to verify later",
+        "remaining": []
+      },
+      "pins": [
+        {
+          "pin": 1,
+          "net": "QSPI_IO2_1V8"
+        },
+        {
+          "pin": 2,
+          "net": "GND"
+        }
+      ],
+      "terminal_order_basis": "planning1/2 convention; verify real generic symbol pins before placement",
+      "electrically_swappable_terminal_pairs": [
+        [
+          1,
+          2
+        ]
+      ],
+      "notes": "Boot000; no corresponding IO2/WP pull-up.",
+      "manufacturer": null,
+      "MPN": null,
+      "LCSC": null,
+      "library_uuid": null,
+      "procurement_state": "not_selected_not_queried"
+    },
+    {
+      "reference": "R205",
+      "logical_id": "R_FLASH_SCLK_0R",
+      "page": "XMOS_BOOT",
+      "kind": "resistor",
+      "value_text": "0ohm,0603",
+      "source_spec_id": "BOOT_R_CLK_LINK",
+      "source_spec_id_state": "proposed_design_specific_not_added_to_CSV",
+      "value_specific_spec_key": "BOOT_R_CLK_LINK::0ohm",
+      "source_pointer": "hardware/asio-card-reva/xmos-boot-plan.json#/passives/4",
+      "scope_status": "draw_ready",
+      "assembly": "FIT",
+      "generic_spec": {
+        "value_ohm": 0,
+        "tolerance_percent": null,
+        "technology": "zero-ohm jumper",
+        "power_rating_W_min": null,
+        "working_voltage_V_min": 50,
+        "tcr_ppm_per_C_max": null,
+        "package_target": "0603 imperial",
+        "package_status": "schematic target; actual footprint to verify later",
+        "remaining": [
+          "Verify chosen jumper maximum resistance/current beforePCB"
+        ]
+      },
+      "pins": [
+        {
+          "pin": 1,
+          "net": "QSPI_SCLK_1V8"
+        },
+        {
+          "pin": 2,
+          "net": "QSPI_SCLK_FLASH18"
+        }
+      ],
+      "terminal_order_basis": "planning1/2 convention; verify real generic symbol pins before placement",
+      "electrically_swappable_terminal_pairs": [
+        [
+          1,
+          2
+        ]
+      ],
+      "notes": "Adjustment footprint; default0R, no arbitrary extra damping before SI check.",
+      "manufacturer": null,
+      "MPN": null,
+      "LCSC": null,
+      "library_uuid": null,
+      "procurement_state": "not_selected_not_queried"
+    },
+    {
+      "reference": "C201",
+      "logical_id": "C_FLASH_HF",
+      "page": "XMOS_BOOT",
+      "kind": "capacitor",
+      "value_text": "100nF,X7R,25V,0603",
+      "source_spec_id": "C01",
+      "source_spec_id_state": "existing",
+      "value_specific_spec_key": "C01::100nF",
+      "source_pointer": "hardware/asio-card-reva/xmos-boot-plan.json#/passives/5",
+      "scope_status": "draw_ready",
+      "assembly": "FIT",
+      "generic_spec": {
+        "capacitance_F": 1.0000000000000001e-07,
+        "tolerance_percent": 10,
+        "dielectric": "X7R",
+        "voltage_rating_V_min": 25,
+        "voltage_target_V": 25,
+        "package_target": "0603 imperial",
+        "package_status": "engineering starting package, not procurement limitation",
+        "polarity": "nonpolar",
+        "remaining": [
+          "Exact capacitance/voltage/tolerance/footprint must match resolved generic or real part; Ceff for X7R not proven by nominal size"
+        ]
+      },
+      "pins": [
+        {
+          "pin": 1,
+          "net": "V1V8"
+        },
+        {
+          "pin": 2,
+          "net": "GND"
+        }
+      ],
+      "terminal_order_basis": "planning1/2 convention; verify real generic symbol pins before placement",
+      "electrically_swappable_terminal_pairs": [
+        [
+          1,
+          2
+        ]
+      ],
+      "notes": "",
+      "manufacturer": null,
+      "MPN": null,
+      "LCSC": null,
+      "library_uuid": null,
+      "procurement_state": "not_selected_not_queried"
+    },
+    {
+      "reference": "C202",
+      "logical_id": "C_FLASH_BULK",
+      "page": "XMOS_BOOT",
+      "kind": "capacitor",
+      "value_text": "1uF,X7R,16V,0805",
+      "source_spec_id": "C02",
+      "source_spec_id_state": "existing",
+      "value_specific_spec_key": "C02::1uF",
+      "source_pointer": "hardware/asio-card-reva/xmos-boot-plan.json#/passives/6",
+      "scope_status": "draw_ready",
+      "assembly": "FIT",
+      "generic_spec": {
+        "capacitance_F": 1e-06,
+        "tolerance_percent": 10,
+        "dielectric": "X7R",
+        "voltage_rating_V_min": 16,
+        "voltage_target_V": 16,
+        "package_target": "0805 imperial",
+        "package_status": "engineering starting package, not procurement limitation",
+        "polarity": "nonpolar",
+        "remaining": [
+          "Exact capacitance/voltage/tolerance/footprint must match resolved generic or real part; Ceff for X7R not proven by nominal size"
+        ]
+      },
+      "pins": [
+        {
+          "pin": 1,
+          "net": "V1V8"
+        },
+        {
+          "pin": 2,
+          "net": "GND"
+        }
+      ],
+      "terminal_order_basis": "planning1/2 convention; verify real generic symbol pins before placement",
+      "electrically_swappable_terminal_pairs": [
+        [
+          1,
+          2
+        ]
+      ],
+      "notes": "",
+      "manufacturer": null,
+      "MPN": null,
+      "LCSC": null,
+      "library_uuid": null,
+      "procurement_state": "not_selected_not_queried"
+    },
+    {
+      "reference": "R206",
+      "logical_id": "R_XTAL_FB",
+      "page": "XMOS_BOOT",
+      "kind": "resistor",
+      "value_text": "1M,1%,0603",
+      "source_spec_id": "BOOT_R_XTAL_FB",
+      "source_spec_id_state": "proposed_design_specific_not_added_to_CSV",
+      "value_specific_spec_key": "BOOT_R_XTAL_FB::1M",
+      "source_pointer": "hardware/asio-card-reva/xmos-boot-plan.json#/passives/7",
+      "scope_status": "draw_ready",
+      "assembly": "FIT",
+      "generic_spec": {
+        "value_ohm": 1000000,
+        "tolerance_percent": 1,
+        "technology": "general-purpose film; thick film permitted",
+        "power_rating_W_min": 0.1,
+        "working_voltage_V_min": 50,
+        "tcr_ppm_per_C_max": 100,
+        "package_target": "0603 imperial",
+        "package_status": "schematic target; actual footprint to verify later",
+        "remaining": []
+      },
+      "pins": [
+        {
+          "pin": 1,
+          "net": "XU_XOUT"
+        },
+        {
+          "pin": 2,
+          "net": "XU_XIN"
+        }
+      ],
+      "terminal_order_basis": "planning1/2 convention; verify real generic symbol pins before placement",
+      "electrically_swappable_terminal_pairs": [
+        [
+          1,
+          2
+        ]
+      ],
+      "notes": "",
+      "manufacturer": null,
+      "MPN": null,
+      "LCSC": null,
+      "library_uuid": null,
+      "procurement_state": "not_selected_not_queried"
+    },
+    {
+      "reference": "R207",
+      "logical_id": "R_XTAL_DAMP",
+      "page": "XMOS_BOOT",
+      "kind": "resistor",
+      "value_text": "680ohm,1%,0603",
+      "source_spec_id": "BOOT_R_XTAL_DAMP",
+      "source_spec_id_state": "proposed_design_specific_not_added_to_CSV",
+      "value_specific_spec_key": "BOOT_R_XTAL_DAMP::680ohm",
+      "source_pointer": "hardware/asio-card-reva/xmos-boot-plan.json#/passives/8",
+      "scope_status": "draw_ready",
+      "assembly": "FIT",
+      "generic_spec": {
+        "value_ohm": 680,
+        "tolerance_percent": 1,
+        "technology": "general-purpose film; thick film permitted",
+        "power_rating_W_min": 0.1,
+        "working_voltage_V_min": 50,
+        "tcr_ppm_per_C_max": 100,
+        "package_target": "0603 imperial",
+        "package_status": "schematic target; actual footprint to verify later",
+        "remaining": []
+      },
+      "pins": [
+        {
+          "pin": 1,
+          "net": "XU_XOUT"
+        },
+        {
+          "pin": 2,
+          "net": "XU_XTAL_OUT"
+        }
+      ],
+      "terminal_order_basis": "planning1/2 convention; verify real generic symbol pins before placement",
+      "electrically_swappable_terminal_pairs": [
+        [
+          1,
+          2
+        ]
+      ],
+      "notes": "",
+      "manufacturer": null,
+      "MPN": null,
+      "LCSC": null,
+      "library_uuid": null,
+      "procurement_state": "not_selected_not_queried"
+    },
+    {
+      "reference": "C203",
+      "logical_id": "C_XTAL_OUT",
+      "page": "XMOS_BOOT",
+      "kind": "capacitor",
+      "value_text": "22pF,C0G,5%,50V,0603",
+      "source_spec_id": "BOOT_C_XTAL_LOAD",
+      "source_spec_id_state": "proposed_design_specific_not_added_to_CSV",
+      "value_specific_spec_key": "BOOT_C_XTAL_LOAD::22pF",
+      "source_pointer": "hardware/asio-card-reva/xmos-boot-plan.json#/passives/9",
+      "scope_status": "draw_ready",
+      "assembly": "FIT",
+      "generic_spec": {
+        "capacitance_F": 2.1999999999999998e-11,
+        "tolerance_percent": 5,
+        "dielectric": "C0G/NP0",
+        "voltage_rating_V_min": 50,
+        "voltage_target_V": 50,
+        "package_target": "0603 imperial",
+        "package_status": "engineering starting package, not procurement limitation",
+        "polarity": "nonpolar",
+        "remaining": [
+          "Exact capacitance/voltage/tolerance/footprint must match resolved generic or real part; Ceff for X7R not proven by nominal size"
+        ]
+      },
+      "pins": [
+        {
+          "pin": 1,
+          "net": "XU_XTAL_OUT"
+        },
+        {
+          "pin": 2,
+          "net": "GND"
+        }
+      ],
+      "terminal_order_basis": "planning1/2 convention; verify real generic symbol pins before placement",
+      "electrically_swappable_terminal_pairs": [
+        [
+          1,
+          2
+        ]
+      ],
+      "notes": "XMOS example starting point; tune by measured parasitics/drive.",
+      "manufacturer": null,
+      "MPN": null,
+      "LCSC": null,
+      "library_uuid": null,
+      "procurement_state": "not_selected_not_queried"
+    },
+    {
+      "reference": "C204",
+      "logical_id": "C_XTAL_IN",
+      "page": "XMOS_BOOT",
+      "kind": "capacitor",
+      "value_text": "22pF,C0G,5%,50V,0603",
+      "source_spec_id": "BOOT_C_XTAL_LOAD",
+      "source_spec_id_state": "proposed_design_specific_not_added_to_CSV",
+      "value_specific_spec_key": "BOOT_C_XTAL_LOAD::22pF",
+      "source_pointer": "hardware/asio-card-reva/xmos-boot-plan.json#/passives/10",
+      "scope_status": "draw_ready",
+      "assembly": "FIT",
+      "generic_spec": {
+        "capacitance_F": 2.1999999999999998e-11,
+        "tolerance_percent": 5,
+        "dielectric": "C0G/NP0",
+        "voltage_rating_V_min": 50,
+        "voltage_target_V": 50,
+        "package_target": "0603 imperial",
+        "package_status": "engineering starting package, not procurement limitation",
+        "polarity": "nonpolar",
+        "remaining": [
+          "Exact capacitance/voltage/tolerance/footprint must match resolved generic or real part; Ceff for X7R not proven by nominal size"
+        ]
+      },
+      "pins": [
+        {
+          "pin": 1,
+          "net": "XU_XIN"
+        },
+        {
+          "pin": 2,
+          "net": "GND"
+        }
+      ],
+      "terminal_order_basis": "planning1/2 convention; verify real generic symbol pins before placement",
+      "electrically_swappable_terminal_pairs": [
+        [
+          1,
+          2
+        ]
+      ],
+      "notes": "XMOS example starting point; tune by measured parasitics/drive.",
+      "manufacturer": null,
+      "MPN": null,
+      "LCSC": null,
+      "library_uuid": null,
+      "procurement_state": "not_selected_not_queried"
+    },
+    {
+      "reference": "R208",
+      "logical_id": "R_XU_IO_TOP",
+      "page": "XU_POWER_SEQUENCE",
+      "kind": "resistor",
+      "value_text": "24000ohm,0.1%,<=25ppm/C,0603",
+      "source_spec_id": "R31",
+      "source_spec_id_state": "existing",
+      "value_specific_spec_key": "R31::24000ohm",
+      "source_pointer": "hardware/asio-card-reva/xmos-boot-plan.json#/passives/11",
+      "scope_status": "draw_ready",
+      "assembly": "FIT",
+      "generic_spec": {
+        "value_ohm": 24000,
+        "tolerance_percent": 0.1,
+        "technology": "thin film",
+        "power_rating_W_min": 0.1,
+        "working_voltage_V_min": 50,
+        "tcr_ppm_per_C_max": 25,
+        "package_target": "0603 imperial",
+        "package_status": "schematic target; actual footprint to verify later",
+        "remaining": []
+      },
+      "pins": [
+        {
+          "pin": 1,
+          "net": "V1V8"
+        },
+        {
+          "pin": 2,
+          "net": "XU_SENSE_IO"
+        }
+      ],
+      "terminal_order_basis": "planning1/2 convention; verify real generic symbol pins before placement",
+      "electrically_swappable_terminal_pairs": [
+        [
+          1,
+          2
+        ]
+      ],
+      "notes": "",
+      "manufacturer": null,
+      "MPN": null,
+      "LCSC": null,
+      "library_uuid": null,
+      "procurement_state": "not_selected_not_queried"
+    },
+    {
+      "reference": "R209",
+      "logical_id": "R_XU_IO_BOT",
+      "page": "XU_POWER_SEQUENCE",
+      "kind": "resistor",
+      "value_text": "10000ohm,0.1%,<=25ppm/C,0603",
+      "source_spec_id": "R31",
+      "source_spec_id_state": "existing",
+      "value_specific_spec_key": "R31::10000ohm",
+      "source_pointer": "hardware/asio-card-reva/xmos-boot-plan.json#/passives/12",
+      "scope_status": "draw_ready",
+      "assembly": "FIT",
+      "generic_spec": {
+        "value_ohm": 10000,
+        "tolerance_percent": 0.1,
+        "technology": "thin film",
+        "power_rating_W_min": 0.1,
+        "working_voltage_V_min": 50,
+        "tcr_ppm_per_C_max": 25,
+        "package_target": "0603 imperial",
+        "package_status": "schematic target; actual footprint to verify later",
+        "remaining": []
+      },
+      "pins": [
+        {
+          "pin": 1,
+          "net": "XU_SENSE_IO"
+        },
+        {
+          "pin": 2,
+          "net": "GND"
+        }
+      ],
+      "terminal_order_basis": "planning1/2 convention; verify real generic symbol pins before placement",
+      "electrically_swappable_terminal_pairs": [
+        [
+          1,
+          2
+        ]
+      ],
+      "notes": "",
+      "manufacturer": null,
+      "MPN": null,
+      "LCSC": null,
+      "library_uuid": null,
+      "procurement_state": "not_selected_not_queried"
+    },
+    {
+      "reference": "C205",
+      "logical_id": "C_XU_IO_CT",
+      "page": "XU_POWER_SEQUENCE",
+      "kind": "capacitor",
+      "value_text": "1.0nF,C0G,5%,>=16V",
+      "source_spec_id": "BOOT_C_MON_CT",
+      "source_spec_id_state": "proposed_design_specific_not_added_to_CSV",
+      "value_specific_spec_key": "BOOT_C_MON_CT::1.0nF",
+      "source_pointer": "hardware/asio-card-reva/xmos-boot-plan.json#/passives/13",
+      "scope_status": "draw_ready",
+      "assembly": "FIT",
+      "generic_spec": {
+        "capacitance_F": 1e-09,
+        "tolerance_percent": 5,
+        "dielectric": "C0G/NP0",
+        "voltage_rating_V_min": 16,
+        "voltage_target_V": 50,
+        "package_target": "0603 imperial",
+        "package_status": "engineering starting package, not procurement limitation",
+        "polarity": "nonpolar",
+        "remaining": [
+          "Exact capacitance/voltage/tolerance/footprint must match resolved generic or real part; Ceff for X7R not proven by nominal size"
+        ]
+      },
+      "pins": [
+        {
+          "pin": 1,
+          "net": "XU_CT_IO"
+        },
+        {
+          "pin": 2,
+          "net": "GND"
+        }
+      ],
+      "terminal_order_basis": "planning1/2 convention; verify real generic symbol pins before placement",
+      "electrically_swappable_terminal_pairs": [
+        [
+          1,
+          2
+        ]
+      ],
+      "notes": "",
+      "manufacturer": null,
+      "MPN": null,
+      "LCSC": null,
+      "library_uuid": null,
+      "procurement_state": "not_selected_not_queried"
+    },
+    {
+      "reference": "C206",
+      "logical_id": "C_XU_IO_MON",
+      "page": "XU_POWER_SEQUENCE",
+      "kind": "capacitor",
+      "value_text": "100nF,X7R,25V,0603",
+      "source_spec_id": "C01",
+      "source_spec_id_state": "existing",
+      "value_specific_spec_key": "C01::100nF",
+      "source_pointer": "hardware/asio-card-reva/xmos-boot-plan.json#/passives/14",
+      "scope_status": "draw_ready",
+      "assembly": "FIT",
+      "generic_spec": {
+        "capacitance_F": 1.0000000000000001e-07,
+        "tolerance_percent": 10,
+        "dielectric": "X7R",
+        "voltage_rating_V_min": 25,
+        "voltage_target_V": 25,
+        "package_target": "0603 imperial",
+        "package_status": "engineering starting package, not procurement limitation",
+        "polarity": "nonpolar",
+        "remaining": [
+          "Exact capacitance/voltage/tolerance/footprint must match resolved generic or real part; Ceff for X7R not proven by nominal size"
+        ]
+      },
+      "pins": [
+        {
+          "pin": 1,
+          "net": "V3V3_AON"
+        },
+        {
+          "pin": 2,
+          "net": "GND"
+        }
+      ],
+      "terminal_order_basis": "planning1/2 convention; verify real generic symbol pins before placement",
+      "electrically_swappable_terminal_pairs": [
+        [
+          1,
+          2
+        ]
+      ],
+      "notes": "",
+      "manufacturer": null,
+      "MPN": null,
+      "LCSC": null,
+      "library_uuid": null,
+      "procurement_state": "not_selected_not_queried"
+    },
+    {
+      "reference": "R210",
+      "logical_id": "R_XU_USB_TOP",
+      "page": "XU_POWER_SEQUENCE",
+      "kind": "resistor",
+      "value_text": "52300ohm,0.1%,<=25ppm/C,0603",
+      "source_spec_id": "R31",
+      "source_spec_id_state": "existing",
+      "value_specific_spec_key": "R31::52300ohm",
+      "source_pointer": "hardware/asio-card-reva/xmos-boot-plan.json#/passives/15",
+      "scope_status": "draw_ready",
+      "assembly": "FIT",
+      "generic_spec": {
+        "value_ohm": 52300,
+        "tolerance_percent": 0.1,
+        "technology": "thin film",
+        "power_rating_W_min": 0.1,
+        "working_voltage_V_min": 50,
+        "tcr_ppm_per_C_max": 25,
+        "package_target": "0603 imperial",
+        "package_status": "schematic target; actual footprint to verify later",
+        "remaining": []
+      },
+      "pins": [
+        {
+          "pin": 1,
+          "net": "V3V3_USB"
+        },
+        {
+          "pin": 2,
+          "net": "XU_SENSE_USB"
+        }
+      ],
+      "terminal_order_basis": "planning1/2 convention; verify real generic symbol pins before placement",
+      "electrically_swappable_terminal_pairs": [
+        [
+          1,
+          2
+        ]
+      ],
+      "notes": "",
+      "manufacturer": null,
+      "MPN": null,
+      "LCSC": null,
+      "library_uuid": null,
+      "procurement_state": "not_selected_not_queried"
+    },
+    {
+      "reference": "R211",
+      "logical_id": "R_XU_USB_BOT",
+      "page": "XU_POWER_SEQUENCE",
+      "kind": "resistor",
+      "value_text": "10000ohm,0.1%,<=25ppm/C,0603",
+      "source_spec_id": "R31",
+      "source_spec_id_state": "existing",
+      "value_specific_spec_key": "R31::10000ohm",
+      "source_pointer": "hardware/asio-card-reva/xmos-boot-plan.json#/passives/16",
+      "scope_status": "draw_ready",
+      "assembly": "FIT",
+      "generic_spec": {
+        "value_ohm": 10000,
+        "tolerance_percent": 0.1,
+        "technology": "thin film",
+        "power_rating_W_min": 0.1,
+        "working_voltage_V_min": 50,
+        "tcr_ppm_per_C_max": 25,
+        "package_target": "0603 imperial",
+        "package_status": "schematic target; actual footprint to verify later",
+        "remaining": []
+      },
+      "pins": [
+        {
+          "pin": 1,
+          "net": "XU_SENSE_USB"
+        },
+        {
+          "pin": 2,
+          "net": "GND"
+        }
+      ],
+      "terminal_order_basis": "planning1/2 convention; verify real generic symbol pins before placement",
+      "electrically_swappable_terminal_pairs": [
+        [
+          1,
+          2
+        ]
+      ],
+      "notes": "",
+      "manufacturer": null,
+      "MPN": null,
+      "LCSC": null,
+      "library_uuid": null,
+      "procurement_state": "not_selected_not_queried"
+    },
+    {
+      "reference": "C207",
+      "logical_id": "C_XU_USB_CT",
+      "page": "XU_POWER_SEQUENCE",
+      "kind": "capacitor",
+      "value_text": "1.0nF,C0G,5%,>=16V",
+      "source_spec_id": "BOOT_C_MON_CT",
+      "source_spec_id_state": "proposed_design_specific_not_added_to_CSV",
+      "value_specific_spec_key": "BOOT_C_MON_CT::1.0nF",
+      "source_pointer": "hardware/asio-card-reva/xmos-boot-plan.json#/passives/17",
+      "scope_status": "draw_ready",
+      "assembly": "FIT",
+      "generic_spec": {
+        "capacitance_F": 1e-09,
+        "tolerance_percent": 5,
+        "dielectric": "C0G/NP0",
+        "voltage_rating_V_min": 16,
+        "voltage_target_V": 50,
+        "package_target": "0603 imperial",
+        "package_status": "engineering starting package, not procurement limitation",
+        "polarity": "nonpolar",
+        "remaining": [
+          "Exact capacitance/voltage/tolerance/footprint must match resolved generic or real part; Ceff for X7R not proven by nominal size"
+        ]
+      },
+      "pins": [
+        {
+          "pin": 1,
+          "net": "XU_CT_USB"
+        },
+        {
+          "pin": 2,
+          "net": "GND"
+        }
+      ],
+      "terminal_order_basis": "planning1/2 convention; verify real generic symbol pins before placement",
+      "electrically_swappable_terminal_pairs": [
+        [
+          1,
+          2
+        ]
+      ],
+      "notes": "",
+      "manufacturer": null,
+      "MPN": null,
+      "LCSC": null,
+      "library_uuid": null,
+      "procurement_state": "not_selected_not_queried"
+    },
+    {
+      "reference": "C208",
+      "logical_id": "C_XU_USB_MON",
+      "page": "XU_POWER_SEQUENCE",
+      "kind": "capacitor",
+      "value_text": "100nF,X7R,25V,0603",
+      "source_spec_id": "C01",
+      "source_spec_id_state": "existing",
+      "value_specific_spec_key": "C01::100nF",
+      "source_pointer": "hardware/asio-card-reva/xmos-boot-plan.json#/passives/18",
+      "scope_status": "draw_ready",
+      "assembly": "FIT",
+      "generic_spec": {
+        "capacitance_F": 1.0000000000000001e-07,
+        "tolerance_percent": 10,
+        "dielectric": "X7R",
+        "voltage_rating_V_min": 25,
+        "voltage_target_V": 25,
+        "package_target": "0603 imperial",
+        "package_status": "engineering starting package, not procurement limitation",
+        "polarity": "nonpolar",
+        "remaining": [
+          "Exact capacitance/voltage/tolerance/footprint must match resolved generic or real part; Ceff for X7R not proven by nominal size"
+        ]
+      },
+      "pins": [
+        {
+          "pin": 1,
+          "net": "V3V3_AON"
+        },
+        {
+          "pin": 2,
+          "net": "GND"
+        }
+      ],
+      "terminal_order_basis": "planning1/2 convention; verify real generic symbol pins before placement",
+      "electrically_swappable_terminal_pairs": [
+        [
+          1,
+          2
+        ]
+      ],
+      "notes": "",
+      "manufacturer": null,
+      "MPN": null,
+      "LCSC": null,
+      "library_uuid": null,
+      "procurement_state": "not_selected_not_queried"
+    },
+    {
+      "reference": "R212",
+      "logical_id": "R_XU_CORE_TOP",
+      "page": "XU_POWER_SEQUENCE",
+      "kind": "resistor",
+      "value_text": "7370ohm,0.1%,<=25ppm/C,0603",
+      "source_spec_id": "R31",
+      "source_spec_id_state": "existing",
+      "value_specific_spec_key": "R31::7370ohm",
+      "source_pointer": "hardware/asio-card-reva/xmos-boot-plan.json#/passives/19",
+      "scope_status": "draw_ready",
+      "assembly": "FIT",
+      "generic_spec": {
+        "value_ohm": 7370,
+        "tolerance_percent": 0.1,
+        "technology": "thin film",
+        "power_rating_W_min": 0.1,
+        "working_voltage_V_min": 50,
+        "tcr_ppm_per_C_max": 25,
+        "package_target": "0603 imperial",
+        "package_status": "schematic target; actual footprint to verify later",
+        "remaining": []
+      },
+      "pins": [
+        {
+          "pin": 1,
+          "net": "V0V9"
+        },
+        {
+          "pin": 2,
+          "net": "XU_SENSE_CORE"
+        }
+      ],
+      "terminal_order_basis": "planning1/2 convention; verify real generic symbol pins before placement",
+      "electrically_swappable_terminal_pairs": [
+        [
+          1,
+          2
+        ]
+      ],
+      "notes": "",
+      "manufacturer": null,
+      "MPN": null,
+      "LCSC": null,
+      "library_uuid": null,
+      "procurement_state": "not_selected_not_queried"
+    },
+    {
+      "reference": "R213",
+      "logical_id": "R_XU_CORE_BOT",
+      "page": "XU_POWER_SEQUENCE",
+      "kind": "resistor",
+      "value_text": "10000ohm,0.1%,<=25ppm/C,0603",
+      "source_spec_id": "R31",
+      "source_spec_id_state": "existing",
+      "value_specific_spec_key": "R31::10000ohm",
+      "source_pointer": "hardware/asio-card-reva/xmos-boot-plan.json#/passives/20",
+      "scope_status": "draw_ready",
+      "assembly": "FIT",
+      "generic_spec": {
+        "value_ohm": 10000,
+        "tolerance_percent": 0.1,
+        "technology": "thin film",
+        "power_rating_W_min": 0.1,
+        "working_voltage_V_min": 50,
+        "tcr_ppm_per_C_max": 25,
+        "package_target": "0603 imperial",
+        "package_status": "schematic target; actual footprint to verify later",
+        "remaining": []
+      },
+      "pins": [
+        {
+          "pin": 1,
+          "net": "XU_SENSE_CORE"
+        },
+        {
+          "pin": 2,
+          "net": "GND"
+        }
+      ],
+      "terminal_order_basis": "planning1/2 convention; verify real generic symbol pins before placement",
+      "electrically_swappable_terminal_pairs": [
+        [
+          1,
+          2
+        ]
+      ],
+      "notes": "",
+      "manufacturer": null,
+      "MPN": null,
+      "LCSC": null,
+      "library_uuid": null,
+      "procurement_state": "not_selected_not_queried"
+    },
+    {
+      "reference": "C209",
+      "logical_id": "C_XU_CORE_CT",
+      "page": "XU_POWER_SEQUENCE",
+      "kind": "capacitor",
+      "value_text": "4.7nF,C0G,5%,>=16V",
+      "source_spec_id": "BOOT_C_MON_CT",
+      "source_spec_id_state": "proposed_design_specific_not_added_to_CSV",
+      "value_specific_spec_key": "BOOT_C_MON_CT::4.7nF",
+      "source_pointer": "hardware/asio-card-reva/xmos-boot-plan.json#/passives/21",
+      "scope_status": "draw_ready",
+      "assembly": "FIT",
+      "generic_spec": {
+        "capacitance_F": 4.700000000000001e-09,
+        "tolerance_percent": 5,
+        "dielectric": "C0G/NP0",
+        "voltage_rating_V_min": 16,
+        "voltage_target_V": 50,
+        "package_target": "0603 imperial",
+        "package_status": "engineering starting package, not procurement limitation",
+        "polarity": "nonpolar",
+        "remaining": [
+          "Exact capacitance/voltage/tolerance/footprint must match resolved generic or real part; Ceff for X7R not proven by nominal size"
+        ]
+      },
+      "pins": [
+        {
+          "pin": 1,
+          "net": "XU_CT_CORE"
+        },
+        {
+          "pin": 2,
+          "net": "GND"
+        }
+      ],
+      "terminal_order_basis": "planning1/2 convention; verify real generic symbol pins before placement",
+      "electrically_swappable_terminal_pairs": [
+        [
+          1,
+          2
+        ]
+      ],
+      "notes": "",
+      "manufacturer": null,
+      "MPN": null,
+      "LCSC": null,
+      "library_uuid": null,
+      "procurement_state": "not_selected_not_queried"
+    },
+    {
+      "reference": "C210",
+      "logical_id": "C_XU_CORE_MON",
+      "page": "XU_POWER_SEQUENCE",
+      "kind": "capacitor",
+      "value_text": "100nF,X7R,25V,0603",
+      "source_spec_id": "C01",
+      "source_spec_id_state": "existing",
+      "value_specific_spec_key": "C01::100nF",
+      "source_pointer": "hardware/asio-card-reva/xmos-boot-plan.json#/passives/22",
+      "scope_status": "draw_ready",
+      "assembly": "FIT",
+      "generic_spec": {
+        "capacitance_F": 1.0000000000000001e-07,
+        "tolerance_percent": 10,
+        "dielectric": "X7R",
+        "voltage_rating_V_min": 25,
+        "voltage_target_V": 25,
+        "package_target": "0603 imperial",
+        "package_status": "engineering starting package, not procurement limitation",
+        "polarity": "nonpolar",
+        "remaining": [
+          "Exact capacitance/voltage/tolerance/footprint must match resolved generic or real part; Ceff for X7R not proven by nominal size"
+        ]
+      },
+      "pins": [
+        {
+          "pin": 1,
+          "net": "V3V3_AON"
+        },
+        {
+          "pin": 2,
+          "net": "GND"
+        }
+      ],
+      "terminal_order_basis": "planning1/2 convention; verify real generic symbol pins before placement",
+      "electrically_swappable_terminal_pairs": [
+        [
+          1,
+          2
+        ]
+      ],
+      "notes": "",
+      "manufacturer": null,
+      "MPN": null,
+      "LCSC": null,
+      "library_uuid": null,
+      "procurement_state": "not_selected_not_queried"
+    },
+    {
+      "reference": "R214",
+      "logical_id": "R_CORE_ENABLE_UP",
+      "page": "XU_POWER_SEQUENCE",
+      "kind": "resistor",
+      "value_text": "10k,1%,0603",
+      "source_spec_id": "R10",
+      "source_spec_id_state": "existing",
+      "value_specific_spec_key": "R10::10k",
+      "source_pointer": "hardware/asio-card-reva/xmos-boot-plan.json#/passives/23",
+      "scope_status": "draw_ready",
+      "assembly": "FIT",
+      "generic_spec": {
+        "value_ohm": 10000,
+        "tolerance_percent": 1,
+        "technology": "general-purpose film; thick film permitted",
+        "power_rating_W_min": 0.1,
+        "working_voltage_V_min": 50,
+        "tcr_ppm_per_C_max": 100,
+        "package_target": "0603 imperial",
+        "package_status": "schematic target; actual footprint to verify later",
+        "remaining": []
+      },
+      "pins": [
+        {
+          "pin": 1,
+          "net": "V3V3_D"
+        },
+        {
+          "pin": 2,
+          "net": "CORE_ENABLE"
+        }
+      ],
+      "terminal_order_basis": "planning1/2 convention; verify real generic symbol pins before placement",
+      "electrically_swappable_terminal_pairs": [
+        [
+          1,
+          2
+        ]
+      ],
+      "notes": "",
+      "manufacturer": null,
+      "MPN": null,
+      "LCSC": null,
+      "library_uuid": null,
+      "procurement_state": "not_selected_not_queried"
+    },
+    {
+      "reference": "R215",
+      "logical_id": "R_XU_RESET_ENABLE",
+      "page": "XU_POWER_SEQUENCE",
+      "kind": "resistor",
+      "value_text": "10k,1%,0603",
+      "source_spec_id": "R10",
+      "source_spec_id_state": "existing",
+      "value_specific_spec_key": "R10::10k",
+      "source_pointer": "hardware/asio-card-reva/xmos-boot-plan.json#/passives/24",
+      "scope_status": "draw_ready",
+      "assembly": "FIT",
+      "generic_spec": {
+        "value_ohm": 10000,
+        "tolerance_percent": 1,
+        "technology": "general-purpose film; thick film permitted",
+        "power_rating_W_min": 0.1,
+        "working_voltage_V_min": 50,
+        "tcr_ppm_per_C_max": 100,
+        "package_target": "0603 imperial",
+        "package_status": "schematic target; actual footprint to verify later",
+        "remaining": []
+      },
+      "pins": [
+        {
+          "pin": 1,
+          "net": "CORE_ENABLE"
+        },
+        {
+          "pin": 2,
+          "net": "XU_RESET_ENABLE"
+        }
+      ],
+      "terminal_order_basis": "planning1/2 convention; verify real generic symbol pins before placement",
+      "electrically_swappable_terminal_pairs": [
+        [
+          1,
+          2
+        ]
+      ],
+      "notes": "Limits manual button current; not a voltage divider.",
+      "manufacturer": null,
+      "MPN": null,
+      "LCSC": null,
+      "library_uuid": null,
+      "procurement_state": "not_selected_not_queried"
+    },
+    {
+      "reference": "R216",
+      "logical_id": "R_XU_RESET_UP",
+      "page": "XU_POWER_SEQUENCE",
+      "kind": "resistor",
+      "value_text": "47k,1%,0603",
+      "source_spec_id": "BOOT_R_RST_47K",
+      "source_spec_id_state": "proposed_design_specific_not_added_to_CSV",
+      "value_specific_spec_key": "BOOT_R_RST_47K::47k",
+      "source_pointer": "hardware/asio-card-reva/xmos-boot-plan.json#/passives/25",
+      "scope_status": "draw_ready",
+      "assembly": "FIT",
+      "generic_spec": {
+        "value_ohm": 47000,
+        "tolerance_percent": 1,
+        "technology": "general-purpose film; thick film permitted",
+        "power_rating_W_min": 0.1,
+        "working_voltage_V_min": 50,
+        "tcr_ppm_per_C_max": 100,
+        "package_target": "0603 imperial",
+        "package_status": "schematic target; actual footprint to verify later",
+        "remaining": []
+      },
+      "pins": [
+        {
+          "pin": 1,
+          "net": "V1V8"
+        },
+        {
+          "pin": 2,
+          "net": "XU_RST_N_1V8"
+        }
+      ],
+      "terminal_order_basis": "planning1/2 convention; verify real generic symbol pins before placement",
+      "electrically_swappable_terminal_pairs": [
+        [
+          1,
+          2
+        ]
+      ],
+      "notes": "",
+      "manufacturer": null,
+      "MPN": null,
+      "LCSC": null,
+      "library_uuid": null,
+      "procurement_state": "not_selected_not_queried"
+    },
+    {
+      "reference": "U11",
+      "logical_id": "FLASH",
+      "page": "XMOS_BOOT",
+      "kind": "IC",
+      "technical_part": "W25Q16FWSNIQ",
+      "package": "SOIC8_150mil_SN_no_exposed_pad",
+      "status": "conditional_schematic_candidate_not_verified_boot",
+      "pins": [
+        {
+          "pin": 1,
+          "name": "CS#",
+          "net": "QSPI_CS_N_1V8",
+          "direction": "input",
+          "notes": "",
+          "source_net": "QSPI_CS_N_1V8"
+        },
+        {
+          "pin": 2,
+          "name": "IO1",
+          "net": "QSPI_IO1_1V8",
+          "direction": "bidirectional",
+          "notes": "",
+          "source_net": "QSPI_IO1_1V8"
+        },
+        {
+          "pin": 3,
+          "name": "IO2/WP#",
+          "net": "QSPI_IO2_1V8",
+          "direction": "bidirectional",
+          "notes": "",
+          "source_net": "QSPI_IO2_1V8"
+        },
+        {
+          "pin": 4,
+          "name": "GND",
+          "net": "GND",
+          "direction": "ground",
+          "notes": "",
+          "source_net": "GND"
+        },
+        {
+          "pin": 5,
+          "name": "IO0",
+          "net": "QSPI_IO0_1V8",
+          "direction": "bidirectional",
+          "notes": "",
+          "source_net": "QSPI_IO0_1V8"
+        },
+        {
+          "pin": 6,
+          "name": "CLK",
+          "net": "QSPI_SCLK_FLASH18",
+          "direction": "input",
+          "notes": "",
+          "source_net": "QSPI_SCLK_FLASH18"
+        },
+        {
+          "pin": 7,
+          "name": "IO3/HOLD#/RESET#",
+          "net": "QSPI_IO3_1V8",
+          "direction": "bidirectional",
+          "notes": "Quad IO3 when QE1; never wire to XU reset.",
+          "source_net": "QSPI_IO3_1V8"
+        },
+        {
+          "pin": 8,
+          "name": "VCC",
+          "net": "V1V8",
+          "direction": "power_input",
+          "notes": "",
+          "source_net": "V1V8"
+        }
+      ],
+      "source_pointer": "hardware/asio-card-reva/xmos-boot-plan.json#/flash",
+      "technical_notes": [
+        "V1V8 only; preserve IQ suffix and QE=1",
+        "FW is conditional schematic candidate; nativeprogram/verify/cold/warm boot unverified",
+        "IO3 pin7 is data, never XU reset"
+      ],
+      "manufacturer": null,
+      "LCSC": null,
+      "library_uuid": null
+    },
+    {
+      "reference": "Y10",
+      "logical_id": "XTAL_24MHZ",
+      "page": "XMOS_BOOT",
+      "kind": "passive_crystal",
+      "technical_part": "Q22FA2380006517",
+      "manufacturer": "Epson",
+      "package": "3225_4pad_height0.7mm_max",
+      "status": "selected_technical_crystal_for_schematic",
+      "pins": [
+        {
+          "pin": 1,
+          "name": "XTAL",
+          "net": "XU_XIN",
+          "direction": "passive",
+          "notes": "",
+          "source_net": "XU_XIN"
+        },
+        {
+          "pin": 2,
+          "name": "LID",
+          "net": "GND",
+          "direction": "ground",
+          "notes": "",
+          "source_net": "GND"
+        },
+        {
+          "pin": 3,
+          "name": "XTAL",
+          "net": "XU_XTAL_OUT",
+          "direction": "passive",
+          "notes": "",
+          "source_net": "XU_XTAL_OUT"
+        },
+        {
+          "pin": 4,
+          "name": "LID",
+          "net": "GND",
+          "direction": "ground",
+          "notes": "",
+          "source_net": "GND"
+        }
+      ],
+      "source_pointer": "hardware/asio-card-reva/xmos-boot-plan.json#/clock",
+      "electrical_spec": {
+        "frequency_Hz": 24000000,
+        "CL_pF": 12,
+        "ESR_ohm_max": 60,
+        "drive_uW": [
+          10,
+          100,
+          200
+        ],
+        "initial_tolerance_ppm": 50,
+        "temperature_stability_ppm": 30,
+        "specified_operating_C": [
+          -20,
+          70
+        ]
+      },
+      "LCSC": null,
+      "library_uuid": null
+    },
+    {
+      "reference": "U151",
+      "logical_id": "U_XU_IO_MON",
+      "page": "XU_POWER_SEQUENCE",
+      "kind": "IC",
+      "technical_part": "TPS3897ADRYR",
+      "package": "USON6_DRY_1.45x1.00mm",
+      "status": "draw_ready_power_sequence_proposal_not_dynamic_window_validation",
+      "pins": [
+        {
+          "pin": 1,
+          "name": "ENABLE",
+          "net": "V3V3_AON",
+          "direction": "input_active_high",
+          "notes": "",
+          "source_net": "V3V3_AON"
+        },
+        {
+          "pin": 2,
+          "name": "GND",
+          "net": "GND",
+          "direction": "ground",
+          "notes": "",
+          "source_net": "GND"
+        },
+        {
+          "pin": 3,
+          "name": "SENSE",
+          "net": "XU_SENSE_IO",
+          "direction": "analog_input",
+          "notes": "",
+          "source_net": "XU_SENSE_IO"
+        },
+        {
+          "pin": 4,
+          "name": "SENSE_OUT",
+          "net": "CORE_ENABLE",
+          "direction": "open_drain_good_high",
+          "notes": "",
+          "source_net": "CORE_ENABLE"
+        },
+        {
+          "pin": 5,
+          "name": "CT",
+          "net": "XU_CT_IO",
+          "direction": "timing_capacitor",
+          "notes": "",
+          "source_net": "XU_CT_IO"
+        },
+        {
+          "pin": 6,
+          "name": "VCC",
+          "net": "V3V3_AON",
+          "direction": "power_input",
+          "notes": "",
+          "source_net": "V3V3_AON"
+        }
+      ],
+      "monitored_rail": "V1V8",
+      "source_pointer": "hardware/asio-card-reva/xmos-boot-plan.json#/reset/monitors",
+      "threshold_V_nominal": 1.7,
+      "threshold_V_source_range": [
+        1.680267,
+        1.719787
+      ],
+      "CT_F": 1e-09,
+      "delay_annotation": {
+        "nominal_from_existing_formula_ms": 4.04,
+        "raw_source_nominal_delay_ms": 0.044,
+        "charge_only_range_ms": [
+          3.114,
+          5.246
+        ],
+        "not_a_dynamic_guarantee": true
+      },
+      "manufacturer": null,
+      "LCSC": null,
+      "library_uuid": null
+    },
+    {
+      "reference": "U152",
+      "logical_id": "U_XU_USB_MON",
+      "page": "XU_POWER_SEQUENCE",
+      "kind": "IC",
+      "technical_part": "TPS3897ADRYR",
+      "package": "USON6_DRY_1.45x1.00mm",
+      "status": "draw_ready_power_sequence_proposal_not_dynamic_window_validation",
+      "pins": [
+        {
+          "pin": 1,
+          "name": "ENABLE",
+          "net": "V3V3_AON",
+          "direction": "input_active_high",
+          "notes": "",
+          "source_net": "V3V3_AON"
+        },
+        {
+          "pin": 2,
+          "name": "GND",
+          "net": "GND",
+          "direction": "ground",
+          "notes": "",
+          "source_net": "GND"
+        },
+        {
+          "pin": 3,
+          "name": "SENSE",
+          "net": "XU_SENSE_USB",
+          "direction": "analog_input",
+          "notes": "",
+          "source_net": "XU_SENSE_USB"
+        },
+        {
+          "pin": 4,
+          "name": "SENSE_OUT",
+          "net": "CORE_ENABLE",
+          "direction": "open_drain_good_high",
+          "notes": "",
+          "source_net": "CORE_ENABLE"
+        },
+        {
+          "pin": 5,
+          "name": "CT",
+          "net": "XU_CT_USB",
+          "direction": "timing_capacitor",
+          "notes": "",
+          "source_net": "XU_CT_USB"
+        },
+        {
+          "pin": 6,
+          "name": "VCC",
+          "net": "V3V3_AON",
+          "direction": "power_input",
+          "notes": "",
+          "source_net": "V3V3_AON"
+        }
+      ],
+      "monitored_rail": "V3V3_USB",
+      "source_pointer": "hardware/asio-card-reva/xmos-boot-plan.json#/reset/monitors",
+      "threshold_V_nominal": 3.115,
+      "threshold_V_source_range": [
+        3.077894,
+        3.152223
+      ],
+      "CT_F": 1e-09,
+      "delay_annotation": {
+        "nominal_from_existing_formula_ms": 4.04,
+        "raw_source_nominal_delay_ms": 0.044,
+        "charge_only_range_ms": [
+          3.114,
+          5.246
+        ],
+        "not_a_dynamic_guarantee": true
+      },
+      "manufacturer": null,
+      "LCSC": null,
+      "library_uuid": null
+    },
+    {
+      "reference": "U153",
+      "logical_id": "U_XU_CORE_MON",
+      "page": "XU_POWER_SEQUENCE",
+      "kind": "IC",
+      "technical_part": "TPS3897ADRYR",
+      "package": "USON6_DRY_1.45x1.00mm",
+      "status": "draw_ready_power_sequence_proposal_not_dynamic_window_validation",
+      "pins": [
+        {
+          "pin": 1,
+          "name": "ENABLE",
+          "net": "XU_RESET_ENABLE",
+          "direction": "input_active_high",
+          "notes": "",
+          "source_net": "XU_RESET_ENABLE"
+        },
+        {
+          "pin": 2,
+          "name": "GND",
+          "net": "GND",
+          "direction": "ground",
+          "notes": "",
+          "source_net": "GND"
+        },
+        {
+          "pin": 3,
+          "name": "SENSE",
+          "net": "XU_SENSE_CORE",
+          "direction": "analog_input",
+          "notes": "",
+          "source_net": "XU_SENSE_CORE"
+        },
+        {
+          "pin": 4,
+          "name": "SENSE_OUT",
+          "net": "XU_RST_N_1V8",
+          "direction": "open_drain_good_high",
+          "notes": "",
+          "source_net": "XU_RST_N_1V8"
+        },
+        {
+          "pin": 5,
+          "name": "CT",
+          "net": "XU_CT_CORE",
+          "direction": "timing_capacitor",
+          "notes": "",
+          "source_net": "XU_CT_CORE"
+        },
+        {
+          "pin": 6,
+          "name": "VCC",
+          "net": "V3V3_AON",
+          "direction": "power_input",
+          "notes": "",
+          "source_net": "V3V3_AON"
+        }
+      ],
+      "monitored_rail": "V0V9",
+      "source_pointer": "hardware/asio-card-reva/xmos-boot-plan.json#/reset/monitors",
+      "threshold_V_nominal": 0.8685,
+      "threshold_V_source_range": [
+        0.858976,
+        0.878041
+      ],
+      "CT_F": 4.7e-09,
+      "delay_annotation": {
+        "nominal_from_existing_formula_ms": 18.84,
+        "raw_source_nominal_delay_ms": 0.059,
+        "charge_only_range_ms": [
+          14.635,
+          24.656
+        ],
+        "not_a_dynamic_guarantee": true
+      },
+      "manufacturer": null,
+      "LCSC": null,
+      "library_uuid": null
+    },
+    {
+      "reference": "J2",
+      "logical_id": "XSYS2_JTAG_HALF",
+      "page": "XMOS_BOOT",
+      "kind": "connector",
+      "technical_part": null,
+      "package": "1.27mm 2x5 xSYS2 half-size keyed/orientation verified beforePCB",
+      "assembly": "FIT",
+      "status": "reuse_existing_verified_preferred10pin_header_not_new_full20pin_variant",
+      "pins": [
+        {
+          "pin": 1,
+          "name": "VREF_JTAG",
+          "net": "V1V8",
+          "source_net": "V1V8",
+          "xu_pins": [
+            17,
+            26
+          ],
+          "power_domain": "VDDIOB18"
+        },
+        {
+          "pin": 2,
+          "name": "TMS",
+          "net": "JTMS18",
+          "source_net": "JTAG_TMS_1V8",
+          "xu_pins": [
+            23
+          ],
+          "power_domain": "VDDIOB18"
+        },
+        {
+          "pin": 3,
+          "name": "GND",
+          "net": "GND",
+          "source_net": "GND",
+          "xu_pins": [
+            65
+          ],
+          "power_domain": "GND"
+        },
+        {
+          "pin": 4,
+          "name": "TCK",
+          "net": "JTCK18",
+          "source_net": "JTAG_TCK_1V8",
+          "xu_pins": [
+            24
+          ],
+          "power_domain": "VDDIOB18"
+        },
+        {
+          "pin": 5,
+          "name": "GND",
+          "net": "GND",
+          "source_net": "GND",
+          "xu_pins": [
+            65
+          ],
+          "power_domain": "GND"
+        },
+        {
+          "pin": 6,
+          "name": "TDO",
+          "net": "JTDO18",
+          "source_net": "JTAG_TDO_1V8",
+          "xu_pins": [
+            20
+          ],
+          "power_domain": "VDDIOB18"
+        },
+        {
+          "pin": 7,
+          "name": "GND",
+          "net": "GND",
+          "source_net": "GND",
+          "xu_pins": [
+            65
+          ],
+          "power_domain": "GND"
+        },
+        {
+          "pin": 8,
+          "name": "TDI",
+          "net": "JTDI18",
+          "source_net": "JTAG_TDI_1V8",
+          "xu_pins": [
+            18
+          ],
+          "power_domain": "VDDIOB18"
+        },
+        {
+          "pin": 9,
+          "name": "GND",
+          "net": "GND",
+          "source_net": "GND",
+          "xu_pins": [
+            65
+          ],
+          "power_domain": "GND"
+        },
+        {
+          "pin": 10,
+          "name": "RST_N",
+          "net": "XU_RST_N_1V8",
+          "source_net": "XU_RST_N_1V8",
+          "xu_pins": [
+            21
+          ],
+          "power_domain": "VDDIOB18"
+        }
+      ],
+      "source_pointer": ".jspace/board-design-20260916/xu-pin-net-plan.json#/debug_header/preferred",
+      "source_pdf": {
+        "path": "docs/datasheets/XU316-1024-QF60A.pdf",
+        "document": "XM014034B",
+        "cover_date": "2021-06-25",
+        "page_numbers": "physical,1-based",
+        "sha256": "B36C0A754BC8D9D203037241367F36772D441F6F44208C4AB6222705BA1F966B"
+      },
+      "source_pages": [
+        76,
+        77,
+        78
+      ],
+      "notes": [
+        "XTAG4/1.8V-compatible adapter only",
+        "Pin1 is boardV1V8 reference, not a3.3V or5V power input",
+        "Pin10 joins open-drain reset; no push-pull3.3V driver",
+        "No xLINK or full-header pins11-20 added in this plan"
+      ],
+      "manufacturer": null,
+      "LCSC": null,
+      "library_uuid": null
+    },
+    {
+      "reference": "SW1",
+      "logical_id": "SW_XU_RESET",
+      "page": "XU_POWER_SEQUENCE",
+      "kind": "normally_open_momentary_switch",
+      "technical_part": null,
+      "package": "generic2effective-contact switch; actual mechanical pad duplication TBD",
+      "assembly": "OPTIONAL",
+      "status": "optional_draw_ready_generic_button",
+      "pins": [
+        {
+          "pin": 1,
+          "net": "XU_RESET_ENABLE"
+        },
+        {
+          "pin": 2,
+          "net": "GND"
+        }
+      ],
+      "source_pointer": "hardware/asio-card-reva/xmos-boot-plan.json#/optional_manual_reset",
+      "electrically_swappable_terminal_pairs": [
+        [
+          1,
+          2
+        ]
+      ],
+      "notes": [
+        "Press pulls XU_RESET_ENABLE toGND, not CORE_ENABLE and not theFlash IO3 pin",
+        "No invented4pad switch numbering; root must map effective contacts to native part"
+      ],
+      "manufacturer": null,
+      "LCSC": null,
+      "library_uuid": null
+    }
+  ],
+  "pages": [
+    {
+      "name": "XMOS_BOOT",
+      "scope": "Flash/boot straps,24MHz crystal and existing half-size xSYS2 header",
+      "groups": [
+        {
+          "id": "B1_FLASH",
+          "title": "1.8V QSPI启动存储",
+          "placement": "左上/中心；QSPI入口靠左，U11中心，CS上拉与boot下拉在各自网上；C201/C202紧邻U11电源符号",
+          "references": [
+            "U11",
+            "R201",
+            "R202",
+            "R203",
+            "R204",
+            "R205",
+            "C201",
+            "C202"
+          ],
+          "boundary_ports": [
+            "V1V8",
+            "GND",
+            "QSPI_CS_N_1V8",
+            "QSPI_IO0_1V8",
+            "QSPI_IO1_1V8",
+            "QSPI_IO2_1V8",
+            "QSPI_IO3_1V8",
+            "QSPI_SCLK_1V8"
+          ],
+          "drawing_notes": [
+            "Default CLK link R205=0ohm; source andFlash-side clocks remain distinct net labels",
+            "No extra WP/HOLD pull-up; IQ Quad configuration and000 strap are intentional"
+          ]
+        },
+        {
+          "id": "B2_CLOCK",
+          "title": "24MHz晶体与反馈/阻尼",
+          "placement": "右上；XU_XOUT→680R→晶体输出端顺序画直；1M反馈跨芯片XOUT/XIN，两个负载电容在晶体两端向下接地",
+          "references": [
+            "Y10",
+            "R206",
+            "R207",
+            "C203",
+            "C204"
+          ],
+          "boundary_ports": [
+            "XU_XOUT",
+            "XU_XIN",
+            "GND"
+          ],
+          "drawing_notes": [
+            "Y10 lid pads2/4 separately shownGND",
+            "22pF is load-cap starting value, not measuredCL"
+          ]
+        },
+        {
+          "id": "B3_DEBUG",
+          "title": "xSYS2 1.8V JTAG",
+          "placement": "下方边缘；明确pin1标记和奇偶脚列；GND不跨接信号脚",
+          "references": [
+            "J2"
+          ],
+          "boundary_ports": [
+            "V1V8",
+            "GND",
+            "JTDI18",
+            "JTDO18",
+            "JTMS18",
+            "JTCK18",
+            "XU_RST_N_1V8"
+          ],
+          "drawing_notes": [
+            "Reuse aliases already used onU10 core sheet",
+            "No debugger/service startup is authorized by this drawing plan"
+          ]
+        }
+      ],
+      "mandatory_component_count": 14
+    },
+    {
+      "name": "XU_POWER_SEQUENCE",
+      "scope": "AON-domain IO/USB monitors gate core power, core monitor generates1.8V-safe reset",
+      "groups": [
+        {
+          "id": "S1_IO",
+          "title": "先监控1.8V IO",
+          "placement": "左上，U151及其独立分压/CT/去耦",
+          "references": [
+            "U151",
+            "R208",
+            "R209",
+            "C205",
+            "C206"
+          ],
+          "boundary_ports": [
+            "V1V8",
+            "V3V3_AON",
+            "GND",
+            "CORE_ENABLE"
+          ]
+        },
+        {
+          "id": "S2_USB",
+          "title": "先监控USB 3.3V",
+          "placement": "左下，与IO监控并行；只在SENSE_OUT处汇合",
+          "references": [
+            "U152",
+            "R210",
+            "R211",
+            "C207",
+            "C208"
+          ],
+          "boundary_ports": [
+            "V3V3_USB",
+            "V3V3_AON",
+            "GND",
+            "CORE_ENABLE"
+          ]
+        },
+        {
+          "id": "S3_GATE",
+          "title": "开漏许可汇合与跨页核心使能",
+          "placement": "中间CORE_ENABLE母线，明确两个开漏监控输出、R214上拉和外部100k下拉归属",
+          "references": [
+            "R214"
+          ],
+          "external_owned_components": [
+            {
+              "id": "R_PD_CORE_ENABLE",
+              "owner": "hardware/asio-card-reva/power-pin-candidatevalues.json",
+              "value_ohm": 100000,
+              "nets": [
+                "CORE_ENABLE",
+                "GND"
+              ],
+              "instruction": "Retain existing part; do not duplicate."
+            },
+            {
+              "id": "CORE_BUCK.pin1",
+              "net": "CORE_ENABLE",
+              "owner": "power page",
+              "instruction": "This boot plan provides hardware enable; remove obsolete MCU-only assumption when root merges docs."
+            }
+          ],
+          "boundary_ports": [
+            "CORE_ENABLE",
+            "V3V3_D",
+            "GND"
+          ],
+          "drawing_notes": [
+            "Existing100k core-enable pulldown stays on power page; do not add R217 clone",
+            "Core buck pin1 connection remains owned by power page"
+          ]
+        },
+        {
+          "id": "S4_CORE_RESET",
+          "title": "核心稳定后释放复位",
+          "placement": "右中，U153独立sense/CT；输出上拉只到V1V8，复位输出向右跨页",
+          "references": [
+            "U153",
+            "R212",
+            "R213",
+            "C209",
+            "C210",
+            "R216"
+          ],
+          "boundary_ports": [
+            "V0V9",
+            "V3V3_AON",
+            "GND",
+            "V1V8",
+            "XU_RST_N_1V8",
+            "XU_RESET_ENABLE"
+          ]
+        },
+        {
+          "id": "S5_MANUAL",
+          "title": "手动复位只拉监控使能",
+          "placement": "U153 ENABLE附近下方；CORE_ENABLE经10k串阻后到SW1和ENABLE",
+          "references": [
+            "R215",
+            "SW1"
+          ],
+          "boundary_ports": [
+            "CORE_ENABLE",
+            "XU_RESET_ENABLE",
+            "GND"
+          ],
+          "drawing_notes": [
+            "Switch does not remove core power directly",
+            "SW1 optional; show explicitNO contact and pending actualpad mapping"
+          ]
+        }
+      ],
+      "mandatory_component_count": 18,
+      "optional_references": [
+        "SW1"
+      ]
+    }
+  ],
+  "existing_U10_boundary_acceptance": [
+    {
+      "pin": "U10:1",
+      "net": "QSPI_IO1_1V8",
+      "owner": "existing core page; do not duplicateU10",
+      "direction_from_existing_port": "net_port_bi"
+    },
+    {
+      "pin": "U10:2",
+      "net": "QSPI_IO3_1V8",
+      "owner": "existing core page; do not duplicateU10",
+      "direction_from_existing_port": "net_port_bi"
+    },
+    {
+      "pin": "U10:3",
+      "net": "QSPI_CS_N_1V8",
+      "owner": "existing core page; do not duplicateU10",
+      "direction_from_existing_port": "net_port_out"
+    },
+    {
+      "pin": "U10:5",
+      "net": "QSPI_SCLK_1V8",
+      "owner": "existing core page; do not duplicateU10",
+      "direction_from_existing_port": "net_port_out"
+    },
+    {
+      "pin": "U10:15",
+      "net": "XU_XOUT",
+      "owner": "existing core page; do not duplicateU10",
+      "direction_from_existing_port": "net_port_out"
+    },
+    {
+      "pin": "U10:16",
+      "net": "XU_XIN",
+      "owner": "existing core page; do not duplicateU10",
+      "direction_from_existing_port": "net_port_in"
+    },
+    {
+      "pin": "U10:18",
+      "net": "JTDI18",
+      "owner": "existing core page; do not duplicateU10",
+      "direction_from_existing_port": "net_port_in"
+    },
+    {
+      "pin": "U10:20",
+      "net": "JTDO18",
+      "owner": "existing core page; do not duplicateU10",
+      "direction_from_existing_port": "net_port_out"
+    },
+    {
+      "pin": "U10:21",
+      "net": "XU_RST_N_1V8",
+      "owner": "existing core page; do not duplicateU10",
+      "direction_from_existing_port": "net_port_in"
+    },
+    {
+      "pin": "U10:23",
+      "net": "JTMS18",
+      "owner": "existing core page; do not duplicateU10",
+      "direction_from_existing_port": "net_port_in"
+    },
+    {
+      "pin": "U10:24",
+      "net": "JTCK18",
+      "owner": "existing core page; do not duplicateU10",
+      "direction_from_existing_port": "net_port_in"
+    },
+    {
+      "pin": "U10:59",
+      "net": "QSPI_IO0_1V8",
+      "owner": "existing core page; do not duplicateU10",
+      "direction_from_existing_port": "net_port_bi"
+    },
+    {
+      "pin": "U10:60",
+      "net": "QSPI_IO2_1V8",
+      "owner": "existing core page; do not duplicateU10",
+      "direction_from_existing_port": "net_port_bi"
+    }
+  ],
+  "pin_net_acceptance": {
+    "purpose": "Expected ledger independent of futureobservedEDA export; compare afterplacement/wiring/save/reopen",
+    "expected_pin_rows": [
+      {
+        "page": "XMOS_BOOT",
+        "reference": "R201",
+        "pin": 1,
+        "net": "QSPI_CS_N_1V8",
+        "name": null,
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": true,
+        "source_logical_id": "R_FLASH_CS"
+      },
+      {
+        "page": "XMOS_BOOT",
+        "reference": "R201",
+        "pin": 2,
+        "net": "V1V8",
+        "name": null,
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": true,
+        "source_logical_id": "R_FLASH_CS"
+      },
+      {
+        "page": "XMOS_BOOT",
+        "reference": "R202",
+        "pin": 1,
+        "net": "QSPI_IO0_1V8",
+        "name": null,
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": true,
+        "source_logical_id": "R_FLASH_IO0_STRAP"
+      },
+      {
+        "page": "XMOS_BOOT",
+        "reference": "R202",
+        "pin": 2,
+        "net": "GND",
+        "name": null,
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": true,
+        "source_logical_id": "R_FLASH_IO0_STRAP"
+      },
+      {
+        "page": "XMOS_BOOT",
+        "reference": "R203",
+        "pin": 1,
+        "net": "QSPI_IO1_1V8",
+        "name": null,
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": true,
+        "source_logical_id": "R_FLASH_IO1_STRAP"
+      },
+      {
+        "page": "XMOS_BOOT",
+        "reference": "R203",
+        "pin": 2,
+        "net": "GND",
+        "name": null,
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": true,
+        "source_logical_id": "R_FLASH_IO1_STRAP"
+      },
+      {
+        "page": "XMOS_BOOT",
+        "reference": "R204",
+        "pin": 1,
+        "net": "QSPI_IO2_1V8",
+        "name": null,
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": true,
+        "source_logical_id": "R_FLASH_IO2_STRAP"
+      },
+      {
+        "page": "XMOS_BOOT",
+        "reference": "R204",
+        "pin": 2,
+        "net": "GND",
+        "name": null,
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": true,
+        "source_logical_id": "R_FLASH_IO2_STRAP"
+      },
+      {
+        "page": "XMOS_BOOT",
+        "reference": "R205",
+        "pin": 1,
+        "net": "QSPI_SCLK_1V8",
+        "name": null,
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": true,
+        "source_logical_id": "R_FLASH_SCLK_0R"
+      },
+      {
+        "page": "XMOS_BOOT",
+        "reference": "R205",
+        "pin": 2,
+        "net": "QSPI_SCLK_FLASH18",
+        "name": null,
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": true,
+        "source_logical_id": "R_FLASH_SCLK_0R"
+      },
+      {
+        "page": "XMOS_BOOT",
+        "reference": "C201",
+        "pin": 1,
+        "net": "V1V8",
+        "name": null,
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": true,
+        "source_logical_id": "C_FLASH_HF"
+      },
+      {
+        "page": "XMOS_BOOT",
+        "reference": "C201",
+        "pin": 2,
+        "net": "GND",
+        "name": null,
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": true,
+        "source_logical_id": "C_FLASH_HF"
+      },
+      {
+        "page": "XMOS_BOOT",
+        "reference": "C202",
+        "pin": 1,
+        "net": "V1V8",
+        "name": null,
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": true,
+        "source_logical_id": "C_FLASH_BULK"
+      },
+      {
+        "page": "XMOS_BOOT",
+        "reference": "C202",
+        "pin": 2,
+        "net": "GND",
+        "name": null,
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": true,
+        "source_logical_id": "C_FLASH_BULK"
+      },
+      {
+        "page": "XMOS_BOOT",
+        "reference": "R206",
+        "pin": 1,
+        "net": "XU_XOUT",
+        "name": null,
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": true,
+        "source_logical_id": "R_XTAL_FB"
+      },
+      {
+        "page": "XMOS_BOOT",
+        "reference": "R206",
+        "pin": 2,
+        "net": "XU_XIN",
+        "name": null,
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": true,
+        "source_logical_id": "R_XTAL_FB"
+      },
+      {
+        "page": "XMOS_BOOT",
+        "reference": "R207",
+        "pin": 1,
+        "net": "XU_XOUT",
+        "name": null,
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": true,
+        "source_logical_id": "R_XTAL_DAMP"
+      },
+      {
+        "page": "XMOS_BOOT",
+        "reference": "R207",
+        "pin": 2,
+        "net": "XU_XTAL_OUT",
+        "name": null,
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": true,
+        "source_logical_id": "R_XTAL_DAMP"
+      },
+      {
+        "page": "XMOS_BOOT",
+        "reference": "C203",
+        "pin": 1,
+        "net": "XU_XTAL_OUT",
+        "name": null,
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": true,
+        "source_logical_id": "C_XTAL_OUT"
+      },
+      {
+        "page": "XMOS_BOOT",
+        "reference": "C203",
+        "pin": 2,
+        "net": "GND",
+        "name": null,
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": true,
+        "source_logical_id": "C_XTAL_OUT"
+      },
+      {
+        "page": "XMOS_BOOT",
+        "reference": "C204",
+        "pin": 1,
+        "net": "XU_XIN",
+        "name": null,
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": true,
+        "source_logical_id": "C_XTAL_IN"
+      },
+      {
+        "page": "XMOS_BOOT",
+        "reference": "C204",
+        "pin": 2,
+        "net": "GND",
+        "name": null,
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": true,
+        "source_logical_id": "C_XTAL_IN"
+      },
+      {
+        "page": "XU_POWER_SEQUENCE",
+        "reference": "R208",
+        "pin": 1,
+        "net": "V1V8",
+        "name": null,
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": true,
+        "source_logical_id": "R_XU_IO_TOP"
+      },
+      {
+        "page": "XU_POWER_SEQUENCE",
+        "reference": "R208",
+        "pin": 2,
+        "net": "XU_SENSE_IO",
+        "name": null,
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": true,
+        "source_logical_id": "R_XU_IO_TOP"
+      },
+      {
+        "page": "XU_POWER_SEQUENCE",
+        "reference": "R209",
+        "pin": 1,
+        "net": "XU_SENSE_IO",
+        "name": null,
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": true,
+        "source_logical_id": "R_XU_IO_BOT"
+      },
+      {
+        "page": "XU_POWER_SEQUENCE",
+        "reference": "R209",
+        "pin": 2,
+        "net": "GND",
+        "name": null,
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": true,
+        "source_logical_id": "R_XU_IO_BOT"
+      },
+      {
+        "page": "XU_POWER_SEQUENCE",
+        "reference": "C205",
+        "pin": 1,
+        "net": "XU_CT_IO",
+        "name": null,
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": true,
+        "source_logical_id": "C_XU_IO_CT"
+      },
+      {
+        "page": "XU_POWER_SEQUENCE",
+        "reference": "C205",
+        "pin": 2,
+        "net": "GND",
+        "name": null,
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": true,
+        "source_logical_id": "C_XU_IO_CT"
+      },
+      {
+        "page": "XU_POWER_SEQUENCE",
+        "reference": "C206",
+        "pin": 1,
+        "net": "V3V3_AON",
+        "name": null,
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": true,
+        "source_logical_id": "C_XU_IO_MON"
+      },
+      {
+        "page": "XU_POWER_SEQUENCE",
+        "reference": "C206",
+        "pin": 2,
+        "net": "GND",
+        "name": null,
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": true,
+        "source_logical_id": "C_XU_IO_MON"
+      },
+      {
+        "page": "XU_POWER_SEQUENCE",
+        "reference": "R210",
+        "pin": 1,
+        "net": "V3V3_USB",
+        "name": null,
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": true,
+        "source_logical_id": "R_XU_USB_TOP"
+      },
+      {
+        "page": "XU_POWER_SEQUENCE",
+        "reference": "R210",
+        "pin": 2,
+        "net": "XU_SENSE_USB",
+        "name": null,
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": true,
+        "source_logical_id": "R_XU_USB_TOP"
+      },
+      {
+        "page": "XU_POWER_SEQUENCE",
+        "reference": "R211",
+        "pin": 1,
+        "net": "XU_SENSE_USB",
+        "name": null,
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": true,
+        "source_logical_id": "R_XU_USB_BOT"
+      },
+      {
+        "page": "XU_POWER_SEQUENCE",
+        "reference": "R211",
+        "pin": 2,
+        "net": "GND",
+        "name": null,
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": true,
+        "source_logical_id": "R_XU_USB_BOT"
+      },
+      {
+        "page": "XU_POWER_SEQUENCE",
+        "reference": "C207",
+        "pin": 1,
+        "net": "XU_CT_USB",
+        "name": null,
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": true,
+        "source_logical_id": "C_XU_USB_CT"
+      },
+      {
+        "page": "XU_POWER_SEQUENCE",
+        "reference": "C207",
+        "pin": 2,
+        "net": "GND",
+        "name": null,
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": true,
+        "source_logical_id": "C_XU_USB_CT"
+      },
+      {
+        "page": "XU_POWER_SEQUENCE",
+        "reference": "C208",
+        "pin": 1,
+        "net": "V3V3_AON",
+        "name": null,
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": true,
+        "source_logical_id": "C_XU_USB_MON"
+      },
+      {
+        "page": "XU_POWER_SEQUENCE",
+        "reference": "C208",
+        "pin": 2,
+        "net": "GND",
+        "name": null,
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": true,
+        "source_logical_id": "C_XU_USB_MON"
+      },
+      {
+        "page": "XU_POWER_SEQUENCE",
+        "reference": "R212",
+        "pin": 1,
+        "net": "V0V9",
+        "name": null,
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": true,
+        "source_logical_id": "R_XU_CORE_TOP"
+      },
+      {
+        "page": "XU_POWER_SEQUENCE",
+        "reference": "R212",
+        "pin": 2,
+        "net": "XU_SENSE_CORE",
+        "name": null,
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": true,
+        "source_logical_id": "R_XU_CORE_TOP"
+      },
+      {
+        "page": "XU_POWER_SEQUENCE",
+        "reference": "R213",
+        "pin": 1,
+        "net": "XU_SENSE_CORE",
+        "name": null,
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": true,
+        "source_logical_id": "R_XU_CORE_BOT"
+      },
+      {
+        "page": "XU_POWER_SEQUENCE",
+        "reference": "R213",
+        "pin": 2,
+        "net": "GND",
+        "name": null,
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": true,
+        "source_logical_id": "R_XU_CORE_BOT"
+      },
+      {
+        "page": "XU_POWER_SEQUENCE",
+        "reference": "C209",
+        "pin": 1,
+        "net": "XU_CT_CORE",
+        "name": null,
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": true,
+        "source_logical_id": "C_XU_CORE_CT"
+      },
+      {
+        "page": "XU_POWER_SEQUENCE",
+        "reference": "C209",
+        "pin": 2,
+        "net": "GND",
+        "name": null,
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": true,
+        "source_logical_id": "C_XU_CORE_CT"
+      },
+      {
+        "page": "XU_POWER_SEQUENCE",
+        "reference": "C210",
+        "pin": 1,
+        "net": "V3V3_AON",
+        "name": null,
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": true,
+        "source_logical_id": "C_XU_CORE_MON"
+      },
+      {
+        "page": "XU_POWER_SEQUENCE",
+        "reference": "C210",
+        "pin": 2,
+        "net": "GND",
+        "name": null,
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": true,
+        "source_logical_id": "C_XU_CORE_MON"
+      },
+      {
+        "page": "XU_POWER_SEQUENCE",
+        "reference": "R214",
+        "pin": 1,
+        "net": "V3V3_D",
+        "name": null,
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": true,
+        "source_logical_id": "R_CORE_ENABLE_UP"
+      },
+      {
+        "page": "XU_POWER_SEQUENCE",
+        "reference": "R214",
+        "pin": 2,
+        "net": "CORE_ENABLE",
+        "name": null,
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": true,
+        "source_logical_id": "R_CORE_ENABLE_UP"
+      },
+      {
+        "page": "XU_POWER_SEQUENCE",
+        "reference": "R215",
+        "pin": 1,
+        "net": "CORE_ENABLE",
+        "name": null,
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": true,
+        "source_logical_id": "R_XU_RESET_ENABLE"
+      },
+      {
+        "page": "XU_POWER_SEQUENCE",
+        "reference": "R215",
+        "pin": 2,
+        "net": "XU_RESET_ENABLE",
+        "name": null,
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": true,
+        "source_logical_id": "R_XU_RESET_ENABLE"
+      },
+      {
+        "page": "XU_POWER_SEQUENCE",
+        "reference": "R216",
+        "pin": 1,
+        "net": "V1V8",
+        "name": null,
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": true,
+        "source_logical_id": "R_XU_RESET_UP"
+      },
+      {
+        "page": "XU_POWER_SEQUENCE",
+        "reference": "R216",
+        "pin": 2,
+        "net": "XU_RST_N_1V8",
+        "name": null,
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": true,
+        "source_logical_id": "R_XU_RESET_UP"
+      },
+      {
+        "page": "XMOS_BOOT",
+        "reference": "U11",
+        "pin": 1,
+        "net": "QSPI_CS_N_1V8",
+        "name": "CS#",
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": false,
+        "source_logical_id": "FLASH"
+      },
+      {
+        "page": "XMOS_BOOT",
+        "reference": "U11",
+        "pin": 2,
+        "net": "QSPI_IO1_1V8",
+        "name": "IO1",
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": false,
+        "source_logical_id": "FLASH"
+      },
+      {
+        "page": "XMOS_BOOT",
+        "reference": "U11",
+        "pin": 3,
+        "net": "QSPI_IO2_1V8",
+        "name": "IO2/WP#",
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": false,
+        "source_logical_id": "FLASH"
+      },
+      {
+        "page": "XMOS_BOOT",
+        "reference": "U11",
+        "pin": 4,
+        "net": "GND",
+        "name": "GND",
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": false,
+        "source_logical_id": "FLASH"
+      },
+      {
+        "page": "XMOS_BOOT",
+        "reference": "U11",
+        "pin": 5,
+        "net": "QSPI_IO0_1V8",
+        "name": "IO0",
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": false,
+        "source_logical_id": "FLASH"
+      },
+      {
+        "page": "XMOS_BOOT",
+        "reference": "U11",
+        "pin": 6,
+        "net": "QSPI_SCLK_FLASH18",
+        "name": "CLK",
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": false,
+        "source_logical_id": "FLASH"
+      },
+      {
+        "page": "XMOS_BOOT",
+        "reference": "U11",
+        "pin": 7,
+        "net": "QSPI_IO3_1V8",
+        "name": "IO3/HOLD#/RESET#",
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": false,
+        "source_logical_id": "FLASH"
+      },
+      {
+        "page": "XMOS_BOOT",
+        "reference": "U11",
+        "pin": 8,
+        "net": "V1V8",
+        "name": "VCC",
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": false,
+        "source_logical_id": "FLASH"
+      },
+      {
+        "page": "XMOS_BOOT",
+        "reference": "Y10",
+        "pin": 1,
+        "net": "XU_XIN",
+        "name": "XTAL",
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": false,
+        "source_logical_id": "XTAL_24MHZ"
+      },
+      {
+        "page": "XMOS_BOOT",
+        "reference": "Y10",
+        "pin": 2,
+        "net": "GND",
+        "name": "LID",
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": false,
+        "source_logical_id": "XTAL_24MHZ"
+      },
+      {
+        "page": "XMOS_BOOT",
+        "reference": "Y10",
+        "pin": 3,
+        "net": "XU_XTAL_OUT",
+        "name": "XTAL",
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": false,
+        "source_logical_id": "XTAL_24MHZ"
+      },
+      {
+        "page": "XMOS_BOOT",
+        "reference": "Y10",
+        "pin": 4,
+        "net": "GND",
+        "name": "LID",
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": false,
+        "source_logical_id": "XTAL_24MHZ"
+      },
+      {
+        "page": "XU_POWER_SEQUENCE",
+        "reference": "U151",
+        "pin": 1,
+        "net": "V3V3_AON",
+        "name": "ENABLE",
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": false,
+        "source_logical_id": "U_XU_IO_MON"
+      },
+      {
+        "page": "XU_POWER_SEQUENCE",
+        "reference": "U151",
+        "pin": 2,
+        "net": "GND",
+        "name": "GND",
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": false,
+        "source_logical_id": "U_XU_IO_MON"
+      },
+      {
+        "page": "XU_POWER_SEQUENCE",
+        "reference": "U151",
+        "pin": 3,
+        "net": "XU_SENSE_IO",
+        "name": "SENSE",
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": false,
+        "source_logical_id": "U_XU_IO_MON"
+      },
+      {
+        "page": "XU_POWER_SEQUENCE",
+        "reference": "U151",
+        "pin": 4,
+        "net": "CORE_ENABLE",
+        "name": "SENSE_OUT",
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": false,
+        "source_logical_id": "U_XU_IO_MON"
+      },
+      {
+        "page": "XU_POWER_SEQUENCE",
+        "reference": "U151",
+        "pin": 5,
+        "net": "XU_CT_IO",
+        "name": "CT",
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": false,
+        "source_logical_id": "U_XU_IO_MON"
+      },
+      {
+        "page": "XU_POWER_SEQUENCE",
+        "reference": "U151",
+        "pin": 6,
+        "net": "V3V3_AON",
+        "name": "VCC",
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": false,
+        "source_logical_id": "U_XU_IO_MON"
+      },
+      {
+        "page": "XU_POWER_SEQUENCE",
+        "reference": "U152",
+        "pin": 1,
+        "net": "V3V3_AON",
+        "name": "ENABLE",
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": false,
+        "source_logical_id": "U_XU_USB_MON"
+      },
+      {
+        "page": "XU_POWER_SEQUENCE",
+        "reference": "U152",
+        "pin": 2,
+        "net": "GND",
+        "name": "GND",
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": false,
+        "source_logical_id": "U_XU_USB_MON"
+      },
+      {
+        "page": "XU_POWER_SEQUENCE",
+        "reference": "U152",
+        "pin": 3,
+        "net": "XU_SENSE_USB",
+        "name": "SENSE",
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": false,
+        "source_logical_id": "U_XU_USB_MON"
+      },
+      {
+        "page": "XU_POWER_SEQUENCE",
+        "reference": "U152",
+        "pin": 4,
+        "net": "CORE_ENABLE",
+        "name": "SENSE_OUT",
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": false,
+        "source_logical_id": "U_XU_USB_MON"
+      },
+      {
+        "page": "XU_POWER_SEQUENCE",
+        "reference": "U152",
+        "pin": 5,
+        "net": "XU_CT_USB",
+        "name": "CT",
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": false,
+        "source_logical_id": "U_XU_USB_MON"
+      },
+      {
+        "page": "XU_POWER_SEQUENCE",
+        "reference": "U152",
+        "pin": 6,
+        "net": "V3V3_AON",
+        "name": "VCC",
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": false,
+        "source_logical_id": "U_XU_USB_MON"
+      },
+      {
+        "page": "XU_POWER_SEQUENCE",
+        "reference": "U153",
+        "pin": 1,
+        "net": "XU_RESET_ENABLE",
+        "name": "ENABLE",
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": false,
+        "source_logical_id": "U_XU_CORE_MON"
+      },
+      {
+        "page": "XU_POWER_SEQUENCE",
+        "reference": "U153",
+        "pin": 2,
+        "net": "GND",
+        "name": "GND",
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": false,
+        "source_logical_id": "U_XU_CORE_MON"
+      },
+      {
+        "page": "XU_POWER_SEQUENCE",
+        "reference": "U153",
+        "pin": 3,
+        "net": "XU_SENSE_CORE",
+        "name": "SENSE",
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": false,
+        "source_logical_id": "U_XU_CORE_MON"
+      },
+      {
+        "page": "XU_POWER_SEQUENCE",
+        "reference": "U153",
+        "pin": 4,
+        "net": "XU_RST_N_1V8",
+        "name": "SENSE_OUT",
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": false,
+        "source_logical_id": "U_XU_CORE_MON"
+      },
+      {
+        "page": "XU_POWER_SEQUENCE",
+        "reference": "U153",
+        "pin": 5,
+        "net": "XU_CT_CORE",
+        "name": "CT",
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": false,
+        "source_logical_id": "U_XU_CORE_MON"
+      },
+      {
+        "page": "XU_POWER_SEQUENCE",
+        "reference": "U153",
+        "pin": 6,
+        "net": "V3V3_AON",
+        "name": "VCC",
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": false,
+        "source_logical_id": "U_XU_CORE_MON"
+      },
+      {
+        "page": "XMOS_BOOT",
+        "reference": "J2",
+        "pin": 1,
+        "net": "V1V8",
+        "name": "VREF_JTAG",
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": false,
+        "source_logical_id": "XSYS2_JTAG_HALF"
+      },
+      {
+        "page": "XMOS_BOOT",
+        "reference": "J2",
+        "pin": 2,
+        "net": "JTMS18",
+        "name": "TMS",
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": false,
+        "source_logical_id": "XSYS2_JTAG_HALF"
+      },
+      {
+        "page": "XMOS_BOOT",
+        "reference": "J2",
+        "pin": 3,
+        "net": "GND",
+        "name": "GND",
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": false,
+        "source_logical_id": "XSYS2_JTAG_HALF"
+      },
+      {
+        "page": "XMOS_BOOT",
+        "reference": "J2",
+        "pin": 4,
+        "net": "JTCK18",
+        "name": "TCK",
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": false,
+        "source_logical_id": "XSYS2_JTAG_HALF"
+      },
+      {
+        "page": "XMOS_BOOT",
+        "reference": "J2",
+        "pin": 5,
+        "net": "GND",
+        "name": "GND",
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": false,
+        "source_logical_id": "XSYS2_JTAG_HALF"
+      },
+      {
+        "page": "XMOS_BOOT",
+        "reference": "J2",
+        "pin": 6,
+        "net": "JTDO18",
+        "name": "TDO",
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": false,
+        "source_logical_id": "XSYS2_JTAG_HALF"
+      },
+      {
+        "page": "XMOS_BOOT",
+        "reference": "J2",
+        "pin": 7,
+        "net": "GND",
+        "name": "GND",
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": false,
+        "source_logical_id": "XSYS2_JTAG_HALF"
+      },
+      {
+        "page": "XMOS_BOOT",
+        "reference": "J2",
+        "pin": 8,
+        "net": "JTDI18",
+        "name": "TDI",
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": false,
+        "source_logical_id": "XSYS2_JTAG_HALF"
+      },
+      {
+        "page": "XMOS_BOOT",
+        "reference": "J2",
+        "pin": 9,
+        "net": "GND",
+        "name": "GND",
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": false,
+        "source_logical_id": "XSYS2_JTAG_HALF"
+      },
+      {
+        "page": "XMOS_BOOT",
+        "reference": "J2",
+        "pin": 10,
+        "net": "XU_RST_N_1V8",
+        "name": "RST_N",
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": false,
+        "source_logical_id": "XSYS2_JTAG_HALF"
+      },
+      {
+        "page": "XU_POWER_SEQUENCE",
+        "reference": "SW1",
+        "pin": 1,
+        "net": "XU_RESET_ENABLE",
+        "name": null,
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": true,
+        "source_logical_id": "SW_XU_RESET"
+      },
+      {
+        "page": "XU_POWER_SEQUENCE",
+        "reference": "SW1",
+        "pin": 2,
+        "net": "GND",
+        "name": null,
+        "requirement": "must_match_native_exported_pin_net",
+        "terminal_swap_allowed": true,
+        "source_logical_id": "SW_XU_RESET"
+      }
+    ],
+    "expected_net_members": {
+      "QSPI_CS_N_1V8": [
+        "R201:1",
+        "U11:1"
+      ],
+      "V1V8": [
+        "R201:2",
+        "C201:1",
+        "C202:1",
+        "R208:1",
+        "R216:1",
+        "U11:8",
+        "J2:1"
+      ],
+      "QSPI_IO0_1V8": [
+        "R202:1",
+        "U11:5"
+      ],
+      "GND": [
+        "R202:2",
+        "R203:2",
+        "R204:2",
+        "C201:2",
+        "C202:2",
+        "C203:2",
+        "C204:2",
+        "R209:2",
+        "C205:2",
+        "C206:2",
+        "R211:2",
+        "C207:2",
+        "C208:2",
+        "R213:2",
+        "C209:2",
+        "C210:2",
+        "U11:4",
+        "Y10:2",
+        "Y10:4",
+        "U151:2",
+        "U152:2",
+        "U153:2",
+        "J2:3",
+        "J2:5",
+        "J2:7",
+        "J2:9",
+        "SW1:2"
+      ],
+      "QSPI_IO1_1V8": [
+        "R203:1",
+        "U11:2"
+      ],
+      "QSPI_IO2_1V8": [
+        "R204:1",
+        "U11:3"
+      ],
+      "QSPI_SCLK_1V8": [
+        "R205:1"
+      ],
+      "QSPI_SCLK_FLASH18": [
+        "R205:2",
+        "U11:6"
+      ],
+      "XU_XOUT": [
+        "R206:1",
+        "R207:1"
+      ],
+      "XU_XIN": [
+        "R206:2",
+        "C204:1",
+        "Y10:1"
+      ],
+      "XU_XTAL_OUT": [
+        "R207:2",
+        "C203:1",
+        "Y10:3"
+      ],
+      "XU_SENSE_IO": [
+        "R208:2",
+        "R209:1",
+        "U151:3"
+      ],
+      "XU_CT_IO": [
+        "C205:1",
+        "U151:5"
+      ],
+      "V3V3_AON": [
+        "C206:1",
+        "C208:1",
+        "C210:1",
+        "U151:1",
+        "U151:6",
+        "U152:1",
+        "U152:6",
+        "U153:6"
+      ],
+      "V3V3_USB": [
+        "R210:1"
+      ],
+      "XU_SENSE_USB": [
+        "R210:2",
+        "R211:1",
+        "U152:3"
+      ],
+      "XU_CT_USB": [
+        "C207:1",
+        "U152:5"
+      ],
+      "V0V9": [
+        "R212:1"
+      ],
+      "XU_SENSE_CORE": [
+        "R212:2",
+        "R213:1",
+        "U153:3"
+      ],
+      "XU_CT_CORE": [
+        "C209:1",
+        "U153:5"
+      ],
+      "V3V3_D": [
+        "R214:1"
+      ],
+      "CORE_ENABLE": [
+        "R214:2",
+        "R215:1",
+        "U151:4",
+        "U152:4"
+      ],
+      "XU_RESET_ENABLE": [
+        "R215:2",
+        "U153:1",
+        "SW1:1"
+      ],
+      "XU_RST_N_1V8": [
+        "R216:2",
+        "U153:4",
+        "J2:10"
+      ],
+      "QSPI_IO3_1V8": [
+        "U11:7"
+      ],
+      "JTMS18": [
+        "J2:2"
+      ],
+      "JTCK18": [
+        "J2:4"
+      ],
+      "JTDO18": [
+        "J2:6"
+      ],
+      "JTDI18": [
+        "J2:8"
+      ]
+    },
+    "comparison_rules": [
+      "Each listed non-NC pin has exactly the stated net; unresolvedlibrarypin mapping failsacceptance",
+      "For nonpolar2terminalpassives effective terminals may be swapped, but unorderednetpair andcomponentvalue mustmatch",
+      "Use net aliases only from existingnet-aliases.json; do notmerge unrelatedclock/sense/resetnets",
+      "Compare expectedledger to a fresh nativeexport, notto screenshotsorlabels alone",
+      "Save/reopen and re-export before marking topologyaccepted"
+    ],
+    "native_verification_status": "not_run_by_this_agent"
+  },
+  "required_connectivity_checks": [
+    {
+      "id": "A_FLASH",
+      "members": [
+        "U11:1=QSPI_CS_N_1V8",
+        "U11:2=QSPI_IO1_1V8",
+        "U11:3=QSPI_IO2_1V8",
+        "U11:4=GND",
+        "U11:5=QSPI_IO0_1V8",
+        "U11:6=QSPI_SCLK_FLASH18",
+        "U11:7=QSPI_IO3_1V8",
+        "U11:8=V1V8"
+      ],
+      "notes": "Cross-check eight actual SOIC8 nativepins andpowerdomain"
+    },
+    {
+      "id": "A_XTAL",
+      "members": [
+        "Y10:1=XU_XIN",
+        "Y10:2=GND",
+        "Y10:3=XU_XTAL_OUT",
+        "Y10:4=GND"
+      ],
+      "notes": "Use sourcepackageorientation; verifyfeedbackbefore damping"
+    },
+    {
+      "id": "A_CORE_GATE",
+      "members": [
+        "U151:4=CORE_ENABLE",
+        "U152:4=CORE_ENABLE",
+        "R214:1=V3V3_D",
+        "R214:2=CORE_ENABLE"
+      ],
+      "notes": "Twoopen drains form sharedpermission; powerpage100kPD notduplicated"
+    },
+    {
+      "id": "A_CORE_RESET",
+      "members": [
+        "R215:1=CORE_ENABLE",
+        "R215:2=XU_RESET_ENABLE",
+        "SW1:1=XU_RESET_ENABLE",
+        "SW1:2=GND",
+        "U153:1=XU_RESET_ENABLE",
+        "U153:4=XU_RST_N_1V8",
+        "R216:1=V1V8",
+        "R216:2=XU_RST_N_1V8",
+        "J2:10=XU_RST_N_1V8",
+        "U10:21=XU_RST_N_1V8"
+      ],
+      "notes": "SW1assertsmonitorENABLE low withoutdirectcorepower removal"
+    },
+    {
+      "id": "A_ALL_GND",
+      "notes": "J2pins3/5/7/9, Y10pins2/4, all three monitorpin2, U11pin4 and intendedpassivegroundterminals explicitly joinGND"
+    }
+  ],
+  "forbidden_changes": [
+    {
+      "id": "F_FLASH_POWER",
+      "rule": "U11VCC and allQSPI signal pull-ups are1.8V; no3.3V/5V source enters these nets"
+    },
+    {
+      "id": "F_FLASH_PIN7",
+      "rule": "U11:7 belongs onlyQSPI_IO3_1V8; do not connect it toXU_RST_N_1V8"
+    },
+    {
+      "id": "F_BOOT_STRAP",
+      "rule": "EachIO0/IO1/IO2 has its own100k toGND; noaddedWP pull-up or sharedshort"
+    },
+    {
+      "id": "F_XTAL_DAMP",
+      "rule": "R206 feedback is XU_XOUT↔XU_XIN beforeR207 damping; C203 is onXU_XTAL_OUT, notXU_XOUT"
+    },
+    {
+      "id": "F_CLOCK_BYPASS",
+      "rule": "Only R205 bridgesQSPI_SCLK_1V8 andQSPI_SCLK_FLASH18; do notwirearound resistor"
+    },
+    {
+      "id": "F_RESET_DOMAIN",
+      "rule": "U153:4/J2:10/U10:21 shareXU_RST_N_1V8, pulled only toV1V8 byR216; no3.3V push-pull"
+    },
+    {
+      "id": "F_SENSE_SHORT",
+      "rule": "XU_SENSE_IO/USB/CORE arethree separate nets; CT_IO/USB/CORE also distinct"
+    },
+    {
+      "id": "F_ENABLE_RESET_SHORT",
+      "rule": "CORE_ENABLE, XU_RESET_ENABLE andXU_RST_N_1V8 arethree distinct nets; R215 is the only designatedseries link betweenfirsttwo"
+    },
+    {
+      "id": "F_NO_DUPLICATION",
+      "rule": "Do not instantiateU10,C101-C118 or the power-page100kCORE_ENABLE pulldown in these pages"
+    },
+    {
+      "id": "F_NO_ADDED_RESET_CAP",
+      "rule": "No guessed100nF capacitor onXU_RST_N_1V8; noextraFlash pull-ups orcrystal18pF substitutions"
+    },
+    {
+      "id": "F_J2_HALF",
+      "rule": "J2is1.27mm2x5 with1.8V reference, notold2.54mm2x3 and notanunverified20pinheader"
+    }
+  ],
+  "timing_annotation_conflicts": [
+    {
+      "source_id": "U_XU_IO_MON",
+      "source_field": "reset.monitors.nominal_delay_ms",
+      "raw_source_value_ms": 0.044,
+      "nominal_arithmetic_from_existing_formula_ms": 4.04,
+      "impact": "Do not print raw nominal_delay_ms as a proven timing annotation. CT capacitance and net assignments are unchanged.",
+      "source_document_corroboration": "docs/schematic/reva-xmos-boot.md existing CT formula section states4.04ms/18.84ms",
+      "root_action": "Correct upstream annotation separately; no new research was performed here."
+    },
+    {
+      "source_id": "U_XU_USB_MON",
+      "source_field": "reset.monitors.nominal_delay_ms",
+      "raw_source_value_ms": 0.044,
+      "nominal_arithmetic_from_existing_formula_ms": 4.04,
+      "impact": "Do not print raw nominal_delay_ms as a proven timing annotation. CT capacitance and net assignments are unchanged.",
+      "source_document_corroboration": "docs/schematic/reva-xmos-boot.md existing CT formula section states4.04ms/18.84ms",
+      "root_action": "Correct upstream annotation separately; no new research was performed here."
+    },
+    {
+      "source_id": "U_XU_CORE_MON",
+      "source_field": "reset.monitors.nominal_delay_ms",
+      "raw_source_value_ms": 0.059,
+      "nominal_arithmetic_from_existing_formula_ms": 18.84,
+      "impact": "Do not print raw nominal_delay_ms as a proven timing annotation. CT capacitance and net assignments are unchanged.",
+      "source_document_corroboration": "docs/schematic/reva-xmos-boot.md existing CT formula section states4.04ms/18.84ms",
+      "root_action": "Correct upstream annotation separately; no new research was performed here."
+    }
+  ],
+  "drawing_annotations": [
+    "Flash is aconditional1.8VFW candidate, notverifiedxflash/boot compatibility.",
+    "Y10CL12pF; C203/C20422pF areXMOS reference starting values requiringPCB/drivevalidation.",
+    "AONbeforemain; IO andUSB railsshall permitcorepower beforecoremonitor releasesreset.",
+    "CT1nF/1nF/4.7nF values are preserved; do notprint conflicting0.044/0.059ms sourcefields.",
+    "Nominaldelays4.04/4.04/18.84ms followexistingformula; charge-only ranges are notcompletepropagationguarantees.",
+    "Runtimebrownout-before0.855V guarantee remainsunclosed as inupstreamplan.",
+    "No purchaseMPNs/Cnumbers/UUIDs invented; use verifiedgenericR/Csymbols and separately verifyICnativepinmapping."
+  ],
+  "remaining_acceptance": [
+    "Real ROM EB mode/dummy waveform vs FW Fig24a and XTC SFDP/program/verify/cold/warm boot",
+    "Native library pin and package verification",
+    "Crystal startup/drive/CL validation",
+    "AON-before-main order and<=50ms IO/core ramp interval",
+    "All supply static/dynamic/thermal min-max windows and fault behavior",
+    "Firmware must preserve Flash QE/SPI/no-wrap state and not reset during write/erase"
+  ],
+  "allowed_followup_by_root": [
+    "Nativeprojecthealth and pageinventory",
+    "Resolve actualnativegenericsymbols withoutinventedUUIDs",
+    "Place groups andconnectexactnetledger",
+    "Run nativeERC/DRC andcompare export",
+    "Save/reopen andverify samepin-netmapping"
+  ],
+  "forbidden_actions_for_this_subtask": [
+    "EDAordesktop interaction",
+    "Debugger/server/service startup",
+    "New part research orstock/price queries",
+    "Changes toanyfile exceptboot-drawing-plan.json"
+  ],
+  "verification": {
+    "reference_designators_unique": true,
+    "collisions_with_reserved": [],
+    "logical_passive_source_count": 26,
+    "assigned_passive_count": 26,
+    "new_components_total": 33,
+    "mandatory_components": 32,
+    "optional_components": [
+      "SW1"
+    ],
+    "new_pin_ledger_rows": 94,
+    "source_connections_changed": false,
+    "EDA_modified": false,
+    "desktop_used": false,
+    "debugger_started": false,
+    "services_started": false,
+    "native_ERC_DRC_passed": false,
+    "hardware_tested": false
+  },
+  "timing_annotation_resolution": {
+    "status": "source_nominal_delay_ms_corrected_by_root",
+    "values_ms": [
+      4.04,
+      4.04,
+      18.84
+    ],
+    "basis": "Existing t(s)=4*C(uF)+40us; fixes unit conversion only, no circuit value/net change"
+  }
+}

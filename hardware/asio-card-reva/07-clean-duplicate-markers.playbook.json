@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "meta": {
+    "name": "remove-generated-duplicate-vdd-markers",
+    "project": "ASIO_CARD_USB5V_REV_A",
+    "doc": "XMOS_CORE"
+  },
+  "steps": [
+    {
+      "id": "remove-11-generated-duplicates",
+      "action": "schematic.primitives.delete",
+      "payload": {
+        "primitiveIds": [
+          "2c9ec17bb45567e8",
+          "3daaf30952d1e2e1",
+          "493cb308f964af89",
+          "5c1672e8e2302b9b",
+          "782532c295705f17",
+          "7b3bf677b59f6c52",
+          "7b4b51c734783815",
+          "7f39cecf8f377272",
+          "b92a2f5e181f25ae",
+          "eb0738466a7cff97",
+          "fbd72e31bf650c77"
+        ]
+      },
+      "confirm": true
+    },
+    {
+      "id": "save-cleanup",
+      "action": "schematic.save",
+      "checkpoint": true
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "id": "req_977",
+  "type": "response",
+  "version": "v1",
+  "createdAt": "2026-09-16T09:38:58.43631Z",
+  "ok": true,
+  "result": {
+    "passed": true,
+    "summary": {
+      "bridges": 0,
+      "orphanFlags": 0,
+      "orphanTrees": 0,
+      "orphans": 0,
+      "trees": 0,
+      "wireTreesTotal": 76
+    },
+    "trees": []
+  },
+  "context": {
+    "projectUuid": "0c3471781e9003521d5aa6173afcf139be2fe332607e660fb4a68d6eaafe26ab",
+    "projectName": "ASIO_CARD_USB5V_REV_A",
+    "documentUuid": "25705a7645bdb6d1",
+    "documentType": "schematic",
+    "tabId": "25705a7645bdb6d1@0c3471781e9003521d5aa6173afcf139be2fe332607e660fb4a68d6eaafe26ab"
+  },
+  "seq": 796,
+  "seqAbandoned": 0
+}

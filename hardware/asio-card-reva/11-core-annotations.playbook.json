@@ -1,0 +1,85 @@
+{
+  "version": 1,
+  "meta": {
+    "name": "xmos-functional-frames-and-notes",
+    "project": "ASIO_CARD_USB5V_REV_A",
+    "doc": "XMOS_CORE"
+  },
+  "defaults": {
+    "timeoutSec": 90,
+    "retry": 0
+  },
+  "steps": [
+    {
+      "id": "titleblock",
+      "action": "schematic.titleblock.modify",
+      "payload": {
+        "titleBlockData": {
+          "Name": {
+            "value": "XMOS Core / Decoupling",
+            "showValue": true
+          },
+          "Drawed": {
+            "value": "ASIO-CARD",
+            "showValue": true
+          },
+          "Description": {
+            "value": "0.9V core / 1.8V IO; draft",
+            "showValue": true
+          },
+          "Version": {
+            "value": "RevA DRAFT",
+            "showValue": true
+          }
+        }
+      }
+    },
+    {
+      "id": "note-core",
+      "run": "sch note",
+      "flags": {
+        "zone": "g1",
+        "text": "Core 0.900V; all GPIO at 1.8V.\nPads 61-64 = VDD; pad 65 = GND.\nAppPLL pin14 feeds pin47 and the ADC clock translator.",
+        "font-size": 10,
+        "json": true
+      }
+    },
+    {
+      "id": "note-decoupling",
+      "run": "sch note",
+      "flags": {
+        "zone": "g2",
+        "text": "C101-C108: core 100nF per pin.\nIO / PHY 100nF; PLL 1uF.\nBulk: >=10uF effective per rail.",
+        "font-size": 9,
+        "json": true
+      }
+    },
+    {
+      "id": "verify-frame-space",
+      "run": "sch zone-plan",
+      "flags": {
+        "json": true
+      },
+      "assert": {
+        "$.validation.sheetOverflow": "==0",
+        "$.validation.partitionOverlap": "==0",
+        "$.validation.titleBlockHits": "==0",
+        "$.validation.moduleOutsideZone": "==0",
+        "$.validation.labelCollisions": "==0"
+      }
+    },
+    {
+      "id": "draw-functional-frames",
+      "run": "sch zone-draw",
+      "flags": {
+        "mode": "partition",
+        "font-size": 18
+      }
+    },
+    {
+      "id": "save-annotated-page",
+      "action": "schematic.save",
+      "checkpoint": true
+    }
+  ]
+}

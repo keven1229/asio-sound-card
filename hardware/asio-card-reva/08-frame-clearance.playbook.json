@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "meta": {
+    "name": "xmos-frame-clearance-repair",
+    "project": "ASIO_CARD_USB5V_REV_A",
+    "doc": "XMOS_CORE"
+  },
+  "defaults": {
+    "timeoutSec": 600,
+    "retry": 0
+  },
+  "steps": [
+    {
+      "id": "shift-core-with-connections",
+      "run": "sch group-move",
+      "flags": {
+        "group": "g1",
+        "dx": -60,
+        "dy": 0
+      }
+    },
+    {
+      "id": "shift-decoupling-with-connections",
+      "run": "sch group-move",
+      "flags": {
+        "group": "g2",
+        "dx": -15,
+        "dy": 0
+      }
+    },
+    {
+      "id": "save-repaired-placement",
+      "action": "schematic.save",
+      "checkpoint": true
+    }
+  ]
+}

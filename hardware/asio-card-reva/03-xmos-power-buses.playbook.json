@@ -1,0 +1,390 @@
+{
+  "version": 1,
+  "meta": {
+    "name": "xmos-core-power-buses",
+    "project": "ASIO_CARD_USB5V_REV_A",
+    "doc": "XMOS_CORE"
+  },
+  "defaults": {
+    "timeoutSec": 60,
+    "retry": 0
+  },
+  "steps": [
+    {
+      "id": "bus-V0V9",
+      "action": "schematic.wire.create",
+      "payload": {
+        "points": [
+          [
+            480,
+            570
+          ],
+          [
+            480,
+            680
+          ]
+        ],
+        "net": "V0V9"
+      }
+    },
+    {
+      "id": "tap-U10-4",
+      "action": "schematic.wire.create",
+      "payload": {
+        "points": [
+          [
+            505,
+            680
+          ],
+          [
+            480,
+            680
+          ]
+        ],
+        "net": "V0V9"
+      }
+    },
+    {
+      "id": "tap-U10-12",
+      "action": "schematic.wire.create",
+      "payload": {
+        "points": [
+          [
+            505,
+            670
+          ],
+          [
+            480,
+            670
+          ]
+        ],
+        "net": "V0V9"
+      }
+    },
+    {
+      "id": "tap-U10-19",
+      "action": "schematic.wire.create",
+      "payload": {
+        "points": [
+          [
+            505,
+            660
+          ],
+          [
+            480,
+            660
+          ]
+        ],
+        "net": "V0V9"
+      }
+    },
+    {
+      "id": "tap-U10-27",
+      "action": "schematic.wire.create",
+      "payload": {
+        "points": [
+          [
+            505,
+            650
+          ],
+          [
+            480,
+            650
+          ]
+        ],
+        "net": "V0V9"
+      }
+    },
+    {
+      "id": "tap-U10-34",
+      "action": "schematic.wire.create",
+      "payload": {
+        "points": [
+          [
+            505,
+            640
+          ],
+          [
+            480,
+            640
+          ]
+        ],
+        "net": "V0V9"
+      }
+    },
+    {
+      "id": "tap-U10-42",
+      "action": "schematic.wire.create",
+      "payload": {
+        "points": [
+          [
+            505,
+            630
+          ],
+          [
+            480,
+            630
+          ]
+        ],
+        "net": "V0V9"
+      }
+    },
+    {
+      "id": "tap-U10-49",
+      "action": "schematic.wire.create",
+      "payload": {
+        "points": [
+          [
+            505,
+            620
+          ],
+          [
+            480,
+            620
+          ]
+        ],
+        "net": "V0V9"
+      }
+    },
+    {
+      "id": "tap-U10-57",
+      "action": "schematic.wire.create",
+      "payload": {
+        "points": [
+          [
+            505,
+            610
+          ],
+          [
+            480,
+            610
+          ]
+        ],
+        "net": "V0V9"
+      }
+    },
+    {
+      "id": "tap-U10-61",
+      "action": "schematic.wire.create",
+      "payload": {
+        "points": [
+          [
+            505,
+            600
+          ],
+          [
+            480,
+            600
+          ]
+        ],
+        "net": "V0V9"
+      }
+    },
+    {
+      "id": "tap-U10-62",
+      "action": "schematic.wire.create",
+      "payload": {
+        "points": [
+          [
+            505,
+            590
+          ],
+          [
+            480,
+            590
+          ]
+        ],
+        "net": "V0V9"
+      }
+    },
+    {
+      "id": "tap-U10-63",
+      "action": "schematic.wire.create",
+      "payload": {
+        "points": [
+          [
+            505,
+            580
+          ],
+          [
+            480,
+            580
+          ]
+        ],
+        "net": "V0V9"
+      }
+    },
+    {
+      "id": "tap-U10-64",
+      "action": "schematic.wire.create",
+      "payload": {
+        "points": [
+          [
+            505,
+            570
+          ],
+          [
+            480,
+            570
+          ]
+        ],
+        "net": "V0V9"
+      }
+    },
+    {
+      "id": "flag-V0V9",
+      "action": "schematic.power.connect_pin",
+      "payload": {
+        "pinX": 480,
+        "pinY": 680,
+        "kind": "power",
+        "net": "V0V9",
+        "direction": "up",
+        "offset": 35
+      }
+    },
+    {
+      "id": "bus-V1V8",
+      "action": "schematic.wire.create",
+      "payload": {
+        "points": [
+          [
+            485,
+            520
+          ],
+          [
+            485,
+            560
+          ]
+        ],
+        "net": "V1V8"
+      }
+    },
+    {
+      "id": "tap-U10-8",
+      "action": "schematic.wire.create",
+      "payload": {
+        "points": [
+          [
+            505,
+            540
+          ],
+          [
+            485,
+            540
+          ]
+        ],
+        "net": "V1V8"
+      }
+    },
+    {
+      "id": "tap-U10-17",
+      "action": "schematic.wire.create",
+      "payload": {
+        "points": [
+          [
+            505,
+            560
+          ],
+          [
+            485,
+            560
+          ]
+        ],
+        "net": "V1V8"
+      }
+    },
+    {
+      "id": "tap-U10-26",
+      "action": "schematic.wire.create",
+      "payload": {
+        "points": [
+          [
+            505,
+            550
+          ],
+          [
+            485,
+            550
+          ]
+        ],
+        "net": "V1V8"
+      }
+    },
+    {
+      "id": "tap-U10-38",
+      "action": "schematic.wire.create",
+      "payload": {
+        "points": [
+          [
+            505,
+            530
+          ],
+          [
+            485,
+            530
+          ]
+        ],
+        "net": "V1V8"
+      }
+    },
+    {
+      "id": "tap-U10-52",
+      "action": "schematic.wire.create",
+      "payload": {
+        "points": [
+          [
+            505,
+            520
+          ],
+          [
+            485,
+            520
+          ]
+        ],
+        "net": "V1V8"
+      }
+    },
+    {
+      "id": "flag-V1V8",
+      "action": "schematic.power.connect_pin",
+      "payload": {
+        "pinX": 485,
+        "pinY": 560,
+        "kind": "power",
+        "net": "V1V8",
+        "direction": "left",
+        "offset": 55
+      }
+    },
+    {
+      "id": "intentional-nc",
+      "action": "schematic.pin.set_no_connect",
+      "payload": {
+        "designator": "U10",
+        "pins": [
+          "7",
+          "11",
+          "25",
+          "40",
+          "44",
+          "45",
+          "46",
+          "48",
+          "50",
+          "51",
+          "54",
+          "55",
+          "56",
+          "58"
+        ],
+        "noConnected": true
+      }
+    },
+    {
+      "id": "save-power-buses",
+      "action": "schematic.save",
+      "checkpoint": true
+    }
+  ]
+}

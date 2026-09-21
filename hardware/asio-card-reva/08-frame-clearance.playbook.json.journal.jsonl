@@ -1,0 +1,4 @@
+{"playbookSha256":"6df53dfa9b8329e98066871b4827e95935e2533d5c030bfd584679629b0ce8e6","name":"xmos-frame-clearance-repair","project":"ASIO_CARD_USB5V_REV_A","startedAt":"2026-09-16T19:08:31+08:00"}
+{"idx":1,"id":"shift-core-with-connections","status":"ok","ms":92784}
+{"idx":2,"id":"shift-decoupling-with-connections","status":"ok","ms":143100}
+{"idx":3,"id":"save-repaired-placement","status":"ok","ms":6}

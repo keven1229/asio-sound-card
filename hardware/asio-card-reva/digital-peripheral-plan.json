@@ -1,0 +1,2855 @@
+{
+  "schema_version": 2,
+  "date": "2026-09-16",
+  "scope": "Digital peripheral pin/net technical plan. No firmware, EDA, BOM, purchasing or price changes.",
+  "status": "S0 interface plan aligned with Rev A single USB-C power tree; not power-window, timing, ERC or physical validation",
+  "root_owns_eda": true,
+  "preserved_requirements": {
+    "source": "docs/schematic/05-control.md§5.1/5.3and07-usb-c.md§7.1",
+    "fixed": [
+      "Hubport1XUaudio",
+      "Hubport2ESPnativeUSB",
+      "Hubport3CH343P-AUART0",
+      "Hubport4CH343P-BXUdebug",
+      "TwoencoderUIandSPILCDasretaineddraft",
+      "K4 headphone mute is the current audio safety function; old optional AUX phantom is not retained"
+    ],
+    "not_user_confirmed_historical_extras": [
+      "Fourstandalonebuttons",
+      "FourstandaloneLEDs",
+      "AuxinputphantomrelayK4"
+    ],
+    "extra_policy": "Donotautopopulatehistoricalextras; reserveunassignedI/Oonly. Phantom/Hi-Z/mutecanbecontrolledbyLCD/encodermenus."
+  },
+  "sources": [
+    {
+      "path": "docs/datasheets/CH334DS1_WCH.pdf",
+      "revision": "V2.5",
+      "sha256": "C078817182E320E7BC1C2F5D28B361A55246BAC70D4A07B05CB0E997DEDEA586"
+    },
+    {
+      "path": "docs/datasheets/CH343DS1_WCH.pdf",
+      "revision": "V2.0",
+      "sha256": "D1DBA2658F17B842A14A1911E65CE1A19FA8D1FDB8F777183E4CDE4FEBB34865"
+    },
+    {
+      "path": "docs/datasheets/ESP32-S3-WROOM-1_ESPRESSIF.pdf",
+      "revision": "v1.8",
+      "sha256": "27D71971DA07C280C6068D08C74720D1A25B8F20CF8494DC1765BDD28D40D435"
+    },
+    {
+      "url": "https://ww1.microchip.com/downloads/aemDocuments/documents/APID/ProductDocuments/DataSheets/MCP23017-MCP23S17-16-Bit-IO-Expander-with-Serial-Interface-DS20001952.pdf",
+      "revision": "DS20001952E,2026",
+      "pages": [
+        1,
+        4,
+        5,
+        6,
+        11,
+        14,
+        17,
+        18
+      ]
+    },
+    {
+      "path": "hardware/asio-card-reva/xu-pin-net-plan.json"
+    },
+    {
+      "path": "hardware/asio-card-reva/net-aliases.json",
+      "note": "JTAGshortaliasesJTDI18/JTDO18/JTMS18/JTCK18acknowledged;noneofthesenetsarechangedhere."
+    },
+    {
+      "path": "docs/schematic/reva-power-design.md",
+      "note": "Single USB-C, V3V3_D/V3V3_HUB and power-profile authority"
+    },
+    {
+      "path": "hardware/asio-card-reva/audio-pin-net-plan.json",
+      "note": "Separate ADC/DAC digital domains, codec pins and K4 headphone mute authority"
+    }
+  ],
+  "hub": {
+    "model": "CH334U",
+    "package": "QSOP28_3.9mm_pitch0.635mm",
+    "power_wiring": "External 3.3V mode: pins 13/20/21 all V3V3_HUB, dedicated TPS7A2033PDBVR from V5_SYS. Required actual rail 3.2-3.4V; tolerance/transient window remains to be verified.",
+    "pins": [
+      {
+        "pin": 1,
+        "signal": "GND",
+        "net": "GND",
+        "direction": "ground",
+        "power_domain": "GND",
+        "status": "planned",
+        "notes": ""
+      },
+      {
+        "pin": 2,
+        "signal": "XO",
+        "net": "HUB_XO",
+        "direction": "output",
+        "power_domain": "V3V3_HUB",
+        "status": "planned",
+        "notes": "12MHz crystal end; no generic external18/22pF load caps."
+      },
+      {
+        "pin": 3,
+        "signal": "XI",
+        "net": "HUB_XI",
+        "direction": "input",
+        "power_domain": "V3V3_HUB",
+        "status": "planned",
+        "notes": "12MHz crystal end; do not ground XI for crystal-free mode in this plan."
+      },
+      {
+        "pin": 4,
+        "signal": "DM4",
+        "net": "USB_HUB4_DM",
+        "direction": "usb_bidirectional",
+        "power_domain": "USB_PHY",
+        "status": "planned",
+        "notes": ""
+      },
+      {
+        "pin": 5,
+        "signal": "DP4",
+        "net": "USB_HUB4_DP",
+        "direction": "usb_bidirectional",
+        "power_domain": "USB_PHY",
+        "status": "planned",
+        "notes": ""
+      },
+      {
+        "pin": 6,
+        "signal": "DM3",
+        "net": "USB_HUB3_DM",
+        "direction": "usb_bidirectional",
+        "power_domain": "USB_PHY",
+        "status": "planned",
+        "notes": ""
+      },
+      {
+        "pin": 7,
+        "signal": "DP3",
+        "net": "USB_HUB3_DP",
+        "direction": "usb_bidirectional",
+        "power_domain": "USB_PHY",
+        "status": "planned",
+        "notes": ""
+      },
+      {
+        "pin": 8,
+        "signal": "DM2",
+        "net": "USB_HUB2_DM",
+        "direction": "usb_bidirectional",
+        "power_domain": "USB_PHY",
+        "status": "planned",
+        "notes": ""
+      },
+      {
+        "pin": 9,
+        "signal": "DP2",
+        "net": "USB_HUB2_DP",
+        "direction": "usb_bidirectional",
+        "power_domain": "USB_PHY",
+        "status": "planned",
+        "notes": ""
+      },
+      {
+        "pin": 10,
+        "signal": "DM1",
+        "net": "USB_HUB1_DM",
+        "direction": "usb_bidirectional",
+        "power_domain": "USB_PHY",
+        "status": "planned",
+        "notes": ""
+      },
+      {
+        "pin": 11,
+        "signal": "DP1",
+        "net": "USB_HUB1_DP",
+        "direction": "usb_bidirectional",
+        "power_domain": "USB_PHY",
+        "status": "planned",
+        "notes": ""
+      },
+      {
+        "pin": 12,
+        "signal": "GND",
+        "net": "GND",
+        "direction": "ground",
+        "power_domain": "GND",
+        "status": "planned",
+        "notes": ""
+      },
+      {
+        "pin": 13,
+        "signal": "VDD33",
+        "net": "V3V3_HUB",
+        "direction": "power_input",
+        "power_domain": "V3V3_HUB",
+        "status": "planned",
+        "notes": "External3.3V mode; local100nF or1uF."
+      },
+      {
+        "pin": 14,
+        "signal": "LED3/SCL",
+        "net": "HUB_CFG_SCL",
+        "direction": "output_multiplexed",
+        "power_domain": "V3V3_HUB",
+        "status": "planned",
+        "notes": "EEPROM master clock187.5kHz at reset; LED3 afterwards. Do not join ESP I2C bus. DNP EEPROM/LED for initial drawing."
+      },
+      {
+        "pin": 15,
+        "signal": "DMU",
+        "net": "USB_HUB_UP_DM",
+        "direction": "usb_bidirectional",
+        "power_domain": "USB_PHY",
+        "status": "planned",
+        "notes": ""
+      },
+      {
+        "pin": 16,
+        "signal": "DPU",
+        "net": "USB_HUB_UP_DP",
+        "direction": "usb_bidirectional",
+        "power_domain": "USB_PHY",
+        "status": "planned",
+        "notes": ""
+      },
+      {
+        "pin": 17,
+        "signal": "RESET#/CDP",
+        "net": "HUB_RESET_N",
+        "direction": "input_low_reset",
+        "power_domain": "V3V3_HUB",
+        "status": "planned",
+        "notes": "Internal pull-up. Default no external drive/no forced-high pull-up. Optional open-drain reset only, since active high during power-up enables CDP/disables low-power sleep."
+      },
+      {
+        "pin": 18,
+        "signal": "NC",
+        "net": null,
+        "direction": "no_connect",
+        "power_domain": null,
+        "status": "must_be_unconnected",
+        "notes": "Do not connect."
+      },
+      {
+        "pin": 19,
+        "signal": "PSELF",
+        "net": "GND",
+        "direction": "strap_input",
+        "power_domain": "V3V3_HUB",
+        "status": "planned_fixed_bus_powered",
+        "notes": "Rev A uses only USB-C VBUS. Strap LOW for bus-powered. Do not leave default internal pull-up selecting self-powered."
+      },
+      {
+        "pin": 20,
+        "signal": "V5",
+        "net": "V3V3_HUB",
+        "direction": "power_input",
+        "power_domain": "V3V3_HUB",
+        "status": "planned",
+        "notes": "Chosen technical wiring external3.3V mode: tie V5 and both VDD33 pins to same regulated3.2-3.4V rail; local>=1uF."
+      },
+      {
+        "pin": 21,
+        "signal": "VDD33",
+        "net": "V3V3_HUB",
+        "direction": "power_input",
+        "power_domain": "V3V3_HUB",
+        "status": "planned",
+        "notes": "Main decoupling0.1uF+10uF or original1uF alternative. Never use internalLDO to powerESP."
+      },
+      {
+        "pin": 22,
+        "signal": "LED4/SDA",
+        "net": "HUB_CFG_SDA",
+        "direction": "bidirectional_multiplexed",
+        "power_domain": "V3V3_HUB",
+        "status": "planned",
+        "notes": "EEPROM open-drain master data; internal~250uA pull-up. DNP externalEEPROM/LED by default; not ESP bus."
+      },
+      {
+        "pin": 23,
+        "signal": "LED1",
+        "net": null,
+        "direction": "output",
+        "power_domain": "V3V3_HUB",
+        "status": "optional_DNP",
+        "notes": "OptionalHub status LED, defaultDNP; dedicated PSELF19 remains the mode pin."
+      },
+      {
+        "pin": 24,
+        "signal": "LED2",
+        "net": null,
+        "direction": "output",
+        "power_domain": "V3V3_HUB",
+        "status": "optional_DNP",
+        "notes": "OptionalHub status LED, defaultDNP; CH334U remainsGANG only."
+      },
+      {
+        "pin": 25,
+        "signal": "PWREN#",
+        "net": "HUB_DS_POWER_EN_N",
+        "direction": "output_active_low",
+        "power_domain": "V3V3_HUB",
+        "status": "power_policy_required",
+        "notes": "To genuineGANG downstream load-switch/control network. Active-high enable requires inversion. Do not let this turn off Hub's own supply."
+      },
+      {
+        "pin": 26,
+        "signal": "OVCUR#",
+        "net": "HUB_DS_OC_N",
+        "direction": "input_active_low",
+        "power_domain": "V3V3_HUB",
+        "status": "power_policy_required",
+        "notes": "Open-drain downstream fault input; pull toHub3.3V. DefaultOC threshold2.4V±0.2V. Low meansfault; do not ground it asunused. Actualprotection/descriptors must agree."
+      },
+      {
+        "pin": 27,
+        "signal": "NC",
+        "net": null,
+        "direction": "no_connect",
+        "power_domain": null,
+        "status": "must_be_unconnected",
+        "notes": "Do not connect."
+      },
+      {
+        "pin": 28,
+        "signal": "GND",
+        "net": "GND",
+        "direction": "ground",
+        "power_domain": "GND",
+        "status": "planned",
+        "notes": ""
+      }
+    ],
+    "clock": {
+      "frequency_Hz": 12000000,
+      "XI_pin": 3,
+      "XO_pin": 2,
+      "external_load_capacitors_default": "notfitted",
+      "reason": "Internalcrystalloadcapacitors;exactCL/ESRstillverifyagainstselectedcrystal. Noadditional18/22pFassumption.",
+      "crystal_free_mode": false
+    },
+    "straps": {
+      "PSELF": "Pin19 GND: fixed bus-powered for the sole USB-C input; no external DC/self-powered branch in Rev A.",
+      "RESET_CDP": "Noactivehighdriveatpowerup;defaultun-driven",
+      "PGANG": "NoindependentPGANGpinonCH334U;GANGonly"
+    },
+    "eeprom": {
+      "default_assembly": "DNP/noexternalEEPROM",
+      "bus_separate_from_esp": true,
+      "master_SCL_pin": 14,
+      "master_SDA_pin": 22,
+      "clock_Hz": 187500,
+      "non_removable_config_proposal": {
+        "offset": "0x06",
+        "value": "0x1E",
+        "meaning": "Allfourfittedinternaldevicesnon-removable"
+      },
+      "port_count_config": {
+        "offset": "0x07",
+        "value": 4
+      },
+      "warning": "Partial configuration only, not a programmable image. Signature/checksum, actual MaxPower and GANG protection still require implementation; Type-C 1.5A/3A advertisement does not mean self-powered.",
+      "bus_powered_config": {
+        "offset": "0x0A",
+        "bit": 2,
+        "value": 0,
+        "meaning": "If EEPROM fitted, CFG self-powered bit must remain zero, consistent with PSELF=GND."
+      }
+    },
+    "unused_ports": "Currentplanusesallfour. IfleafDNP,leaveitsDM/DPunconnected,noshort/pullup/artificialtermination. Portcount/removableflagsmaythenbeadjustedwithvalidconfig."
+  },
+  "downstream": [
+    {
+      "port": 1,
+      "speed": "HS480Mbps",
+      "hub_DM": 10,
+      "hub_DP": 11,
+      "target": "XU316",
+      "target_DM": 28,
+      "target_DP": 29,
+      "net_DM": "USB_HUB1_DM",
+      "net_DP": "USB_HUB1_DP"
+    },
+    {
+      "port": 2,
+      "speed": "FS12Mbps",
+      "hub_DM": 8,
+      "hub_DP": 9,
+      "target": "ESP32-S3-WROOM-1-N8R8",
+      "target_DM": 13,
+      "target_DP": 14,
+      "target_GPIO_DM": 19,
+      "target_GPIO_DP": 20,
+      "net_DM": "USB_HUB2_DM",
+      "net_DP": "USB_HUB2_DP"
+    },
+    {
+      "port": 3,
+      "speed": "FS12Mbps",
+      "hub_DM": 6,
+      "hub_DP": 7,
+      "target": "CH343P-A",
+      "target_DM": 8,
+      "target_DP": 7,
+      "net_DM": "USB_HUB3_DM",
+      "net_DP": "USB_HUB3_DP"
+    },
+    {
+      "port": 4,
+      "speed": "FS12Mbps",
+      "hub_DM": 4,
+      "hub_DP": 5,
+      "target": "CH343P-B",
+      "target_DM": 8,
+      "target_DP": 7,
+      "net_DM": "USB_HUB4_DM",
+      "net_DP": "USB_HUB4_DP"
+    }
+  ],
+  "bridges": [
+    {
+      "id": "CH343P-A",
+      "model": "CH343P",
+      "package": "QFN16_3x3",
+      "source": "CH343DS1_WCH.pdf",
+      "physical_pages": [
+        2,
+        3,
+        4,
+        5,
+        9,
+        10
+      ],
+      "pins": [
+        {
+          "pin": 0,
+          "signal": "EPAD/GND",
+          "net": "GND",
+          "direction": "ground",
+          "power_domain": "GND",
+          "status": "planned",
+          "notes": "Originalnumber0; recommendedsolderground. Check EDA footprint may renumberEPAD17."
+        },
+        {
+          "pin": 1,
+          "signal": "VIO",
+          "net": "V3V3_D",
+          "direction": "power_input",
+          "power_domain": "V3V3_D",
+          "status": "planned",
+          "notes": "Same source aspeerIOrail; localdecoupling."
+        },
+        {
+          "pin": 2,
+          "signal": "GND",
+          "net": "GND",
+          "direction": "ground",
+          "power_domain": "GND",
+          "status": "planned",
+          "notes": ""
+        },
+        {
+          "pin": 3,
+          "signal": "VDD5",
+          "net": "V3V3_D",
+          "direction": "power_input",
+          "power_domain": "USB_CORE_3V3",
+          "status": "planned",
+          "notes": "External3.3V mode; tie topin6V3, not1.8V."
+        },
+        {
+          "pin": 4,
+          "signal": "TXD",
+          "net": "ESP_RXD0_3V3",
+          "direction": "output",
+          "power_domain": "V3V3_D",
+          "status": "planned",
+          "notes": "To ESP RXD0 module36/GPIO44."
+        },
+        {
+          "pin": 5,
+          "signal": "RXD",
+          "net": "ESP_TXD0_3V3",
+          "direction": "input",
+          "power_domain": "V3V3_D",
+          "status": "planned",
+          "notes": "From ESP TXD0 module37/GPIO43."
+        },
+        {
+          "pin": 6,
+          "signal": "V3",
+          "net": "V3V3_D",
+          "direction": "power_input",
+          "power_domain": "USB_CORE_3V3",
+          "status": "planned",
+          "notes": "External3.3V mode tied topin3; local100nF. In5V variant thiswouldbeinternalLDOoutput and not externallydriven."
+        },
+        {
+          "pin": 7,
+          "signal": "UD+",
+          "net": "USB_HUB3_DP",
+          "direction": "usb_bidirectional",
+          "power_domain": "USB_PHY",
+          "status": "planned",
+          "notes": "No extra seriesresistor perCH343datasheet."
+        },
+        {
+          "pin": 8,
+          "signal": "UD-",
+          "net": "USB_HUB3_DM",
+          "direction": "usb_bidirectional",
+          "power_domain": "USB_PHY",
+          "status": "planned",
+          "notes": "No extra seriesresistor perCH343datasheet."
+        },
+        {
+          "pin": 9,
+          "signal": "VBUS",
+          "net": "USB_PRESENT_3V3",
+          "direction": "input",
+          "power_domain": "USB_PRESENT_DETECT",
+          "status": "planned",
+          "notes": "True upstreamVBUS-presencebuffer, referenced toV3notVIO;3.3V exceeds1.7V detectionmin. BufferhasIoff and sharedpower."
+        },
+        {
+          "pin": 10,
+          "signal": "ACT#",
+          "net": null,
+          "direction": "output_active_low",
+          "power_domain": "V3V3_D",
+          "status": "optional_DNP",
+          "notes": "Optionalstatusonly; noforcedvoltage fromanotherdomain."
+        },
+        {
+          "pin": 11,
+          "signal": "DCD",
+          "net": null,
+          "direction": "input",
+          "power_domain": "V3V3_D",
+          "status": "unused",
+          "notes": "Unusedmodeminput; internalbias/default; softwaredisablesunusedhandshake."
+        },
+        {
+          "pin": 12,
+          "signal": "DTR/TNOW",
+          "net": null,
+          "direction": "output_with_powerup_strap",
+          "power_domain": "V3V3_D",
+          "status": "reserved",
+          "notes": "Do not addexternalpulldown: it selectsTNOW mode atpowerup. Auto-reset circuitry isnotconnectedbydefault."
+        },
+        {
+          "pin": 13,
+          "signal": "RTS",
+          "net": null,
+          "direction": "output_active_low",
+          "power_domain": "V3V3_D",
+          "status": "reserved",
+          "notes": "TestpointorDNP only. Do not hardwireRTS/DTR toESP EN/BOOT without an approvedauto-downloadcircuit."
+        },
+        {
+          "pin": 14,
+          "signal": "DSR",
+          "net": null,
+          "direction": "input",
+          "power_domain": "V3V3_D",
+          "status": "unused",
+          "notes": "Unusedmodeminput; keepdefaultbias andnohandshake."
+        },
+        {
+          "pin": 15,
+          "signal": "CTS",
+          "net": null,
+          "direction": "input",
+          "power_domain": "V3V3_D",
+          "status": "unused",
+          "notes": "NoCTSflowcontrolinplanned921600link; leaveinternalbias withhostflowcontroldisabled, or explicitactive tie afterpolicycheck."
+        },
+        {
+          "pin": 16,
+          "signal": "RI",
+          "net": null,
+          "direction": "input",
+          "power_domain": "V3V3_D",
+          "status": "unused",
+          "notes": "Unusedmodeminput."
+        }
+      ],
+      "notes": [
+        "Built-in12MHzclock; noexternalcrystal.",
+        "Pvariant hasnoRSTpin.",
+        "USB isFullSpeed12Mbps, notHighSpeed480Mbps.",
+        "Core/VIOpowersequencingmustnotcreateacceptedcore-on/VIO-offstate; sharedDIGITAL_ENABLEforXUcore/1.8VbridgeBdomain.",
+        "DatasheetexplicitlyguaranteesVIOdoesnotbackfeeddeadVDD5/V3; donotextendthisstatementtotheoppositedirection."
+      ]
+    },
+    {
+      "id": "CH343P-B",
+      "model": "CH343P",
+      "package": "QFN16_3x3",
+      "source": "CH343DS1_WCH.pdf",
+      "physical_pages": [
+        2,
+        3,
+        4,
+        5,
+        9,
+        10
+      ],
+      "pins": [
+        {
+          "pin": 0,
+          "signal": "EPAD/GND",
+          "net": "GND",
+          "direction": "ground",
+          "power_domain": "GND",
+          "status": "planned",
+          "notes": "Originalnumber0; recommendedsolderground. Check EDA footprint may renumberEPAD17."
+        },
+        {
+          "pin": 1,
+          "signal": "VIO",
+          "net": "V1V8",
+          "direction": "power_input",
+          "power_domain": "V1V8",
+          "status": "planned",
+          "notes": "Same source aspeerIOrail; localdecoupling."
+        },
+        {
+          "pin": 2,
+          "signal": "GND",
+          "net": "GND",
+          "direction": "ground",
+          "power_domain": "GND",
+          "status": "planned",
+          "notes": ""
+        },
+        {
+          "pin": 3,
+          "signal": "VDD5",
+          "net": "V3V3_D",
+          "direction": "power_input",
+          "power_domain": "USB_CORE_3V3",
+          "status": "planned",
+          "notes": "External3.3V mode; tie topin6V3, not1.8V."
+        },
+        {
+          "pin": 4,
+          "signal": "TXD",
+          "net": "DEBUG_RX_XU18",
+          "direction": "output",
+          "power_domain": "V1V8",
+          "status": "planned",
+          "notes": "To XU physical39 reservedDEBUG_RX; receivingfirmware absent."
+        },
+        {
+          "pin": 5,
+          "signal": "RXD",
+          "net": "DEBUG_TX_XU18",
+          "direction": "input",
+          "power_domain": "V1V8",
+          "status": "planned",
+          "notes": "From XU physical32 DEBUG_TX; bootbanner/loggingfirmwareexists."
+        },
+        {
+          "pin": 6,
+          "signal": "V3",
+          "net": "V3V3_D",
+          "direction": "power_input",
+          "power_domain": "USB_CORE_3V3",
+          "status": "planned",
+          "notes": "External3.3V mode tied topin3; local100nF. In5V variant thiswouldbeinternalLDOoutput and not externallydriven."
+        },
+        {
+          "pin": 7,
+          "signal": "UD+",
+          "net": "USB_HUB4_DP",
+          "direction": "usb_bidirectional",
+          "power_domain": "USB_PHY",
+          "status": "planned",
+          "notes": "No extra seriesresistor perCH343datasheet."
+        },
+        {
+          "pin": 8,
+          "signal": "UD-",
+          "net": "USB_HUB4_DM",
+          "direction": "usb_bidirectional",
+          "power_domain": "USB_PHY",
+          "status": "planned",
+          "notes": "No extra seriesresistor perCH343datasheet."
+        },
+        {
+          "pin": 9,
+          "signal": "VBUS",
+          "net": "USB_PRESENT_3V3",
+          "direction": "input",
+          "power_domain": "USB_PRESENT_DETECT",
+          "status": "planned",
+          "notes": "True upstreamVBUS-presencebuffer, referenced toV3notVIO;3.3V exceeds1.7V detectionmin. BufferhasIoff and sharedpower."
+        },
+        {
+          "pin": 10,
+          "signal": "ACT#",
+          "net": null,
+          "direction": "output_active_low",
+          "power_domain": "V1V8",
+          "status": "optional_DNP",
+          "notes": "Optionalstatusonly; noforcedvoltage fromanotherdomain."
+        },
+        {
+          "pin": 11,
+          "signal": "DCD",
+          "net": null,
+          "direction": "input",
+          "power_domain": "V1V8",
+          "status": "unused",
+          "notes": "Unusedmodeminput; internalbias/default; softwaredisablesunusedhandshake."
+        },
+        {
+          "pin": 12,
+          "signal": "DTR/TNOW",
+          "net": null,
+          "direction": "output_with_powerup_strap",
+          "power_domain": "V1V8",
+          "status": "reserved",
+          "notes": "Do not addexternalpulldown: it selectsTNOW mode atpowerup. Auto-reset circuitry isnotconnectedbydefault."
+        },
+        {
+          "pin": 13,
+          "signal": "RTS",
+          "net": null,
+          "direction": "output_active_low",
+          "power_domain": "V1V8",
+          "status": "reserved",
+          "notes": "TestpointorDNP only. Do not hardwireRTS/DTR toESP EN/BOOT without an approvedauto-downloadcircuit."
+        },
+        {
+          "pin": 14,
+          "signal": "DSR",
+          "net": null,
+          "direction": "input",
+          "power_domain": "V1V8",
+          "status": "unused",
+          "notes": "Unusedmodeminput; keepdefaultbias andnohandshake."
+        },
+        {
+          "pin": 15,
+          "signal": "CTS",
+          "net": null,
+          "direction": "input",
+          "power_domain": "V1V8",
+          "status": "unused",
+          "notes": "NoCTSflowcontrolinplanned921600link; leaveinternalbias withhostflowcontroldisabled, or explicitactive tie afterpolicycheck."
+        },
+        {
+          "pin": 16,
+          "signal": "RI",
+          "net": null,
+          "direction": "input",
+          "power_domain": "V1V8",
+          "status": "unused",
+          "notes": "Unusedmodeminput."
+        }
+      ],
+      "notes": [
+        "Built-in12MHzclock; noexternalcrystal.",
+        "Pvariant hasnoRSTpin.",
+        "USB isFullSpeed12Mbps, notHighSpeed480Mbps.",
+        "Core/VIOpowersequencingmustnotcreateacceptedcore-on/VIO-offstate; sharedDIGITAL_ENABLEforXUcore/1.8VbridgeBdomain.",
+        "DatasheetexplicitlyguaranteesVIOdoesnotbackfeeddeadVDD5/V3; donotextendthisstatementtotheoppositedirection."
+      ]
+    }
+  ],
+  "esp": {
+    "model": "ESP32-S3-WROOM-1-N8R8",
+    "pins": [
+      {
+        "pin": 1,
+        "signal": "GND",
+        "net": "GND",
+        "direction": "ground",
+        "power_domain": "GND",
+        "status": "planned",
+        "notes": ""
+      },
+      {
+        "pin": 2,
+        "signal": "3V3",
+        "net": "V3V3_D",
+        "direction": "power_input",
+        "power_domain": "V3V3_D",
+        "status": "planned",
+        "notes": "Module3.0-3.6V; sharedHubrailrequiresnarrower3.2-3.4V; local10uF+100nF andsource>=0.5A transientcapability."
+      },
+      {
+        "pin": 3,
+        "signal": "EN",
+        "net": "CTRL_RESET_N",
+        "direction": "input_enable_high",
+        "power_domain": "V3V3_D",
+        "status": "planned",
+        "notes": "10k/1uFRCcandidate,manualRESETbuttonpullslow; active>=50us afterpowerstable andresetlow>=50us. SharetoMCPRESET."
+      },
+      {
+        "pin": 4,
+        "signal": "GPIO4",
+        "net": "ENC1_A",
+        "direction": "input",
+        "power_domain": "V3V3_D",
+        "status": "proposed_pin_assignment",
+        "notes": "DirectinterruptencoderA;2.7krawcontactpullup,1kseries+100nFMCUsidenominal.",
+        "gpio": 4
+      },
+      {
+        "pin": 5,
+        "signal": "GPIO5",
+        "net": "ENC1_B",
+        "direction": "input",
+        "power_domain": "V3V3_D",
+        "status": "proposed_pin_assignment",
+        "notes": "DirectinterruptencoderB; samefilterpolicy.",
+        "gpio": 5
+      },
+      {
+        "pin": 6,
+        "signal": "GPIO6",
+        "net": "ENC1_SW_N",
+        "direction": "input",
+        "power_domain": "V3V3_D",
+        "status": "proposed_pin_assignment",
+        "notes": "Encoderpushbutton;4.7krawcontactpullup,1kseries+100nFMCUsidecandidate.",
+        "gpio": 6
+      },
+      {
+        "pin": 7,
+        "signal": "GPIO7",
+        "net": "ENC2_A",
+        "direction": "input",
+        "power_domain": "V3V3_D",
+        "status": "proposed_pin_assignment",
+        "notes": "DirectinterruptencoderA.",
+        "gpio": 7
+      },
+      {
+        "pin": 8,
+        "signal": "GPIO15",
+        "net": "ENC2_B",
+        "direction": "input",
+        "power_domain": "V3V3_D",
+        "status": "proposed_pin_assignment",
+        "notes": "DirectinterruptencoderB.",
+        "gpio": 15
+      },
+      {
+        "pin": 9,
+        "signal": "GPIO16",
+        "net": "ENC2_SW_N",
+        "direction": "input",
+        "power_domain": "V3V3_D",
+        "status": "proposed_pin_assignment",
+        "notes": "Encoderpushbutton.",
+        "gpio": 16
+      },
+      {
+        "pin": 10,
+        "signal": "GPIO17",
+        "net": "CTRL_TX_3V3",
+        "direction": "output",
+        "power_domain": "V3V3_D",
+        "status": "proposed_pin_assignment",
+        "notes": "U1TXD/nativechoice ->TXU0202 ->XUphysical43CTRL_RX;921600-8N1.",
+        "gpio": 17
+      },
+      {
+        "pin": 11,
+        "signal": "GPIO18",
+        "net": "CTRL_RX_3V3",
+        "direction": "input",
+        "power_domain": "V3V3_D",
+        "status": "proposed_pin_assignment",
+        "notes": "U1RXD/nativechoice <-TXU0202 <-XUphysical41CTRL_TX.",
+        "gpio": 18
+      },
+      {
+        "pin": 12,
+        "signal": "GPIO8",
+        "net": "I2C_CTRL_SDA",
+        "direction": "open_drain_bidirectional",
+        "power_domain": "V3V3_D",
+        "status": "proposed_pin_assignment",
+        "notes": "ESPmaster bus toMCP23017 andisolatedcodecbranch.",
+        "gpio": 8
+      },
+      {
+        "pin": 13,
+        "signal": "GPIO19",
+        "net": "USB_HUB2_DM",
+        "direction": "usb_bidirectional",
+        "power_domain": "V3V3_D",
+        "status": "proposed_pin_assignment",
+        "notes": "NativeUSB D- fixedmodulepin13.",
+        "gpio": 19
+      },
+      {
+        "pin": 14,
+        "signal": "GPIO20",
+        "net": "USB_HUB2_DP",
+        "direction": "usb_bidirectional",
+        "power_domain": "V3V3_D",
+        "status": "proposed_pin_assignment",
+        "notes": "NativeUSB D+ fixedmodulepin14.",
+        "gpio": 20
+      },
+      {
+        "pin": 15,
+        "signal": "GPIO3",
+        "net": "ESP_JTAG_STRAP",
+        "direction": "strap_input",
+        "power_domain": "V3V3_D",
+        "status": "proposed_pin_assignment",
+        "notes": "Externallypullhigh topreferUSBJTAGifSTRAP_JTAG_SELisset; factoryeFuse000alreadyselectsUSBJTAG. Do not burneFuses here.",
+        "gpio": 3
+      },
+      {
+        "pin": 16,
+        "signal": "GPIO46",
+        "net": "ESP_BOOT_STRAP",
+        "direction": "strap_input",
+        "power_domain": "V3V3_D",
+        "status": "proposed_pin_assignment",
+        "notes": "Pulldown/default0; mustbe0withGPIO0lowfordownload.",
+        "gpio": 46
+      },
+      {
+        "pin": 17,
+        "signal": "GPIO9",
+        "net": "I2C_CTRL_SCL",
+        "direction": "open_drain_bidirectional",
+        "power_domain": "V3V3_D",
+        "status": "proposed_pin_assignment",
+        "notes": "Start100kHz;400kHzonlyaftertiming/rise-timeverification.",
+        "gpio": 9
+      },
+      {
+        "pin": 18,
+        "signal": "GPIO10",
+        "net": "LCD_CS_N",
+        "direction": "output",
+        "power_domain": "V3V3_D",
+        "status": "proposed_pin_assignment",
+        "notes": "Externalpullup; deselectLCD beforeSPI clockconfiguration.",
+        "gpio": 10
+      },
+      {
+        "pin": 19,
+        "signal": "GPIO11",
+        "net": "SPI_SHARED_MOSI",
+        "direction": "output",
+        "power_domain": "V3V3_D",
+        "status": "proposed_pin_assignment",
+        "notes": "SharedLCD/PGAdata: PGAonlysampleswhenitsCSactive; PGAbranchthroughTXU0304.",
+        "gpio": 11
+      },
+      {
+        "pin": 20,
+        "signal": "GPIO12",
+        "net": "SPI_SHARED_SCLK",
+        "direction": "output",
+        "power_domain": "V3V3_D",
+        "status": "proposed_pin_assignment",
+        "notes": "SharedLCD/PGAclock; changeclockmode/rate onlywithbothCSinactive;PGA<=6.25MHz,start1MHz.",
+        "gpio": 12
+      },
+      {
+        "pin": 21,
+        "signal": "GPIO13",
+        "net": "LCD_DC",
+        "direction": "output",
+        "power_domain": "V3V3_D",
+        "status": "proposed_pin_assignment",
+        "notes": "DisplayD/Ccontrol; exactLCDmoduleconnectorpinoutnotassumed.",
+        "gpio": 13
+      },
+      {
+        "pin": 22,
+        "signal": "GPIO14",
+        "net": "LCD_RST_N",
+        "direction": "output",
+        "power_domain": "V3V3_D",
+        "status": "proposed_pin_assignment",
+        "notes": "Displayreset; localpulldown/knownpoweronresetrequired.",
+        "gpio": 14
+      },
+      {
+        "pin": 23,
+        "signal": "GPIO21",
+        "net": "LCD_BL_PWM",
+        "direction": "output",
+        "power_domain": "V3V3_D",
+        "status": "proposed_pin_assignment",
+        "notes": "Backlightdriverenable/PWM, notdirectunknownLEDcurrent.",
+        "gpio": 21
+      },
+      {
+        "pin": 24,
+        "signal": "GPIO47",
+        "net": "PGA_CS_CTRL_N",
+        "direction": "output",
+        "power_domain": "V3V3_D",
+        "status": "proposed_pin_assignment",
+        "notes": "ThroughTXU0304topositive5VPGACS; pullhigh3.3VonMCUsideand5V onPGA side.",
+        "gpio": 47
+      },
+      {
+        "pin": 25,
+        "signal": "GPIO48",
+        "net": "PGA_SDO_3V3",
+        "direction": "input",
+        "power_domain": "V3V3_D",
+        "status": "proposed_pin_assignment",
+        "notes": "MISO throughTXU0304 fromPGA SDO; sharedLCDdoesnotdriveMISO.",
+        "gpio": 48
+      },
+      {
+        "pin": 26,
+        "signal": "GPIO45",
+        "net": "ESP_SPI_VOLT_STRAP",
+        "direction": "strap_input",
+        "power_domain": "V3V3_D",
+        "status": "proposed_pin_assignment",
+        "notes": "Pulldown/default0; donotforce1.8VflashsettingorchangeeFuse.",
+        "gpio": 45
+      },
+      {
+        "pin": 27,
+        "signal": "GPIO0",
+        "net": "ESP_BOOT_N",
+        "direction": "strap_and_manual_boot",
+        "power_domain": "V3V3_D",
+        "status": "proposed_pin_assignment",
+        "notes": "BOOTbutton+10kpullup; noapplicationload duringstrap.",
+        "gpio": 0
+      },
+      {
+        "pin": 28,
+        "signal": "GPIO35",
+        "net": null,
+        "direction": "not_available",
+        "power_domain": "V3V3_D",
+        "status": "internal_psram",
+        "notes": "N8R8OctalPSRAMinternaluse; do notroute.",
+        "gpio": 35
+      },
+      {
+        "pin": 29,
+        "signal": "GPIO36",
+        "net": null,
+        "direction": "not_available",
+        "power_domain": "V3V3_D",
+        "status": "internal_psram",
+        "notes": "N8R8OctalPSRAMinternaluse; do notroute.",
+        "gpio": 36
+      },
+      {
+        "pin": 30,
+        "signal": "GPIO37",
+        "net": null,
+        "direction": "not_available",
+        "power_domain": "V3V3_D",
+        "status": "internal_psram",
+        "notes": "N8R8OctalPSRAMinternaluse; do notroute.",
+        "gpio": 37
+      },
+      {
+        "pin": 31,
+        "signal": "GPIO38",
+        "net": "ADC_EN_CTRL",
+        "direction": "output",
+        "power_domain": "V3V3_D",
+        "status": "proposed_pin_assignment",
+        "notes": "Toisolated3.3Vcodeccontrolbuffer ->ES9822CHIP_EN23; externaldefaultlow.",
+        "gpio": 38
+      },
+      {
+        "pin": 32,
+        "signal": "GPIO39",
+        "net": "DAC_EN_CTRL",
+        "direction": "output",
+        "power_domain": "V3V3_D",
+        "status": "proposed_pin_assignment",
+        "notes": "Toisolated3.3Vcodeccontrolbuffer ->ES9039CHIP_EN18; externaldefaultlow. PadsJTAGnotused.",
+        "gpio": 39
+      },
+      {
+        "pin": 33,
+        "signal": "GPIO40",
+        "net": "PGA_OVR_3V3",
+        "direction": "input_optional",
+        "power_domain": "V3V3_D",
+        "status": "proposed_pin_assignment",
+        "notes": "PGAOVR5Vrequireslevelbuffer; optionalDNP canbeGPIOspare. Neverdirect5V.",
+        "gpio": 40
+      },
+      {
+        "pin": 34,
+        "signal": "GPIO41",
+        "net": "RELAY_ARM",
+        "direction": "output",
+        "power_domain": "V3V3_D",
+        "status": "proposed_pin_assignment",
+        "notes": "100kexternalpulldown; hardwarecommonrelay-coilenable additionallygatedbyanalog/controlPGOOD; remainlow untilI/Ostateinitialized.",
+        "gpio": 41
+      },
+      {
+        "pin": 35,
+        "signal": "GPIO42",
+        "net": null,
+        "direction": "spare",
+        "power_domain": "V3V3_D",
+        "status": "proposed_pin_assignment",
+        "notes": "ReserveGPIO/testpoint; noaddedfeatureassumed.",
+        "gpio": 42
+      },
+      {
+        "pin": 36,
+        "signal": "GPIO44",
+        "net": "ESP_RXD0_3V3",
+        "direction": "input",
+        "power_domain": "V3V3_D",
+        "status": "proposed_pin_assignment",
+        "notes": "UART0 <-CH343P-A TXD4.",
+        "gpio": 44
+      },
+      {
+        "pin": 37,
+        "signal": "GPIO43",
+        "net": "ESP_TXD0_3V3",
+        "direction": "output",
+        "power_domain": "V3V3_D",
+        "status": "proposed_pin_assignment",
+        "notes": "UART0 ->CH343P-A RXD5; ROMlogs mayappear.",
+        "gpio": 43
+      },
+      {
+        "pin": 38,
+        "signal": "GPIO2",
+        "net": "IOX_INT_N",
+        "direction": "input",
+        "power_domain": "V3V3_D",
+        "status": "proposed_pin_assignment",
+        "notes": "MCP23017 INTA,10kpulluptoV3V3_D; setMIRROR/ODR insoftware.",
+        "gpio": 2
+      },
+      {
+        "pin": 39,
+        "signal": "GPIO1",
+        "net": "USB_PRESENT_3V3",
+        "direction": "input",
+        "power_domain": "V3V3_D",
+        "status": "proposed_pin_assignment",
+        "notes": "DigitalVBUSpresencesense; notraw5V.",
+        "gpio": 1
+      },
+      {
+        "pin": 40,
+        "signal": "GND",
+        "net": "GND",
+        "direction": "ground",
+        "power_domain": "GND",
+        "status": "planned",
+        "notes": ""
+      },
+      {
+        "pin": 41,
+        "signal": "EPAD",
+        "net": "GND",
+        "direction": "ground",
+        "power_domain": "GND",
+        "status": "planned",
+        "notes": "Groundpad; followmodulepaste/antenna rules."
+      }
+    ],
+    "firmware_status": "NoESP-IDF/PlatformIO/Arduinoimplementationexistsintherepo. OnlyGPIO19/20nativeUSB,GPIO43/44UART0andXUcounterpart/protocolwerepre-existingconstraints;otherGPIOassignmentsarenewproposals.",
+    "control_protocol": {
+      "baud": 921600,
+      "format": "8N1",
+      "frame": "AA CMD LEN PAYLOAD CRC8 55",
+      "CRC8": {
+        "poly": "0x07",
+        "init": "0x00",
+        "order": "MSBfirst"
+      },
+      "existing_XU_pin_RX": 43,
+      "existing_XU_pin_TX": 41,
+      "bugs": "Cross-tileglobal/UARTlength/VUissuesremain;wiringdoesnotfixthem."
+    },
+    "boot": {
+      "GPIO0": "10kpullupto3.3VandmanualbuttonGND",
+      "GPIO46": "defaultlow;external10kdowncandidate",
+      "GPIO45": "defaultlow;external10kdowncandidate",
+      "GPIO3": "external10kpullup;USBJTAGpreferencewhenstrapenabled",
+      "EN": "10k/1uFRCcandidateplusmanualRESET",
+      "hold_ms": 3,
+      "auto_download": "DTR/RTSnetworknotassumed;manualBOOT+RESETandnativeUSBremainavailable."
+    },
+    "i2c_addresses_7bit": {
+      "MCP23017": "0x27(A2:A0=111)",
+      "ES9822_normal": "0x20(targetADDRpinslow)",
+      "ES9822_sync": "0x24(sameADDRstraps)",
+      "ES9039": "0x48(targetADDR1:0low)",
+      "conflict_rule": "ES9822mustnotberestrappedto0x23/sync0x27withoutmovingMCPaddress. Donotconfuse8-bitwriteaddresses."
+    },
+    "display_connector": "Signalfunctionsplanned;exactthird-partyST7789modulepinorder/backlightdrivernotinvented."
+  },
+  "io_expander": {
+    "model": "MCP23017-I/SO",
+    "package": "SOIC28_wide7.5mm",
+    "supply": "V3V3_D",
+    "pins": [
+      {
+        "pin": 1,
+        "signal": "GPB0",
+        "net": "RELAY_PH48_EN",
+        "direction": "output",
+        "power_domain": "V3V3_D",
+        "status": "planned",
+        "notes": "External100k gate/basepulldown. Drivestransistorgate/buffer only, notcoil. DefaultOLAT0=off."
+      },
+      {
+        "pin": 2,
+        "signal": "GPB1",
+        "net": "RELAY_HIZ_EN",
+        "direction": "output",
+        "power_domain": "V3V3_D",
+        "status": "planned",
+        "notes": "External100k gate/basepulldown. Drivestransistorgate/buffer only, notcoil. DefaultOLAT0=off."
+      },
+      {
+        "pin": 3,
+        "signal": "GPB2",
+        "net": "RELAY_UNMUTE_EN",
+        "direction": "output",
+        "power_domain": "V3V3_D",
+        "status": "planned",
+        "notes": "External100k gate/basepulldown. Drivestransistorgate/buffer only, notcoil. DefaultOLAT0=off."
+      },
+      {
+        "pin": 4,
+        "signal": "GPB3",
+        "net": "RELAY_HP_UNMUTE_EN",
+        "direction": "output",
+        "power_domain": "V3V3_D",
+        "status": "planned",
+        "notes": "K4 headphone mute driver, external100k gate pulldown; coil off means muted. Not the old optional AUX phantom function."
+      },
+      {
+        "pin": 5,
+        "signal": "GPB4",
+        "net": null,
+        "direction": "spare_input",
+        "power_domain": "V3V3_D",
+        "status": "unassigned",
+        "notes": "Unassigned; nooptionalauxphantomrelayautomaticallyadded."
+      },
+      {
+        "pin": 6,
+        "signal": "GPB5",
+        "net": null,
+        "direction": "spare_input",
+        "power_domain": "V3V3_D",
+        "status": "unassigned",
+        "notes": "Unassigned; nooptionalauxphantomrelayautomaticallyadded."
+      },
+      {
+        "pin": 7,
+        "signal": "GPB6",
+        "net": null,
+        "direction": "spare_input",
+        "power_domain": "V3V3_D",
+        "status": "unassigned",
+        "notes": "Unassigned; nooptionalauxphantomrelayautomaticallyadded."
+      },
+      {
+        "pin": 8,
+        "signal": "GPB7",
+        "net": null,
+        "direction": "output_only_reserved",
+        "power_domain": "V3V3_D",
+        "status": "unassigned",
+        "notes": "MCP23017RevE: outputonly; configureoutputlowifunused."
+      },
+      {
+        "pin": 9,
+        "signal": "VDD",
+        "net": "V3V3_D",
+        "direction": "power_input",
+        "power_domain": "V3V3_D",
+        "status": "planned",
+        "notes": "Local100nF+1uF;Igrade-40..85C3.3V."
+      },
+      {
+        "pin": 10,
+        "signal": "VSS",
+        "net": "GND",
+        "direction": "ground",
+        "power_domain": "GND",
+        "status": "planned",
+        "notes": ""
+      },
+      {
+        "pin": 11,
+        "signal": "NC",
+        "net": null,
+        "direction": "no_connect",
+        "power_domain": "V3V3_D",
+        "status": "planned",
+        "notes": "MCP23017notSPIvariant;leaveopen."
+      },
+      {
+        "pin": 12,
+        "signal": "SCL",
+        "net": "I2C_CTRL_SCL",
+        "direction": "input",
+        "power_domain": "V3V3_D",
+        "status": "planned",
+        "notes": ""
+      },
+      {
+        "pin": 13,
+        "signal": "SDA",
+        "net": "I2C_CTRL_SDA",
+        "direction": "open_drain_bidirectional",
+        "power_domain": "V3V3_D",
+        "status": "planned",
+        "notes": ""
+      },
+      {
+        "pin": 14,
+        "signal": "NC",
+        "net": null,
+        "direction": "no_connect",
+        "power_domain": "V3V3_D",
+        "status": "planned",
+        "notes": "MCP23017notSPIvariant;leaveopen."
+      },
+      {
+        "pin": 15,
+        "signal": "A0",
+        "net": "V3V3_D",
+        "direction": "strap_input",
+        "power_domain": "V3V3_D",
+        "status": "planned",
+        "notes": "High."
+      },
+      {
+        "pin": 16,
+        "signal": "A1",
+        "net": "V3V3_D",
+        "direction": "strap_input",
+        "power_domain": "V3V3_D",
+        "status": "planned",
+        "notes": "High."
+      },
+      {
+        "pin": 17,
+        "signal": "A2",
+        "net": "V3V3_D",
+        "direction": "strap_input",
+        "power_domain": "V3V3_D",
+        "status": "planned",
+        "notes": "High;7-bitaddress0x27."
+      },
+      {
+        "pin": 18,
+        "signal": "RESET_N",
+        "net": "CTRL_RESET_N",
+        "direction": "input_active_low",
+        "power_domain": "V3V3_D",
+        "status": "planned",
+        "notes": "Externallybiased;shareESP ENhardware-resetdomain;low>=1us."
+      },
+      {
+        "pin": 19,
+        "signal": "INTB",
+        "net": null,
+        "direction": "output",
+        "power_domain": "V3V3_D",
+        "status": "planned",
+        "notes": "Leaveunconnected;MIRROR=1letsINTAcoverbothports. Do nottiepush-pullINTA/Btogether."
+      },
+      {
+        "pin": 20,
+        "signal": "INTA",
+        "net": "IOX_INT_N",
+        "direction": "output_open_drain_after_configuration",
+        "power_domain": "V3V3_D",
+        "status": "planned",
+        "notes": "10kpullup;MIRROR=1/ODR=1onceinitialized."
+      },
+      {
+        "pin": 21,
+        "signal": "GPA0",
+        "net": null,
+        "direction": "spare",
+        "power_domain": "V3V3_D",
+        "status": "unassigned",
+        "notes": "OptionalextraUIonlyifconfirmed; baselineleavesunassigned."
+      },
+      {
+        "pin": 22,
+        "signal": "GPA1",
+        "net": null,
+        "direction": "spare",
+        "power_domain": "V3V3_D",
+        "status": "unassigned",
+        "notes": "OptionalextraUIonlyifconfirmed; baselineleavesunassigned."
+      },
+      {
+        "pin": 23,
+        "signal": "GPA2",
+        "net": null,
+        "direction": "spare",
+        "power_domain": "V3V3_D",
+        "status": "unassigned",
+        "notes": "OptionalextraUIonlyifconfirmed; baselineleavesunassigned."
+      },
+      {
+        "pin": 24,
+        "signal": "GPA3",
+        "net": null,
+        "direction": "spare",
+        "power_domain": "V3V3_D",
+        "status": "unassigned",
+        "notes": "OptionalextraUIonlyifconfirmed; baselineleavesunassigned."
+      },
+      {
+        "pin": 25,
+        "signal": "GPA4",
+        "net": null,
+        "direction": "spare",
+        "power_domain": "V3V3_D",
+        "status": "unassigned",
+        "notes": "OptionalextraUIonlyifconfirmed; baselineleavesunassigned."
+      },
+      {
+        "pin": 26,
+        "signal": "GPA5",
+        "net": null,
+        "direction": "spare",
+        "power_domain": "V3V3_D",
+        "status": "unassigned",
+        "notes": "OptionalextraUIonlyifconfirmed; baselineleavesunassigned."
+      },
+      {
+        "pin": 27,
+        "signal": "GPA6",
+        "net": null,
+        "direction": "spare",
+        "power_domain": "V3V3_D",
+        "status": "unassigned",
+        "notes": "OptionalextraUIonlyifconfirmed; baselineleavesunassigned."
+      },
+      {
+        "pin": 28,
+        "signal": "GPA7",
+        "net": null,
+        "direction": "output_only_reserved",
+        "power_domain": "V3V3_D",
+        "status": "unassigned",
+        "notes": "MCP23017GPA7outputonly;neverassignakey/encoderinput."
+      }
+    ],
+    "operating_I2C_Hz": 100000,
+    "maximum_planned_I2C_Hz": 400000,
+    "output_only_pins": [
+      {
+        "physical": 8,
+        "name": "GPB7"
+      },
+      {
+        "physical": 28,
+        "name": "GPA7"
+      }
+    ],
+    "power_on_safety": [
+      "PORIODIRA/B=0xFFandOLATA/B=0;defaultHi-Zdoesnotdrivecoils.",
+      "Externallypulldownallrelaytransistorgates.",
+      "KeepRELAY_ARMlow;writeOLATA/B=0beforeconfiguringanyoutput.",
+      "ConfigureGPA7/GPB7asoutputlowandneveruseasinputs;baselineIODIRA=0x7F,IODIRB=0x70.",
+      "OptionalINTAonly:IOCON.MIRROR=1andODR=1;donotwiretogetherdefaultpush-pullINToutputs.",
+      "OnlysetRELAY_ARMaftercodec/PGAinitialization,powergoodandknownrelaystates.",
+      "ESPinternalresetmaynotpullENloworresetMCP;hardwareRELAY_ARM/PGOODgateprovidesseparatesafeoffpath.",
+      "GPB0-3 drive only transistors/buffers, never coils. K3 and K4 must both be muted in safe startup/shutdown. Coil voltage/current and independent coil power remain open engineering checks."
+    ],
+    "relay_logic": {
+      "GPB0": "K1 phantom NO contact: coil off disconnects PH48 feed; separate bleeder remains.",
+      "GPB1": "K2 LINE/Hi-Z: de-energized LINE, energized Hi-Z per audio plan.",
+      "GPB2": "K3 line UNMUTE: coil off connects output tip to GND and isolates amplifier.",
+      "GPB3": "K4 headphone UNMUTE: coil off grounds headphone terminals and isolates amplifier."
+    },
+    "optional_UI": "Noextra4keys/4LEDsautofitted;GPA/unusedGPBreservedandunassigned."
+  },
+  "level_shifters": [
+    {
+      "id": "LV_ADC_FWD",
+      "model": "TXU0104PWR",
+      "package": "TSSOP14_PW",
+      "role": "Forward audio signals to V3V3_ADC_DIG; independent ADC/DAC supply domains must never be joined.",
+      "source_url": "https://www.ti.com/lit/ds/symlink/txu0104.pdf",
+      "source_pages": [
+        1,
+        4
+      ],
+      "pins": [
+        {
+          "pin": 1,
+          "signal": "VCCA",
+          "net": "V1V8",
+          "direction": "power_input",
+          "power_domain": "V1V8",
+          "status": "planned",
+          "notes": ""
+        },
+        {
+          "pin": 2,
+          "signal": "A1",
+          "net": "XU_MCLK_1V8",
+          "direction": "input",
+          "power_domain": "V1V8",
+          "status": "planned",
+          "notes": ""
+        },
+        {
+          "pin": 3,
+          "signal": "A2",
+          "net": "I2S_BCLK_XU18",
+          "direction": "input",
+          "power_domain": "V1V8",
+          "status": "planned",
+          "notes": ""
+        },
+        {
+          "pin": 4,
+          "signal": "A3",
+          "net": "I2S_LRCLK_XU18",
+          "direction": "input",
+          "power_domain": "V1V8",
+          "status": "planned",
+          "notes": ""
+        },
+        {
+          "pin": 5,
+          "signal": "A4",
+          "net": "GND",
+          "direction": "input",
+          "power_domain": "V1V8",
+          "status": "planned",
+          "notes": ""
+        },
+        {
+          "pin": 6,
+          "signal": "NC",
+          "net": null,
+          "direction": "no_connect",
+          "power_domain": null,
+          "status": "planned",
+          "notes": ""
+        },
+        {
+          "pin": 7,
+          "signal": "GND",
+          "net": "GND",
+          "direction": "ground",
+          "power_domain": "GND",
+          "status": "planned",
+          "notes": ""
+        },
+        {
+          "pin": 8,
+          "signal": "OE",
+          "net": "ADC_IO_READY",
+          "direction": "input_active_high",
+          "power_domain": "either_supply",
+          "status": "planned",
+          "notes": "100k pulldown; hardware qualify both supplies. IO_READY is a required interface, not an implemented voltage supervisor."
+        },
+        {
+          "pin": 9,
+          "signal": "NC",
+          "net": null,
+          "direction": "no_connect",
+          "power_domain": null,
+          "status": "planned",
+          "notes": ""
+        },
+        {
+          "pin": 10,
+          "signal": "B4Y",
+          "net": null,
+          "direction": "output",
+          "power_domain": "V3V3_ADC_DIG",
+          "status": "planned",
+          "notes": ""
+        },
+        {
+          "pin": 11,
+          "signal": "B3Y",
+          "net": "ADC_LRCK_3V3",
+          "direction": "output",
+          "power_domain": "V3V3_ADC_DIG",
+          "status": "planned",
+          "notes": ""
+        },
+        {
+          "pin": 12,
+          "signal": "B2Y",
+          "net": "ADC_BCLK_3V3",
+          "direction": "output",
+          "power_domain": "V3V3_ADC_DIG",
+          "status": "planned",
+          "notes": ""
+        },
+        {
+          "pin": 13,
+          "signal": "B1Y",
+          "net": "ADC_MCLK_3V3",
+          "direction": "output",
+          "power_domain": "V3V3_ADC_DIG",
+          "status": "planned",
+          "notes": ""
+        },
+        {
+          "pin": 14,
+          "signal": "VCCB",
+          "net": "V3V3_ADC_DIG",
+          "direction": "power_input",
+          "power_domain": "V3V3_ADC_DIG",
+          "status": "planned",
+          "notes": ""
+        }
+      ],
+      "rules": [
+        "AllfourchannelsA->B;notTXUN0104(active-lowOEvariant).",
+        "Bothsupplieslocal100nF;IoffandVCC-disconnectstatesdo notreplacebrownoutPGOODgating.",
+        "XU physical14 to47 feedback stays on V1V8 before this translator; ADC MCLK branch only."
+      ]
+    },
+    {
+      "id": "LV_DAC_FWD",
+      "model": "TXU0104PWR",
+      "package": "TSSOP14_PW",
+      "role": "Forward audio signals to V3V3_DAC_DIG; independent ADC/DAC supply domains must never be joined.",
+      "source_url": "https://www.ti.com/lit/ds/symlink/txu0104.pdf",
+      "source_pages": [
+        1,
+        4
+      ],
+      "pins": [
+        {
+          "pin": 1,
+          "signal": "VCCA",
+          "net": "V1V8",
+          "direction": "power_input",
+          "power_domain": "V1V8",
+          "status": "planned",
+          "notes": ""
+        },
+        {
+          "pin": 2,
+          "signal": "A1",
+          "net": "I2S_BCLK_XU18",
+          "direction": "input",
+          "power_domain": "V1V8",
+          "status": "planned",
+          "notes": ""
+        },
+        {
+          "pin": 3,
+          "signal": "A2",
+          "net": "I2S_LRCLK_XU18",
+          "direction": "input",
+          "power_domain": "V1V8",
+          "status": "planned",
+          "notes": ""
+        },
+        {
+          "pin": 4,
+          "signal": "A3",
+          "net": "DAC_DIN_XU18",
+          "direction": "input",
+          "power_domain": "V1V8",
+          "status": "planned",
+          "notes": ""
+        },
+        {
+          "pin": 5,
+          "signal": "A4",
+          "net": "GND",
+          "direction": "input",
+          "power_domain": "V1V8",
+          "status": "planned",
+          "notes": ""
+        },
+        {
+          "pin": 6,
+          "signal": "NC",
+          "net": null,
+          "direction": "no_connect",
+          "power_domain": null,
+          "status": "planned",
+          "notes": ""
+        },
+        {
+          "pin": 7,
+          "signal": "GND",
+          "net": "GND",
+          "direction": "ground",
+          "power_domain": "GND",
+          "status": "planned",
+          "notes": ""
+        },
+        {
+          "pin": 8,
+          "signal": "OE",
+          "net": "DAC_IO_READY",
+          "direction": "input_active_high",
+          "power_domain": "either_supply",
+          "status": "planned",
+          "notes": "100k pulldown; hardware qualify both supplies. IO_READY is a required interface, not an implemented voltage supervisor."
+        },
+        {
+          "pin": 9,
+          "signal": "NC",
+          "net": null,
+          "direction": "no_connect",
+          "power_domain": null,
+          "status": "planned",
+          "notes": ""
+        },
+        {
+          "pin": 10,
+          "signal": "B4Y",
+          "net": null,
+          "direction": "output",
+          "power_domain": "V3V3_DAC_DIG",
+          "status": "planned",
+          "notes": ""
+        },
+        {
+          "pin": 11,
+          "signal": "B3Y",
+          "net": "DAC_DIN_3V3",
+          "direction": "output",
+          "power_domain": "V3V3_DAC_DIG",
+          "status": "planned",
+          "notes": ""
+        },
+        {
+          "pin": 12,
+          "signal": "B2Y",
+          "net": "DAC_LRCK_3V3",
+          "direction": "output",
+          "power_domain": "V3V3_DAC_DIG",
+          "status": "planned",
+          "notes": ""
+        },
+        {
+          "pin": 13,
+          "signal": "B1Y",
+          "net": "DAC_BCLK_3V3",
+          "direction": "output",
+          "power_domain": "V3V3_DAC_DIG",
+          "status": "planned",
+          "notes": ""
+        },
+        {
+          "pin": 14,
+          "signal": "VCCB",
+          "net": "V3V3_DAC_DIG",
+          "direction": "power_input",
+          "power_domain": "V3V3_DAC_DIG",
+          "status": "planned",
+          "notes": ""
+        }
+      ],
+      "rules": [
+        "AllfourchannelsA->B;notTXUN0104(active-lowOEvariant).",
+        "Bothsupplieslocal100nF;IoffandVCC-disconnectstatesdo notreplacebrownoutPGOODgating.",
+        "DAC MCLK is its separate49.152MHz source on the audio page, not a shared ADC MCLK output."
+      ]
+    },
+    {
+      "id": "LV_ADC_RETURN",
+      "model": "TXU0202DCUR",
+      "package": "VSSOP8_DCU",
+      "role": "ADCdatasingle3.3->1.8return;unusedforwardchanneltiedlow.",
+      "source_url": "https://www.ti.com/lit/ds/symlink/txu0202.pdf",
+      "source_pages": [
+        1,
+        4
+      ],
+      "pins": [
+        {
+          "pin": 1,
+          "signal": "B2",
+          "net": "ADC_DOUT_3V3",
+          "direction": "input",
+          "power_domain": "V3V3_ADC_DIG",
+          "status": "planned",
+          "notes": ""
+        },
+        {
+          "pin": 2,
+          "signal": "GND",
+          "net": "GND",
+          "direction": "ground",
+          "power_domain": "GND",
+          "status": "planned",
+          "notes": ""
+        },
+        {
+          "pin": 3,
+          "signal": "VCCA",
+          "net": "V1V8",
+          "direction": "power_input",
+          "power_domain": "V1V8",
+          "status": "planned",
+          "notes": ""
+        },
+        {
+          "pin": 4,
+          "signal": "A2Y",
+          "net": "ADC_DOUT_XU18",
+          "direction": "output",
+          "power_domain": "V1V8",
+          "status": "planned",
+          "notes": ""
+        },
+        {
+          "pin": 5,
+          "signal": "A1",
+          "net": "GND",
+          "direction": "input",
+          "power_domain": "V1V8",
+          "status": "planned",
+          "notes": ""
+        },
+        {
+          "pin": 6,
+          "signal": "OE",
+          "net": "ADC_IO_READY",
+          "direction": "input_active_high",
+          "power_domain": "either_supply",
+          "status": "planned",
+          "notes": "100kpulldown;assertonlybothsupplydomainsvalid."
+        },
+        {
+          "pin": 7,
+          "signal": "VCCB",
+          "net": "V3V3_ADC_DIG",
+          "direction": "power_input",
+          "power_domain": "V3V3_ADC_DIG",
+          "status": "planned",
+          "notes": ""
+        },
+        {
+          "pin": 8,
+          "signal": "B1Y",
+          "net": null,
+          "direction": "output",
+          "power_domain": "V3V3_ADC_DIG",
+          "status": "planned",
+          "notes": ""
+        }
+      ],
+      "rules": [
+        "OneA->B andoneB->Achannel; nottwochannelsineachdirection.",
+        "1.1-5.5Vportsupplyclass;Ioff/VCCdisconnectprovided;bothsupplypinslocal100nF.",
+        "TieunusedinputtoGNDandNCunusedoutput.",
+        "Do notsubstituteauto-directionTXB/TXSwithouttimingreview."
+      ]
+    },
+    {
+      "id": "LV_CTRL_UART",
+      "model": "TXU0202DCUR",
+      "package": "VSSOP8_DCU",
+      "role": "XU41->ESP18 andESP17->XU43,921600-8N1.",
+      "source_url": "https://www.ti.com/lit/ds/symlink/txu0202.pdf",
+      "source_pages": [
+        1,
+        4
+      ],
+      "pins": [
+        {
+          "pin": 1,
+          "signal": "B2",
+          "net": "CTRL_TX_3V3",
+          "direction": "input",
+          "power_domain": "V3V3_D",
+          "status": "planned",
+          "notes": ""
+        },
+        {
+          "pin": 2,
+          "signal": "GND",
+          "net": "GND",
+          "direction": "ground",
+          "power_domain": "GND",
+          "status": "planned",
+          "notes": ""
+        },
+        {
+          "pin": 3,
+          "signal": "VCCA",
+          "net": "V1V8",
+          "direction": "power_input",
+          "power_domain": "V1V8",
+          "status": "planned",
+          "notes": ""
+        },
+        {
+          "pin": 4,
+          "signal": "A2Y",
+          "net": "CTRL_RX_XU18",
+          "direction": "output",
+          "power_domain": "V1V8",
+          "status": "planned",
+          "notes": ""
+        },
+        {
+          "pin": 5,
+          "signal": "A1",
+          "net": "CTRL_TX_XU18",
+          "direction": "input",
+          "power_domain": "V1V8",
+          "status": "planned",
+          "notes": ""
+        },
+        {
+          "pin": 6,
+          "signal": "OE",
+          "net": "CTRL_XU_IO_READY",
+          "direction": "input_active_high",
+          "power_domain": "either_supply",
+          "status": "planned",
+          "notes": "100kpulldown;assertonlybothsupplydomainsvalid."
+        },
+        {
+          "pin": 7,
+          "signal": "VCCB",
+          "net": "V3V3_D",
+          "direction": "power_input",
+          "power_domain": "V3V3_D",
+          "status": "planned",
+          "notes": ""
+        },
+        {
+          "pin": 8,
+          "signal": "B1Y",
+          "net": "CTRL_RX_3V3",
+          "direction": "output",
+          "power_domain": "V3V3_D",
+          "status": "planned",
+          "notes": ""
+        }
+      ],
+      "rules": [
+        "OneA->B andoneB->Achannel; nottwochannelsineachdirection.",
+        "1.1-5.5Vportsupplyclass;Ioff/VCCdisconnectprovided;bothsupplypinslocal100nF.",
+        "TieunusedinputtoGNDandNCunusedoutput.",
+        "Do notsubstituteauto-directionTXB/TXSwithouttimingreview."
+      ]
+    },
+    {
+      "id": "LV_ADC_ENABLE",
+      "model": "TXU0202DCUR",
+      "package": "VSSOP8_DCU",
+      "role": "One3.3V forward CHIP_EN signal across independently switched supplies; unused reverse channel tied low.",
+      "source_url": "https://www.ti.com/lit/ds/symlink/txu0202.pdf",
+      "source_pages": [
+        1,
+        4
+      ],
+      "pins": [
+        {
+          "pin": 1,
+          "signal": "B2",
+          "net": "GND",
+          "direction": "input",
+          "power_domain": "V3V3_ADC_DIG",
+          "status": "planned",
+          "notes": ""
+        },
+        {
+          "pin": 2,
+          "signal": "GND",
+          "net": "GND",
+          "direction": "ground",
+          "power_domain": "GND",
+          "status": "planned",
+          "notes": ""
+        },
+        {
+          "pin": 3,
+          "signal": "VCCA",
+          "net": "V3V3_D",
+          "direction": "power_input",
+          "power_domain": "V3V3_D",
+          "status": "planned",
+          "notes": ""
+        },
+        {
+          "pin": 4,
+          "signal": "A2Y",
+          "net": null,
+          "direction": "output",
+          "power_domain": "V3V3_D",
+          "status": "planned",
+          "notes": ""
+        },
+        {
+          "pin": 5,
+          "signal": "A1",
+          "net": "ADC_EN_CTRL",
+          "direction": "input",
+          "power_domain": "V3V3_D",
+          "status": "planned",
+          "notes": ""
+        },
+        {
+          "pin": 6,
+          "signal": "OE",
+          "net": "ADC_CONTROL_READY",
+          "direction": "input_active_high",
+          "power_domain": "either_supply",
+          "status": "planned",
+          "notes": "100k pulldown. Hardware supply-qualified; enable only after the relevant codec rail sequence. Exact gating circuit not yet closed."
+        },
+        {
+          "pin": 7,
+          "signal": "VCCB",
+          "net": "V3V3_ADC_DIG",
+          "direction": "power_input",
+          "power_domain": "V3V3_ADC_DIG",
+          "status": "planned",
+          "notes": ""
+        },
+        {
+          "pin": 8,
+          "signal": "B1Y",
+          "net": "ADC_EN",
+          "direction": "output",
+          "power_domain": "V3V3_ADC_DIG",
+          "status": "planned",
+          "notes": "10k output pulldown is owned by the audio page. Do not duplicate."
+        }
+      ],
+      "rules": [
+        "OneA->B andoneB->Achannel; nottwochannelsineachdirection.",
+        "1.1-5.5Vportsupplyclass;Ioff/VCCdisconnectprovided;bothsupplypinslocal100nF.",
+        "TieunusedinputtoGNDandNCunusedoutput.",
+        "Do notsubstituteauto-directionTXB/TXSwithouttimingreview."
+      ]
+    },
+    {
+      "id": "LV_DAC_ENABLE",
+      "model": "TXU0202DCUR",
+      "package": "VSSOP8_DCU",
+      "role": "One3.3V forward CHIP_EN signal across independently switched supplies; unused reverse channel tied low.",
+      "source_url": "https://www.ti.com/lit/ds/symlink/txu0202.pdf",
+      "source_pages": [
+        1,
+        4
+      ],
+      "pins": [
+        {
+          "pin": 1,
+          "signal": "B2",
+          "net": "GND",
+          "direction": "input",
+          "power_domain": "V3V3_DAC_DIG",
+          "status": "planned",
+          "notes": ""
+        },
+        {
+          "pin": 2,
+          "signal": "GND",
+          "net": "GND",
+          "direction": "ground",
+          "power_domain": "GND",
+          "status": "planned",
+          "notes": ""
+        },
+        {
+          "pin": 3,
+          "signal": "VCCA",
+          "net": "V3V3_D",
+          "direction": "power_input",
+          "power_domain": "V3V3_D",
+          "status": "planned",
+          "notes": ""
+        },
+        {
+          "pin": 4,
+          "signal": "A2Y",
+          "net": null,
+          "direction": "output",
+          "power_domain": "V3V3_D",
+          "status": "planned",
+          "notes": ""
+        },
+        {
+          "pin": 5,
+          "signal": "A1",
+          "net": "DAC_EN_CTRL",
+          "direction": "input",
+          "power_domain": "V3V3_D",
+          "status": "planned",
+          "notes": ""
+        },
+        {
+          "pin": 6,
+          "signal": "OE",
+          "net": "DAC_CONTROL_READY",
+          "direction": "input_active_high",
+          "power_domain": "either_supply",
+          "status": "planned",
+          "notes": "100k pulldown. Hardware supply-qualified; enable only after the relevant codec rail sequence. Exact gating circuit not yet closed."
+        },
+        {
+          "pin": 7,
+          "signal": "VCCB",
+          "net": "V3V3_DAC_DIG",
+          "direction": "power_input",
+          "power_domain": "V3V3_DAC_DIG",
+          "status": "planned",
+          "notes": ""
+        },
+        {
+          "pin": 8,
+          "signal": "B1Y",
+          "net": "DAC_EN",
+          "direction": "output",
+          "power_domain": "V3V3_DAC_DIG",
+          "status": "planned",
+          "notes": "10k output pulldown is owned by the audio page. Do not duplicate."
+        }
+      ],
+      "rules": [
+        "OneA->B andoneB->Achannel; nottwochannelsineachdirection.",
+        "1.1-5.5Vportsupplyclass;Ioff/VCCdisconnectprovided;bothsupplypinslocal100nF.",
+        "TieunusedinputtoGNDandNCunusedoutput.",
+        "Do notsubstituteauto-directionTXB/TXSwithouttimingreview."
+      ]
+    },
+    {
+      "id": "LV_PGA_SPI",
+      "model": "TXU0304PWR",
+      "package": "TSSOP14_PW",
+      "role": "3forwardSPIchannels3.3->5Vand1reverseSDO5->3.3V;providespower-offisolation",
+      "source_url": "https://www.ti.com/lit/ds/symlink/txu0304.pdf",
+      "source_pages": [
+        1,
+        4
+      ],
+      "pins": [
+        {
+          "pin": 1,
+          "signal": "VCCA",
+          "net": "V3V3_D",
+          "direction": "power_input",
+          "power_domain": "V3V3_D",
+          "status": "planned",
+          "notes": ""
+        },
+        {
+          "pin": 2,
+          "signal": "A1",
+          "net": "SPI_SHARED_MOSI",
+          "direction": "input",
+          "power_domain": "V3V3_D",
+          "status": "planned",
+          "notes": ""
+        },
+        {
+          "pin": 3,
+          "signal": "A2",
+          "net": "SPI_SHARED_SCLK",
+          "direction": "input",
+          "power_domain": "V3V3_D",
+          "status": "planned",
+          "notes": ""
+        },
+        {
+          "pin": 4,
+          "signal": "A3",
+          "net": "PGA_CS_CTRL_N",
+          "direction": "input",
+          "power_domain": "V3V3_D",
+          "status": "planned",
+          "notes": ""
+        },
+        {
+          "pin": 5,
+          "signal": "A4Y",
+          "net": "PGA_SDO_3V3",
+          "direction": "output",
+          "power_domain": "V3V3_D",
+          "status": "planned",
+          "notes": ""
+        },
+        {
+          "pin": 6,
+          "signal": "NC",
+          "net": null,
+          "direction": "no_connect",
+          "power_domain": null,
+          "status": "planned",
+          "notes": ""
+        },
+        {
+          "pin": 7,
+          "signal": "GND",
+          "net": "GND",
+          "direction": "ground",
+          "power_domain": "GND",
+          "status": "planned",
+          "notes": ""
+        },
+        {
+          "pin": 8,
+          "signal": "OE",
+          "net": "PGA_IO_READY",
+          "direction": "input_active_high",
+          "power_domain": "either_supply",
+          "status": "planned",
+          "notes": "100k pulldown; qualify V3V3_D plus V5P_AFE and V5N_AFE. A positive rail alone is insufficient."
+        },
+        {
+          "pin": 9,
+          "signal": "NC",
+          "net": null,
+          "direction": "no_connect",
+          "power_domain": null,
+          "status": "planned",
+          "notes": ""
+        },
+        {
+          "pin": 10,
+          "signal": "B4",
+          "net": "PGA_SDO_5V",
+          "direction": "input",
+          "power_domain": "V5P_AFE",
+          "status": "planned",
+          "notes": ""
+        },
+        {
+          "pin": 11,
+          "signal": "B3Y",
+          "net": "PGA_CS_N_5V",
+          "direction": "output",
+          "power_domain": "V5P_AFE",
+          "status": "planned",
+          "notes": "Pullup toV5P_AFE soPGAde-selectedwhenbufferHi-Z."
+        },
+        {
+          "pin": 12,
+          "signal": "B2Y",
+          "net": "PGA_SCLK_5V",
+          "direction": "output",
+          "power_domain": "V5P_AFE",
+          "status": "planned",
+          "notes": ""
+        },
+        {
+          "pin": 13,
+          "signal": "B1Y",
+          "net": "PGA_SDI_5V",
+          "direction": "output",
+          "power_domain": "V5P_AFE",
+          "status": "planned",
+          "notes": ""
+        },
+        {
+          "pin": 14,
+          "signal": "VCCB",
+          "net": "V5P_AFE",
+          "direction": "power_input",
+          "power_domain": "V5P_AFE",
+          "status": "planned",
+          "notes": ""
+        }
+      ]
+    }
+  ],
+  "optional_PGA_overrange": {
+    "id": "LV_PGA_OVR_OPTION",
+    "model": "TXU0202DCUR",
+    "package": "VSSOP8_DCU",
+    "role": "OptionalOVRreadback;omitifnotused,neverdirect5VtoESP.",
+    "source_url": "https://www.ti.com/lit/ds/symlink/txu0202.pdf",
+    "source_pages": [
+      1,
+      4
+    ],
+    "pins": [
+      {
+        "pin": 1,
+        "signal": "B2",
+        "net": "PGA_OVR_5V_TP",
+        "direction": "input",
+        "power_domain": "V5P_AFE",
+        "status": "planned",
+        "notes": ""
+      },
+      {
+        "pin": 2,
+        "signal": "GND",
+        "net": "GND",
+        "direction": "ground",
+        "power_domain": "GND",
+        "status": "planned",
+        "notes": ""
+      },
+      {
+        "pin": 3,
+        "signal": "VCCA",
+        "net": "V3V3_D",
+        "direction": "power_input",
+        "power_domain": "V3V3_D",
+        "status": "planned",
+        "notes": ""
+      },
+      {
+        "pin": 4,
+        "signal": "A2Y",
+        "net": "PGA_OVR_3V3",
+        "direction": "output",
+        "power_domain": "V3V3_D",
+        "status": "planned",
+        "notes": ""
+      },
+      {
+        "pin": 5,
+        "signal": "A1",
+        "net": "GND",
+        "direction": "input",
+        "power_domain": "V3V3_D",
+        "status": "planned",
+        "notes": ""
+      },
+      {
+        "pin": 6,
+        "signal": "OE",
+        "net": "PGA_IO_READY",
+        "direction": "input_active_high",
+        "power_domain": "either_supply",
+        "status": "planned",
+        "notes": "100kpulldown;assertonlybothsupplydomainsvalid."
+      },
+      {
+        "pin": 7,
+        "signal": "VCCB",
+        "net": "V5P_AFE",
+        "direction": "power_input",
+        "power_domain": "V5P_AFE",
+        "status": "planned",
+        "notes": ""
+      },
+      {
+        "pin": 8,
+        "signal": "B1Y",
+        "net": null,
+        "direction": "output",
+        "power_domain": "V5P_AFE",
+        "status": "planned",
+        "notes": ""
+      }
+    ],
+    "rules": [
+      "OneA->B andoneB->Achannel; nottwochannelsineachdirection.",
+      "1.1-5.5Vportsupplyclass;Ioff/VCCdisconnectprovided;bothsupplypinslocal100nF.",
+      "TieunusedinputtoGNDandNCunusedoutput.",
+      "Do notsubstituteauto-directionTXB/TXSwithouttimingreview."
+    ]
+  },
+  "codec_i2c_isolation": {
+    "topology": "Two separate TCA9517A branches share only A-side I2C_CTRL bus. No common codec supply or B-side bus.",
+    "branches": [
+      {
+        "id": "U_I2C_ADC_ISO",
+        "model": "TCA9517ADGKR",
+        "package": "VSSOP8_DGK",
+        "source_url": "https://www.ti.com/lit/ds/symlink/tca9517a.pdf",
+        "source_pages": [
+          1,
+          4,
+          7
+        ],
+        "pins": [
+          {
+            "pin": 1,
+            "signal": "VCCA",
+            "net": "V3V3_D",
+            "direction": "power_input",
+            "power_domain": "V3V3_D",
+            "status": "planned",
+            "notes": ""
+          },
+          {
+            "pin": 2,
+            "signal": "SCLA",
+            "net": "I2C_CTRL_SCL",
+            "direction": "open_drain_bidirectional",
+            "power_domain": "V3V3_D",
+            "status": "planned",
+            "notes": ""
+          },
+          {
+            "pin": 3,
+            "signal": "SDAA",
+            "net": "I2C_CTRL_SDA",
+            "direction": "open_drain_bidirectional",
+            "power_domain": "V3V3_D",
+            "status": "planned",
+            "notes": ""
+          },
+          {
+            "pin": 4,
+            "signal": "GND",
+            "net": "GND",
+            "direction": "ground",
+            "power_domain": "GND",
+            "status": "planned",
+            "notes": ""
+          },
+          {
+            "pin": 5,
+            "signal": "EN",
+            "net": "ADC_CONTROL_READY",
+            "direction": "input_active_high",
+            "power_domain": "V3V3_ADC_DIG",
+            "status": "planned",
+            "notes": "Defaultpulldown;changeENonlybusidle;holdlowwhilecodecrailsinvalid."
+          },
+          {
+            "pin": 6,
+            "signal": "SDAB",
+            "net": "ADC_I2C_SDA",
+            "direction": "open_drain_bidirectional",
+            "power_domain": "V3V3_ADC_DIG",
+            "status": "planned",
+            "notes": ""
+          },
+          {
+            "pin": 7,
+            "signal": "SCLB",
+            "net": "ADC_I2C_SCL",
+            "direction": "open_drain_bidirectional",
+            "power_domain": "V3V3_ADC_DIG",
+            "status": "planned",
+            "notes": ""
+          },
+          {
+            "pin": 8,
+            "signal": "VCCB",
+            "net": "V3V3_ADC_DIG",
+            "direction": "power_input",
+            "power_domain": "V3V3_ADC_DIG",
+            "status": "planned",
+            "notes": ""
+          }
+        ],
+        "notes": [
+          "Bothsidesneedpullups toownrail;noalways-onpullupdirectlyfeedsdeadESS.",
+          "Powered-offbuspinsHi-Z; B-sidebufferedLOWmax0.6VandVILc0.45VrequirecodecVOLcompatibilitycheck.",
+          "Do notcascadeBsideintostatic-offsetBside;start100kHz,thenverify400kHzbudget.",
+          "HubEEPROMbusiscompletelyseparate."
+        ],
+        "pullup_owner": "Device-side SDA/SCL2.2k to V3V3_ADC_DIG are owned by audio-pin-net-plan.json; do not duplicate on digital page."
+      },
+      {
+        "id": "U_I2C_DAC_ISO",
+        "model": "TCA9517ADGKR",
+        "package": "VSSOP8_DGK",
+        "source_url": "https://www.ti.com/lit/ds/symlink/tca9517a.pdf",
+        "source_pages": [
+          1,
+          4,
+          7
+        ],
+        "pins": [
+          {
+            "pin": 1,
+            "signal": "VCCA",
+            "net": "V3V3_D",
+            "direction": "power_input",
+            "power_domain": "V3V3_D",
+            "status": "planned",
+            "notes": ""
+          },
+          {
+            "pin": 2,
+            "signal": "SCLA",
+            "net": "I2C_CTRL_SCL",
+            "direction": "open_drain_bidirectional",
+            "power_domain": "V3V3_D",
+            "status": "planned",
+            "notes": ""
+          },
+          {
+            "pin": 3,
+            "signal": "SDAA",
+            "net": "I2C_CTRL_SDA",
+            "direction": "open_drain_bidirectional",
+            "power_domain": "V3V3_D",
+            "status": "planned",
+            "notes": ""
+          },
+          {
+            "pin": 4,
+            "signal": "GND",
+            "net": "GND",
+            "direction": "ground",
+            "power_domain": "GND",
+            "status": "planned",
+            "notes": ""
+          },
+          {
+            "pin": 5,
+            "signal": "EN",
+            "net": "DAC_CONTROL_READY",
+            "direction": "input_active_high",
+            "power_domain": "V3V3_DAC_DIG",
+            "status": "planned",
+            "notes": "Defaultpulldown;changeENonlybusidle;holdlowwhilecodecrailsinvalid."
+          },
+          {
+            "pin": 6,
+            "signal": "SDAB",
+            "net": "DAC_I2C_SDA",
+            "direction": "open_drain_bidirectional",
+            "power_domain": "V3V3_DAC_DIG",
+            "status": "planned",
+            "notes": ""
+          },
+          {
+            "pin": 7,
+            "signal": "SCLB",
+            "net": "DAC_I2C_SCL",
+            "direction": "open_drain_bidirectional",
+            "power_domain": "V3V3_DAC_DIG",
+            "status": "planned",
+            "notes": ""
+          },
+          {
+            "pin": 8,
+            "signal": "VCCB",
+            "net": "V3V3_DAC_DIG",
+            "direction": "power_input",
+            "power_domain": "V3V3_DAC_DIG",
+            "status": "planned",
+            "notes": ""
+          }
+        ],
+        "notes": [
+          "Bothsidesneedpullups toownrail;noalways-onpullupdirectlyfeedsdeadESS.",
+          "Powered-offbuspinsHi-Z; B-sidebufferedLOWmax0.6VandVILc0.45VrequirecodecVOLcompatibilitycheck.",
+          "Do notcascadeBsideintostatic-offsetBside;start100kHz,thenverify400kHzbudget.",
+          "HubEEPROMbusiscompletelyseparate."
+        ],
+        "pullup_owner": "Device-side SDA/SCL2.2k to V3V3_DAC_DIG are owned by audio-pin-net-plan.json; do not duplicate on digital page."
+      }
+    ],
+    "control_side_pullups": [
+      {
+        "net": "I2C_CTRL_SDA",
+        "to": "V3V3_D",
+        "resistance_ohm": 2200,
+        "count": 1,
+        "owner": "digital page"
+      },
+      {
+        "net": "I2C_CTRL_SCL",
+        "to": "V3V3_D",
+        "resistance_ohm": 2200,
+        "count": 1,
+        "owner": "digital page"
+      }
+    ],
+    "status": "S0 pin/net proposal; offset LOW/VOL margin, EN timing and rise-time require verification."
+  },
+  "usb_presence_buffer": {
+    "id": "U_VBUS_SENSE",
+    "model": "SN74LVC1G17DBVR",
+    "package": "SOT23_5_DBV",
+    "source_url": "https://www.ti.com/lit/ds/symlink/sn74lvc1g17.pdf",
+    "source_pages": [
+      1,
+      3
+    ],
+    "pins": [
+      {
+        "pin": 1,
+        "signal": "NC",
+        "net": null,
+        "direction": "no_connect",
+        "power_domain": null,
+        "status": "planned",
+        "notes": ""
+      },
+      {
+        "pin": 2,
+        "signal": "A",
+        "net": "VBUS_RAW",
+        "direction": "input",
+        "power_domain": "5V_tolerant",
+        "status": "planned",
+        "notes": "True USB-C5V after connector protection, within0..5.5V input rating. This is an input-tolerant Ioff buffer, not a supply rail. Any added series/filter node must be explicitly named and documented."
+      },
+      {
+        "pin": 3,
+        "signal": "GND",
+        "net": "GND",
+        "direction": "ground",
+        "power_domain": "GND",
+        "status": "planned",
+        "notes": ""
+      },
+      {
+        "pin": 4,
+        "signal": "Y",
+        "net": "USB_PRESENT_3V3",
+        "direction": "output",
+        "power_domain": "V3V3_D",
+        "status": "planned",
+        "notes": "Pulldown100konoutput;feedsCH343VBUS9andESP GPIO1."
+      },
+      {
+        "pin": 5,
+        "signal": "VCC",
+        "net": "V3V3_D",
+        "direction": "power_input",
+        "power_domain": "V3V3_D",
+        "status": "planned",
+        "notes": ""
+      }
+    ],
+    "notes": [
+      "IoffbackdriveprotectionavoidsusingESPinputclampasVBUSdetector.",
+      "VUSBmax/overshootprotectionstillbelongstoupstreampower/ESDdesign."
+    ]
+  },
+  "usb_upstream_isolation": {
+    "id": "U_USB_UP_ISO",
+    "model": "TS3USB221ARSER",
+    "package": "UQFN10_RSE",
+    "source_url": "https://www.ti.com/lit/ds/symlink/ts3usb221a.pdf",
+    "source_pages": [
+      3,
+      5,
+      13
+    ],
+    "status": "technical_design_option_for_digital_poweroff",
+    "pins": [
+      {
+        "pin": 1,
+        "signal": "1D+",
+        "net": "USB_HUB_UP_DP",
+        "direction": "usb_bidirectional",
+        "power_domain": "USB",
+        "status": "planned",
+        "notes": ""
+      },
+      {
+        "pin": 2,
+        "signal": "1D-",
+        "net": "USB_HUB_UP_DM",
+        "direction": "usb_bidirectional",
+        "power_domain": "USB",
+        "status": "planned",
+        "notes": ""
+      },
+      {
+        "pin": 3,
+        "signal": "2D+",
+        "net": null,
+        "direction": "unused_usb_branch",
+        "power_domain": "USB",
+        "status": "planned",
+        "notes": "Do notrouteunusedstub; optional50ohmterminationperapplicationguidance."
+      },
+      {
+        "pin": 4,
+        "signal": "2D-",
+        "net": null,
+        "direction": "unused_usb_branch",
+        "power_domain": "USB",
+        "status": "planned",
+        "notes": "Sameunusedbranch."
+      },
+      {
+        "pin": 5,
+        "signal": "GND",
+        "net": "GND",
+        "direction": "ground",
+        "power_domain": "GND",
+        "status": "planned",
+        "notes": ""
+      },
+      {
+        "pin": 6,
+        "signal": "OE_N",
+        "net": "USB_UP_ISO_DISABLE",
+        "direction": "input_active_high_disable",
+        "power_domain": "V3V3_HUB",
+        "status": "planned",
+        "notes": "Active-low OE. Default100k pull-up to V3V3_HUB; open-drain pull LOW only when Hub and relevant digital supplies are valid, VBUS present and CC allows main power. AON control must not directly backfeed this domain."
+      },
+      {
+        "pin": 7,
+        "signal": "D-",
+        "net": "USB_UP_PROTECTED_DM",
+        "direction": "usb_bidirectional",
+        "power_domain": "USB",
+        "status": "planned",
+        "notes": "USB-C/ESDside."
+      },
+      {
+        "pin": 8,
+        "signal": "D+",
+        "net": "USB_UP_PROTECTED_DP",
+        "direction": "usb_bidirectional",
+        "power_domain": "USB",
+        "status": "planned",
+        "notes": ""
+      },
+      {
+        "pin": 9,
+        "signal": "S",
+        "net": "GND",
+        "direction": "input",
+        "power_domain": "V3V3_HUB",
+        "status": "planned",
+        "notes": "Selectbranch1pertruth table."
+      },
+      {
+        "pin": 10,
+        "signal": "VCC",
+        "net": "V3V3_HUB",
+        "direction": "power_input",
+        "power_domain": "V3V3_HUB",
+        "status": "planned",
+        "notes": "Same dedicated Hub rail; local100nF. Do not use V3V3_D here."
+      }
+    ],
+    "notes": [
+      "AtVCC=0datasheetp5I(OFF)<=2uAforVI/O0..5.25V;atpowereddisabledIOZ<=1uA.",
+      "Poweroffprotectionisnotgalvanicisolationandnotexactlyzero leakage.",
+      "IfleavescanpoweroffindependentlywhileHubon,applysamecircuitperaffecteddownstreamport,orprohibitthatpowerstate.",
+      "USB480Mbpseye/ESD/boardSIstillrequired;noextraunverifiedseriesresistor."
+    ]
+  },
+  "power_state_plan": {
+    "authority": "docs/schematic/reva-power-design.md",
+    "drawing_assumption": "Single USB-C5V only. VBUS_RAW -> eFuse -> V5_SYS. AON is exclusively CC/supervisor logic, not Hub/ESP/display. Main enabled only by CC1.5A/3A. V3V3_D and V3V3_HUB are separate rails with a coordinated digital operating policy.",
+    "rail_contract": {
+      "V3V3_AON": "CC detection, supervisor and low-power hardware logic only",
+      "V3V3_D": "ESP, both CH343 cores, MCP23017, control-side translators and VBUS sense buffer",
+      "V3V3_HUB": "Dedicated TPS7A2033 from V5_SYS: CH334 pins13/20/21 and TS3USB221A VCC10",
+      "V1V8": "XU GPIO/Flash and CH343-B VIO",
+      "V3V3_USB": "XU USB PHY, independent from Hub rail",
+      "V3V3_ADC_DIG": "ADC digital and ADC-side I2C/audio/enable buffers",
+      "V3V3_DAC_DIG": "DAC digital and DAC-side I2C/audio/enable buffers; keep distinct from V3V3_DAC_CLK/L/R",
+      "V5P_AFE": "PGA positive rail and its translator B supply",
+      "V5N_AFE": "PGA negative rail; also required for PGA_IO_READY"
+    },
+    "states": [
+      {
+        "state": "Detached, Default advertisement, or main disabled",
+        "requirements": [
+          "Only permitted AON detection remains powered when USB present; Hub/ESP/bridges/XU main rails are off. No audio enumeration in this profile.",
+          "Upstream USB switch and VBUS buffer provide specified power-off protection. No external DC source exists.",
+          "All relay coils off; K1 phantom disconnected; K3 and K4 physically muted."
+        ]
+      },
+      {
+        "state": "CC1.5A, digital only",
+        "requirements": [
+          "Software input current upper bound<=1.0A. Digital enumeration, control and USB loopback only.",
+          "PGA/ESS analog/HP/phantom off; RF disabled and low display backlight. No claim of complete analog audio.",
+          "ADC/DAC/PGA isolation disabled; CHIP_EN low; local I2C pull-ups remain on their own rails."
+        ]
+      },
+      {
+        "state": "CC3A, analog permitted subject to actual budget",
+        "requirements": [
+          "Software input upper bound<=2.2A after monitoring errors. Full analog is a design target, not a closed worst-case power budget.",
+          "Sequence separate ADC/DAC supplies; assert CHIP_EN and translator OE only after valid rails and required clocks.",
+          "Phantom remains locked off until surge-clamp/AFE-injection design is closed; HP switching remains subject to its power-off input-isolation requirement."
+        ]
+      },
+      {
+        "state": "3A drops to1.5A",
+        "requirements": [
+          "Hardware removes high-current ILIM branch immediately; firmware disables phantom and analog, lowers load, and returns to digital-only profile.",
+          "Exact mode/status crossing from AON to ESP must use Ioff or open-drain isolation and remains unassigned; do not directly wire powered AON outputs to dead ESP."
+        ]
+      },
+      {
+        "state": "USB suspend",
+        "requirements": [
+          "Retain a verified resume-capable Hub/ESP low-power path; disable phantom/AFE/codecs/backlight/RF as required.",
+          "Do not shut off all Hub power and claim host USB resume still works. Suspend current and protocol behavior are not validated."
+        ]
+      },
+      {
+        "state": "ESP off while Hub on",
+        "requirements": [
+          "Not an allowed normal state without additional Hub-port2 data isolation and UART0/control isolation. EN low or series22ohm alone is insufficient."
+        ]
+      },
+      {
+        "state": "XU1.8V absent while CH343-B core remains powered",
+        "requirements": [
+          "CH343 reverse-blocking evidence covers VIO-to-dead-core only; the opposite direction is not established. Coordinated shutdown or verified extra isolation is required.",
+          "TXU OE must stay low in brownout and relay unmute must remain inhibited."
+        ]
+      }
+    ],
+    "unresolved_root_interfaces": [
+      "GANG PWREN#/OVCUR# switch/fault topology and actual Hub descriptor/EEPROM image; bus-powered strap itself is fixed LOW.",
+      "Voltage supervisors and OE/EN/RELAY_ARM logic; names such as ADC_IO_READY are interface requirements, not completed circuits.",
+      "AON mode/fault/IMON safe signal crossings and ESP pin/firmware allocation for power control remain pending.",
+      "Startup/fault coordination of Hub, CH343-B core, XU1.8V and USB PHY.",
+      "Rail min/max including load/temperature/dropout/transient, I2C LOW margin and I2S timing, USB high-speed eye/ESD, and actual suspend current."
+    ],
+    "validation_boundary": "S0 means interface/pin/net agreement only. It does not validate individual supply voltage windows, sequencing, power budget, ERC/DRC or hardware."
+  },
+  "validation": {
+    "hub_pins": 28,
+    "bridge_pins_each": 17,
+    "esp_module_pins": 41,
+    "expander_pins": 28,
+    "shopping_or_pricing_performed": false,
+    "firmware_changed": false,
+    "eda_changed": false,
+    "physical_circuit_tested": false,
+    "rail_net_names_aligned": true,
+    "separate_ADC_DAC_IO_domains": true,
+    "bus_powered_PSELF_pin19_GND": true,
+    "power_windows_validated": false,
+    "power_control_GPIO_and_hardware_gating_implemented": false
+  },
+  "formal_document": "docs/schematic/reva-digital-peripherals.md",
+  "flash_technical_status": {
+    "selected_model": null,
+    "status": "unresolved",
+    "note": "No part is frozen. Winbond1.8V candidates are not accepted solely because they support opcode0xEB; exact ROM mode/dummy cycles, factory QE, power-up/reset time and XTC flash support still need primary evidence."
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "checkedAt": "2026-09-05T14:17:13.719Z",
+  "protocol": "MCP stdio -> CLI -> daemon -> EasyEDA Pro connector",
+  "project": "ASIO_AI_ENV_SMOKE",
+  "doc": "35f8eb5a3c43ab59",
+  "componentCount": 2,
+  "pinNets": {
+    "R1.2": "VOUT",
+    "R1.1": "VIN",
+    "R2.2": "GND",
+    "R2.1": "VOUT"
+  },
+  "schematicReadbackPassed": true,
+  "structuralCheck": {
+    "findings": [],
+    "passed": true,
+    "summary": {
+      "componentsWithFloating": 0,
+      "danglingWires": 0,
+      "floatingPins": 0,
+      "geomNetMismatches": 0,
+      "multiNetWires": 0,
+      "netMarkerMismatches": 0,
+      "polarityConventionOutliers": 0,
+      "total": 0,
+      "wireCrossings": 0,
+      "wireOverPins": 0,
+      "zeroLengthWires": 0
+    }
+  },
+  "nativeDrc": "See gate-final.txt: 0 fatal, 0 error, 2 single-pin-net warnings (VIN/GND). Strict gate remains FAIL."
+}

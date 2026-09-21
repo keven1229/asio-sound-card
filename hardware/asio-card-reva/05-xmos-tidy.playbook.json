@@ -1,0 +1,564 @@
+{
+  "version": 1,
+  "meta": {
+    "name": "xmos-tidy-orientation-and-spacing",
+    "project": "ASIO_CARD_USB5V_REV_A",
+    "doc": "XMOS_CORE"
+  },
+  "defaults": {
+    "timeoutSec": 60,
+    "retry": 0
+  },
+  "steps": [
+    {
+      "id": "detach-C101-1",
+      "action": "schematic.pin.disconnect",
+      "payload": {
+        "designator": "C101",
+        "pin": "1"
+      }
+    },
+    {
+      "id": "detach-C101-2",
+      "action": "schematic.pin.disconnect",
+      "payload": {
+        "designator": "C101",
+        "pin": "2"
+      }
+    },
+    {
+      "id": "orient-C101",
+      "action": "schematic.component.modify",
+      "payload": {
+        "primitiveId": "f920f194c8fb92c3",
+        "patch": {
+          "rotation": 90,
+          "x": 80,
+          "y": 685
+        }
+      }
+    },
+    {
+      "id": "detach-C102-1",
+      "action": "schematic.pin.disconnect",
+      "payload": {
+        "designator": "C102",
+        "pin": "1"
+      }
+    },
+    {
+      "id": "detach-C102-2",
+      "action": "schematic.pin.disconnect",
+      "payload": {
+        "designator": "C102",
+        "pin": "2"
+      }
+    },
+    {
+      "id": "orient-C102",
+      "action": "schematic.component.modify",
+      "payload": {
+        "primitiveId": "16b4e86a77c75657",
+        "patch": {
+          "rotation": 90,
+          "x": 140,
+          "y": 685
+        }
+      }
+    },
+    {
+      "id": "detach-C103-1",
+      "action": "schematic.pin.disconnect",
+      "payload": {
+        "designator": "C103",
+        "pin": "1"
+      }
+    },
+    {
+      "id": "detach-C103-2",
+      "action": "schematic.pin.disconnect",
+      "payload": {
+        "designator": "C103",
+        "pin": "2"
+      }
+    },
+    {
+      "id": "orient-C103",
+      "action": "schematic.component.modify",
+      "payload": {
+        "primitiveId": "46a33f7e189e2f3c",
+        "patch": {
+          "rotation": 90,
+          "x": 200,
+          "y": 685
+        }
+      }
+    },
+    {
+      "id": "detach-C104-1",
+      "action": "schematic.pin.disconnect",
+      "payload": {
+        "designator": "C104",
+        "pin": "1"
+      }
+    },
+    {
+      "id": "detach-C104-2",
+      "action": "schematic.pin.disconnect",
+      "payload": {
+        "designator": "C104",
+        "pin": "2"
+      }
+    },
+    {
+      "id": "orient-C104",
+      "action": "schematic.component.modify",
+      "payload": {
+        "primitiveId": "cc2caa3f1fe2d80e",
+        "patch": {
+          "rotation": 90,
+          "x": 260,
+          "y": 685
+        }
+      }
+    },
+    {
+      "id": "detach-C105-1",
+      "action": "schematic.pin.disconnect",
+      "payload": {
+        "designator": "C105",
+        "pin": "1"
+      }
+    },
+    {
+      "id": "detach-C105-2",
+      "action": "schematic.pin.disconnect",
+      "payload": {
+        "designator": "C105",
+        "pin": "2"
+      }
+    },
+    {
+      "id": "orient-C105",
+      "action": "schematic.component.modify",
+      "payload": {
+        "primitiveId": "fd4e72b3db115b7d",
+        "patch": {
+          "rotation": 90,
+          "x": 80,
+          "y": 565
+        }
+      }
+    },
+    {
+      "id": "detach-C106-1",
+      "action": "schematic.pin.disconnect",
+      "payload": {
+        "designator": "C106",
+        "pin": "1"
+      }
+    },
+    {
+      "id": "detach-C106-2",
+      "action": "schematic.pin.disconnect",
+      "payload": {
+        "designator": "C106",
+        "pin": "2"
+      }
+    },
+    {
+      "id": "orient-C106",
+      "action": "schematic.component.modify",
+      "payload": {
+        "primitiveId": "7dcfa6381aeeb1c7",
+        "patch": {
+          "rotation": 90,
+          "x": 140,
+          "y": 565
+        }
+      }
+    },
+    {
+      "id": "checkpoint-C106",
+      "action": "schematic.save",
+      "checkpoint": true
+    },
+    {
+      "id": "detach-C107-1",
+      "action": "schematic.pin.disconnect",
+      "payload": {
+        "designator": "C107",
+        "pin": "1"
+      }
+    },
+    {
+      "id": "detach-C107-2",
+      "action": "schematic.pin.disconnect",
+      "payload": {
+        "designator": "C107",
+        "pin": "2"
+      }
+    },
+    {
+      "id": "orient-C107",
+      "action": "schematic.component.modify",
+      "payload": {
+        "primitiveId": "358bc23891874364",
+        "patch": {
+          "rotation": 90,
+          "x": 200,
+          "y": 565
+        }
+      }
+    },
+    {
+      "id": "detach-C108-1",
+      "action": "schematic.pin.disconnect",
+      "payload": {
+        "designator": "C108",
+        "pin": "1"
+      }
+    },
+    {
+      "id": "detach-C108-2",
+      "action": "schematic.pin.disconnect",
+      "payload": {
+        "designator": "C108",
+        "pin": "2"
+      }
+    },
+    {
+      "id": "orient-C108",
+      "action": "schematic.component.modify",
+      "payload": {
+        "primitiveId": "0104ec05954d241c",
+        "patch": {
+          "rotation": 90,
+          "x": 260,
+          "y": 565
+        }
+      }
+    },
+    {
+      "id": "detach-C109-1",
+      "action": "schematic.pin.disconnect",
+      "payload": {
+        "designator": "C109",
+        "pin": "1"
+      }
+    },
+    {
+      "id": "detach-C109-2",
+      "action": "schematic.pin.disconnect",
+      "payload": {
+        "designator": "C109",
+        "pin": "2"
+      }
+    },
+    {
+      "id": "orient-C109",
+      "action": "schematic.component.modify",
+      "payload": {
+        "primitiveId": "5fc26459fb2acf59",
+        "patch": {
+          "rotation": 90,
+          "x": 80,
+          "y": 445
+        }
+      }
+    },
+    {
+      "id": "detach-C110-1",
+      "action": "schematic.pin.disconnect",
+      "payload": {
+        "designator": "C110",
+        "pin": "1"
+      }
+    },
+    {
+      "id": "detach-C110-2",
+      "action": "schematic.pin.disconnect",
+      "payload": {
+        "designator": "C110",
+        "pin": "2"
+      }
+    },
+    {
+      "id": "orient-C110",
+      "action": "schematic.component.modify",
+      "payload": {
+        "primitiveId": "701799b899154fa6",
+        "patch": {
+          "rotation": 90,
+          "x": 140,
+          "y": 445
+        }
+      }
+    },
+    {
+      "id": "detach-C111-1",
+      "action": "schematic.pin.disconnect",
+      "payload": {
+        "designator": "C111",
+        "pin": "1"
+      }
+    },
+    {
+      "id": "detach-C111-2",
+      "action": "schematic.pin.disconnect",
+      "payload": {
+        "designator": "C111",
+        "pin": "2"
+      }
+    },
+    {
+      "id": "orient-C111",
+      "action": "schematic.component.modify",
+      "payload": {
+        "primitiveId": "71ab3d8fa83ffb5d",
+        "patch": {
+          "rotation": 90,
+          "x": 200,
+          "y": 445
+        }
+      }
+    },
+    {
+      "id": "detach-C112-1",
+      "action": "schematic.pin.disconnect",
+      "payload": {
+        "designator": "C112",
+        "pin": "1"
+      }
+    },
+    {
+      "id": "detach-C112-2",
+      "action": "schematic.pin.disconnect",
+      "payload": {
+        "designator": "C112",
+        "pin": "2"
+      }
+    },
+    {
+      "id": "orient-C112",
+      "action": "schematic.component.modify",
+      "payload": {
+        "primitiveId": "d5f712ea0034ffa2",
+        "patch": {
+          "rotation": 90,
+          "x": 260,
+          "y": 445
+        }
+      }
+    },
+    {
+      "id": "checkpoint-C112",
+      "action": "schematic.save",
+      "checkpoint": true
+    },
+    {
+      "id": "detach-C113-1",
+      "action": "schematic.pin.disconnect",
+      "payload": {
+        "designator": "C113",
+        "pin": "1"
+      }
+    },
+    {
+      "id": "detach-C113-2",
+      "action": "schematic.pin.disconnect",
+      "payload": {
+        "designator": "C113",
+        "pin": "2"
+      }
+    },
+    {
+      "id": "orient-C113",
+      "action": "schematic.component.modify",
+      "payload": {
+        "primitiveId": "3a5f784701867775",
+        "patch": {
+          "rotation": 90,
+          "x": 80,
+          "y": 325
+        }
+      }
+    },
+    {
+      "id": "detach-C114-1",
+      "action": "schematic.pin.disconnect",
+      "payload": {
+        "designator": "C114",
+        "pin": "1"
+      }
+    },
+    {
+      "id": "detach-C114-2",
+      "action": "schematic.pin.disconnect",
+      "payload": {
+        "designator": "C114",
+        "pin": "2"
+      }
+    },
+    {
+      "id": "orient-C114",
+      "action": "schematic.component.modify",
+      "payload": {
+        "primitiveId": "c24fd417eaa02d9d",
+        "patch": {
+          "rotation": 90,
+          "x": 140,
+          "y": 325
+        }
+      }
+    },
+    {
+      "id": "detach-C115-1",
+      "action": "schematic.pin.disconnect",
+      "payload": {
+        "designator": "C115",
+        "pin": "1"
+      }
+    },
+    {
+      "id": "detach-C115-2",
+      "action": "schematic.pin.disconnect",
+      "payload": {
+        "designator": "C115",
+        "pin": "2"
+      }
+    },
+    {
+      "id": "orient-C115",
+      "action": "schematic.component.modify",
+      "payload": {
+        "primitiveId": "dd3aa5e316d97e08",
+        "patch": {
+          "rotation": 90,
+          "x": 200,
+          "y": 325
+        }
+      }
+    },
+    {
+      "id": "detach-C116-1",
+      "action": "schematic.pin.disconnect",
+      "payload": {
+        "designator": "C116",
+        "pin": "1"
+      }
+    },
+    {
+      "id": "detach-C116-2",
+      "action": "schematic.pin.disconnect",
+      "payload": {
+        "designator": "C116",
+        "pin": "2"
+      }
+    },
+    {
+      "id": "orient-C116",
+      "action": "schematic.component.modify",
+      "payload": {
+        "primitiveId": "28a5c70c4d492010",
+        "patch": {
+          "rotation": 90,
+          "x": 260,
+          "y": 325
+        }
+      }
+    },
+    {
+      "id": "detach-C117-1",
+      "action": "schematic.pin.disconnect",
+      "payload": {
+        "designator": "C117",
+        "pin": "1"
+      }
+    },
+    {
+      "id": "detach-C117-2",
+      "action": "schematic.pin.disconnect",
+      "payload": {
+        "designator": "C117",
+        "pin": "2"
+      }
+    },
+    {
+      "id": "orient-C117",
+      "action": "schematic.component.modify",
+      "payload": {
+        "primitiveId": "bf95d0137216254a",
+        "patch": {
+          "rotation": 90,
+          "x": 80,
+          "y": 205
+        }
+      }
+    },
+    {
+      "id": "detach-C118-1",
+      "action": "schematic.pin.disconnect",
+      "payload": {
+        "designator": "C118",
+        "pin": "1"
+      }
+    },
+    {
+      "id": "detach-C118-2",
+      "action": "schematic.pin.disconnect",
+      "payload": {
+        "designator": "C118",
+        "pin": "2"
+      }
+    },
+    {
+      "id": "orient-C118",
+      "action": "schematic.component.modify",
+      "payload": {
+        "primitiveId": "615ae5e4d9056ecc",
+        "patch": {
+          "rotation": 90,
+          "x": 140,
+          "y": 205
+        }
+      }
+    },
+    {
+      "id": "checkpoint-C118",
+      "action": "schematic.save",
+      "checkpoint": true
+    },
+    {
+      "id": "core-group",
+      "run": "sch group create",
+      "flags": {
+        "members": "U10",
+        "name": "XU316_CORE"
+      }
+    },
+    {
+      "id": "decap-group",
+      "run": "sch group create",
+      "flags": {
+        "members": "C101,C102,C103,C104,C105,C106,C107,C108,C109,C110,C111,C112,C113,C114,C115,C116,C117,C118",
+        "name": "XU_DECOUPLING"
+      }
+    },
+    {
+      "id": "shift-core",
+      "run": "sch group-move",
+      "flags": {
+        "group": "XU316_CORE",
+        "dx": 150,
+        "dy": 0
+      },
+      "timeoutSec": 120
+    },
+    {
+      "id": "save-layout",
+      "action": "schematic.save",
+      "checkpoint": true
+    }
+  ]
+}

@@ -1,0 +1,373 @@
+{
+  "sheet": "A4",
+  "modules": [
+    {
+      "name": "USB_INPUT",
+      "kind": "POWER",
+      "parts": [
+        "J1",
+        "U101",
+        "U102"
+      ],
+      "page": "USB_INPUT",
+      "zone": "center"
+    },
+    {
+      "name": "DIGITAL_POWER",
+      "kind": "POWER",
+      "parts": [
+        "U2",
+        "U3",
+        "U4"
+      ],
+      "page": "DIGITAL_POWER",
+      "zone": "center"
+    },
+    {
+      "name": "ANALOG_POWER",
+      "kind": "POWER",
+      "parts": [
+        "U5",
+        "U6",
+        "U7"
+      ],
+      "page": "ANALOG_POWER",
+      "zone": "center"
+    },
+    {
+      "name": "USB_HUB",
+      "kind": "USB",
+      "parts": [
+        "U40",
+        "U41",
+        "U42"
+      ],
+      "page": "USB_HUB",
+      "zone": "center"
+    },
+    {
+      "name": "XMOS_CORE",
+      "kind": "MCU",
+      "parts": [
+        "U10",
+        "C101",
+        "C102",
+        "C103",
+        "C104",
+        "C105",
+        "C106",
+        "C107",
+        "C108",
+        "C109",
+        "C110",
+        "C111",
+        "C112",
+        "C113",
+        "C114",
+        "C115",
+        "C116",
+        "C117",
+        "C118"
+      ],
+      "page": "XMOS_CORE",
+      "zone": "center"
+    },
+    {
+      "name": "CONTROL",
+      "kind": "MCU",
+      "parts": [
+        "U30"
+      ],
+      "page": "CONTROL",
+      "zone": "center"
+    },
+    {
+      "name": "MIC_PREAMP",
+      "kind": "ANALOG",
+      "parts": [
+        "J4",
+        "U13",
+        "K1"
+      ],
+      "page": "MIC_PREAMP",
+      "zone": "center"
+    },
+    {
+      "name": "LINE_INPUT",
+      "kind": "ANALOG",
+      "parts": [
+        "J5",
+        "U14",
+        "U16",
+        "K2"
+      ],
+      "page": "LINE_INPUT",
+      "zone": "center"
+    },
+    {
+      "name": "ADC",
+      "kind": "ANALOG",
+      "parts": [
+        "U15"
+      ],
+      "page": "ADC",
+      "zone": "center"
+    },
+    {
+      "name": "DAC",
+      "kind": "ANALOG",
+      "parts": [
+        "U20"
+      ],
+      "page": "DAC",
+      "zone": "center"
+    },
+    {
+      "name": "OUTPUT",
+      "kind": "ANALOG",
+      "parts": [
+        "U21",
+        "U22",
+        "K3",
+        "RV1",
+        "J6",
+        "J7",
+        "J9"
+      ],
+      "page": "OUTPUT",
+      "zone": "center"
+    },
+    {
+      "name": "XMOS_BOOT",
+      "kind": "MCU",
+      "parts": [
+        "R201",
+        "R202",
+        "R203",
+        "R204",
+        "R205",
+        "C201",
+        "C202",
+        "R206",
+        "R207",
+        "C203",
+        "C204",
+        "U11",
+        "Y10",
+        "J2"
+      ],
+      "page": "XMOS_BOOT",
+      "zone": "center"
+    },
+    {
+      "name": "XU_POWER_SEQUENCE",
+      "kind": "POWER",
+      "parts": [
+        "R208",
+        "R209",
+        "C205",
+        "C206",
+        "R210",
+        "R211",
+        "C207",
+        "C208",
+        "R212",
+        "R213",
+        "C209",
+        "C210",
+        "R214",
+        "R215",
+        "R216",
+        "U151",
+        "U152",
+        "U153",
+        "SW1"
+      ],
+      "page": "XU_POWER_SEQUENCE",
+      "zone": "center"
+    }
+  ],
+  "flow": [
+    "POWER",
+    "USB",
+    "MCU",
+    "ANALOG"
+  ],
+  "flowAxis": "auto",
+  "pages": [
+    {
+      "name": "SYSTEM",
+      "sheet": "A4",
+      "modules": []
+    },
+    {
+      "name": "USB_INPUT",
+      "sheet": "A4",
+      "modules": [
+        "USB_INPUT"
+      ]
+    },
+    {
+      "name": "USB_HUB",
+      "sheet": "A4",
+      "modules": [
+        "USB_HUB"
+      ]
+    },
+    {
+      "name": "DIGITAL_POWER",
+      "sheet": "A4",
+      "modules": [
+        "DIGITAL_POWER"
+      ]
+    },
+    {
+      "name": "XMOS_CORE",
+      "sheet": "A4",
+      "modules": [
+        "XMOS_CORE"
+      ]
+    },
+    {
+      "name": "CONTROL",
+      "sheet": "A4",
+      "modules": [
+        "CONTROL"
+      ]
+    },
+    {
+      "name": "MIC_PREAMP",
+      "sheet": "A4",
+      "modules": [
+        "MIC_PREAMP"
+      ]
+    },
+    {
+      "name": "LINE_INPUT",
+      "sheet": "A4",
+      "modules": [
+        "LINE_INPUT"
+      ]
+    },
+    {
+      "name": "ADC",
+      "sheet": "A4",
+      "modules": [
+        "ADC"
+      ]
+    },
+    {
+      "name": "DAC",
+      "sheet": "A4",
+      "modules": [
+        "DAC"
+      ]
+    },
+    {
+      "name": "OUTPUT",
+      "sheet": "A4",
+      "modules": [
+        "OUTPUT"
+      ]
+    },
+    {
+      "name": "ANALOG_POWER",
+      "sheet": "A4",
+      "modules": [
+        "ANALOG_POWER"
+      ]
+    },
+    {
+      "name": "XMOS_BOOT",
+      "sheet": "A4",
+      "modules": [
+        "XMOS_BOOT"
+      ]
+    },
+    {
+      "name": "XU_POWER_SEQUENCE",
+      "sheet": "A4",
+      "modules": [
+        "XU_POWER_SEQUENCE"
+      ]
+    }
+  ],
+  "stackup": {
+    "layers": 4,
+    "groundStrategy": "plane",
+    "innerLayers": [
+      "GND",
+      "POWER"
+    ]
+  },
+  "assembly": {
+    "profile": "hand-solder",
+    "side": "top"
+  },
+  "rf": {
+    "parts": [
+      "U30"
+    ],
+    "keepoutLayers": "all"
+  },
+  "board": {
+    "outline": "compact"
+  },
+  "interfaces": [
+    {
+      "name": "USB_C",
+      "ref": "J1",
+      "facing": "user-facing",
+      "edge": "any",
+      "orientation": "dual"
+    },
+    {
+      "name": "MIC",
+      "ref": "J4",
+      "facing": "user-facing",
+      "edge": "any"
+    },
+    {
+      "name": "LINE_HIZ",
+      "ref": "J5",
+      "facing": "user-facing",
+      "edge": "any"
+    },
+    {
+      "name": "LINE_L",
+      "ref": "J6",
+      "facing": "user-facing",
+      "edge": "any"
+    },
+    {
+      "name": "HEADPHONE",
+      "ref": "J7",
+      "facing": "user-facing",
+      "edge": "any"
+    },
+    {
+      "name": "LINE_R",
+      "ref": "J9",
+      "facing": "user-facing",
+      "edge": "any"
+    },
+    {
+      "name": "XTAG",
+      "ref": "J2",
+      "internal": true
+    }
+  ],
+  "costTier": "standard",
+  "notes": {
+    "project": "ASIO_CARD_USB5V_REV_A",
+    "user_decision": "2026-09-16: single USB-C power required; redesign source-current detection and power limiting; procurement selection and price checks paused.",
+    "channel_scope": "2 physical mono ADC channels, stereo DAC shared by line/headphone. USB logical 6-in/6-out is a firmware target.",
+    "power_scope": "USB Type-C 5V current advertisement. Do not assume host supports higher PD voltage or 3A. Default/1.5A/3A states require explicit load-enable policy. Initial power implementation must be resolved in power-design before wiring those pages.",
+    "part_scope": "Known main IC symbols are looked up only to draw verified pins. Ordinary passives carry generic Spec_ID/electrical values; MPN/LCSC procurement decisions deferred. Do not copy supplier identities from placeholder library devices into the procurement BOM.",
+    "digital_baseline": "XU316-QF60A C24: VDD/PLL0.900V, all IO1.8V. Bottom61-64 are VDD,65GND. AppPLL MCLK physical14 feedback to physical47; PORT_MCLK_COUNT is not another physical MCLK wire.",
+    "mechanical_scope": "Four-layer continuous ground and top-side assembly follow existing project direction. Connector edge positions and exact board dimensions remain to be reviewed with an actual placement proposal before routing. No manufacturing files from a draft.",
+    "validation": "Inspect real pin lists, connect against independent pin-net plan, save per page, read back nets, run structural checks/ERC/DRC before PCB transfer.",
+    "status": "S0 functional/page organization established. Circuit domains are completed and verified independently before electrical placement/wiring; placeholders are not electrical signoff.",
+    "page_revision": "2026-09-16: add XMOS_BOOT and XU_POWER_SEQUENCE before placing their components; original 12-page S0 retained. Current core remains intact."
+  }
+}

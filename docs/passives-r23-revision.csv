@@ -1,0 +1,2 @@
+﻿Spec_ID,Group,Use,Value,Tolerance,Technology,Voltage_Rating,Power_Rating,TCR,Package_Target,Design_Status,Critical_Constraints,Source,Assembly_Option,Refdes,Quantity,Manufacturer,MPN,LCSC,PCB_Footprint,Part_Status
+R23,精密及音频电阻,单路幻象的两支馈电,6.81k,单颗6.81k±1%可筛选；配对目标<=0.1%,薄膜/金属膜优先；厚膜可作打样候选,>=100V,1W优先；0.5W仅在温度降额/故障裕量核准后采用,绝对温漂优选<=50ppm/°C；<=100ppm可评估；温度下配对另核,按实际功率/降额选1206至2512或轴向，不固定,条件候选,每只6.81k±1%；筛选配对差<=0.1%(约6.8Ohm)，同批不保证热态跟踪；厚膜须在幻象偏置及代表性直流负载下验证噪声；暂用52V及1%最低阻值短路约0.401W/支，降额后仍须有故障裕量,THAT DN140 p1(1%及薄膜优先)；TI SBOU257 p16(0.4W薄膜BOM)；配对/TCR与52V为项目目标,拟装,,,,,,,未匹配

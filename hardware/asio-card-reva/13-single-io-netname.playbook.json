@@ -1,0 +1,115 @@
+{
+  "version": 1,
+  "meta": {
+    "name": "single-name-1v8-bus",
+    "project": "ASIO_CARD_USB5V_REV_A",
+    "doc": "XMOS_CORE"
+  },
+  "defaults": {
+    "timeoutSec": 60,
+    "retry": 0
+  },
+  "steps": [
+    {
+      "id": "unnamed-io-bus",
+      "action": "schematic.wire.create",
+      "payload": {
+        "points": [
+          [
+            570,
+            520
+          ],
+          [
+            570,
+            605
+          ]
+        ]
+      }
+    },
+    {
+      "id": "unnamed-io-tap-52",
+      "action": "schematic.wire.create",
+      "payload": {
+        "points": [
+          [
+            595,
+            520
+          ],
+          [
+            570,
+            520
+          ]
+        ]
+      }
+    },
+    {
+      "id": "unnamed-io-tap-38",
+      "action": "schematic.wire.create",
+      "payload": {
+        "points": [
+          [
+            595,
+            530
+          ],
+          [
+            570,
+            530
+          ]
+        ]
+      }
+    },
+    {
+      "id": "unnamed-io-tap-8",
+      "action": "schematic.wire.create",
+      "payload": {
+        "points": [
+          [
+            595,
+            540
+          ],
+          [
+            570,
+            540
+          ]
+        ]
+      }
+    },
+    {
+      "id": "unnamed-io-tap-26",
+      "action": "schematic.wire.create",
+      "payload": {
+        "points": [
+          [
+            595,
+            550
+          ],
+          [
+            570,
+            550
+          ]
+        ]
+      }
+    },
+    {
+      "id": "unnamed-io-tap-17",
+      "action": "schematic.wire.create",
+      "payload": {
+        "points": [
+          [
+            595,
+            560
+          ],
+          [
+            570,
+            560
+          ]
+        ]
+      }
+    },
+    {
+      "id": "save-single-net-name",
+      "action": "schematic.save",
+      "checkpoint": true
+    }
+  ]
+}

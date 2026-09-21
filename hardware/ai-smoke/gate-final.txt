@@ -1,0 +1,11 @@
+sch gate: FAIL
+  PASS   layout-lint    0 overlap, 0 pin-coincidence, 0 tight, 0 off-grid, 0 out-of-sheet, 0 no-bbox, 0 unchecked-pin, 0 unproven-pin, 0 invalid-geometry (zone-check=checked sheet-check=checked)
+  PASS   clusters       2 个虚拟组:0 重叠 / 0 出图纸 / 0 过近
+  PASS   check          0 finding(s): 0 error/fatal, 0 warn/info
+  PASS   bridge-check   0 bridge(short), 0 orphan-stub, 0 orphan-flag, 0 orphan-tree (3 wire tree(s))
+  FAIL   drc            0 fatal, 0 error, 2 warn, 0 info (total 2)
+
+阻塞项:
+  • drc: 2 warn-level DRC violation (--strict;平台只回聚合数,逐条明细请在 EasyEDA 的 DRC 面板查看)
+
+告警(不阻塞): drc: 2 条告警

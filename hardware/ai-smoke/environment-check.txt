@@ -1,0 +1,149 @@
+{
+  "mcpInitialized": true,
+  "server": {
+    "name": "easyeda-agent-mcp",
+    "version": "0.18.3"
+  },
+  "toolCount": 11,
+  "toolNames": [
+    "easyeda_health",
+    "easyeda_actions",
+    "easyeda_artifact",
+    "easyeda_board",
+    "easyeda_document",
+    "easyeda_pcb",
+    "easyeda_project",
+    "easyeda_schematic",
+    "easyeda_system",
+    "easyeda_blocks",
+    "easyeda_workflow"
+  ],
+  "typedActionCount": 118,
+  "daemonHealth": {
+    "result": {
+      "status": "found",
+      "host": "127.0.0.1",
+      "ports": "60832-60841",
+      "found": {
+        "port": 60832,
+        "service": "easyeda-agent",
+        "raw": {
+          "service": "easyeda-agent",
+          "version": "v1.3.0",
+          "status": "ok",
+          "port": 60832,
+          "windows": [
+            {
+              "windowId": "a0579eb0-64fc-4f44-a394-720290ab912f",
+              "connectorVersion": "1.3.0",
+              "easyedaVersion": "3.2.181",
+              "capabilities": [
+                "schematic.v1",
+                "pcb.v1"
+              ],
+              "context": {
+                "projectUuid": "ebd854b68d99b637d2e61203cfe585297aef42b8192b60f6dd9d41bfefd19996",
+                "projectName": "ASIO_AI_ENV_SMOKE",
+                "documentUuid": "35f8eb5a3c43ab59",
+                "documentType": "schematic",
+                "tabId": "35f8eb5a3c43ab59@ebd854b68d99b637d2e61203cfe585297aef42b8192b60f6dd9d41bfefd19996"
+              },
+              "connectedAt": "2026-09-05T14:02:10.6644379Z",
+              "lastSeen": "2026-09-05T14:19:42.4034701Z",
+              "connectorVersionOk": true
+            }
+          ],
+          "writeHealth": {
+            "a0579eb0-64fc-4f44-a394-720290ab912f": {
+              "samples": 20,
+              "failures": 0,
+              "failureRate": 0,
+              "consecutiveFailures": 0,
+              "degraded": false,
+              "verified": 0
+            }
+          }
+        }
+      },
+      "versionGate": {
+        "cli": "v1.3.0",
+        "daemon": "v1.3.0",
+        "connectors": [
+          "1.3.0"
+        ],
+        "verdict": "ok",
+        "findings": [
+          {
+            "component": "daemon",
+            "version": "v1.3.0",
+            "severity": "ok",
+            "reason": "与 CLI 同版 v1.3.0"
+          },
+          {
+            "component": "connector",
+            "version": "1.3.0",
+            "severity": "ok",
+            "reason": "与 CLI 同版 v1.3.0"
+          }
+        ]
+      },
+      "checked": [
+        {
+          "port": 60832,
+          "status": "ok"
+        }
+      ]
+    },
+    "warnings": "✓ 版本一致性:CLI / daemon / connector 对齐 v1.3.0"
+  }
+}
+{
+    "checkedAt":  "2026-09-05T22:19:44.0230020+08:00",
+    "installRoot":  "C:\\Users\\Keven\\AppData\\Local\\easyeda-agent\\v1.3.0",
+    "releaseAssetsVerified":  [
+                                  "easyeda_windows_amd64.exe",
+                                  "easyeda-agent-connector.eext"
+                              ],
+    "cliVersion":  "easyeda-agent v1.3.0",
+    "daemonOnline":  true,
+    "connectedWindows":  1,
+    "connectorReady":  true,
+    "extensionFile":  "C:\\Users\\Keven\\AppData\\Local\\easyeda-agent\\v1.3.0\\easyeda-agent-connector.eext",
+    "health":  {
+                   "service":  "easyeda-agent",
+                   "version":  "v1.3.0",
+                   "status":  "ok",
+                   "port":  60832,
+                   "windows":  [
+                                   {
+                                       "windowId":  "a0579eb0-64fc-4f44-a394-720290ab912f",
+                                       "connectorVersion":  "1.3.0",
+                                       "easyedaVersion":  "3.2.181",
+                                       "capabilities":  [
+                                                            "schematic.v1",
+                                                            "pcb.v1"
+                                                        ],
+                                       "context":  {
+                                                       "projectUuid":  "ebd854b68d99b637d2e61203cfe585297aef42b8192b60f6dd9d41bfefd19996",
+                                                       "projectName":  "ASIO_AI_ENV_SMOKE",
+                                                       "documentUuid":  "35f8eb5a3c43ab59",
+                                                       "documentType":  "schematic",
+                                                       "tabId":  "35f8eb5a3c43ab59@ebd854b68d99b637d2e61203cfe585297aef42b8192b60f6dd9d41bfefd19996"
+                                                   },
+                                       "connectedAt":  "2026-09-05T14:02:10.6644379Z",
+                                       "lastSeen":  "2026-09-05T14:19:42.4034701Z",
+                                       "connectorVersionOk":  true
+                                   }
+                               ],
+                   "writeHealth":  {
+                                       "a0579eb0-64fc-4f44-a394-720290ab912f":  {
+                                                                                    "samples":  20,
+                                                                                    "failures":  0,
+                                                                                    "failureRate":  0,
+                                                                                    "consecutiveFailures":  0,
+                                                                                    "degraded":  false,
+                                                                                    "verified":  0
+                                                                                }
+                                   }
+               }
+}

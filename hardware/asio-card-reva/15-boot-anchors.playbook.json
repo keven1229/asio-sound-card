@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "meta": {
+    "name": "xmos-boot-real-library-anchors",
+    "project": "ASIO_CARD_USB5V_REV_A",
+    "doc": "XMOS_BOOT"
+  },
+  "defaults": {
+    "timeoutSec": 60,
+    "retry": 0
+  },
+  "steps": [
+    {
+      "id": "place-U11",
+      "action": "schematic.component.place",
+      "payload": {
+        "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+        "uuid": "d1ec36aa28a64ab5bdf3a68ff59989fd",
+        "x": 270,
+        "y": 540,
+        "designator": "U11"
+      },
+      "capture": {
+        "U11": "$.primitiveId"
+      }
+    },
+    {
+      "id": "place-Y10",
+      "action": "schematic.component.place",
+      "payload": {
+        "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+        "uuid": "8e014debd6f445d187bd9ff68dbc934e",
+        "x": 870,
+        "y": 630,
+        "designator": "Y10"
+      },
+      "capture": {
+        "Y10": "$.primitiveId"
+      }
+    },
+    {
+      "id": "place-J2",
+      "action": "schematic.component.place",
+      "payload": {
+        "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+        "uuid": "7d28e43db30249c9822cf898c3b96dcf",
+        "x": 200,
+        "y": 295,
+        "designator": "J2"
+      },
+      "capture": {
+        "J2": "$.primitiveId"
+      }
+    },
+    {
+      "id": "save-boot-anchors",
+      "action": "schematic.save",
+      "checkpoint": true
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "scope": "XMOS_CORE draft connection identity only",
+  "passed": true,
+  "xmos_pins_checked": 65,
+  "capacitor_pins_checked": 36,
+  "intended_nc_pins": 14,
+  "populated_parts": 19,
+  "errors": [],
+  "not_validated": [
+    "startup/flash/clock completion",
+    "power-tree implementation",
+    "visual layout",
+    "native ERC/DRC",
+    "PCB",
+    "hardware behavior"
+  ]
+}

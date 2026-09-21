@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "meta": {
+    "name": "xmos-pin-net-wiring",
+    "project": "ASIO_CARD_USB5V_REV_A",
+    "doc": "XMOS_CORE"
+  },
+  "defaults": {
+    "timeoutSec": 60,
+    "retry": 0
+  },
+  "steps": [
+    {
+      "id": "wire-verified-pins",
+      "run": "sch autoconnect",
+      "flags": {
+        "spec": "C:/workdir/asio-sound-card/hardware/asio-card-reva/xmos-connect.json",
+        "strict": true,
+        "json": true
+      },
+      "timeoutSec": 900
+    },
+    {
+      "id": "save-pin-net-wiring",
+      "action": "schematic.save",
+      "checkpoint": true
+    }
+  ]
+}

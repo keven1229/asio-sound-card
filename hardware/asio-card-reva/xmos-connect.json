@@ -1,0 +1,365 @@
+{
+  "connections": [
+    {
+      "pin": "U10:1",
+      "kind": "net_port_bi",
+      "net": "QSPI_IO1_1V8"
+    },
+    {
+      "pin": "U10:2",
+      "kind": "net_port_bi",
+      "net": "QSPI_IO3_1V8"
+    },
+    {
+      "pin": "U10:3",
+      "kind": "net_port_out",
+      "net": "QSPI_CS_N_1V8"
+    },
+    {
+      "pin": "U10:5",
+      "kind": "net_port_out",
+      "net": "QSPI_SCLK_1V8"
+    },
+    {
+      "pin": "U10:6",
+      "kind": "net_port_in",
+      "net": "VBUS_SENSE_1V8"
+    },
+    {
+      "pin": "U10:9",
+      "kind": "net_port_out",
+      "net": "DAC_DIN_XU18"
+    },
+    {
+      "pin": "U10:10",
+      "kind": "net_port_out",
+      "net": "I2S_LRCLK_XU18"
+    },
+    {
+      "pin": "U10:13",
+      "kind": "net_port_out",
+      "net": "I2S_BCLK_XU18"
+    },
+    {
+      "pin": "U10:14",
+      "kind": "net_port_out",
+      "net": "XU_MCLK_1V8"
+    },
+    {
+      "pin": "U10:15",
+      "kind": "net_port_out",
+      "net": "XU_XOUT"
+    },
+    {
+      "pin": "U10:16",
+      "kind": "net_port_in",
+      "net": "XU_XIN"
+    },
+    {
+      "pin": "U10:18",
+      "kind": "net_port_in",
+      "net": "JTDI18"
+    },
+    {
+      "pin": "U10:20",
+      "kind": "net_port_out",
+      "net": "JTDO18"
+    },
+    {
+      "pin": "U10:21",
+      "kind": "net_port_in",
+      "net": "XU_RST_N_1V8"
+    },
+    {
+      "pin": "U10:22",
+      "kind": "power",
+      "net": "V0V9_PLL"
+    },
+    {
+      "pin": "U10:23",
+      "kind": "net_port_in",
+      "net": "JTMS18"
+    },
+    {
+      "pin": "U10:24",
+      "kind": "net_port_in",
+      "net": "JTCK18"
+    },
+    {
+      "pin": "U10:28",
+      "kind": "net_port_bi",
+      "net": "USB_HUB1_DM"
+    },
+    {
+      "pin": "U10:29",
+      "kind": "net_port_bi",
+      "net": "USB_HUB1_DP"
+    },
+    {
+      "pin": "U10:30",
+      "kind": "power",
+      "net": "V3V3_USB"
+    },
+    {
+      "pin": "U10:31",
+      "kind": "power",
+      "net": "V1V8_USB"
+    },
+    {
+      "pin": "U10:32",
+      "kind": "net_port_out",
+      "net": "DEBUG_TX_XU18"
+    },
+    {
+      "pin": "U10:33",
+      "kind": "net_port_in",
+      "net": "XSCOPE_IN1_1V8"
+    },
+    {
+      "pin": "U10:35",
+      "kind": "net_port_in",
+      "net": "XSCOPE_IN0_1V8"
+    },
+    {
+      "pin": "U10:36",
+      "kind": "net_port_out",
+      "net": "XSCOPE_OUT0_1V8"
+    },
+    {
+      "pin": "U10:37",
+      "kind": "net_port_out",
+      "net": "XSCOPE_OUT1_1V8"
+    },
+    {
+      "pin": "U10:39",
+      "kind": "net_port_in",
+      "net": "DEBUG_RX_XU18"
+    },
+    {
+      "pin": "U10:41",
+      "kind": "net_port_out",
+      "net": "CTRL_TX_XU18"
+    },
+    {
+      "pin": "U10:43",
+      "kind": "net_port_in",
+      "net": "CTRL_RX_XU18"
+    },
+    {
+      "pin": "U10:47",
+      "kind": "net_port_in",
+      "net": "XU_MCLK_1V8"
+    },
+    {
+      "pin": "U10:53",
+      "kind": "net_port_in",
+      "net": "ADC_DOUT_XU18"
+    },
+    {
+      "pin": "U10:59",
+      "kind": "net_port_bi",
+      "net": "QSPI_IO0_1V8"
+    },
+    {
+      "pin": "U10:60",
+      "kind": "net_port_bi",
+      "net": "QSPI_IO2_1V8"
+    },
+    {
+      "pin": "U10:65",
+      "kind": "gnd",
+      "net": "GND"
+    },
+    {
+      "pin": "C101:2",
+      "kind": "power",
+      "net": "V0V9"
+    },
+    {
+      "pin": "C101:1",
+      "kind": "gnd",
+      "net": "GND"
+    },
+    {
+      "pin": "C102:2",
+      "kind": "power",
+      "net": "V0V9"
+    },
+    {
+      "pin": "C102:1",
+      "kind": "gnd",
+      "net": "GND"
+    },
+    {
+      "pin": "C103:2",
+      "kind": "power",
+      "net": "V0V9"
+    },
+    {
+      "pin": "C103:1",
+      "kind": "gnd",
+      "net": "GND"
+    },
+    {
+      "pin": "C104:2",
+      "kind": "power",
+      "net": "V0V9"
+    },
+    {
+      "pin": "C104:1",
+      "kind": "gnd",
+      "net": "GND"
+    },
+    {
+      "pin": "C105:2",
+      "kind": "power",
+      "net": "V0V9"
+    },
+    {
+      "pin": "C105:1",
+      "kind": "gnd",
+      "net": "GND"
+    },
+    {
+      "pin": "C106:2",
+      "kind": "power",
+      "net": "V0V9"
+    },
+    {
+      "pin": "C106:1",
+      "kind": "gnd",
+      "net": "GND"
+    },
+    {
+      "pin": "C107:2",
+      "kind": "power",
+      "net": "V0V9"
+    },
+    {
+      "pin": "C107:1",
+      "kind": "gnd",
+      "net": "GND"
+    },
+    {
+      "pin": "C108:2",
+      "kind": "power",
+      "net": "V0V9"
+    },
+    {
+      "pin": "C108:1",
+      "kind": "gnd",
+      "net": "GND"
+    },
+    {
+      "pin": "C109:2",
+      "kind": "power",
+      "net": "V1V8"
+    },
+    {
+      "pin": "C109:1",
+      "kind": "gnd",
+      "net": "GND"
+    },
+    {
+      "pin": "C110:2",
+      "kind": "power",
+      "net": "V1V8"
+    },
+    {
+      "pin": "C110:1",
+      "kind": "gnd",
+      "net": "GND"
+    },
+    {
+      "pin": "C111:2",
+      "kind": "power",
+      "net": "V1V8"
+    },
+    {
+      "pin": "C111:1",
+      "kind": "gnd",
+      "net": "GND"
+    },
+    {
+      "pin": "C112:2",
+      "kind": "power",
+      "net": "V1V8"
+    },
+    {
+      "pin": "C112:1",
+      "kind": "gnd",
+      "net": "GND"
+    },
+    {
+      "pin": "C113:2",
+      "kind": "power",
+      "net": "V1V8"
+    },
+    {
+      "pin": "C113:1",
+      "kind": "gnd",
+      "net": "GND"
+    },
+    {
+      "pin": "C114:2",
+      "kind": "power",
+      "net": "V1V8_USB"
+    },
+    {
+      "pin": "C114:1",
+      "kind": "gnd",
+      "net": "GND"
+    },
+    {
+      "pin": "C115:2",
+      "kind": "power",
+      "net": "V3V3_USB"
+    },
+    {
+      "pin": "C115:1",
+      "kind": "gnd",
+      "net": "GND"
+    },
+    {
+      "pin": "C116:2",
+      "kind": "power",
+      "net": "V0V9_PLL"
+    },
+    {
+      "pin": "C116:1",
+      "kind": "gnd",
+      "net": "GND"
+    },
+    {
+      "pin": "C117:2",
+      "kind": "power",
+      "net": "V0V9"
+    },
+    {
+      "pin": "C117:1",
+      "kind": "gnd",
+      "net": "GND"
+    },
+    {
+      "pin": "C118:2",
+      "kind": "power",
+      "net": "V1V8"
+    },
+    {
+      "pin": "C118:1",
+      "kind": "gnd",
+      "net": "GND"
+    }
+  ],
+  "rules": {
+    "avoidTitleBlock": true,
+    "avoidPinFanout": true,
+    "staggerLabels": true,
+    "offsetRange": [
+      20,
+      90
+    ],
+    "offsetStep": 5,
+    "minLabelGap": 6
+  }
+}
